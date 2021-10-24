@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_calendar"
+        android:icon="@drawable/ic_baseline_calendar_today_24"
+        android:title="@string/calendar"
+        />
+
+    <item
+        android:id="@+id/navigation_write"
+        android:icon="@drawable/ic_baseline_add_circle_outline_24"
+        android:title="@string/write" />
+
+    <item
+        android:id="@+id/navigation_tofo"
+        android:icon="@drawable/ic_baseline_check_circle_outline_24"
+        android:title="@string/todo" />
+
+</menu>
