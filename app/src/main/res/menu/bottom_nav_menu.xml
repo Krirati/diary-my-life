@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_calendar"
         android:icon="@drawable/ic_baseline_calendar_today_24"
-        android:title="@string/calendar"
-        />
+        android:title="@string/calendar" />
 
     <item
         android:id="@+id/navigation_write"
@@ -14,8 +11,7 @@
         android:title="@string/write" />
 
     <item
-        android:id="@+id/navigation_tofo"
+        android:id="@+id/navigation_todo"
         android:icon="@drawable/ic_baseline_check_circle_outline_24"
         android:title="@string/todo" />
-
 </menu>

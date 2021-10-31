@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="primary_honestwhite">#ffffff</color>
+    <color name="primary_trustednavy">#002d63</color>
+    <color name="secondary_grey100">#5b6a83</color>
+    <color name="secondary_grey70">#7d8999</color>
+    <color name="secondary_grey50">#b0bccb</color>
+    <color name="secondary_grey20">#dfe6ec</color>
+    <color name="secondary_grey10">#f5f6f7</color>
+    <color name="hint">#9eafc2</color>
+    <color name="transparent">#00000000</color>
+    <color name="default_dot">#b0bccb</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -10,4 +20,16 @@
     <color name="primary">#2575f2</color>
     <color name="white_grey">#f8f9f8</color>
     <color name="dark_grey">#a39aa9</color>
+    <color name="background">#FAFAFA</color>
+    <color name="background2">#E6E9E6</color>
+    <color name="royal_blue">#246EE9</color>
+    <color name="royal_blue_dark">#0D60EC</color>
+    <color name="royal_blue_drop">#D6E5FF</color>
+    <color name="dark_brown">#272727</color>
+    <color name="bg_bottom_grey">#E6E9E6</color>
+    <color name="brown_text">#4A4A53</color>
+    <color name="red_700">#A53834</color>
+    <color name="red_500">#C06556</color>
+    <color name="red_200">#D68A7B</color>
+
 </resources>
