@@ -6,13 +6,13 @@
             <solid android:color="#0A4C5765" />
         </shape>
     </item>
-    <item android:bottom="2dp">
+    <item android:bottom="1dp">
         <shape android:shape="rectangle">
             <corners android:radius="13dp" />
             <solid android:color="#0F4C5765" />
         </shape>
     </item>
-    <item android:bottom="4dp">
+    <item android:bottom="2dp">
         <selector>
             <item android:state_enabled="false">
                 <shape android:shape="rectangle">

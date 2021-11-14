@@ -20,7 +20,8 @@
     <color name="primary">#2575f2</color>
     <color name="white_grey">#f8f9f8</color>
     <color name="dark_grey">#a39aa9</color>
-    <color name="background">#FAFAFA</color>
+    <color name="grey">#CDD3DC</color>
+    <color name="background">#F8F8F8</color>
     <color name="background2">#E6E9E6</color>
     <color name="royal_blue">#246EE9</color>
     <color name="royal_blue_dark">#0D60EC</color>
@@ -31,5 +32,6 @@
     <color name="red_700">#A53834</color>
     <color name="red_500">#C06556</color>
     <color name="red_200">#D68A7B</color>
+    <color name="bittersweet">#FA7D79</color>
 
 </resources>

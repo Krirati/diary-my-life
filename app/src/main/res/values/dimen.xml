@@ -21,6 +21,7 @@
     <dimen name="dp_12">12dp</dimen>
     <dimen name="dp_16">16dp</dimen>
     <dimen name="dp_32">32dp</dimen>
+    <dimen name="dp_64">64dp</dimen>
 
     <dimen name="cardHeight_initial">4dp</dimen>
     <dimen name="cardHeight_final">55dp</dimen>
@@ -30,4 +31,5 @@
 
     <dimen name="default_margin_padding_horizontal">16dp</dimen>
     <dimen name="default_margin_padding_vertical">16dp</dimen>
+    <dimen name="bottom_nav_height">64dp</dimen>
 </resources>

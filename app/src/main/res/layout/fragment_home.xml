@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_page_1"
->
-
+    android:background="@drawable/bg_page_1">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/title_welcome"
@@ -31,34 +29,63 @@
         app:layout_constraintStart_toStartOf="@+id/title_welcome"
         app:layout_constraintTop_toBottomOf="@+id/title_welcome" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dp_32"
+        android:layout_marginTop="@dimen/dp_32"
+        android:layout_marginBottom="@dimen/dp_16"
+        app:cardCornerRadius="@dimen/dp_16"
+        app:layout_constraintTop_toBottomOf="@id/title_username">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_16">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/H2BlackLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please tell me about your today. I'm waiting for your journal." />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/dp_16"
+                style="@style/RoundButtonBoldBittersweet"
+                android:text="Tell me" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingHorizontal="@dimen/dp_32"
-        android:paddingVertical="@dimen/dp_16"
+        android:paddingTop="@dimen/dp_16"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_username">
+        app:layout_constraintTop_toBottomOf="@+id/card_welcome">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title_recent_memory"
+            style="@style/H2BlackLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Recent Memory"
-            style="@style/H2NavyLeft"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_see_all"
+            style="@style/ButtonBoldBittersweet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
             android:text="See All"
-            android:textAllCaps="false"
-            android:textColor="@color/brown_text"
-            android:textSize="14sp"
-            android:textStyle="bold"
+            android:gravity="right|center_vertical"
             app:layout_constraintBottom_toBottomOf="@+id/title_recent_memory"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/title_recent_memory" />
@@ -66,13 +93,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recent_widget"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/dp_8"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp_16"
+            android:background="@color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title_recent_memory" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
