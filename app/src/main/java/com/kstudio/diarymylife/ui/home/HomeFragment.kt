@@ -11,6 +11,7 @@ import com.kstudio.diarymylife.databinding.FragmentHomeBinding
 import com.kstudio.diarymylife.model.JournalCard
 import com.kstudio.diarymylife.ui.adapter.RecentMemoryAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
+import com.kstudio.diarymylife.ui.journal.JournalDetailActivity
 import java.sql.Timestamp
 import kotlin.collections.ArrayList
 
@@ -65,7 +66,11 @@ class HomeFragment : BaseFragment() {
             activity = arrayListOf("1", "2", "3")
         )
         val memberList: ArrayList<JournalCard> = arrayListOf(card, card2, card3)
-        val memberAdapter = RecentMemoryAdapter(memberList)
+        val memberAdapter =
+            RecentMemoryAdapter(
+                memberList
+            ) { navigateToActivity(JournalDetailActivity::class.java) }
+
         binding.recentWidget.apply {
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
             isNestedScrollingEnabled = false

@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class RecentMemoryAdapter(private val memoryItems: ArrayList<JournalCard>) :
+class RecentMemoryAdapter(private val memoryItems: ArrayList<JournalCard>, private val callback: () -> Unit) :
     RecyclerView.Adapter<RecentMemoryAdapter.ViewHolder>() {
 
     var previousTime: Date = Timestamp(0)
@@ -53,13 +53,16 @@ class RecentMemoryAdapter(private val memoryItems: ArrayList<JournalCard>) :
             }
 
             journalTitle.text = item.title
-            journalDesc.text = "Lorem ipsum dolor sit amet, coddddddlddddddlllll ppppppppp"
+            journalDesc.text = item.desc
             journalTime.text = convertTime(item.timestamp)
             journalActivity.apply {
                 layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
                 isNestedScrollingEnabled = false
                 adapter = activityAdapter
                 onFlingListener = null
+            }
+            journalCard.setOnClickListener {
+                callback()
             }
         }
 
