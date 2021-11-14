@@ -21,6 +21,12 @@ class DateView constructor(
 
     private val binding = ItemDateTimeBinding.inflate(LayoutInflater.from(context))
 
+    init {
+        LayoutInflater.from(context)
+            .inflate(R.layout.item_date_time, this, true)
+        orientation = HORIZONTAL
+    }
+
     fun bindView(time: Date) {
         with(binding) {
             day.text = SimpleDateFormat("EEEE", Locale.ENGLISH).format(Date((time.time)))
