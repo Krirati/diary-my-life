@@ -51,9 +51,10 @@ class RecentMemoryAdapter(private val memoryItems: ArrayList<JournalCard>) :
                 binding.timeContainer.addView(dateView)
                 previousTime = item.timestamp
             }
+
             journalTitle.text = item.title
             journalDesc.text = "Lorem ipsum dolor sit amet, coddddddlddddddlllll ppppppppp"
-            journalTime.text = item.timestamp.toString()
+            journalTime.text = convertTime(item.timestamp)
             journalActivity.apply {
                 layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
                 isNestedScrollingEnabled = false
@@ -62,5 +63,10 @@ class RecentMemoryAdapter(private val memoryItems: ArrayList<JournalCard>) :
             }
         }
 
+        @SuppressLint("SimpleDateFormat")
+        private fun convertTime(timestamp: Date): String {
+            val sdf = SimpleDateFormat("hh:mm")
+            return sdf.format(timestamp)
+        }
     }
 }

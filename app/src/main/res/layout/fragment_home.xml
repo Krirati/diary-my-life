@@ -46,7 +46,7 @@
             android:padding="@dimen/dp_16">
 
             <androidx.appcompat.widget.AppCompatTextView
-                style="@style/H2BlackLeft"
+                style="@style/SubtitleBlackLeftBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Please tell me about your today. I'm waiting for your journal." />
@@ -54,7 +54,7 @@
             <androidx.appcompat.widget.AppCompatButton
                 style="@style/RoundButtonBoldBittersweet"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="32dp"
                 android:layout_marginTop="@dimen/dp_16"
                 android:text="Tell me" />
         </LinearLayout>
