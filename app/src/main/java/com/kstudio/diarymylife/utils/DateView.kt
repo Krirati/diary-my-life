@@ -5,7 +5,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ItemDateTimeBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -25,7 +24,7 @@ class DateView constructor(
     fun bindView(time: Date) {
         with(binding) {
             day.text = SimpleDateFormat("EEEE", Locale.ENGLISH).format(Date((time.time)))
-            mouth.text = SimpleDateFormat("MMM-dd", Locale.ENGLISH).format(Date((time.time)))
+            month.text = SimpleDateFormat("MMMM, dd", Locale.ENGLISH).format(Date((time.time)))
         }
     }
 }

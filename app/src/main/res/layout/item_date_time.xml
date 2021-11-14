@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -8,18 +9,18 @@
         android:layout_marginBottom="@dimen/dp_8">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/mouth"
+            android:id="@+id/month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/SubtitleBlackLeftBold"
-            android:text="October, 30"/>
+            tools:text="October, 30"/>
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/day"
             android:layout_marginStart="@dimen/dp_8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/SubtitleBlackLeft"
-            android:text="Sunday"/>
+            tools:text="Sunday"/>
     </LinearLayout>
 
 </layout>
