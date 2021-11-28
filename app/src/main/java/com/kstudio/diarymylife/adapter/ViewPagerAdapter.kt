@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.adapter
+package com.kstudio.diarymylife.adapter
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
