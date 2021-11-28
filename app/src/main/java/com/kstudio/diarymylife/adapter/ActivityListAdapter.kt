@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.adapter
+package com.kstudio.diarymylife.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
