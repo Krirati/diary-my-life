@@ -7,6 +7,8 @@ import com.kstudio.diarymylife.databinding.ItemRecentEventBinding
 import com.kstudio.diarymylife.model.JournalCard
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
 import com.kstudio.diarymylife.viewholder.RecentMemoryViewHolder
+import java.sql.Timestamp
+import java.util.*
 import kotlin.collections.ArrayList
 
 class RecentMemoryAdapter(
@@ -14,7 +16,10 @@ class RecentMemoryAdapter(
     private val callback: (Int) -> Unit,
 ) :
     RecyclerView.Adapter<RecentMemoryViewHolder>() {
+
     private val swipeState : SwipeState = SwipeState.LEFT_RIGHT
+    var previousTime: Date = Timestamp(0)
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -28,7 +33,8 @@ class RecentMemoryAdapter(
     }
 
     override fun onBindViewHolder(holder: RecentMemoryViewHolder, position: Int) {
-        holder.bind(memoryItems[position], swipeState)
+        holder.bind(memoryItems[position], swipeState, previousTime)
+        previousTime = memoryItems[position].timestamp
     }
 
     override fun getItemCount(): Int = memoryItems.size

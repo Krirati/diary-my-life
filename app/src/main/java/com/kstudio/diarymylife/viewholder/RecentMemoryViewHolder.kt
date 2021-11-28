@@ -17,7 +17,6 @@ import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
 import com.kstudio.diarymylife.utils.DateView
 import com.kstudio.diarymylife.utils.compareTime
 import com.kstudio.diarymylife.utils.convertTime
-import java.sql.Timestamp
 import java.util.*
 
 class RecentMemoryViewHolder(
@@ -27,7 +26,6 @@ class RecentMemoryViewHolder(
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
-    var previousTime: Date = Timestamp(0)
 
     /** On Swipe */
     private val size: Point = Point()
@@ -52,14 +50,13 @@ class RecentMemoryViewHolder(
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    fun bind(item: JournalCard, swipeState: SwipeState) = with(binding) {
+    fun bind(item: JournalCard, swipeState: SwipeState, previousTime: Date) = with(binding) {
         val activityAdapter = item.activity?.let { ActivityListAdapter(it) }
 
         if (!compareTime(previousTime, item.timestamp)) {
             val dateView = DateView(context)
             dateView.bindView(item.timestamp)
             binding.timeContainer.addView(dateView)
-            previousTime = item.timestamp
         }
 
         journalCard.setOnClickListener { callback(item.journalId) }
