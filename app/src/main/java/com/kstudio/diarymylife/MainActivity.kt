@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.kstudio.diarymylife.databinding.ActivityMainBinding
-import com.kstudio.diarymylife.ui.adapter.ViewPagerAdapter
+import com.kstudio.diarymylife.adapter.ViewPagerAdapter
 import com.kstudio.diarymylife.ui.home.HomeFragment
 import com.kstudio.diarymylife.ui.todo.ToDoFragment
 import com.kstudio.diarymylife.ui.write.WriteFragment
