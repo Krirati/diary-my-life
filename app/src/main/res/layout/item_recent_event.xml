@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/journal_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -11,15 +11,20 @@
 
         <LinearLayout
             android:id="@+id/timeContainer"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingBottom="@dimen/dp_16">
+            android:paddingBottom="@dimen/dp_16"
+            app:layout_constraintTop_toBottomOf="@id/timeContainer"
+            app:layout_constraintStart_toStartOf="@id/timeContainer">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -30,7 +35,6 @@
                     android:layout_width="2dp"
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginHorizontal="@dimen/dp_32"
                     android:layout_marginTop="@dimen/dp_32"
                     android:background="@color/grey"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -44,77 +48,109 @@
             </RelativeLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/journal_card"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_qb_selector"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/line_vertical"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/journal_mood"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_pencil"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                app:layout_constraintEnd_toEndOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layout_quick_balance_account"
+                    android:id="@+id/journal_action"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/dp_16"
-                    app:layout_constraintBottom_toBottomOf="@+id/journal_mood"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/bg_round_card_action"
+                    android:paddingVertical="@dimen/dp_8"
+                    android:paddingStart="@dimen/dp_16"
+                    android:paddingEnd="0dp"
+                    app:layout_constraintBottom_toBottomOf="@id/journal_card"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/journal_mood">
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/journal_title"
-                        style="@style/H2BlackLeft"
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:src="@drawable/ic_trash"
+                        android:layout_marginStart="@dimen/dp_8"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Title" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/journal_desc"
-                        style="@style/SubtitleBlackLeft"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_8"
-                        android:duplicateParentState="true"
-                        android:ellipsize="end"
-                        android:maxLines="1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/journal_title"
-                        tools:text="Lorem ipsum dolor sit amet, coddddddlddddddlllll ppppppppp " />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/journal_activity"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/dp_8"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/journal_desc" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/journal_time"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_8"
-                        app:layout_constraintTop_toBottomOf="@+id/journal_activity"
-                        tools:layout_editor_absoluteX="16dp"
-                        tools:text="16.00" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/journal_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_qb_selector"
+                    android:paddingVertical="@dimen/dp_8"
+                    android:paddingStart="@dimen/dp_16"
+                    android:paddingEnd="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/journal_mood"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginEnd="0dp"
+                        android:src="@drawable/ic_pencil"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/journal_title"
+                            style="@style/H2BlackLeft"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Title" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/journal_desc"
+                            style="@style/SubtitleBlackLeft"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_4"
+                            android:duplicateParentState="true"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/journal_title"
+                            tools:text="Lorem ipsum dolor sit amet, coddddddlddddddlllll ppppppppp " />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/journal_activity"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/dp_4"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/journal_desc" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/journal_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_4"
+                            app:layout_constraintTop_toBottomOf="@+id/journal_activity"
+                            tools:layout_editor_absoluteX="16dp"
+                            tools:text="16.00" />
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
