@@ -1,116 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_line"
-        app:layout_constraintTop_toTopOf="parent"
+        android:rotation="180"
         app:layout_constraintEnd_toEndOf="parent"
-        android:rotation="180"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/title_welcome"
-        style="@style/H1BlackLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginHorizontal="@dimen/dp_32"
-        android:layout_marginTop="@dimen/dp_32"
-        android:text="Good morning"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/title_username"
-        style="@style/H1BlackLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title_welcome"
-        android:layout_marginTop="@dimen/dp_8"
-        android:text="Krirati"
-        app:layout_constraintStart_toStartOf="@+id/title_welcome"
-        app:layout_constraintTop_toBottomOf="@+id/title_welcome" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/card_welcome"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dp_32"
-        android:layout_marginTop="@dimen/dp_32"
-        android:layout_marginBottom="@dimen/dp_16"
-        android:background="@drawable/bg_qb_selector"
-        app:layout_constraintTop_toBottomOf="@id/title_username">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/dp_16">
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatTextView
-                style="@style/SubtitleBlackLeftBold"
+                android:id="@+id/title_welcome"
+                style="@style/H1BlackLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Please tell me about your today. I'm waiting for your journal." />
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginHorizontal="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_32"
+                android:text="Good morning"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                style="@style/RoundButtonBoldBittersweet"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_username"
+                style="@style/H1BlackLeft"
                 android:layout_width="wrap_content"
-                android:layout_height="32dp"
-                android:layout_marginTop="@dimen/dp_16"
-                android:text="Tell me" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_welcome"
+                android:layout_marginTop="@dimen/dp_8"
+                android:text="Krirati"
+                app:layout_constraintStart_toStartOf="@+id/title_welcome"
+                app:layout_constraintTop_toBottomOf="@+id/title_welcome" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingHorizontal="@dimen/dp_32"
-        android:paddingTop="@dimen/dp_16"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_welcome">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/card_welcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_32"
+                android:layout_marginBottom="@dimen/dp_16"
+                android:background="@drawable/bg_qb_selector"
+                app:layout_constraintTop_toBottomOf="@id/title_username">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title_recent_memory"
-            style="@style/H2BlackLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Recent Memory"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp_16">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_see_all"
-            style="@style/ButtonBoldBittersweet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="end|center_vertical"
-            android:paddingEnd="@dimen/dp_32"
-            android:text="See All"
-            app:layout_constraintBottom_toBottomOf="@+id/title_recent_memory"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/title_recent_memory" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SubtitleBlackLeftBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Please tell me about your today. I'm waiting for your journal." />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recent_widget"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/dp_16"
-            android:background="@color/transparent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_recent_memory"
-            tools:listitem="@layout/item_recent_event"
-            tools:itemCount="5"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.appcompat.widget.AppCompatButton
+                        style="@style/RoundButtonBoldBittersweet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:text="Tell me" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/dp_24"
+                android:paddingEnd="0dp"
+                android:paddingTop="@dimen/dp_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_welcome">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title_recent_memory"
+                    style="@style/H2BlackLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recent Memory"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_see_all"
+                    style="@style/ButtonBoldBittersweet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end|center_vertical"
+                    android:paddingEnd="@dimen/dp_32"
+                    android:text="See All"
+                    app:layout_constraintBottom_toBottomOf="@+id/title_recent_memory"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/title_recent_memory" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recent_widget"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:background="@color/transparent"
+                    android:nestedScrollingEnabled="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_recent_memory"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_recent_event" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
