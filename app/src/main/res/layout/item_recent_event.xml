@@ -55,17 +55,20 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/journal_action"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="0dp"
+                    android:minWidth="310dp"
                     android:background="@drawable/bg_round_card_action"
                     android:paddingVertical="@dimen/dp_8"
                     android:paddingStart="@dimen/dp_16"
                     android:paddingEnd="0dp"
                     app:layout_constraintBottom_toBottomOf="@id/journal_card"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/journal_card"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/button_delete"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_trash"
@@ -78,11 +81,12 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/journal_card"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_qb_selector"
                     android:paddingVertical="@dimen/dp_8"
                     android:paddingStart="@dimen/dp_16"
+                    android:minWidth="310dp"
                     android:paddingEnd="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -133,6 +137,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="@dimen/dp_4"
+                            android:nestedScrollingEnabled="false"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/journal_desc" />
