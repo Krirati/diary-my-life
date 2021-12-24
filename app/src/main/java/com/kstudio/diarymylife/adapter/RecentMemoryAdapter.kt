@@ -12,7 +12,7 @@ import kotlin.collections.ArrayList
 
 class RecentMemoryAdapter(
     private val memoryItems: ArrayList<JournalCard>,
-    private val callback: (Int) -> Unit,
+    private val callback: (String) -> Unit,
     private val onDeleted: (String) -> Unit?,
 ) :
     RecyclerView.Adapter<RecentMemoryViewHolder>() {
@@ -46,7 +46,6 @@ class RecentMemoryAdapter(
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, memoryItems.size)
         onDeleted(memoryItems[position].journalId)
-
     }
 
 }

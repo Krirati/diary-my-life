@@ -5,14 +5,14 @@ import com.kstudio.diarymylife.model.JournalCard
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import java.sql.Timestamp
 
-class HomeViewModel: BaseViewModel() {
+class HomeViewModel : BaseViewModel() {
 
     private val _memberList: MutableLiveData<ArrayList<JournalCard>> = MutableLiveData()
     fun getMemberList() = _memberList
 
     fun fetchMemberList() {
         val card = JournalCard(
-            journalId = 1,
+            journalId = "0",
             title = "nine",
             desc = "desc",
             timestamp = Timestamp(System.currentTimeMillis()),
@@ -21,7 +21,7 @@ class HomeViewModel: BaseViewModel() {
             activity = arrayListOf("1", "2", "3")
         )
         val card2 = JournalCard(
-            journalId = 1,
+            journalId = "1",
             title = "nine2",
             desc = "desc",
             timestamp = Timestamp(3333),
@@ -30,7 +30,7 @@ class HomeViewModel: BaseViewModel() {
             activity = null
         )
         val card3 = JournalCard(
-            journalId = 1,
+            journalId = "2",
             title = "nine3",
             desc = "desc",
             timestamp = Timestamp(4444),
@@ -39,7 +39,9 @@ class HomeViewModel: BaseViewModel() {
             activity = arrayListOf("1", "2", "3")
         )
 
-        val memberList: ArrayList<JournalCard> = arrayListOf(card, card2, card3)
+        val members = arrayListOf(card, card2, card3, card, card, card)
+        members.sortBy { it.timestamp }
+        val memberList: ArrayList<JournalCard> = members
         _memberList.postValue(memberList)
     }
 }

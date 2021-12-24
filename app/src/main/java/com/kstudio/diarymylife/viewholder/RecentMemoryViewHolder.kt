@@ -3,7 +3,6 @@ package com.kstudio.diarymylife.viewholder
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Point
-import android.util.Log
 import android.view.Display
 import android.view.MotionEvent
 import android.view.View
@@ -22,7 +21,7 @@ import java.util.*
 class RecentMemoryViewHolder(
     val binding: ItemRecentEventBinding,
     private val context: Context,
-    private val callback: (Int) -> Unit,
+    private val callback: (String) -> Unit,
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
@@ -50,7 +49,9 @@ class RecentMemoryViewHolder(
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    fun bind(item: JournalCard, swipeState: SwipeState, previousTime: Date) = with(binding) {
+    fun bind(
+        item: JournalCard, swipeState: SwipeState, previousTime: Date?, onDelete: (Int) -> Unit
+    ) = with(binding) {
         val activityAdapter = item.activity?.let { ActivityListAdapter(it) }
 
         if (!compareTime(previousTime, item.timestamp)) {
@@ -59,7 +60,7 @@ class RecentMemoryViewHolder(
             binding.timeContainer.addView(dateView)
         }
 
-        journalCard.setOnClickListener { callback(item.journalId) }
+        journalCard.setOnClickListener {}
         journalTitle.text = item.title
         journalDesc.text = item.desc
         journalTime.text = convertTime(item.timestamp)
@@ -70,50 +71,46 @@ class RecentMemoryViewHolder(
                 GridLayoutManager.HORIZONTAL,
                 false
             )
-            isNestedScrollingEnabled = false
             adapter = activityAdapter
-            onFlingListener = null
+        }
+
+        buttonDelete.setOnClickListener {
+            onDelete(adapterPosition)
         }
 
         /* On Touch Swipe */
-        journalCard.setOnTouchListener(object : View.OnTouchListener {
-            override fun onTouch(view: View, event: MotionEvent): Boolean {
-                return when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        dXLead = view.x - event.rawX
-                        dXTrail = view.right - event.rawX
-                        Log.d("Swipe", "MotionEvent.ACTION_DOWN")
-                        false
-                    }
-                    MotionEvent.ACTION_MOVE -> {
-                        view.parent.requestDisallowInterceptTouchEvent(true)
-                        if (binding.journalCard.x < 0) return false
-                        onAnimate(
-                            view,
-                            onSwipeMove(
-                                event.rawX + dXLead,
-                                swipeState,
-                            ),
-                            0
-                        )
-                        item.state = getSwipeState(
-                            event.rawX + dXLead,
-                            event.rawX + dXTrail,
-                            swipeState
-                        )
-                        Log.d("Swipe", "MotionEvent.ACTION_MOVE")
-                        false
-                    }
-                    MotionEvent.ACTION_UP -> {
-                        onAnimate(view, onSwipeUp(item.state), 250)
-                        Log.d("Swipe", "MotionEvent.ACTION_UP")
-                        false
-                    }
-                    else -> true
-                }
+        journalCard.apply {
+            setOnClickListener {
+                callback(item.journalId)
             }
-        })
+//            setOnTouchListener { view, event ->
+//                when (event.action) {
+//                    MotionEvent.ACTION_DOWN -> {
+//                        dXLead = view.x - event.rawX
+//                        dXTrail = view.right - event.rawX
+//                        false
+//                    }
+//                    MotionEvent.ACTION_MOVE -> {
+//                        onAnimate(view, onSwipeMove(event.rawX + dXLead, swipeState), 0)
+//                        item.state =
+//                            getSwipeState(
+//                                event.rawX + dXLead,
+//                                event.rawX + dXTrail,
+//                                swipeState
+//                            )
+//
+//                        true
+//                    }
+//                    MotionEvent.ACTION_UP -> {
+//                        onAnimate(view, onSwipeUp(item.state), 250)
+//                        false
+//                    }
+//                    else -> false
+//                }
+//            }
+        }
     }
+
 
     private fun onAnimate(view: View, dx: Float, duration: Long) {
         view.animate().x(dx).setDuration(duration).start()
@@ -123,7 +120,6 @@ class RecentMemoryViewHolder(
         currentLead: Float,
         swipeState: SwipeState,
     ): Float {
-        Log.d("test x", binding.journalCard.x.toString())
         return when (swipeState) {
             SwipeState.LEFT, SwipeState.RIGHT, SwipeState.LEFT_RIGHT -> {
                 currentLead
