@@ -8,7 +8,7 @@ import kotlin.collections.ArrayList
 
 @Parcelize
 data class JournalCard(
-    val journalId: Int,
+    val journalId: String,
     val title: String,
     val desc: String,
     val mood: String,
