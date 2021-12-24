@@ -11,7 +11,8 @@ fun convertTime(timestamp: Date): String {
 }
 
 @SuppressLint("SimpleDateFormat")
-fun compareTime(previous: Date, current: Date): Boolean {
+fun compareTime(previous: Date?, current: Date): Boolean {
+    if (previous == null) return false
     val fmt = SimpleDateFormat("yyyyMMdd")
     return fmt.format(previous).equals(fmt.format(current))
 }
