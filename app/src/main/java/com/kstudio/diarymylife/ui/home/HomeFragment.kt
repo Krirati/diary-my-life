@@ -46,7 +46,8 @@ class HomeFragment : BaseFragment() {
     private fun setUpRecentMemory(memberList: ArrayList<JournalCard>) {
         val memberAdapter = RecentMemoryAdapter(
             memberList,
-        ) { navigateToActivity(JournalDetailActivity::class.java, it) }
+            callback = {navigateToActivity(JournalDetailActivity::class.java, it)}
+        ) {  }
 
         binding.recentWidget.apply {
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)

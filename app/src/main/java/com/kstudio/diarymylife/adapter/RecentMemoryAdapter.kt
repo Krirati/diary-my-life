@@ -41,7 +41,7 @@ class RecentMemoryAdapter(
 
     override fun getItemCount(): Int = memoryItems.size
 
-    fun deleteItem(position : Int) {
+    private fun deleteItem(position : Int) {
         memoryItems.removeAt(position)
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, memoryItems.size)

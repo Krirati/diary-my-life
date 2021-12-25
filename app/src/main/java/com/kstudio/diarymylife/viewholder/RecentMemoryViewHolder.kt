@@ -37,6 +37,7 @@ class RecentMemoryViewHolder(
     private val cardViewTrailing: Float
     private var dXLead: Float = 0.toFloat()
     private var dXTrail: Float = 0.toFloat()
+    private var previousEvent: Pair<Int?, Int?> = Pair(null, null)
 
     init {
         display =
@@ -60,7 +61,6 @@ class RecentMemoryViewHolder(
             binding.timeContainer.addView(dateView)
         }
 
-        journalCard.setOnClickListener {}
         journalTitle.text = item.title
         journalDesc.text = item.desc
         journalTime.text = convertTime(item.timestamp)
@@ -81,38 +81,42 @@ class RecentMemoryViewHolder(
         /* On Touch Swipe */
         journalCard.apply {
             setOnClickListener {
+                if (previousEvent.first == MotionEvent.ACTION_MOVE && previousEvent.second == MotionEvent.ACTION_UP) return@setOnClickListener
                 callback(item.journalId)
             }
-//            setOnTouchListener { view, event ->
-//                when (event.action) {
-//                    MotionEvent.ACTION_DOWN -> {
-//                        dXLead = view.x - event.rawX
-//                        dXTrail = view.right - event.rawX
-//                        false
-//                    }
-//                    MotionEvent.ACTION_MOVE -> {
-//                        onAnimate(view, onSwipeMove(event.rawX + dXLead, swipeState), 0)
-//                        item.state =
-//                            getSwipeState(
-//                                event.rawX + dXLead,
-//                                event.rawX + dXTrail,
-//                                swipeState
-//                            )
-//
-//                        true
-//                    }
-//                    MotionEvent.ACTION_UP -> {
-//                        onAnimate(view, onSwipeUp(item.state), 250)
-//                        false
-//                    }
-//                    else -> false
-//                }
-//            }
+            setOnTouchListener { view, event ->
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        previousEvent = previousEvent.copy(first = event.action)
+                        dXLead = view.x - event.rawX
+                        dXTrail = view.right - event.rawX
+                        false
+                    }
+                    MotionEvent.ACTION_MOVE -> {
+                        previousEvent = previousEvent.copy(first = event.action)
+                        onAnimate(view, onSwipeMove(event.rawX + dXLead, swipeState), 0)
+                        item.state =
+                            getSwipeState(
+                                event.rawX + dXLead,
+                                event.rawX + dXTrail,
+                                swipeState
+                            )
+                        false
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        previousEvent = previousEvent.copy(second = event.action)
+                        onAnimate(view, onSwipeUp(item.state))
+                        false
+                    }
+                    else -> true
+                }
+            }
         }
     }
 
 
-    private fun onAnimate(view: View, dx: Float, duration: Long) {
+    private fun onAnimate(view: View, dx: Float, duration: Long = 100) {
+        if (previousEvent.first == MotionEvent.ACTION_DOWN && previousEvent.second == MotionEvent.ACTION_UP || dx < 0) return
         view.animate().x(dx).setDuration(duration).start()
     }
 

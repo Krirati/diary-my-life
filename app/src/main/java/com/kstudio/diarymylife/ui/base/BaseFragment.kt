@@ -9,7 +9,7 @@ import com.kstudio.diarymylife.utils.Keys
 open class BaseFragment : Fragment() {
     protected var _binding: ViewBinding? = null
 
-    fun navigateToActivity(activity: Class<*>?, journalId: Int?) {
+    fun navigateToActivity(activity: Class<*>?, journalId: String) {
         val intent = Intent(context, activity)
         startActivity(intent)
         intent.putExtra(Keys.JOURNAL_ID, journalId)
