@@ -4,4 +4,5 @@
     <string name="calendar">Calendar</string>
     <string name="write">Write</string>
     <string name="todo">ToDo</string>
+    <string name="setting">Setting</string>
 </resources>

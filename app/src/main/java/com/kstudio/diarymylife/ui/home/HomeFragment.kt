@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.databinding.FragmentHomeBinding
 import com.kstudio.diarymylife.model.JournalCard
-import com.kstudio.diarymylife.adapter.RecentMemoryAdapter
+import com.kstudio.diarymylife.adapter.ItemCardMemoryAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.journal.JournalDetailActivity
 import kotlin.collections.ArrayList
@@ -44,10 +44,11 @@ class HomeFragment : BaseFragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun setUpRecentMemory(memberList: ArrayList<JournalCard>) {
-        val memberAdapter = RecentMemoryAdapter(
+        val memberAdapter = ItemCardMemoryAdapter(
             memberList,
-            callback = {navigateToActivity(JournalDetailActivity::class.java, it)}
-        ) {  }
+            callback = { navigateToActivity(JournalDetailActivity::class.java, it) },
+            onDeleted = {}
+        )
 
         binding.recentWidget.apply {
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)

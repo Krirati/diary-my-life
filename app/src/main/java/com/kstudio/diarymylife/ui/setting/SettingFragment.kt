@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.todo
+package com.kstudio.diarymylife.ui.setting
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,9 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.kstudio.diarymylife.databinding.FragmentTodoBinding
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.home.HomeViewModel
 
-class ToDoFragment: BaseFragment() {
-    private lateinit var homeViewModel: ToDoViewModel
+class SettingFragment: BaseFragment() {
+    private lateinit var homeViewModel: SettingViewModel
 
     private val binding get() = _binding as FragmentTodoBinding
 
@@ -21,7 +20,7 @@ class ToDoFragment: BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         homeViewModel =
-            ViewModelProvider(this).get(ToDoViewModel::class.java)
+            ViewModelProvider(this).get(SettingViewModel::class.java)
 
         _binding = FragmentTodoBinding.inflate(layoutInflater)
         val root: View = binding.root

@@ -7,8 +7,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.kstudio.diarymylife.databinding.ActivityMainBinding
 import com.kstudio.diarymylife.adapter.ViewPagerAdapter
 import com.kstudio.diarymylife.ui.home.HomeFragment
-import com.kstudio.diarymylife.ui.todo.ToDoFragment
+import com.kstudio.diarymylife.ui.setting.SettingFragment
 import com.kstudio.diarymylife.ui.write.WriteFragment
+import com.kstudio.diarymylife.utils.Tabs
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,16 +29,11 @@ class MainActivity : AppCompatActivity() {
         val fragment: ArrayList<Fragment> = arrayListOf(
             HomeFragment(),
             WriteFragment(),
-            ToDoFragment()
+            SettingFragment()
         )
 
         binding.viewPager.isUserInputEnabled = false
         binding.viewPager.adapter = ViewPagerAdapter(fragment, this)
-        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                binding.bottomNavigation.menu.getItem(position).isChecked = true
-            }
-        })
     }
 
     private fun setupNavigationBar() {

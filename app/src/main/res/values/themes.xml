@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.DiaryMyLife" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/bittersweet</item>
-        <item name="colorPrimaryVariant">@color/background</item>
+        <item name="colorPrimary">@color/brown_text</item>
+        <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/royal_blue</item>

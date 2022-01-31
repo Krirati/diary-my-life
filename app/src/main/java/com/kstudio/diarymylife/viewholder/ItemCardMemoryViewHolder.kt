@@ -10,16 +10,16 @@ import android.view.WindowManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.adapter.ActivityListAdapter
-import com.kstudio.diarymylife.databinding.ItemRecentEventBinding
+import com.kstudio.diarymylife.databinding.ItemCardEventBinding
 import com.kstudio.diarymylife.model.JournalCard
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
-import com.kstudio.diarymylife.utils.DateView
+import com.kstudio.diarymylife.widgets.DateView
 import com.kstudio.diarymylife.utils.compareTime
 import com.kstudio.diarymylife.utils.convertTime
 import java.util.*
 
-class RecentMemoryViewHolder(
-    val binding: ItemRecentEventBinding,
+class ItemCardMemoryViewHolder(
+    val binding: ItemCardEventBinding,
     private val context: Context,
     private val callback: (String) -> Unit,
 ) :
@@ -65,12 +65,9 @@ class RecentMemoryViewHolder(
         journalDesc.text = item.desc
         journalTime.text = convertTime(item.timestamp)
         journalActivity.apply {
-            layoutManager = GridLayoutManager(
-                context,
-                1,
-                GridLayoutManager.HORIZONTAL,
-                false
-            )
+            if (item.activity.isNullOrEmpty()) this.visibility = View.GONE
+            layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
+            isNestedScrollingEnabled = false
             adapter = activityAdapter
         }
 

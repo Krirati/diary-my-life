@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.utils
+package com.kstudio.diarymylife.widgets
 
 import android.annotation.SuppressLint
 import android.content.Context

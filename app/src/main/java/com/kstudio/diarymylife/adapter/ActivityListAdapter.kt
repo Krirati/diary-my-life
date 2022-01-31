@@ -29,10 +29,10 @@ class ActivityListAdapter(private val activityItems: ArrayList<String?>) :
             item?.let {
                 activityImage.setImageResource(
                     when (item) {
-                        "1" -> R.drawable.ic_baseline_home_24
-                        "2" -> R.drawable.ic_baseline_calendar_today_24
-                        "3" -> R.drawable.ic_baseline_add_24
-                        else -> R.drawable.ic_baseline_add_24
+                        "1" -> R.drawable.ic_home
+                        "2" -> R.drawable.ic_settings
+                        "3" -> R.drawable.ic_plus
+                        else -> R.drawable.ic_plus
                     }
                 )
             }
