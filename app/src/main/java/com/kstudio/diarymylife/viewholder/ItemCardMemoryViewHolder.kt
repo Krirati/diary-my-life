@@ -13,9 +13,8 @@ import com.kstudio.diarymylife.adapter.ActivityListAdapter
 import com.kstudio.diarymylife.databinding.ItemCardEventBinding
 import com.kstudio.diarymylife.model.JournalCard
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
-import com.kstudio.diarymylife.widgets.DateView
-import com.kstudio.diarymylife.utils.compareTime
 import com.kstudio.diarymylife.utils.convertTime
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ItemCardMemoryViewHolder(
@@ -55,15 +54,11 @@ class ItemCardMemoryViewHolder(
     ) = with(binding) {
         val activityAdapter = item.activity?.let { ActivityListAdapter(it) }
 
-        if (!compareTime(previousTime, item.timestamp)) {
-            val dateView = DateView(context)
-            dateView.bindView(item.timestamp)
-            binding.timeContainer.addView(dateView)
-        }
-
         journalTitle.text = item.title
         journalDesc.text = item.desc
         journalTime.text = convertTime(item.timestamp)
+        journalDay.text = SimpleDateFormat("EEEE", Locale.ENGLISH).format(Date((item.timestamp.time)))
+        journalMonth.text = SimpleDateFormat("MMMM, dd", Locale.ENGLISH).format(Date((item.timestamp.time)))
         journalActivity.apply {
             if (item.activity.isNullOrEmpty()) this.visibility = View.GONE
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
@@ -110,7 +105,6 @@ class ItemCardMemoryViewHolder(
             }
         }
     }
-
 
     private fun onAnimate(view: View, dx: Float, duration: Long = 100) {
         if (previousEvent.first == MotionEvent.ACTION_DOWN && previousEvent.second == MotionEvent.ACTION_UP || dx < 0) return

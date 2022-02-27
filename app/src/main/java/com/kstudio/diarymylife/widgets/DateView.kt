@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @SuppressLint("ViewConstructor")
-class DateView constructor(
+class DateView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0,

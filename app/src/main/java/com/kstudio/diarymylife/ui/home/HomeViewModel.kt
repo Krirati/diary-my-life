@@ -39,7 +39,7 @@ class HomeViewModel : BaseViewModel() {
             activity = arrayListOf("1", "2", "3")
         )
 
-        val members = arrayListOf(card, card2, card3, card, card, card)
+        val members = arrayListOf(card, card2, card3)
         members.sortBy { it.timestamp }
         val memberList: ArrayList<JournalCard> = members
         _memberList.postValue(memberList)

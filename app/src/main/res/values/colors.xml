@@ -19,6 +19,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#2575f2</color>
     <color name="white_grey">#f8f9f8</color>
+    <color name="shadow_outer">#0a4c5765</color>
+    <color name="shadow_inner">#0f4c5765</color>
     <color name="dark_grey">#979797</color>
     <color name="grey">#CDD3DC</color>
     <color name="background_card_action">#F1F1F1</color>

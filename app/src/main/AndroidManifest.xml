@@ -23,6 +23,7 @@
             android:resource="@array/preloaded_fonts" />
         <activity
             android:name=".ui.journal.JournalDetailActivity"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/Theme.DiaryMyLife" />
     </application>
 

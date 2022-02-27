@@ -55,7 +55,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_16"
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,10 +64,8 @@
                     android:background="@drawable/bg_round_card_action"
                     android:minWidth="310dp"
                     android:paddingVertical="@dimen/dp_8"
-                    android:paddingStart="@dimen/dp_16"
-                    android:paddingEnd="0dp"
+                    android:paddingEnd="16dp"
                     app:layout_constraintBottom_toBottomOf="@id/journal_card"
-                    app:layout_constraintEnd_toEndOf="@id/journal_card"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -76,7 +73,7 @@
                         android:id="@+id/button_delete"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dp_8"
+                        android:layout_marginStart="@dimen/dp_12"
                         android:src="@drawable/ic_trash"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -86,17 +83,17 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/journal_card"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_qb_selector"
                     android:minWidth="310dp"
                     android:paddingVertical="@dimen/dp_8"
                     android:paddingStart="@dimen/dp_16"
                     android:paddingEnd="0dp"
+                    android:layout_marginEnd="@dimen/dp_16"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
-
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/journal_mood"
@@ -109,7 +106,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         app:layout_constraintStart_toStartOf="parent"
@@ -153,13 +150,33 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/journal_time"
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_6"
-                            app:layout_constraintTop_toBottomOf="@+id/container"
-                            tools:text="16.00" />
+                            android:orientation="horizontal"
+                            android:layout_marginVertical="@dimen/dp_8">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/journal_month"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/SubtitleBlackLeft"
+                                tools:text="October, 30"/>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/journal_day"
+                                android:layout_marginStart="@dimen/dp_8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/SubtitleBlackLeft"
+                                tools:text="Sunday"/>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/journal_time"
+                                android:layout_marginStart="@dimen/dp_8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/SubtitleBlackLeft"
+                                tools:text="Sunday"/>
+                        </LinearLayout>
                     </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

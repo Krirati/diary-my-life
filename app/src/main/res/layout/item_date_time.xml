@@ -1,26 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/dp_8">
+        android:layout_marginBottom="0dp"
+        android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/month"
+            style="@style/SubtitleBlackLeftBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/SubtitleBlackLeftBold"
-            tools:text="October, 30"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="October, 30" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/day"
-            android:layout_marginStart="@dimen/dp_8"
+            style="@style/SubtitleBlackLeft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            app:layout_constraintBottom_toBottomOf="@+id/month"
+            app:layout_constraintStart_toEndOf="@id/month"
+            app:layout_constraintTop_toTopOf="@+id/month"
+            tools:text="Sunday" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/at"
             style="@style/SubtitleBlackLeft"
-            tools:text="Sunday"/>
-    </LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:text="@string/at"
+            app:layout_constraintBottom_toBottomOf="@+id/day"
+            app:layout_constraintStart_toEndOf="@id/day"
+            app:layout_constraintTop_toTopOf="@+id/day" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/time"
+            style="@style/SubtitleBlackLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            app:layout_constraintBottom_toBottomOf="@+id/at"
+            app:layout_constraintStart_toEndOf="@id/at"
+            app:layout_constraintTop_toTopOf="@+id/at"
+            tools:text="10.00" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

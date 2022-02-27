@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/secondary_grey10">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -51,39 +51,32 @@
                 android:id="@+id/card_welcome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/dp_24"
+                android:layout_marginHorizontal="@dimen/dp_16"
                 android:layout_marginTop="@dimen/dp_32"
-                android:layout_marginBottom="@dimen/dp_16"
-                android:background="@drawable/bg_qb_selector"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_username">
 
-                <LinearLayout
+                <CalendarView
+                    android:id="@+id/calendar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="@dimen/dp_16">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/SubtitleBlackLeftBold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Please tell me about your today. I'm waiting for your journal." />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        style="@style/RoundButtonBoldBittersweet"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:layout_marginTop="@dimen/dp_16"
-                        android:text="Tell me" />
-                </LinearLayout>
+                    android:layout_height="310dp"
+                    android:theme="@style/CalenderViewCustom"
+                    android:background="@drawable/bg_round_black"
+                    android:backgroundTint="@color/white"
+                    android:dateTextAppearance="@style/SubtitleBlackLeft"
+                    android:weekDayTextAppearance="@style/SubtitleBlackLeft"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingStart="@dimen/dp_24"
+                android:layout_marginTop="@dimen/dp_16"
+                android:paddingStart="@dimen/dp_16"
                 android:paddingEnd="0dp"
-                android:paddingTop="@dimen/dp_16"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/card_welcome">
 
@@ -92,19 +85,19 @@
                     style="@style/H2BlackLeft"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Recent Memory"
+                    android:text="Recent Mood"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button_see_all"
-                    style="@style/ButtonBoldBittersweet"
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/SubtitleGreyRight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_16"
                     android:gravity="end|center_vertical"
-                    android:paddingEnd="@dimen/dp_32"
-                    android:text="See All"
+                    android:text="View All"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/title_recent_memory"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/title_recent_memory" />

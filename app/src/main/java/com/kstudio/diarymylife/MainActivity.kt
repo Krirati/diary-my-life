@@ -3,13 +3,11 @@ package com.kstudio.diarymylife
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
 import com.kstudio.diarymylife.databinding.ActivityMainBinding
 import com.kstudio.diarymylife.adapter.ViewPagerAdapter
 import com.kstudio.diarymylife.ui.home.HomeFragment
 import com.kstudio.diarymylife.ui.setting.SettingFragment
 import com.kstudio.diarymylife.ui.write.WriteFragment
-import com.kstudio.diarymylife.utils.Tabs
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,10 +37,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupNavigationBar() {
         binding.bottomNavigation.setOnItemSelectedListener {
             when(it.itemId) {
-                R.id.navigation_calendar -> {
-                    binding.viewPager.currentItem = 0
-                    return@setOnItemSelectedListener true
-                }
                 R.id.navigation_write -> {
                     binding.viewPager.currentItem = 1
                     return@setOnItemSelectedListener true

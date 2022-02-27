@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.kstudio.diarymylife.databinding.ActivityJournalDetailBinding
 import com.kstudio.diarymylife.ui.base.BaseActivity
 
-class JournalDetailActivity: BaseActivity() {
+class JournalDetailActivity : BaseActivity() {
 
     private lateinit var binding: ActivityJournalDetailBinding
 
