@@ -2,19 +2,12 @@
 <resources>
     <!-- Calendar -->
     <style name="CalenderViewCustom" parent="android:TextAppearance.DeviceDefault">
-        <item name="colorAccent">@color/royal_blue_dark</item>
+        <item name="colorAccent">@color/dark_grey</item>
         <item name="android:textColorPrimary">@color/black</item>
         <item name="android:fontFamily">@font/raleway_light</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>
         <item name="android:letterSpacing">0.04</item>
-    </style>
-
-    <style name="SmallerCalendarText" parent="@android:style/TextAppearance.Small">
-        <item name="android:textSize">14sp</item>
-        <item name="fontFamily">@font/raleway_light</item>
-        <item name="colorAccent">@color/royal_blue</item>
-        <item name="colorPrimary">@color/royal_blue_dark</item>
     </style>
 
     <style name="H1WhiteRight">
@@ -301,6 +294,14 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="SubtitleGreyBold">
+        <item name="android:fontFamily">@font/raleway_bold</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:textColor">@color/secondary_grey70</item>
+    </style>
+
     <style name="SubtitleBlackCenter">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -313,21 +314,20 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="ButtonBoldBittersweet">
-        <item name="android:textAllCaps">false</item>
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textColor">@color/bittersweet</item>
+    <style name="SubtitleAmber">
+        <item name="android:fontFamily">@font/raleway_light</item>
+        <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:background">@android:color/transparent</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:textColor">@color/amber_800</item>
     </style>
 
-    <style name="RoundButtonBoldBittersweet">
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">@color/black</item>
+    <style name="SubtitleAmberBold">
         <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:background">@drawable/round_button</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:textColor">@color/amber_800</item>
     </style>
+
 </resources>

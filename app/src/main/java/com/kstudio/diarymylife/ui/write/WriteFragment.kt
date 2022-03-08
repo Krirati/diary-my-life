@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.OnBackPressedCallback
+import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentWriteBinding
 import com.kstudio.diarymylife.ui.base.BaseFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class WriteFragment: BaseFragment() {
+class WriteFragment : BaseFragment() {
 
-    private lateinit var writeViewModel: WriteViewModel
+    private val viewModel by viewModel<WriteViewModel>()
 
     private val binding get() = _binding as FragmentWriteBinding
 
@@ -20,15 +21,36 @@ class WriteFragment: BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        writeViewModel = ViewModelProvider(this).get(WriteViewModel::class.java)
-
         _binding = FragmentWriteBinding.inflate(layoutInflater)
-        val root: View = binding.root
+        return binding.root
+    }
 
-        val textView: TextView = binding.textHome
-        writeViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
-        })
-        return root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        handleOnBackPress()
+        bindingView()
+    }
+
+    private fun bindingView() = with(binding) {
+        howYouFeel.text = "Hello Nine. How are you feeling?"
+        back.setOnClickListener { onBackPressed() }
+    }
+
+    private fun handleOnBackPress() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    onBackPressed()
+                }
+            })
+    }
+
+    private fun onBackPressed() {
+        requireActivity().finishAfterTransition()
+        requireActivity().overridePendingTransition(
+            R.anim.slide_in_top,
+            R.anim.slide_out_bottom
+        )
     }
 }

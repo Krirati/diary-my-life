@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.viewholder
+package com.kstudio.diarymylife.ui.viewholder
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,18 +9,18 @@ import android.view.View
 import android.view.WindowManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.kstudio.diarymylife.adapter.ActivityListAdapter
+import com.kstudio.diarymylife.ui.adapter.ActivityListAdapter
 import com.kstudio.diarymylife.databinding.ItemCardEventBinding
-import com.kstudio.diarymylife.model.JournalCard
+import com.kstudio.diarymylife.model.JournalItem
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
 import com.kstudio.diarymylife.utils.convertTime
-import java.text.SimpleDateFormat
-import java.util.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class ItemCardMemoryViewHolder(
     val binding: ItemCardEventBinding,
-    private val context: Context,
-    private val callback: (String) -> Unit,
+    context: Context,
+    private val callback: (Long?) -> Unit,
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
@@ -50,17 +50,17 @@ class ItemCardMemoryViewHolder(
 
     @SuppressLint("ClickableViewAccessibility")
     fun bind(
-        item: JournalCard, swipeState: SwipeState, previousTime: Date?, onDelete: (Int) -> Unit
+        item: JournalItem, swipeState: SwipeState, previousTime: LocalDateTime?, onDelete: (Int) -> Unit
     ) = with(binding) {
-        val activityAdapter = item.activity?.let { ActivityListAdapter(it) }
+        val activityAdapter = item.data?.activity?.let { ActivityListAdapter(it) }
 
-        journalTitle.text = item.title
-        journalDesc.text = item.desc
-        journalTime.text = convertTime(item.timestamp)
-        journalDay.text = SimpleDateFormat("EEEE", Locale.ENGLISH).format(Date((item.timestamp.time)))
-        journalMonth.text = SimpleDateFormat("MMMM, dd", Locale.ENGLISH).format(Date((item.timestamp.time)))
+        journalTitle.text = item.data?.title
+        journalDesc.text = item.data?.desc
+        journalTime.text = item.data?.timestamp?.let { convertTime(it, "hh:mm") }
+        journalDay.text = item.data?.timestamp?.format(DateTimeFormatter.ofPattern("EEEE"))
+        journalMonth.text = item.data?.timestamp?.format(DateTimeFormatter.ofPattern("MMMM, dd"))
         journalActivity.apply {
-            if (item.activity.isNullOrEmpty()) this.visibility = View.GONE
+            if (item.data?.activity.isNullOrEmpty()) this.visibility = View.GONE
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
             isNestedScrollingEnabled = false
             adapter = activityAdapter
@@ -74,7 +74,7 @@ class ItemCardMemoryViewHolder(
         journalCard.apply {
             setOnClickListener {
                 if (previousEvent.first == MotionEvent.ACTION_MOVE && previousEvent.second == MotionEvent.ACTION_UP) return@setOnClickListener
-                callback(item.journalId)
+                callback(item.data?.journalId)
             }
             setOnTouchListener { view, event ->
                 when (event.action) {
@@ -87,7 +87,7 @@ class ItemCardMemoryViewHolder(
                     MotionEvent.ACTION_MOVE -> {
                         previousEvent = previousEvent.copy(first = event.action)
                         onAnimate(view, onSwipeMove(event.rawX + dXLead, swipeState), 0)
-                        item.state =
+                        item.data?.state =
                             getSwipeState(
                                 event.rawX + dXLead,
                                 event.rawX + dXTrail,
@@ -97,7 +97,7 @@ class ItemCardMemoryViewHolder(
                     }
                     MotionEvent.ACTION_UP -> {
                         previousEvent = previousEvent.copy(second = event.action)
-                        onAnimate(view, onSwipeUp(item.state))
+                        item.data?.let { onSwipeUp(it.state) }?.let { onAnimate(view, it) }
                         false
                     }
                     else -> true

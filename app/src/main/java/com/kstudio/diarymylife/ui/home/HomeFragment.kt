@@ -1,22 +1,24 @@
 package com.kstudio.diarymylife.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentHomeBinding
-import com.kstudio.diarymylife.model.JournalCard
-import com.kstudio.diarymylife.adapter.ItemCardMemoryAdapter
+import com.kstudio.diarymylife.model.JournalItem
+import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.journal.JournalDetailActivity
-import kotlin.collections.ArrayList
+import com.kstudio.diarymylife.ui.write.WriteActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val homeViewModel by viewModel<HomeViewModel>()
 
     private val binding get() = _binding as FragmentHomeBinding
 
@@ -25,7 +27,6 @@ class HomeFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         _binding = FragmentHomeBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -33,7 +34,8 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observer()
-        homeViewModel.fetchMemberList()
+        binding()
+        homeViewModel.fetchRecentJournal()
     }
 
     private fun observer() {
@@ -42,12 +44,19 @@ class HomeFragment : BaseFragment() {
         }
     }
 
+    private fun binding() = with(binding) {
+        viewAllButton.setOnClickListener { homeViewModel.createRecentJournal() }
+    }
+
     @SuppressLint("NotifyDataSetChanged")
-    private fun setUpRecentMemory(memberList: ArrayList<JournalCard>) {
+    private fun setUpRecentMemory(memberList: List<JournalItem>) {
         val memberAdapter = ItemCardMemoryAdapter(
             memberList,
-            callback = { navigateToActivity(JournalDetailActivity::class.java, it) },
-            onDeleted = {}
+            onNavigateToDetail = {
+                navigateToActivity(JournalDetailActivity::class.java, it)
+            },
+            onDeleted = { homeViewModel.deleteJournal(it) },
+            onAddItem = { navigateToCreateJournal() }
         )
 
         binding.recentWidget.apply {
@@ -56,6 +65,7 @@ class HomeFragment : BaseFragment() {
             adapter = memberAdapter
             onFlingListener = null
         }
+
         memberAdapter.notifyDataSetChanged()
     }
 
@@ -66,6 +76,12 @@ class HomeFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        homeViewModel.fetchMemberList()
+        homeViewModel.fetchRecentJournal()
+    }
+
+    private fun navigateToCreateJournal() {
+        val intent = Intent(activity, WriteActivity::class.java)
+        startActivity(intent)
+        requireActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
     }
 }

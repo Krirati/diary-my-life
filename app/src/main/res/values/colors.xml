@@ -35,5 +35,9 @@
     <color name="red_500">#C06556</color>
     <color name="red_200">#D68A7B</color>
     <color name="bittersweet">#FA7D79</color>
+    
+    <color name="amber_600">#FFB300</color>
+    <color name="amber_700">#FFA000</color>
+    <color name="amber_800">#FF8F00</color>
 
 </resources>

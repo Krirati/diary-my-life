@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.widgets
+package com.kstudio.diarymylife.ui.widgets
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,7 +6,9 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.kstudio.diarymylife.databinding.ItemDateTimeBinding
+import com.kstudio.diarymylife.utils.convertTime
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.*
 
 @SuppressLint("ViewConstructor")
@@ -21,10 +23,16 @@ class DateView @JvmOverloads constructor(
         LayoutInflater.from(context),this, true
     )
 
-    fun bindView(time: Date) {
+    fun bindView(localDateTime: LocalDateTime) {
         with(binding) {
-            day.text = SimpleDateFormat("EEEE", Locale.ENGLISH).format(Date((time.time)))
-            month.text = SimpleDateFormat("MMMM, dd", Locale.ENGLISH).format(Date((time.time)))
+            day.text = convertTime(localDateTime, "EEEE")
+            month.text = convertTime(localDateTime, "MMMM, dd")
+            time.text = convertTime(localDateTime, "hh:mm")
         }
+    }
+
+    fun getLocalDateTime(): LocalDateTime {
+//        TODO("get from time that select")
+        return LocalDateTime.now()
     }
 }

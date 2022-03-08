@@ -2,12 +2,14 @@ package com.kstudio.diarymylife.utils
 
 import android.annotation.SuppressLint
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @SuppressLint("SimpleDateFormat")
-fun convertTime(timestamp: Date): String {
-    val sdf = SimpleDateFormat("hh:mm")
-    return sdf.format(timestamp)
+fun convertTime(timestamp: LocalDateTime, format: String): String {
+    val formatter = DateTimeFormatter.ofPattern(format)
+    return timestamp.format(formatter)
 }
 
 @SuppressLint("SimpleDateFormat")

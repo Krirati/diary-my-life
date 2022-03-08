@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.widgets
+package com.kstudio.diarymylife.ui.widgets
 
 import android.content.Context
 import android.util.AttributeSet

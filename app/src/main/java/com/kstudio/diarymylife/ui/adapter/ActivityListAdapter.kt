@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.adapter
+package com.kstudio.diarymylife.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ItemActivityImageBinding
 
-class ActivityListAdapter(private val activityItems: ArrayList<String?>) :
+class ActivityListAdapter(private val activityItems: List<String?>) :
     RecyclerView.Adapter<ActivityListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

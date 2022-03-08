@@ -1,13 +1,14 @@
 package com.kstudio.diarymylife
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.kstudio.diarymylife.databinding.ActivityMainBinding
-import com.kstudio.diarymylife.adapter.ViewPagerAdapter
+import com.kstudio.diarymylife.ui.adapter.ViewPagerAdapter
 import com.kstudio.diarymylife.ui.home.HomeFragment
 import com.kstudio.diarymylife.ui.setting.SettingFragment
-import com.kstudio.diarymylife.ui.write.WriteFragment
+import com.kstudio.diarymylife.ui.write.WriteActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewPager() {
         val fragment: ArrayList<Fragment> = arrayListOf(
             HomeFragment(),
-            WriteFragment(),
             SettingFragment()
         )
 
@@ -38,11 +38,14 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnItemSelectedListener {
             when(it.itemId) {
                 R.id.navigation_write -> {
-                    binding.viewPager.currentItem = 1
+//                    binding.viewPager.currentItem = 1
+                    val intent = Intent(this, WriteActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_todo -> {
-                    binding.viewPager.currentItem = 2
+                    binding.viewPager.currentItem = 1
                     return@setOnItemSelectedListener true
                 }
                 else -> {
