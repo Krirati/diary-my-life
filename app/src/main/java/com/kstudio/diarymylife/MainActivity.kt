@@ -1,14 +1,14 @@
 package com.kstudio.diarymylife
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.kstudio.diarymylife.databinding.ActivityMainBinding
 import com.kstudio.diarymylife.ui.adapter.ViewPagerAdapter
+import com.kstudio.diarymylife.ui.chart.ChartFragment
 import com.kstudio.diarymylife.ui.home.HomeFragment
 import com.kstudio.diarymylife.ui.setting.SettingFragment
-import com.kstudio.diarymylife.ui.write.WriteActivity
+import com.kstudio.diarymylife.ui.write.WriteFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewPager() {
         val fragment: ArrayList<Fragment> = arrayListOf(
             HomeFragment(),
+            WriteFragment(),
+            ChartFragment(),
             SettingFragment()
         )
 
@@ -36,16 +38,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupNavigationBar() {
         binding.bottomNavigation.setOnItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.navigation_write -> {
-//                    binding.viewPager.currentItem = 1
-                    val intent = Intent(this, WriteActivity::class.java)
-                    startActivity(intent)
-                    overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
+                    binding.viewPager.currentItem = 1
+//                    val intent = Intent(this, WriteActivity::class.java)
+//                    startActivity(intent)
+//                    overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
                     return@setOnItemSelectedListener true
                 }
-                R.id.navigation_todo -> {
-                    binding.viewPager.currentItem = 1
+                R.id.navigation_chart -> {
+                    binding.viewPager.currentItem = 2
+                    return@setOnItemSelectedListener true
+                }
+                R.id.navigation_setting -> {
+                    binding.viewPager.currentItem = 3
                     return@setOnItemSelectedListener true
                 }
                 else -> {

@@ -4,31 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import com.kstudio.diarymylife.databinding.FragmentTodoBinding
+import com.kstudio.diarymylife.databinding.FragmentSettingBinding
 import com.kstudio.diarymylife.ui.base.BaseFragment
 
 class SettingFragment: BaseFragment() {
-    private lateinit var homeViewModel: SettingViewModel
+    private lateinit var viewModel: SettingViewModel
 
-    private val binding get() = _binding as FragmentTodoBinding
+    private val binding get() = _binding as FragmentSettingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        homeViewModel =
+        viewModel =
             ViewModelProvider(this).get(SettingViewModel::class.java)
 
-        _binding = FragmentTodoBinding.inflate(layoutInflater)
+        _binding = FragmentSettingBinding.inflate(layoutInflater)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, {
-            textView.text = it
-        })
         return root
     }
 
