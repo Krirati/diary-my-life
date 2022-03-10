@@ -11,7 +11,12 @@
         android:title="@string/write" />
 
     <item
-        android:id="@+id/navigation_todo"
+        android:id="@+id/navigation_chart"
+        android:icon="@drawable/ic_pie_chart"
+        android:title="Chart" />
+
+    <item
+        android:id="@+id/navigation_setting"
         android:icon="@drawable/ic_settings"
         android:title="@string/setting" />
 
