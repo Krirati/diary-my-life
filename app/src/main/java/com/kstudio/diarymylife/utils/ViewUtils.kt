@@ -14,24 +14,6 @@ fun convertTime(timestamp: LocalDateTime, format: String): String {
     return timestamp.format(formatter)
 }
 
-@SuppressLint("SimpleDateFormat")
-fun convertTime(timestamp: LocalDate, format: String): String {
-    val formatter = DateTimeFormatter.ofPattern(format)
-    return timestamp.format(formatter)
-}
-
-fun convertDateToString(timestamp: Date): LocalDate {
-    val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-    return LocalDate.parse(timestamp.toString(), formatter);
-}
-
-@SuppressLint("SimpleDateFormat")
-fun compareTime(previous: Date?, current: Date): Boolean {
-    if (previous == null) return false
-    val fmt = SimpleDateFormat("yyyyMMdd")
-    return fmt.format(previous).equals(fmt.format(current))
-}
-
 fun Date.toStringFormat(stringFormat: String = "dd-MM-yyyy"): String {
     val dateFormat = SimpleDateFormat(stringFormat, Locale.getDefault())
     return try {
@@ -50,6 +32,16 @@ fun String.toDate(stringFormat: String = "dd-MM-yyyy"): Date? {
         e.printStackTrace()
         null
     }
+}
+
+fun String.toLocalDate(stringFormat: String = "dd-MM-yyyy"): LocalDate? {
+    val formatter = DateTimeFormatter.ofPattern(stringFormat)
+    return LocalDate.parse(this, formatter)
+}
+
+fun LocalDate.toStringFormatApp(stringFormat: String = "MMMM, dd EEEE"): String? {
+    val formatter = DateTimeFormatter.ofPattern(stringFormat)
+    return this.format(formatter)
 }
 
 

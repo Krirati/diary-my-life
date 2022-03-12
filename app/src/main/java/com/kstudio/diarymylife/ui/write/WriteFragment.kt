@@ -12,10 +12,9 @@ import com.kstudio.diarymylife.model.ResultSelectDate
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.widgets.SelectDateBottomSheet
 import com.kstudio.diarymylife.utils.convertTime
+import com.kstudio.diarymylife.utils.toStringFormatApp
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class WriteFragment : BaseFragment() {
 
@@ -70,13 +69,10 @@ class WriteFragment : BaseFragment() {
     }
 
     private fun onClickDoneBottomSheet(date: ResultSelectDate) {
-        viewModel.setSelectDate(
-            LocalDate.parse(
-                date.day.toString(),
-                DateTimeFormatter.ofPattern("yyyy-MM-dd")
-            )
-        )
-        binding.currentSelectTime.text = date.day.toString()
+        date.day?.let {
+            viewModel.setSelectDate(it)
+        }
+        binding.currentSelectTime.text = date.day?.toStringFormatApp() ?: ""
     }
 
     private fun observeLiveData() {

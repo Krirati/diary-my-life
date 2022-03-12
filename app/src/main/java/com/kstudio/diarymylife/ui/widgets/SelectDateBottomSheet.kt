@@ -23,10 +23,10 @@ import com.kstudio.diarymylife.model.toDateDetails
 import com.kstudio.diarymylife.ui.adapter.DateSelectionAdapter
 import com.kstudio.diarymylife.ui.write.WriteViewModel
 import com.kstudio.diarymylife.utils.toDate
+import com.kstudio.diarymylife.utils.toLocalDate
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 class SelectDateBottomSheet @Inject constructor(
@@ -121,10 +121,7 @@ class SelectDateBottomSheet @Inject constructor(
     private fun setSelectedDate(dateDetailsUI: DateDetailsUI) {
         binding.dateView.bindView(dateDetailsUI)
         resultSelectDate = ResultSelectDate(
-            day = LocalDate.parse(
-                dateDetailsUI.dateKey,
-                DateTimeFormatter.ofPattern("dd-MM-yyyy")
-            ),
+            day = dateDetailsUI.dateKey.toLocalDate(),
             time = null
         )
     }
