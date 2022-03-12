@@ -4,6 +4,7 @@ import com.kstudio.diarymylife.ui.home.HomeViewModel
 import com.kstudio.diarymylife.ui.journal.JournalDetailViewModel
 import com.kstudio.diarymylife.ui.journal.journalEdit.JournalEditViewModel
 import com.kstudio.diarymylife.ui.journal.journalLanding.JournalLandingViewModel
+import com.kstudio.diarymylife.ui.write.WriteViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -12,5 +13,5 @@ val viewModelModule = module{
     viewModel { JournalDetailViewModel()}
     viewModel { JournalLandingViewModel(get())}
     viewModel { JournalEditViewModel(get())}
-
+    viewModel { WriteViewModel() }
 }

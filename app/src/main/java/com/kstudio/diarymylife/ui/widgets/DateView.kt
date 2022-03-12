@@ -6,10 +6,13 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.kstudio.diarymylife.databinding.ItemDateTimeBinding
+import com.kstudio.diarymylife.model.DateDetailsUI
+import com.kstudio.diarymylife.model.monthOfYear
+import com.kstudio.diarymylife.utils.convertDateToString
 import com.kstudio.diarymylife.utils.convertTime
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.time.LocalDateTime
-import java.util.*
 
 @SuppressLint("ViewConstructor")
 class DateView @JvmOverloads constructor(
@@ -28,6 +31,21 @@ class DateView @JvmOverloads constructor(
             day.text = convertTime(localDateTime, "EEEE")
             month.text = convertTime(localDateTime, "MMMM, dd")
             time.text = convertTime(localDateTime, "hh:mm")
+        }
+    }
+
+    fun bindView(localDateTime: LocalDate) {
+        with(binding) {
+            day.text = localDateTime.dayOfMonth.toString()
+            month.text = monthOfYear[localDateTime.monthValue]
+        }
+    }
+
+    fun bindView(localDateTime: DateDetailsUI) {
+        with(binding) {
+            day.text = localDateTime.dayOfWeek
+            month.text = localDateTime.monthOfYear + ", "+ localDateTime.day
+            time.text = convertTime(LocalDateTime.now(), "hh:mm")
         }
     }
 

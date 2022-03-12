@@ -9,9 +9,9 @@ import android.view.View
 import android.view.WindowManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.kstudio.diarymylife.ui.adapter.ActivityListAdapter
 import com.kstudio.diarymylife.databinding.ItemCardEventBinding
 import com.kstudio.diarymylife.model.JournalItem
+import com.kstudio.diarymylife.ui.adapter.ActivityListAdapter
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
 import com.kstudio.diarymylife.utils.convertTime
 import java.time.LocalDateTime
@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter
 class ItemCardMemoryViewHolder(
     val binding: ItemCardEventBinding,
     context: Context,
-    private val callback: (Long?) -> Unit,
+    private val navigateToDetail: (Long?) -> Unit,
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
@@ -50,7 +50,9 @@ class ItemCardMemoryViewHolder(
 
     @SuppressLint("ClickableViewAccessibility")
     fun bind(
-        item: JournalItem, swipeState: SwipeState, previousTime: LocalDateTime?, onDelete: (Int) -> Unit
+        item: JournalItem,
+        swipeState: SwipeState,
+        onDelete: (Int) -> Unit,
     ) = with(binding) {
         val activityAdapter = item.data?.activity?.let { ActivityListAdapter(it) }
 
@@ -74,7 +76,7 @@ class ItemCardMemoryViewHolder(
         journalCard.apply {
             setOnClickListener {
                 if (previousEvent.first == MotionEvent.ACTION_MOVE && previousEvent.second == MotionEvent.ACTION_UP) return@setOnClickListener
-                callback(item.data?.journalId)
+                navigateToDetail(item.data?.journalId)
             }
             setOnTouchListener { view, event ->
                 when (event.action) {

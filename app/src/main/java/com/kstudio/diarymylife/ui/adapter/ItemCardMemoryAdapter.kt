@@ -1,5 +1,6 @@
 package com.kstudio.diarymylife.ui.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +21,6 @@ class ItemCardMemoryAdapter(
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val swipeState: SwipeState = SwipeState.LEFT_RIGHT
-    private var previousTime: LocalDateTime? = null
 
     companion object {
         const val VIEW_ITEM = 11
@@ -47,17 +47,15 @@ class ItemCardMemoryAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            VIEW_ITEM -> (holder as ItemCardMemoryViewHolder).bind(
-                memoryItems[position],
-                swipeState,
-                previousTime
-            ) { index ->
-                deleteItem(index)
+            VIEW_ITEM -> {
+                (holder as ItemCardMemoryViewHolder).bind(
+                    item = memoryItems[position],
+                    swipeState = swipeState,
+                    onDelete = ::deleteItem,
+                )
             }
             VIEW_ADD -> (holder as ItemAddViewHolder).bind()
         }
-
-        previousTime = memoryItems[position].data?.timestamp
     }
 
     override fun getItemCount(): Int = memoryItems.size
