@@ -8,6 +8,8 @@ import android.widget.LinearLayout
 import com.kstudio.diarymylife.databinding.ItemDateTimeBinding
 import com.kstudio.diarymylife.model.DateDetailsUI
 import com.kstudio.diarymylife.utils.convertTime
+import com.kstudio.diarymylife.utils.toStringFormatApp
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 @SuppressLint("ViewConstructor")
@@ -27,6 +29,13 @@ class DateView @JvmOverloads constructor(
             day.text = convertTime(localDateTime, "EEEE")
             month.text = convertTime(localDateTime, "MMMM, dd")
             time.text = convertTime(localDateTime, "hh:mm")
+        }
+    }
+
+    fun bindView(localDateTime: LocalDate) {
+        with(binding) {
+            day.text = localDateTime.toStringFormatApp("EEEE")
+            month.text = localDateTime.toStringFormatApp("MMMM, dd")
         }
     }
 

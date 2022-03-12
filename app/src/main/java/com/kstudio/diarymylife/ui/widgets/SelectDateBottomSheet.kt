@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +12,8 @@ import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED
+import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kstudio.diarymylife.R
@@ -24,7 +25,6 @@ import com.kstudio.diarymylife.ui.adapter.DateSelectionAdapter
 import com.kstudio.diarymylife.ui.write.WriteViewModel
 import com.kstudio.diarymylife.utils.toDate
 import com.kstudio.diarymylife.utils.toLocalDate
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDate
 import java.time.LocalDateTime
 import javax.inject.Inject
@@ -32,22 +32,19 @@ import javax.inject.Inject
 class SelectDateBottomSheet @Inject constructor(
     private val getContext: Context,
     private val onClickDone: (ResultSelectDate) -> Unit,
+    private val onClose: () -> Unit,
+    private val viewModel: WriteViewModel
 ) : BottomSheetDialogFragment() {
 
     private val parentView =
         LinearLayout.inflate(getContext, R.layout.item_select_date, null)
     private val binding by lazy { ItemSelectDateBinding.bind(parentView) }
-    private val viewModel by viewModel<WriteViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = binding.root
-
-    companion object {
-        const val TAG = "ModalBottomSheet"
-    }
+    ): View = binding.root
 
     var resultSelectDate: ResultSelectDate = ResultSelectDate(LocalDate.now(), LocalDateTime.now())
 
@@ -60,13 +57,21 @@ class SelectDateBottomSheet @Inject constructor(
                 this@SelectDateBottomSheet.dismissAllowingStateLoss()
             }
         }
-        dialog.behavior.state = BottomSheetBehavior.STATE_HIDDEN
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.behavior.state = STATE_HIDDEN
         dialog.behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
-                if (newState == BottomSheetBehavior.STATE_COLLAPSED) dismiss()
+                when (newState) {
+                    STATE_COLLAPSED,
+                    STATE_HIDDEN -> {
+                        onClose()
+                        this@SelectDateBottomSheet.dismiss()
+                    }
+                    else -> Unit
+                }
             }
 
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {}
+            override fun onSlide(bottomSheet: View, slideOffset: Float) = Unit
         })
         return dialog
     }
@@ -78,18 +83,21 @@ class SelectDateBottomSheet @Inject constructor(
     }
 
     private fun bindingView() = with(binding) {
+        viewModel.localDateTimeSelect.value?.let { dateView.bindView(it) }
         buttonDone.setOnClickListener {
             onClickDone(resultSelectDate)
-            dismissAllowingStateLoss()
+            this@SelectDateBottomSheet.dismiss()
         }
-        iconExit.setOnClickListener { dismissAllowingStateLoss() }
+        iconExit.setOnClickListener {
+            onClose()
+            this@SelectDateBottomSheet.dismiss()
+        }
     }
 
     private fun observeLiveDate() {
         val dateAdapter =
             DateSelectionAdapter(
                 lifecycleOwner = this,
-                initTime = viewModel.localDateTimeSelect.value.toString()
             ) { dateDetailsUI ->
                 setSelectedDate(dateDetailsUI)
             }
@@ -113,6 +121,7 @@ class SelectDateBottomSheet @Inject constructor(
         viewModel.resetDateList.observe(this) { timeInMillis ->
             if (timeInMillis != null) {
                 dateAdapter.submitData(lifecycle, PagingData.empty())
+                viewModel.setResetDate(null)
             }
         }
     }

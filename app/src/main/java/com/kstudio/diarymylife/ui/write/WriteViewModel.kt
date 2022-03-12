@@ -17,16 +17,18 @@ class WriteViewModel(
 
     private val _selectedDate = MutableLiveData(Date().toStringFormat())
 
-    val selectedDate: LiveData<String>
-        get() = _selectedDate
+    val selectedDate: LiveData<String> = _selectedDate
 
-    private val _resetDateList = MutableLiveData<Long>()
+    private val _resetDateList = MutableLiveData<Long?>()
 
-    val resetDateList: LiveData<Long>
-        get() = _resetDateList
+    val resetDateList: LiveData<Long?> get() = _resetDateList
 
     fun setSelectDate(localDateTime: LocalDate) {
         _localDateTimeSelect.postValue(localDateTime)
+    }
+
+    fun setResetDate(reset: Long?) {
+        _resetDateList.postValue(reset)
     }
 
     private val dateSelectionPager: LiveData<PagingData<Date>> =
@@ -40,5 +42,13 @@ class WriteViewModel(
         pagingData.map { mealDate ->
             mealDate.toDateDetails()
         }
+    }
+
+    @JvmOverloads
+    fun updateCurrentSelectedDate(date: String, invalidateList: Boolean = false) {
+        if (invalidateList) {
+            _resetDateList.value = System.currentTimeMillis()
+        }
+        _selectedDate.value = date
     }
 }

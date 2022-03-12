@@ -6,3 +6,9 @@ class Keys {
     }
 }
 
+class Formats {
+    companion object {
+        const val DATE_FORMAT = "dd-MM-yyyy"
+    }
+}
+

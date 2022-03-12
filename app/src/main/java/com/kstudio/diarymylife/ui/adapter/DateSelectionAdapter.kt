@@ -1,6 +1,5 @@
 package com.kstudio.diarymylife.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
@@ -14,13 +13,11 @@ import com.kstudio.diarymylife.model.DateDetailsUI
 
 class DateSelectionAdapter(
     val lifecycleOwner: LifecycleOwner,
-    private val initTime: String,
     private val onDateSelection: (DateDetailsUI) -> Unit,
 ) :
     PagingDataAdapter<DateDetailsUI, DateSelectionAdapter.DateViewHolder>(dateDifferentiators) {
 
     private val selectedItems = MutableLiveData<Int>()
-    private val selectedTime = MutableLiveData<String>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -32,7 +29,7 @@ class DateSelectionAdapter(
 
     override fun onBindViewHolder(holder: DateSelectionAdapter.DateViewHolder, position: Int) {
         getItem(position)?.let {
-            holder.bind(this, it, position)
+            holder.bind(this, it)
         }
     }
 
@@ -48,16 +45,12 @@ class DateSelectionAdapter(
 
         private lateinit var adapter: DateSelectionAdapter
 
-        fun bind(adapter: DateSelectionAdapter, dateDetailsUI: DateDetailsUI, position: Int) {
+        fun bind(adapter: DateSelectionAdapter, dateDetailsUI: DateDetailsUI) {
             this.adapter = adapter
-            if (selectedItems.value == null) {
-                layoutPosition.let {
-                    if (it == 0) {
-                        binding.containerDate.setBackgroundResource(R.drawable.bg_round_card_action_select)
-                    }
+            layoutPosition.let {
+                if (it == 0) {
+                    binding.containerDate.setBackgroundResource(R.drawable.bg_round_card_action_select)
                 }
-            } else if (selectedTime.value == dateDetailsUI.dateKey) {
-                binding.containerDate.setBackgroundResource(R.drawable.bg_round_card_action_select)
             }
 
             binding.apply {
@@ -69,6 +62,7 @@ class DateSelectionAdapter(
                     view.setBackgroundResource(R.drawable.bg_round_card_action_select)
                 }
             }
+
             adapter.selectedItems.observe(adapter.lifecycleOwner) {
                 layoutPosition.let { ps ->
                     if (ps != it) {
@@ -78,7 +72,6 @@ class DateSelectionAdapter(
             }
         }
     }
-
 }
 
 val dateDifferentiators = object : DiffUtil.ItemCallback<DateDetailsUI>() {

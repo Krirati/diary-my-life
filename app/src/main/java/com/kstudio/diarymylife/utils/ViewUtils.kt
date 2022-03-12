@@ -1,6 +1,7 @@
 package com.kstudio.diarymylife.utils
 
 import android.annotation.SuppressLint
+import com.kstudio.diarymylife.utils.Formats.Companion.DATE_FORMAT
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -14,7 +15,7 @@ fun convertTime(timestamp: LocalDateTime, format: String): String {
     return timestamp.format(formatter)
 }
 
-fun Date.toStringFormat(stringFormat: String = "dd-MM-yyyy"): String {
+fun Date.toStringFormat(stringFormat: String = DATE_FORMAT): String {
     val dateFormat = SimpleDateFormat(stringFormat, Locale.getDefault())
     return try {
         dateFormat.format(this)
@@ -24,7 +25,12 @@ fun Date.toStringFormat(stringFormat: String = "dd-MM-yyyy"): String {
     }
 }
 
-fun String.toDate(stringFormat: String = "dd-MM-yyyy"): Date? {
+fun LocalDate.toStringFormat(stringFormat: String = DATE_FORMAT): String {
+    val formatter = DateTimeFormatter.ofPattern(stringFormat)
+    return this.format(formatter)
+}
+
+fun String.toDate(stringFormat: String = DATE_FORMAT): Date? {
     val format = SimpleDateFormat(stringFormat, Locale.US)
     return try {
         format.parse(this)
@@ -34,7 +40,7 @@ fun String.toDate(stringFormat: String = "dd-MM-yyyy"): Date? {
     }
 }
 
-fun String.toLocalDate(stringFormat: String = "dd-MM-yyyy"): LocalDate? {
+fun String.toLocalDate(stringFormat: String = DATE_FORMAT): LocalDate? {
     val formatter = DateTimeFormatter.ofPattern(stringFormat)
     return LocalDate.parse(this, formatter)
 }
