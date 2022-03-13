@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.SnapHelper
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED
 import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
@@ -21,7 +20,7 @@ import com.kstudio.diarymylife.databinding.ItemSelectDateBinding
 import com.kstudio.diarymylife.model.DateDetailsUI
 import com.kstudio.diarymylife.model.ResultSelectDate
 import com.kstudio.diarymylife.model.toDateDetails
-import com.kstudio.diarymylife.ui.adapter.DateSelectionAdapter
+import com.kstudio.diarymylife.ui.adapter.dateSelection.DateSelectionAdapter
 import com.kstudio.diarymylife.ui.write.WriteViewModel
 import com.kstudio.diarymylife.utils.toDate
 import com.kstudio.diarymylife.utils.toLocalDate
@@ -80,6 +79,7 @@ class SelectDateBottomSheet @Inject constructor(
         super.onViewCreated(view, savedInstanceState)
         observeLiveDate()
         bindingView()
+        setUpNumberPicker()
     }
 
     private fun bindingView() = with(binding) {
@@ -103,7 +103,7 @@ class SelectDateBottomSheet @Inject constructor(
             }
 
         val rvDates = binding.rvDates
-        val snapHelper: SnapHelper = LinearSnapHelper()
+        val snapHelper = LinearSnapHelper()
         snapHelper.attachToRecyclerView(rvDates)
         rvDates.adapter = dateAdapter
 
@@ -133,5 +133,23 @@ class SelectDateBottomSheet @Inject constructor(
             day = dateDetailsUI.dateKey.toLocalDate(),
             time = null
         )
+    }
+
+    private fun setUpNumberPicker() = with(binding) {
+        numberHour.apply {
+            maxValue = 24
+            minValue = 0
+            wrapSelectorWheel = true;
+            value = 2
+            setOnValueChangedListener { picker, oldVal, newVal ->  }
+        }
+
+        numberMinute.apply {
+            maxValue = 59
+            minValue = 0
+            wrapSelectorWheel = true;
+            value = 2
+            setOnValueChangedListener { picker, oldVal, newVal ->  }
+        }
     }
 }

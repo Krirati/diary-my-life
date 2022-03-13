@@ -1,6 +1,5 @@
-package com.kstudio.diarymylife.ui.viewholder
+package com.kstudio.diarymylife.ui.adapter.viewholder
 
-import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.databinding.ItemCardAddBinding
 

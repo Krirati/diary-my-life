@@ -361,4 +361,8 @@
         <item name="android:background">@drawable/bg_round_black</item>
     </style>
 
+    <style name="NumberPicker" parent="H2BlackCenter">
+
+    </style>
+
 </resources>

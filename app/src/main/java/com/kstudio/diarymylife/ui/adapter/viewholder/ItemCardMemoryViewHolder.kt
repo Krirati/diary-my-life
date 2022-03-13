@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.viewholder
+package com.kstudio.diarymylife.ui.adapter.viewholder
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -14,7 +14,6 @@ import com.kstudio.diarymylife.model.JournalItem
 import com.kstudio.diarymylife.ui.adapter.ActivityListAdapter
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
 import com.kstudio.diarymylife.utils.convertTime
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class ItemCardMemoryViewHolder(

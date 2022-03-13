@@ -1,6 +1,5 @@
 package com.kstudio.diarymylife.ui.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,9 +7,8 @@ import com.kstudio.diarymylife.databinding.ItemCardAddBinding
 import com.kstudio.diarymylife.databinding.ItemCardEventBinding
 import com.kstudio.diarymylife.model.JournalItem
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
-import com.kstudio.diarymylife.ui.viewholder.ItemAddViewHolder
-import com.kstudio.diarymylife.ui.viewholder.ItemCardMemoryViewHolder
-import java.time.LocalDateTime
+import com.kstudio.diarymylife.ui.adapter.viewholder.ItemAddViewHolder
+import com.kstudio.diarymylife.ui.adapter.viewholder.ItemCardMemoryViewHolder
 
 class ItemCardMemoryAdapter(
     private val memoryItems: List<JournalItem>,
