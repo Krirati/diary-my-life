@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.widgets
+package com.kstudio.diarymylife.ui.widgets.select_date_bottomsheet
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -21,7 +21,7 @@ import com.kstudio.diarymylife.model.DateDetailsUI
 import com.kstudio.diarymylife.model.ResultSelectDate
 import com.kstudio.diarymylife.model.toDateDetails
 import com.kstudio.diarymylife.ui.adapter.dateSelection.DateSelectionAdapter
-import com.kstudio.diarymylife.ui.write.WriteViewModel
+import com.kstudio.diarymylife.ui.base.BaseViewModel
 import com.kstudio.diarymylife.utils.toDate
 import com.kstudio.diarymylife.utils.toLocalDate
 import java.time.LocalDate
@@ -32,20 +32,22 @@ class SelectDateBottomSheet @Inject constructor(
     private val getContext: Context,
     private val onClickDone: (ResultSelectDate) -> Unit,
     private val onClose: () -> Unit,
-    private val viewModel: WriteViewModel
+    private val viewModel: BaseViewModel
 ) : BottomSheetDialogFragment() {
 
     private val parentView =
         LinearLayout.inflate(getContext, R.layout.item_select_date, null)
     private val binding by lazy { ItemSelectDateBinding.bind(parentView) }
+    private var resultSelectDate: ResultSelectDate =
+        ResultSelectDate(LocalDate.now(), LocalDateTime.now())
+
+    private val dateAdapter by lazy { DateSelectionAdapter(this, ::setSelectedDate) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = binding.root
-
-    var resultSelectDate: ResultSelectDate = ResultSelectDate(LocalDate.now(), LocalDateTime.now())
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
 
@@ -95,16 +97,9 @@ class SelectDateBottomSheet @Inject constructor(
     }
 
     private fun observeLiveDate() {
-        val dateAdapter =
-            DateSelectionAdapter(
-                lifecycleOwner = this,
-            ) { dateDetailsUI ->
-                setSelectedDate(dateDetailsUI)
-            }
-
         val rvDates = binding.rvDates
         val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(rvDates)
+        snapHelper.attachToRecyclerView(binding.rvDates)
         rvDates.adapter = dateAdapter
 
         viewModel.dateDetailsList.observe(this) { integerPagingData ->
@@ -136,20 +131,6 @@ class SelectDateBottomSheet @Inject constructor(
     }
 
     private fun setUpNumberPicker() = with(binding) {
-        numberHour.apply {
-            maxValue = 24
-            minValue = 0
-            wrapSelectorWheel = true;
-            value = 2
-            setOnValueChangedListener { picker, oldVal, newVal ->  }
-        }
 
-        numberMinute.apply {
-            maxValue = 59
-            minValue = 0
-            wrapSelectorWheel = true;
-            value = 2
-            setOnValueChangedListener { picker, oldVal, newVal ->  }
-        }
     }
 }

@@ -32,8 +32,11 @@ class MainActivity : AppCompatActivity() {
             SettingFragment()
         )
 
-        binding.viewPager.isUserInputEnabled = false
-        binding.viewPager.adapter = ViewPagerAdapter(fragment, this)
+        binding.viewPager.apply {
+            isUserInputEnabled = false
+            adapter = ViewPagerAdapter(fragment, this@MainActivity)
+            offscreenPageLimit = 4  // make sure left/right item is rendered
+        }
     }
 
     private fun setupNavigationBar() {

@@ -1,5 +1,52 @@
 package com.kstudio.diarymylife.ui.base
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import androidx.paging.*
+import com.kstudio.diarymylife.database.DateSelectionPageSource
+import com.kstudio.diarymylife.model.toDateDetails
+import com.kstudio.diarymylife.utils.toStringFormat
+import java.time.LocalDate
+import java.util.*
 
-open class BaseViewModel : ViewModel()
+open class BaseViewModel : ViewModel() {
+
+    private val _localDateTimeSelect: MutableLiveData<LocalDate> = MutableLiveData(LocalDate.now())
+    val localDateTimeSelect: MutableLiveData<LocalDate> = _localDateTimeSelect
+
+    private val _selectedDate = MutableLiveData(Date().toStringFormat())
+
+    val selectedDate: LiveData<String> = _selectedDate
+
+    private val _resetDateList = MutableLiveData<Long?>()
+
+    val resetDateList: LiveData<Long?> get() = _resetDateList
+
+    private val dateSelectionPager: LiveData<PagingData<Date>> =
+        Transformations.switchMap(selectedDate) { changedSelectedDate ->
+            Pager(PagingConfig(pageSize = 10)) {
+                DateSelectionPageSource(changedSelectedDate)
+            }.liveData.cachedIn(viewModelScope)
+        }
+
+    val dateDetailsList = dateSelectionPager.map { pagingData ->
+        pagingData.map { mealDate ->
+            mealDate.toDateDetails()
+        }
+    }
+
+    @JvmOverloads
+    fun updateCurrentSelectedDate(date: String, invalidateList: Boolean = false) {
+        if (invalidateList) {
+            _resetDateList.value = System.currentTimeMillis()
+        }
+        _selectedDate.value = date
+    }
+
+    fun setSelectDate(localDateTime: LocalDate) {
+        _localDateTimeSelect.postValue(localDateTime)
+    }
+
+    fun setResetDate(reset: Long?) {
+        _resetDateList.postValue(reset)
+    }
+}

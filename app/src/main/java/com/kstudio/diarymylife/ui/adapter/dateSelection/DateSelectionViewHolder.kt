@@ -16,11 +16,6 @@ class DateSelectionViewHolder(private val binding: ItemDayBinding) :
         onDateSelection: (DateDetailsUI) -> Unit
     ) {
         this.adapter = adapter
-        layoutPosition.let {
-            if (it == 0) {
-                binding.containerDate.setBackgroundResource(R.drawable.bg_round_card_action_select)
-            }
-        }
 
         binding.apply {
             day.text = dateDetailsUI.dayOfWeek.substring(0, 3)

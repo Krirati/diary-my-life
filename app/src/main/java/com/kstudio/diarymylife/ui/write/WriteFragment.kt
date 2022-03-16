@@ -10,14 +10,15 @@ import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentWriteBinding
 import com.kstudio.diarymylife.model.ResultSelectDate
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.widgets.SelectDateBottomSheet
+import com.kstudio.diarymylife.ui.widgets.select_date_bottomsheet.SelectDateBottomSheet
+import com.kstudio.diarymylife.ui.widgets.select_date_bottomsheet.SelectDateHandle
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.toStringFormat
 import com.kstudio.diarymylife.utils.toStringFormatApp
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 
-class WriteFragment : BaseFragment() {
+class WriteFragment : BaseFragment(), SelectDateHandle {
 
     private val viewModel by viewModel<WriteViewModel>()
 
@@ -71,18 +72,18 @@ class WriteFragment : BaseFragment() {
         )
     }
 
-    private fun onClickDoneBottomSheet(date: ResultSelectDate) {
+    override fun onClickDoneBottomSheet(date: ResultSelectDate) {
         date.day?.let {
             viewModel.setSelectDate(it)
-            viewModel.updateCurrentSelectedDate(it.toStringFormat(),true)
+            viewModel.updateCurrentSelectedDate(it.toStringFormat(), true)
         }
         binding.currentSelectTime.text = date.day?.toStringFormatApp() ?: ""
     }
 
-    private fun onCloseBottomSheet() {
+    override fun onCloseBottomSheet() {
         val currentDate = viewModel.selectedDate.value
         if (currentDate != null) {
-            viewModel.updateCurrentSelectedDate(currentDate,true)
+            viewModel.updateCurrentSelectedDate(currentDate, true)
         }
     }
 
