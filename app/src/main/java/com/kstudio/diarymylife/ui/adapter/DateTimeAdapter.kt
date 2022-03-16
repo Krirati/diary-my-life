@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.databinding.ItemDayBinding
+import com.kstudio.diarymylife.databinding.ItemChipDayBinding
 import com.kstudio.diarymylife.utils.convertTime
 import java.time.LocalDateTime
 
@@ -20,7 +20,7 @@ class DateTimeAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return ViewHolder(ItemDayBinding.inflate(inflater, parent, false))
+        return ViewHolder(ItemChipDayBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -39,7 +39,7 @@ class DateTimeAdapter(
     override fun getItemCount(): Int = dateList.size
 
     inner class ViewHolder(
-        private val binding: ItemDayBinding
+        private val binding: ItemChipDayBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: LocalDateTime?, onSelect: (Int) -> Unit, position: Int) = with(binding) {
             item?.let {

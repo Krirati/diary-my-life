@@ -6,7 +6,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.kstudio.diarymylife.databinding.ItemDayBinding
+import com.kstudio.diarymylife.databinding.ItemChipDayBinding
 import com.kstudio.diarymylife.model.DateDetailsUI
 
 class DateSelectionAdapter(
@@ -16,23 +16,29 @@ class DateSelectionAdapter(
     PagingDataAdapter<DateDetailsUI, DateSelectionViewHolder>(dateDifferentiators) {
 
     val selectedItems = MutableLiveData<Int>()
+    var selectDate = ""
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): DateSelectionViewHolder {
-        val view = ItemDayBinding.inflate(LayoutInflater.from(parent.context))
+        val view = ItemChipDayBinding.inflate(LayoutInflater.from(parent.context))
         return DateSelectionViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: DateSelectionViewHolder, position: Int) {
         getItem(position)?.let {
-            holder.bind(this, it, onDateSelection)
+            holder.bind(this, it, onDateSelection, selectDate)
         }
     }
 
     fun addItemToSelection(position: Int) {
         selectedItems.value = position
+    }
+
+    fun setUpSelectDate(time: String) {
+        selectDate = time
+        notifyDataSetChanged()
     }
 }
 

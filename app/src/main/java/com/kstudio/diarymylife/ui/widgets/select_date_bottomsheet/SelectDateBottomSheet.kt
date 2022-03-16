@@ -16,7 +16,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.databinding.ItemSelectDateBinding
+import com.kstudio.diarymylife.databinding.BottomSheetSelectDateBinding
 import com.kstudio.diarymylife.model.DateDetailsUI
 import com.kstudio.diarymylife.model.ResultSelectDate
 import com.kstudio.diarymylife.model.toDateDetails
@@ -36,8 +36,8 @@ class SelectDateBottomSheet @Inject constructor(
 ) : BottomSheetDialogFragment() {
 
     private val parentView =
-        LinearLayout.inflate(getContext, R.layout.item_select_date, null)
-    private val binding by lazy { ItemSelectDateBinding.bind(parentView) }
+        LinearLayout.inflate(getContext, R.layout.bottom_sheet_select_date, null)
+    private val binding by lazy { BottomSheetSelectDateBinding.bind(parentView) }
     private var resultSelectDate: ResultSelectDate =
         ResultSelectDate(LocalDate.now(), LocalDateTime.now())
 
@@ -123,6 +123,7 @@ class SelectDateBottomSheet @Inject constructor(
 
     @SuppressLint("SetTextI18n")
     private fun setSelectedDate(dateDetailsUI: DateDetailsUI) {
+        dateAdapter.setUpSelectDate(dateDetailsUI.dateKey)
         binding.dateView.bindView(dateDetailsUI)
         resultSelectDate = ResultSelectDate(
             day = dateDetailsUI.dateKey.toLocalDate(),

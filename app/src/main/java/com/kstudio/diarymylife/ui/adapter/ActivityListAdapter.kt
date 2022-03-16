@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.databinding.ItemActivityImageBinding
+import com.kstudio.diarymylife.databinding.ItemChipActivityBinding
 
 class ActivityListAdapter(private val activityItems: List<String?>) :
     RecyclerView.Adapter<ActivityListAdapter.ViewHolder>() {
@@ -12,7 +12,7 @@ class ActivityListAdapter(private val activityItems: List<String?>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return ViewHolder(
-            ItemActivityImageBinding.inflate(inflater, parent, false)
+            ItemChipActivityBinding.inflate(inflater, parent, false)
         )
     }
 
@@ -22,7 +22,7 @@ class ActivityListAdapter(private val activityItems: List<String?>) :
 
     override fun getItemCount(): Int = activityItems.size
 
-    inner class ViewHolder(private val binding: ItemActivityImageBinding) :
+    inner class ViewHolder(private val binding: ItemChipActivityBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: String?) = with(binding) {
 
