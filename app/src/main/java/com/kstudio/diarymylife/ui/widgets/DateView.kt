@@ -12,6 +12,7 @@ import com.kstudio.diarymylife.utils.toStringFormatApp
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 @SuppressLint("ViewConstructor")
 class DateView @JvmOverloads constructor(
@@ -29,7 +30,7 @@ class DateView @JvmOverloads constructor(
         with(binding) {
             day.text = convertTime(localDateTime, "EEEE")
             month.text = convertTime(localDateTime, "MMMM, dd")
-            time.text = convertTime(localDateTime, "hh:mm")
+            time.text = convertTime(localDateTime, "HH:mm")
         }
     }
 
@@ -49,7 +50,7 @@ class DateView @JvmOverloads constructor(
 
     fun bindTime(localTime: LocalTime) {
         with(binding) {
-            time.text = localTime.toString()
+            time.text = localTime.format(DateTimeFormatter.ofPattern("HH:mm"))
         }
     }
 

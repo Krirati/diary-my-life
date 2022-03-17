@@ -90,6 +90,7 @@ class SelectDateBottomSheet @Inject constructor(
 
     private fun bindingView() = with(binding) {
         viewModel.localDateSelect.value?.let { dateView.bindView(it) }
+        viewModel.localTimeSelect.value?.let { dateView.bindTime(it) }
         buttonDone.setOnClickListener {
             resultSelectDate = ResultSelectDate(
                 day = date.toLocalDate(),
