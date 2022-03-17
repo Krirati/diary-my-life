@@ -48,30 +48,21 @@
         app:layout_constraintTop_toBottomOf="@+id/dateView"
         tools:listitem="@layout/item_chip_day" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/time_picker_container"
-        android:layout_width="match_parent"
+    <com.kstudio.diarymylife.ui.widgets.TimePicker
+        android:id="@+id/widget_time_picker"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvDates">
-
-        <include
-            layout="@layout/widget_select_time"/>
-
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        app:layout_constraintTop_toBottomOf="@+id/rvDates" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_done"
         style="@style/ButtonBlackCenter"
-        android:layout_marginTop="@dimen/dp_16"
         android:text="Done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_picker_container" />
+        app:layout_constraintTop_toBottomOf="@+id/widget_time_picker" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

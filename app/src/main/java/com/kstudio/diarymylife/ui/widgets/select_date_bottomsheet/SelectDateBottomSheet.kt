@@ -25,7 +25,7 @@ import com.kstudio.diarymylife.ui.base.BaseViewModel
 import com.kstudio.diarymylife.utils.toDate
 import com.kstudio.diarymylife.utils.toLocalDate
 import java.time.LocalDate
-import java.time.LocalDateTime
+import java.time.LocalTime
 import javax.inject.Inject
 
 class SelectDateBottomSheet @Inject constructor(
@@ -37,11 +37,15 @@ class SelectDateBottomSheet @Inject constructor(
 
     private val parentView =
         LinearLayout.inflate(getContext, R.layout.bottom_sheet_select_date, null)
+
     private val binding by lazy { BottomSheetSelectDateBinding.bind(parentView) }
     private var resultSelectDate: ResultSelectDate =
-        ResultSelectDate(LocalDate.now(), LocalDateTime.now())
+        ResultSelectDate(LocalDate.now(), LocalTime.now())
 
     private val dateAdapter by lazy { DateSelectionAdapter(this, ::setSelectedDate) }
+
+    private var date: String = ""
+    private var time: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -81,12 +85,17 @@ class SelectDateBottomSheet @Inject constructor(
         super.onViewCreated(view, savedInstanceState)
         observeLiveDate()
         bindingView()
-        setUpNumberPicker()
+        setUpTimePicker()
     }
 
     private fun bindingView() = with(binding) {
-        viewModel.localDateTimeSelect.value?.let { dateView.bindView(it) }
+        viewModel.localDateSelect.value?.let { dateView.bindView(it) }
         buttonDone.setOnClickListener {
+            resultSelectDate = ResultSelectDate(
+                day = date.toLocalDate(),
+                time = widgetTimePicker.getCurrentSelectTime()
+            )
+
             onClickDone(resultSelectDate)
             this@SelectDateBottomSheet.dismiss()
         }
@@ -119,19 +128,22 @@ class SelectDateBottomSheet @Inject constructor(
                 viewModel.setResetDate(null)
             }
         }
+
+        viewModel.localTimeSelect.observe(this) {
+            viewModel.setSelectTime(it)
+        }
     }
 
     @SuppressLint("SetTextI18n")
     private fun setSelectedDate(dateDetailsUI: DateDetailsUI) {
         dateAdapter.setUpSelectDate(dateDetailsUI.dateKey)
-        binding.dateView.bindView(dateDetailsUI)
-        resultSelectDate = ResultSelectDate(
-            day = dateDetailsUI.dateKey.toLocalDate(),
-            time = null
-        )
+        binding.dateView.bindDate(dateDetailsUI)
+        date = dateDetailsUI.dateKey
     }
 
-    private fun setUpNumberPicker() = with(binding) {
-
+    private fun setUpTimePicker() {
+        binding.widgetTimePicker.localTime.observe(this) {
+            binding.dateView.bindTime(it)
+        }
     }
 }

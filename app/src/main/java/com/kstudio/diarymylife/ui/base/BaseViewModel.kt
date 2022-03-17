@@ -6,12 +6,16 @@ import com.kstudio.diarymylife.database.DateSelectionPageSource
 import com.kstudio.diarymylife.model.toDateDetails
 import com.kstudio.diarymylife.utils.toStringFormat
 import java.time.LocalDate
+import java.time.LocalTime
 import java.util.*
 
 open class BaseViewModel : ViewModel() {
 
-    private val _localDateTimeSelect: MutableLiveData<LocalDate> = MutableLiveData(LocalDate.now())
-    val localDateTimeSelect: MutableLiveData<LocalDate> = _localDateTimeSelect
+    private val _localDateSelect: MutableLiveData<LocalDate> = MutableLiveData(LocalDate.now())
+    val localDateSelect: MutableLiveData<LocalDate> = _localDateSelect
+
+    private val _localTimeSelect: MutableLiveData<LocalTime> = MutableLiveData(LocalTime.now())
+    val localTimeSelect: MutableLiveData<LocalTime> = _localTimeSelect
 
     private val _selectedDate = MutableLiveData(Date().toStringFormat())
 
@@ -43,7 +47,11 @@ open class BaseViewModel : ViewModel() {
     }
 
     fun setSelectDate(localDateTime: LocalDate) {
-        _localDateTimeSelect.postValue(localDateTime)
+        _localDateSelect.postValue(localDateTime)
+    }
+
+    fun setSelectTime(localTime: LocalTime) {
+        _localTimeSelect.postValue(localTime)
     }
 
     fun setResetDate(reset: Long?) {

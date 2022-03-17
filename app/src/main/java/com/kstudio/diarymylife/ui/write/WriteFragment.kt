@@ -14,7 +14,6 @@ import com.kstudio.diarymylife.ui.widgets.select_date_bottomsheet.SelectDateBott
 import com.kstudio.diarymylife.ui.widgets.select_date_bottomsheet.SelectDateHandle
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.toStringFormat
-import com.kstudio.diarymylife.utils.toStringFormatApp
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 
@@ -77,7 +76,10 @@ class WriteFragment : BaseFragment(), SelectDateHandle {
             viewModel.setSelectDate(it)
             viewModel.updateCurrentSelectedDate(it.toStringFormat(), true)
         }
-        binding.currentSelectTime.text = date.day?.toStringFormatApp() ?: ""
+        date.time?.let {
+            viewModel.setSelectTime(it)
+        }
+        binding.currentSelectTime.text = convertTime(date.getLocalDateTime())
     }
 
     override fun onCloseBottomSheet() {
@@ -88,7 +90,7 @@ class WriteFragment : BaseFragment(), SelectDateHandle {
     }
 
     private fun observeLiveData() {
-        viewModel.localDateTimeSelect.observe(viewLifecycleOwner) {
+        viewModel.localDateSelect.observe(viewLifecycleOwner) {
             Log.d("test", "ob ::" + it)
         }
 

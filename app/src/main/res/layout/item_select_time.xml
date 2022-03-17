@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/button_plus"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@color/transparent"
+            android:rotation="90"
+            android:src="@drawable/ic_back"
+            android:tint="@color/amber_800"
+            app:layout_constraintEnd_toEndOf="@+id/container_date"
+            app:layout_constraintStart_toStartOf="@+id/container_date"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_6"
+            android:background="@drawable/bg_round_card_action"
+            android:padding="@dimen/dp_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_plus"
+            app:layout_constraintVertical_bias="0.121">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/select_number"
+                style="@style/H1BlackCenter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textSize="48sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/type_number"
+            style="@style/SubtitleGreyRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_4"
+            app:layout_constraintStart_toStartOf="@+id/container_date"
+            app:layout_constraintTop_toBottomOf="@+id/container_date"
+            tools:text="Houddr" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/button_minus"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="@dimen/dp_4"
+            android:background="@color/transparent"
+            android:rotation="-90"
+            android:src="@drawable/ic_back"
+            android:tint="@color/amber_800"
+            app:layout_constraintEnd_toEndOf="@+id/container_date"
+            app:layout_constraintStart_toStartOf="@+id/container_date"
+            app:layout_constraintTop_toBottomOf="@+id/type_number"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

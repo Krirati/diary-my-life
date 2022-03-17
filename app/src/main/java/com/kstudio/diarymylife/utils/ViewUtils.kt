@@ -2,6 +2,8 @@ package com.kstudio.diarymylife.utils
 
 import android.annotation.SuppressLint
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_FORMAT
+import com.kstudio.diarymylife.utils.Formats.Companion.DATE_FORMAT_APP
+import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -10,7 +12,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 @SuppressLint("SimpleDateFormat")
-fun convertTime(timestamp: LocalDateTime, format: String): String {
+fun convertTime(timestamp: LocalDateTime, format: String = DATE_TIME_FORMAT_APP): String {
     val formatter = DateTimeFormatter.ofPattern(format)
     return timestamp.format(formatter)
 }
@@ -45,7 +47,7 @@ fun String.toLocalDate(stringFormat: String = DATE_FORMAT): LocalDate? {
     return LocalDate.parse(this, formatter)
 }
 
-fun LocalDate.toStringFormatApp(stringFormat: String = "MMMM, dd EEEE"): String? {
+fun LocalDate.toStringFormatApp(stringFormat: String = DATE_FORMAT_APP): String? {
     val formatter = DateTimeFormatter.ofPattern(stringFormat)
     return this.format(formatter)
 }

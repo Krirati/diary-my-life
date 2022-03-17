@@ -11,6 +11,7 @@ import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.toStringFormatApp
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 @SuppressLint("ViewConstructor")
 class DateView @JvmOverloads constructor(
@@ -39,11 +40,16 @@ class DateView @JvmOverloads constructor(
         }
     }
 
-    fun bindView(localDateTime: DateDetailsUI) {
+    fun bindDate(localDateTime: DateDetailsUI) {
         with(binding) {
             day.text = localDateTime.dayOfWeek
             month.text = localDateTime.monthOfYear + ", "+ localDateTime.day
-            time.text = convertTime(LocalDateTime.now(), "hh:mm")
+        }
+    }
+
+    fun bindTime(localTime: LocalTime) {
+        with(binding) {
+            time.text = localTime.toString()
         }
     }
 
