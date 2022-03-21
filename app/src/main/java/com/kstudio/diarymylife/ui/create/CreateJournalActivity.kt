@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.write
+package com.kstudio.diarymylife.ui.create
 
 import android.os.Bundle
 import androidx.navigation.findNavController
@@ -6,7 +6,7 @@ import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ActivityJournalWriteBinding
 import com.kstudio.diarymylife.ui.base.BaseActivity
 
-class WriteActivity : BaseActivity() {
+class CreateJournalActivity : BaseActivity() {
 
     private lateinit var binding: ActivityJournalWriteBinding
 

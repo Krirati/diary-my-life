@@ -2,7 +2,6 @@ package com.kstudio.diarymylife.ui.widgets
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.lifecycle.MutableLiveData
@@ -61,11 +60,13 @@ class TimePicker @JvmOverloads constructor(
 
     private fun plusHour() {
         if (MAX_HOUR > currentHour) {
-            Log.d("time", "plus hour")
             ++currentHour
             _localTime.postValue(getCurrentSelectTime())
             binding.hour.selectNumber.text = String.format("%02d", currentHour)
             return
+        } else {
+            currentHour = 0
+            binding.hour.selectNumber.text = String.format("%02d", currentHour)
         }
     }
 
@@ -75,6 +76,9 @@ class TimePicker @JvmOverloads constructor(
             _localTime.postValue(getCurrentSelectTime())
             binding.minute.selectNumber.text = String.format("%02d", currentMinute)
             return
+        } else {
+            currentMinute = 0
+            binding.minute.selectNumber.text = String.format("%02d", currentMinute)
         }
     }
 
@@ -84,6 +88,9 @@ class TimePicker @JvmOverloads constructor(
             _localTime.postValue(getCurrentSelectTime())
             binding.hour.selectNumber.text = String.format("%02d", currentHour)
             return
+        } else {
+            currentHour = MAX_HOUR
+            binding.hour.selectNumber.text = String.format("%02d", currentHour)
         }
     }
 
@@ -93,6 +100,9 @@ class TimePicker @JvmOverloads constructor(
             _localTime.postValue(getCurrentSelectTime())
             binding.minute.selectNumber.text = String.format("%02d", currentMinute)
             return
+        } else {
+            currentMinute = MAX_MINUTE
+            binding.minute.selectNumber.text = String.format("%02d", currentMinute)
         }
     }
 }

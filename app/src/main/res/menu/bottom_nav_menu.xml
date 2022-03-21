@@ -7,8 +7,12 @@
 
     <item
         android:id="@+id/navigation_write"
-        android:icon="@drawable/ic_plus"
-        android:title="@string/write" />
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/list" />
+
+    <item
+        android:id="@+id/placholfer"
+        android:title="" />
 
     <item
         android:id="@+id/navigation_chart"

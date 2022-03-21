@@ -1,6 +1,5 @@
 package com.kstudio.diarymylife.ui.home
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.data.Journal
@@ -42,11 +41,9 @@ class HomeViewModel constructor(
     fun fetchRecentJournal() {
         viewModelScope.launch {
             journalRepository.getJournal()
-                .onStart { Log.d("test", "flow onStart") }
-                .onCompletion { Log.d("test", "flow onCompletion") }
-                .catch {
-                    Log.e("test", "flow catch: ${it.message}")
-                }
+                .onStart { }
+                .onCompletion { }
+                .catch { }
                 .collect {
                     _memberList.postValue(mapToUI(it))
                 }

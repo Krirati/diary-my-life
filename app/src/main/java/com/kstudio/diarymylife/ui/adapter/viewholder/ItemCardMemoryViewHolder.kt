@@ -37,6 +37,8 @@ class ItemCardMemoryViewHolder(
     private var dXTrail: Float = 0.toFloat()
     private var previousEvent: Pair<Int?, Int?> = Pair(null, null)
 
+    private val adapterActivity by lazy { ActivityListAdapter() }
+
     init {
         display =
             windowManager.defaultDisplay //activity.getWindowManager().getDefaultDisplay()
@@ -53,7 +55,8 @@ class ItemCardMemoryViewHolder(
         swipeState: SwipeState,
         onDelete: (Int) -> Unit,
     ) = with(binding) {
-        val activityAdapter = item.data?.activity?.let { ActivityListAdapter(it) }
+//        val activityAdapter = item.data?.activity?.let { ActivityListAdapter(it) }
+        item.data?.activity?.let { adapterActivity.updateActivityItems(it) }
 
         journalTitle.text = item.data?.title
         journalDesc.text = item.data?.desc
@@ -64,7 +67,7 @@ class ItemCardMemoryViewHolder(
             if (item.data?.activity.isNullOrEmpty()) this.visibility = View.GONE
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
             isNestedScrollingEnabled = false
-            adapter = activityAdapter
+            adapter = adapterActivity
         }
 
         buttonDelete.setOnClickListener {

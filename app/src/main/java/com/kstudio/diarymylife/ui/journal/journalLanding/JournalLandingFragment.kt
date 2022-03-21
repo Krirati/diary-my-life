@@ -2,9 +2,7 @@ package com.kstudio.diarymylife.ui.journal.journalLanding
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.kstudio.diarymylife.data.Journal
 import com.kstudio.diarymylife.databinding.FragmentJournalBinding
@@ -13,19 +11,12 @@ import com.kstudio.diarymylife.ui.journal.JournalDetailViewModel
 import com.kstudio.diarymylife.utils.Keys.Companion.JOURNAL_ID
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class JournalLandingFragment : BaseFragment() {
-    private val binding get() = _binding as FragmentJournalBinding
+class JournalLandingFragment :
+    BaseFragment<FragmentJournalBinding>(FragmentJournalBinding::inflate) {
     private val viewModel by viewModel<JournalLandingViewModel>()
     private val journalActivityViewModel by viewModel<JournalDetailViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentJournalBinding.inflate(layoutInflater)
-        return binding.root
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -79,4 +79,6 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 
     implementation "javax.inject:javax.inject:1"
+
+    implementation 'com.tbuonomo:dotsindicator:4.2'
 }

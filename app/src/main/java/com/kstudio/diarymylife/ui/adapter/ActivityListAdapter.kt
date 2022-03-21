@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ItemChipActivityBinding
 
-class ActivityListAdapter(private val activityItems: List<String?>) :
+class ActivityListAdapter() :
     RecyclerView.Adapter<ActivityListAdapter.ViewHolder>() {
+
+    private var activityItems: List<String?> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -37,5 +39,10 @@ class ActivityListAdapter(private val activityItems: List<String?>) :
                 )
             }
         }
+    }
+
+    fun updateActivityItems(items: List<String>) {
+        activityItems = items
+        notifyItemRangeChanged(0, activityItems.size)
     }
 }

@@ -1,7 +1,6 @@
 package com.kstudio.diarymylife.ui.adapter
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -65,7 +64,6 @@ class DateTimeAdapter(
     fun update(list: LocalDateTime) {
         dateList.add(list)
         dateList.sort()
-        Log.d("Data", "update :: " + list)
         notifyDataSetChanged()
     }
 

@@ -3,9 +3,7 @@ package com.kstudio.diarymylife.ui.home
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentHomeBinding
@@ -13,23 +11,12 @@ import com.kstudio.diarymylife.model.JournalItem
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.journal.JournalDetailActivity
-import com.kstudio.diarymylife.ui.write.WriteActivity
+import com.kstudio.diarymylife.ui.create.CreateJournalActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private val homeViewModel by viewModel<HomeViewModel>()
-
-    private val binding get() = _binding as FragmentHomeBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(layoutInflater)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -69,18 +56,13 @@ class HomeFragment : BaseFragment() {
         memberAdapter.notifyDataSetChanged()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     override fun onResume() {
         super.onResume()
         homeViewModel.fetchRecentJournal()
     }
 
     private fun navigateToCreateJournal() {
-        val intent = Intent(activity, WriteActivity::class.java)
+        val intent = Intent(activity, CreateJournalActivity::class.java)
         startActivity(intent)
         requireActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
     }

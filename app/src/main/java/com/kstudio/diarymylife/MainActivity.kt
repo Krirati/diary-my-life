@@ -1,14 +1,17 @@
 package com.kstudio.diarymylife
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.kstudio.diarymylife.databinding.ActivityMainBinding
 import com.kstudio.diarymylife.ui.adapter.ViewPagerAdapter
 import com.kstudio.diarymylife.ui.chart.ChartFragment
+import com.kstudio.diarymylife.ui.create.CreateJournalActivity
+import com.kstudio.diarymylife.ui.create.select_mood.SelectMoodFragment
 import com.kstudio.diarymylife.ui.home.HomeFragment
+import com.kstudio.diarymylife.ui.list.ListJournalFragment
 import com.kstudio.diarymylife.ui.setting.SettingFragment
-import com.kstudio.diarymylife.ui.write.WriteFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,7 +22,6 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setupViewPager()
         setupNavigationBar()
     }
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewPager() {
         val fragment: ArrayList<Fragment> = arrayListOf(
             HomeFragment(),
-            WriteFragment(),
+            ListJournalFragment(),
             ChartFragment(),
             SettingFragment()
         )
@@ -40,13 +42,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNavigationBar() {
+        binding.bottomNavigation.apply {
+            background = null
+            menu.getItem(2).isEnabled = false
+        }
+
+        binding.fab.setOnClickListener {
+            val intent = Intent(this, CreateJournalActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
+        }
+
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_write -> {
                     binding.viewPager.currentItem = 1
-//                    val intent = Intent(this, WriteActivity::class.java)
-//                    startActivity(intent)
-//                    overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
                     return@setOnItemSelectedListener true
                 }
                 R.id.navigation_chart -> {

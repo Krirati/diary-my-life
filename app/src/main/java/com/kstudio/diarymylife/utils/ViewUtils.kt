@@ -1,6 +1,7 @@
 package com.kstudio.diarymylife.utils
 
 import android.annotation.SuppressLint
+import android.util.DisplayMetrics
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_FORMAT
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_FORMAT_APP
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
@@ -52,10 +53,12 @@ fun LocalDate.toStringFormatApp(stringFormat: String = DATE_FORMAT_APP): String?
     return this.format(formatter)
 }
 
-
 fun getFormatDate(day: Int, month: Int, year: Int): String {
     val twoDigit = "%1$02d" // two digits
     val twoDigitDay = String.format(twoDigit, day)
     val twoDigitMonth = String.format(twoDigit, month)
     return "${twoDigitDay}-${twoDigitMonth}-${year}"
 }
+
+fun Int.dpToPx(displayMetrics: DisplayMetrics): Int = (this * displayMetrics.density).toInt()
+

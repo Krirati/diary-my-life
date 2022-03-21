@@ -1,42 +1,57 @@
-package com.kstudio.diarymylife.ui.write
+package com.kstudio.diarymylife.ui.create.select_mood
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.MarginPageTransformer
 import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.databinding.FragmentWriteBinding
+import com.kstudio.diarymylife.databinding.FragmentSelectMoodBinding
 import com.kstudio.diarymylife.model.ResultSelectDate
+import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.widgets.select_date_bottomsheet.SelectDateBottomSheet
 import com.kstudio.diarymylife.ui.widgets.select_date_bottomsheet.SelectDateHandle
 import com.kstudio.diarymylife.utils.convertTime
+import com.kstudio.diarymylife.utils.dpToPx
 import com.kstudio.diarymylife.utils.toStringFormat
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 
-class WriteFragment : BaseFragment(), SelectDateHandle {
+class SelectMoodFragment :
+    BaseFragment<FragmentSelectMoodBinding>(FragmentSelectMoodBinding::inflate), SelectDateHandle {
 
-    private val viewModel by viewModel<WriteViewModel>()
+    private val viewModel by viewModel<SelectMoodViewModel>()
 
-    private val binding get() = _binding as FragmentWriteBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentWriteBinding.inflate(layoutInflater)
-        return binding.root
-    }
+    private val adapterMood by lazy { MoodAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleOnBackPress()
+        setupViewPager()
         observeLiveData()
         bindingView()
+    }
+
+    private fun setupViewPager() {
+        val offsetPx =
+            resources.getDimension(R.dimen.dp_16).toInt().dpToPx(resources.displayMetrics)
+        val pageMarginPx =
+            resources.getDimension(R.dimen.dp_6).toInt().dpToPx(resources.displayMetrics)
+        val marginTransformer = MarginPageTransformer(pageMarginPx)
+
+        binding.viewPagerMood.apply {
+            adapter = adapterMood
+            clipToPadding = false   // allow full width shown with padding
+            clipChildren = false    // allow left/right item is not clipped
+            offscreenPageLimit = 2
+            currentItem = 2
+            setPadding(offsetPx, 0, offsetPx, 0)
+            setPageTransformer(marginTransformer)
+            binding.dotsIndicator.setViewPager2(this)
+        }
     }
 
     private fun bindingView() = with(binding) {
@@ -50,6 +65,9 @@ class WriteFragment : BaseFragment(), SelectDateHandle {
                 viewModel
             )
             bottomSheetSelectTime.show(childFragmentManager, "bottom sheet date")
+        }
+        buttonNext.setOnClickListener {
+            navigateToNextScreen()
         }
     }
 
@@ -92,10 +110,19 @@ class WriteFragment : BaseFragment(), SelectDateHandle {
     private fun observeLiveData() {
         viewModel.localDateSelect.observe(viewLifecycleOwner) {
             Log.d("test", "ob ::" + it)
+
         }
 
         viewModel.selectedDate.observe(viewLifecycleOwner) {
             Log.d("test", "ob frag ::" + it)
+
         }
+    }
+
+    @SuppressLint("ResourceType")
+    private fun navigateToNextScreen() {
+        val direction =
+            SelectMoodFragmentDirections.actionWriteFragmentToSelectActivityFragment()
+        findNavController().navigate(direction)
     }
 }
