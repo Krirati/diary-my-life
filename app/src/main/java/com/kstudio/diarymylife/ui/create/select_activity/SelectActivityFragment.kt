@@ -2,14 +2,16 @@ package com.kstudio.diarymylife.ui.create.select_activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.databinding.FragmentSelectActivityBinding
 import com.kstudio.diarymylife.ui.adapter.ActivityListAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.create.select_mood.SelectMoodFragmentDirections
+import com.kstudio.diarymylife.ui.create.CreateJournalViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SelectActivityFragment : BaseFragment<FragmentSelectActivityBinding>
@@ -17,6 +19,7 @@ class SelectActivityFragment : BaseFragment<FragmentSelectActivityBinding>
 
     private val adapterActivity by lazy { ActivityListAdapter(requireContext()) }
     private val viewModel by viewModel<SelectActivityViewModel>()
+    private val shearViewModel: CreateJournalViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,6 +57,9 @@ class SelectActivityFragment : BaseFragment<FragmentSelectActivityBinding>
     private fun observeLiveDate() {
         viewModel.listActivity.observe(viewLifecycleOwner) {
             adapterActivity.updateActivityItems(it)
+        }
+        shearViewModel.selects.observe(viewLifecycleOwner) {
+            Log.d("test", "test dddd: " +it)
         }
     }
 

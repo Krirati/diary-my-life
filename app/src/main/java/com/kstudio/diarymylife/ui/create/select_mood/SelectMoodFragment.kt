@@ -5,16 +5,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentSelectMoodBinding
 import com.kstudio.diarymylife.model.ResultSelectDate
 import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
+import com.kstudio.diarymylife.ui.create.CreateJournalViewModel
 import com.kstudio.diarymylife.ui.widgets.select_date_bottomsheet.SelectDateBottomSheet
 import com.kstudio.diarymylife.ui.widgets.select_date_bottomsheet.SelectDateHandle
-import com.kstudio.diarymylife.utils.Formats.Companion.DATE_FORMAT_APP
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.dpToPx
@@ -26,6 +28,7 @@ class SelectMoodFragment :
     BaseFragment<FragmentSelectMoodBinding>(FragmentSelectMoodBinding::inflate), SelectDateHandle {
 
     private val viewModel by viewModel<SelectMoodViewModel>()
+    private val shareViewModel: CreateJournalViewModel by activityViewModels()
 
     private val adapterMood by lazy { MoodAdapter() }
 
@@ -45,6 +48,7 @@ class SelectMoodFragment :
         val marginTransformer = MarginPageTransformer(pageMarginPx)
 
         binding.viewPagerMood.apply {
+            registerOnPageChangeCallback(onPageChangeCallback())
             adapter = adapterMood
             clipToPadding = false   // allow full width shown with padding
             clipChildren = false    // allow left/right item is not clipped
@@ -103,12 +107,10 @@ class SelectMoodFragment :
     private fun observeLiveData() {
         viewModel.localDateSelect.observe(viewLifecycleOwner) {
             Log.d("test", "ob ::" + it)
-
         }
 
         viewModel.selectedDate.observe(viewLifecycleOwner) {
             Log.d("test", "ob frag ::" + it)
-
         }
     }
 
@@ -118,4 +120,12 @@ class SelectMoodFragment :
             SelectMoodFragmentDirections.actionWriteFragmentToSelectActivityFragment()
         findNavController().navigate(direction)
     }
+
+    private fun onPageChangeCallback() =
+        object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                shareViewModel.setupSelectMood(position)
+            }
+        }
 }
