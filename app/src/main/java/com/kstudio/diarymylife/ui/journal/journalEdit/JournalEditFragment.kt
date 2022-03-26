@@ -19,7 +19,11 @@ class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournal
         observeLiveData()
         viewModel.getJournalDetailFromID(args.journalId)
         setVisibleGone()
+        bindingView()
+    }
 
+
+    override fun bindingView() {
         binding.back.setOnClickListener { activity?.onBackPressed() }
     }
 
@@ -65,4 +69,9 @@ class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournal
     private fun navigateToDetail() {
         findNavController().navigateUp()
     }
+
+    override fun handleOnBackPress() {
+        TODO("Not yet implemented")
+    }
+
 }

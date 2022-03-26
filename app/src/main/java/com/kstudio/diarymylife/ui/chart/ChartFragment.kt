@@ -12,4 +12,12 @@ class ChartFragment: BaseFragment<FragmentChartBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
+
+    override fun bindingView() {
+        TODO("Not yet implemented")
+    }
+
+    override fun handleOnBackPress() {
+        TODO("Not yet implemented")
+    }
 }

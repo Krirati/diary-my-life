@@ -1,15 +1,17 @@
 package com.kstudio.diarymylife.ui.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ItemChipActivityBinding
 
-class ActivityListAdapter() :
+class ActivityListAdapter(
+    private val context: Context
+) :
     RecyclerView.Adapter<ActivityListAdapter.ViewHolder>() {
 
-    private var activityItems: List<String?> = listOf()
+    private var activityItems: ArrayList<String> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -29,19 +31,14 @@ class ActivityListAdapter() :
         fun bind(item: String?) = with(binding) {
 
             item?.let {
-                activityImage.setImageResource(
-                    when (item) {
-                        "1" -> R.drawable.ic_home
-                        "2" -> R.drawable.ic_settings
-                        "3" -> R.drawable.ic_plus
-                        else -> R.drawable.ic_plus
-                    }
-                )
+                val resID: Int =
+                    context.resources.getIdentifier(it, "drawable", context.packageName)
+                activityImage.setImageResource(resID)
             }
         }
     }
 
-    fun updateActivityItems(items: List<String>) {
+    fun updateActivityItems(items: ArrayList<String>) {
         activityItems = items
         notifyItemRangeChanged(0, activityItems.size)
     }

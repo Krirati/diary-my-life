@@ -10,9 +10,9 @@ class MoodAdapter : RecyclerView.Adapter<MoodAdapter.ViewHolder>() {
 
     val moodList = arrayListOf(
         R.drawable.ic_pencil,
-        R.drawable.ic_line,
+        R.drawable.ic_group_40,
         R.drawable.ic_pencil,
-        R.drawable.ic_line,
+        R.drawable.ic_group_40,
         R.drawable.ic_pencil,
     )
 

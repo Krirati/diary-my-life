@@ -74,7 +74,7 @@ class HomeViewModel constructor(
                         title = it.title + it.id,
                         desc = it.description,
                         mood = it.mood ?: "",
-                        activity = it.activity,
+                        activity = it.activity ,
                         timestamp = it.timestamp,
                         imageId = "",
                     )

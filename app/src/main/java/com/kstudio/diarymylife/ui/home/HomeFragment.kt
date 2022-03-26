@@ -21,7 +21,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observer()
-        binding()
+        bindingView()
         homeViewModel.fetchRecentJournal()
     }
 
@@ -31,7 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-    private fun binding() = with(binding) {
+    override fun bindingView() = with(binding) {
         viewAllButton.setOnClickListener { homeViewModel.createRecentJournal() }
     }
 
@@ -65,5 +65,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         val intent = Intent(activity, CreateJournalActivity::class.java)
         startActivity(intent)
         requireActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
+    }
+
+    override fun handleOnBackPress() {
+        TODO("Not yet implemented")
     }
 }

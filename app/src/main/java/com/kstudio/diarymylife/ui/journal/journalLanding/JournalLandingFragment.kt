@@ -39,7 +39,7 @@ class JournalLandingFragment :
         }
     }
 
-    private fun bindingView() = with(binding) {
+    override fun bindingView() = with(binding) {
         back.setOnClickListener { activity?.onBackPressed() }
         buttonEdit.setOnClickListener {
             navigateToEditJournal()
@@ -83,5 +83,9 @@ class JournalLandingFragment :
 
     private fun getUpJournalDetail() {
         journalActivityViewModel.journalId?.let { viewModel.getJournalDetailFromID(it) }
+    }
+
+    override fun handleOnBackPress() {
+        TODO("Not yet implemented")
     }
 }

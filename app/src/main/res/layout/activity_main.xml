@@ -32,6 +32,7 @@
             android:layout_height="match_parent"
             android:layout_marginEnd="@dimen/dp_16"
             android:layout_marginStart="-16dp"
+            app:labelVisibilityMode="unlabeled"
             android:background="@color/white"
             app:menu="@menu/bottom_nav_menu" />
     </com.google.android.material.bottomappbar.BottomAppBar>

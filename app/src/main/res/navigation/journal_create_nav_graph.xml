@@ -12,11 +12,28 @@
         tools:layout="@layout/fragment_select_mood">
         <action
             android:id="@+id/action_writeFragment_to_selectActivityFragment"
-            app:destination="@id/selectActivityFragment" />
+            app:destination="@id/selectActivityFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/selectActivityFragment"
         android:name="com.kstudio.diarymylife.ui.create.select_activity.SelectActivityFragment"
         android:label="SelectActivityFragment"
-        tools:layout="@layout/fragment_select_activity" />
+        tools:layout="@layout/fragment_select_activity">
+        <action
+            android:id="@+id/action_selectActivityFragment_to_resultJournalFragment"
+            app:destination="@id/resultJournalFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultJournalFragment"
+        android:name="com.kstudio.diarymylife.ui.create.result_journal.ResultJournalFragment"
+        android:label="ResultJournalFragment"
+        tools:layout="@layout/fragment_journal" />
 </navigation>

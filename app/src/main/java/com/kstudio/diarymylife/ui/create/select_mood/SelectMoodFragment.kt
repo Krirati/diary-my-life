@@ -14,6 +14,8 @@ import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.widgets.select_date_bottomsheet.SelectDateBottomSheet
 import com.kstudio.diarymylife.ui.widgets.select_date_bottomsheet.SelectDateHandle
+import com.kstudio.diarymylife.utils.Formats.Companion.DATE_FORMAT_APP
+import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.dpToPx
 import com.kstudio.diarymylife.utils.toStringFormat
@@ -54,9 +56,9 @@ class SelectMoodFragment :
         }
     }
 
-    private fun bindingView() = with(binding) {
+    override fun bindingView() = with(binding) {
         howYouFeel.text = "Hello Nine. How are you feeling?"
-        currentSelectTime.text = convertTime(LocalDateTime.now(), "MMMM, dd EEEE hh:mm")
+        currentSelectTime.text = convertTime(LocalDateTime.now(), DATE_TIME_FORMAT_APP)
         currentSelectTime.setOnClickListener {
             val bottomSheetSelectTime = SelectDateBottomSheet(
                 requireContext(),
@@ -66,12 +68,11 @@ class SelectMoodFragment :
             )
             bottomSheetSelectTime.show(childFragmentManager, "bottom sheet date")
         }
-        buttonNext.setOnClickListener {
-            navigateToNextScreen()
-        }
+        buttonNext.setOnClickListener { navigateToNextScreen() }
+        back.setOnClickListener { onBackPressed() }
     }
 
-    private fun handleOnBackPress() {
+    override fun handleOnBackPress() {
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
@@ -79,14 +80,6 @@ class SelectMoodFragment :
                     onBackPressed()
                 }
             })
-    }
-
-    private fun onBackPressed() {
-        requireActivity().finishAfterTransition()
-        requireActivity().overridePendingTransition(
-            R.anim.slide_in_top,
-            R.anim.slide_out_bottom
-        )
     }
 
     override fun onClickDoneBottomSheet(date: ResultSelectDate) {

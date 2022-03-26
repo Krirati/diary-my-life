@@ -37,7 +37,7 @@ class ItemCardMemoryViewHolder(
     private var dXTrail: Float = 0.toFloat()
     private var previousEvent: Pair<Int?, Int?> = Pair(null, null)
 
-    private val adapterActivity by lazy { ActivityListAdapter() }
+    private val adapterActivity by lazy { ActivityListAdapter(context) }
 
     init {
         display =
@@ -56,11 +56,11 @@ class ItemCardMemoryViewHolder(
         onDelete: (Int) -> Unit,
     ) = with(binding) {
 //        val activityAdapter = item.data?.activity?.let { ActivityListAdapter(it) }
-        item.data?.activity?.let { adapterActivity.updateActivityItems(it) }
+//        item.data?.activity?.let { adapterActivity.updateActivityItems(it.) }
 
         journalTitle.text = item.data?.title
         journalDesc.text = item.data?.desc
-        journalTime.text = item.data?.timestamp?.let { convertTime(it, "hh:mm") }
+        journalTime.text = item.data?.timestamp?.let { convertTime(it, "HH:mm") }
         journalDay.text = item.data?.timestamp?.format(DateTimeFormatter.ofPattern("EEEE"))
         journalMonth.text = item.data?.timestamp?.format(DateTimeFormatter.ofPattern("MMMM, dd"))
         journalActivity.apply {
