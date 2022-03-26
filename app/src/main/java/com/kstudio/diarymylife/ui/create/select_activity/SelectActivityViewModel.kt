@@ -9,19 +9,20 @@ import com.kstudio.diarymylife.ui.base.BaseViewModel
 class SelectActivityViewModel(
     private val application: Application
 ) : BaseViewModel() {
-    private var _listActivity: MutableLiveData<ArrayList<String>> = MutableLiveData()
+    private var _listActivity: MutableLiveData<ArrayList<Pair<String, String>>> = MutableLiveData()
     var listActivity = _listActivity
+
 
     fun updateListActivity() {
         val iconName: String = application.resources.getResourceEntryName(R.drawable.ic_pencil)
         val iconName2: String = application.resources.getResourceEntryName(R.drawable.ic_arrow_left)
         val arrayList = arrayListOf(
-            iconName,
-            iconName2,
-            iconName,
-            iconName2,
-            iconName,
-            iconName2,
+            Pair("run", iconName),
+            Pair("foot", iconName2),
+            Pair("swim", iconName),
+            Pair("bas", iconName2),
+            Pair("golf", iconName),
+            Pair("tenis", iconName2),
         )
         _listActivity.postValue(arrayList)
     }

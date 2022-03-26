@@ -5,12 +5,15 @@ import androidx.navigation.findNavController
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ActivityJournalWriteBinding
 import com.kstudio.diarymylife.ui.base.BaseActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CreateJournalActivity : BaseActivity() {
 
     private lateinit var binding: ActivityJournalWriteBinding
 
     private val navController by lazy { findNavController(R.id.nav_host_fragment) }
+
+    private val viewModel by viewModel<CreateJournalViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
