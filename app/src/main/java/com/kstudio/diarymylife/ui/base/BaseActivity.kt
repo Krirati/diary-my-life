@@ -3,7 +3,6 @@ package com.kstudio.diarymylife.ui.base
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.ui.journal.JournalDetailActivity
 
 open class BaseActivity : AppCompatActivity() {
 

@@ -9,19 +9,20 @@ import android.view.View
 import android.view.WindowManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ItemCardEventBinding
 import com.kstudio.diarymylife.model.JournalItem
+import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
 import com.kstudio.diarymylife.utils.convertTime
 import java.time.format.DateTimeFormatter
 
 class ItemCardMemoryViewHolder(
     val binding: ItemCardEventBinding,
-    context: Context,
+    private val context: Context,
     private val navigateToDetail: (Long?) -> Unit,
 ) :
     RecyclerView.ViewHolder(binding.root) {
-
 
     /** On Swipe */
     private val size: Point = Point()
@@ -36,11 +37,10 @@ class ItemCardMemoryViewHolder(
     private var dXTrail: Float = 0.toFloat()
     private var previousEvent: Pair<Int?, Int?> = Pair(null, null)
 
-//    private val adapterActivity by lazy { ActivityListAdapter(context) }
+    private val adapterActivity by lazy { ActivityListResultAdapter(context) }
 
     init {
-        display =
-            windowManager.defaultDisplay //activity.getWindowManager().getDefaultDisplay()
+        display = windowManager.defaultDisplay //activity.getWindowManager().getDefaultDisplay()
         display.getSize(size)
         cardViewLeading = size.x.toFloat() * 0.15f //leading
         cardViewLeadEdge = size.x.toFloat() * 0.15f //leading_rubber
@@ -54,9 +54,6 @@ class ItemCardMemoryViewHolder(
         swipeState: SwipeState,
         onDelete: (Int) -> Unit,
     ) = with(binding) {
-//        val activityAdapter = item.data?.activity?.let { ActivityListResultAdapter(context = context) }
-//        item.data?.activity?.let { adapterActivity.updateActivityItems(it.) }
-
         journalTitle.text = item.data?.title
         journalDesc.text = item.data?.desc
         journalTime.text = item.data?.timestamp?.let { convertTime(it, "HH:mm") }
@@ -66,13 +63,9 @@ class ItemCardMemoryViewHolder(
             if (item.data?.activity.isNullOrEmpty()) this.visibility = View.GONE
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
             isNestedScrollingEnabled = false
-//            adapter = adapterActivity
-//            item.data?.activity?.let { adapterActivity.updateActivityItems(it) }
-        }
-
-        buttonDelete.setOnClickListener {
-            onDelete(adapterPosition)
-        }
+            adapter = adapterActivity
+        }.run { adapterActivity.updateActivityItems(items = mapActivity(item.data?.activity)) }
+        buttonDelete.setOnClickListener { onDelete(absoluteAdapterPosition) }
 
         /* On Touch Swipe */
         journalCard.apply {
@@ -80,34 +73,20 @@ class ItemCardMemoryViewHolder(
                 if (previousEvent.first == MotionEvent.ACTION_MOVE && previousEvent.second == MotionEvent.ACTION_UP) return@setOnClickListener
                 navigateToDetail(item.data?.journalId)
             }
-            setOnTouchListener { view, event ->
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        previousEvent = previousEvent.copy(first = event.action)
-                        dXLead = view.x - event.rawX
-                        dXTrail = view.right - event.rawX
-                        false
-                    }
-                    MotionEvent.ACTION_MOVE -> {
-                        previousEvent = previousEvent.copy(first = event.action)
-                        onAnimate(view, onSwipeMove(event.rawX + dXLead, swipeState), 0)
-                        item.data?.state =
-                            getSwipeState(
-                                event.rawX + dXLead,
-                                event.rawX + dXTrail,
-                                swipeState
-                            )
-                        false
-                    }
-                    MotionEvent.ACTION_UP -> {
-                        previousEvent = previousEvent.copy(second = event.action)
-                        item.data?.let { onSwipeUp(it.state) }?.let { onAnimate(view, it) }
-                        false
-                    }
-                    else -> true
-                }
+            setOnTouchListener { view, event -> handlerOnTouchEvent(item, view, event, swipeState) }
+        }
+    }
+
+    private fun mapActivity(activity: ArrayList<String>?): ArrayList<Pair<String, String>> {
+        val pairList = arrayListOf<Pair<String, String>>()
+        activity?.forEach {
+            when (it) {
+                "golf" -> pairList.add(it to itemView.resources.getResourceEntryName(R.drawable.ic_pencil))
+                "foot" -> pairList.add(it to itemView.resources.getResourceEntryName(R.drawable.ic_home))
+                "run" -> pairList.add(it to itemView.resources.getResourceEntryName(R.drawable.ic_pencil))
             }
         }
+        return pairList
     }
 
     private fun onAnimate(view: View, dx: Float, duration: Long = 100) {
@@ -120,12 +99,8 @@ class ItemCardMemoryViewHolder(
         swipeState: SwipeState,
     ): Float {
         return when (swipeState) {
-            SwipeState.LEFT, SwipeState.RIGHT, SwipeState.LEFT_RIGHT -> {
-                currentLead
-            }
-            else -> {
-                cardViewLeading
-            }
+            SwipeState.LEFT, SwipeState.RIGHT, SwipeState.LEFT_RIGHT -> currentLead
+            else -> cardViewLeading
         }
     }
 
@@ -144,22 +119,44 @@ class ItemCardMemoryViewHolder(
         swipeState: SwipeState
     ): SwipeState {
         return when {
-            swipeState == SwipeState.LEFT && currentLead < cardViewLeading && currentTrail < cardViewTrailEdge -> {
-                SwipeState.LEFT
-            }
-            swipeState == SwipeState.RIGHT && currentLead > cardViewLeadEdge && currentTrail > cardViewTrailing -> {
-                SwipeState.RIGHT
-            }
-            swipeState == SwipeState.LEFT_RIGHT && currentLead < cardViewLeading && currentTrail < cardViewTrailEdge -> {
+            swipeState == SwipeState.LEFT && currentLead < cardViewLeading && currentTrail < cardViewTrailEdge -> SwipeState.LEFT
+            swipeState == SwipeState.RIGHT && currentLead > cardViewLeadEdge && currentTrail > cardViewTrailing -> SwipeState.RIGHT
+            swipeState == SwipeState.LEFT_RIGHT && currentLead < cardViewLeading && currentTrail < cardViewTrailEdge -> SwipeState.LEFT
+            swipeState == SwipeState.LEFT_RIGHT && currentLead > cardViewLeadEdge && currentTrail > cardViewTrailing -> SwipeState.RIGHT
+            else -> SwipeState.NONE
+        }
+    }
 
-                SwipeState.LEFT
+    private fun handlerOnTouchEvent(
+        item: JournalItem,
+        view: View,
+        event: MotionEvent,
+        swipeState: SwipeState
+    ): Boolean {
+        return when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                previousEvent = previousEvent.copy(first = event.action)
+                dXLead = view.x - event.rawX
+                dXTrail = view.right - event.rawX
+                false
             }
-            swipeState == SwipeState.LEFT_RIGHT && currentLead > cardViewLeadEdge && currentTrail > cardViewTrailing -> {
-                SwipeState.RIGHT
+            MotionEvent.ACTION_MOVE -> {
+                previousEvent = previousEvent.copy(first = event.action)
+                onAnimate(view, onSwipeMove(event.rawX + dXLead, swipeState), 0)
+                item.data?.state =
+                    getSwipeState(
+                        event.rawX + dXLead,
+                        event.rawX + dXTrail,
+                        swipeState
+                    )
+                false
             }
-            else -> {
-                SwipeState.NONE
+            MotionEvent.ACTION_UP -> {
+                previousEvent = previousEvent.copy(second = event.action)
+                item.data?.let { onSwipeUp(it.state) }?.let { onAnimate(view, it) }
+                false
             }
+            else -> true
         }
     }
 }

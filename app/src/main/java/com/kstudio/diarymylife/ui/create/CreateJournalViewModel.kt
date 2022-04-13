@@ -56,6 +56,10 @@ class CreateJournalViewModel(
     }
 
     fun createRecentJournal() {
+        val activityList= arrayListOf<String>()
+        _selectsActivity.value?.forEach {
+            activityList.add(it.first)
+        }
         val req = Journal(
             title = _titleJournal.value.toString(),
             description = _descJournal.value.toString(),
@@ -63,7 +67,7 @@ class CreateJournalViewModel(
             createTime = LocalDateTime.now(),
             imageName = _selectsMood.value?.second.toString(),
             mood = _selectsMood.value?.first.toString(),
-//            activity = _selectsActivity.value
+            activity = activityList
         )
         viewModelScope.launch {
             journalRepository.insert(req)

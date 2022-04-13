@@ -108,6 +108,6 @@ class ResultJournalFragment :
 
     private fun addNewJournal() {
         shearViewModel.createRecentJournal()
-        onBackPressedOrFinish()
+        activity?.finishAfterTransition()
     }
 }
