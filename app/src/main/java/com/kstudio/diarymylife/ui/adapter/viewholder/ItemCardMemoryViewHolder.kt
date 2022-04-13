@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.databinding.ItemCardEventBinding
 import com.kstudio.diarymylife.model.JournalItem
-import com.kstudio.diarymylife.ui.adapter.ActivityListAdapter
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
 import com.kstudio.diarymylife.utils.convertTime
 import java.time.format.DateTimeFormatter
@@ -37,7 +36,7 @@ class ItemCardMemoryViewHolder(
     private var dXTrail: Float = 0.toFloat()
     private var previousEvent: Pair<Int?, Int?> = Pair(null, null)
 
-    private val adapterActivity by lazy { ActivityListAdapter(context) }
+//    private val adapterActivity by lazy { ActivityListAdapter(context) }
 
     init {
         display =
@@ -55,7 +54,7 @@ class ItemCardMemoryViewHolder(
         swipeState: SwipeState,
         onDelete: (Int) -> Unit,
     ) = with(binding) {
-//        val activityAdapter = item.data?.activity?.let { ActivityListAdapter(it) }
+//        val activityAdapter = item.data?.activity?.let { ActivityListResultAdapter(context = context) }
 //        item.data?.activity?.let { adapterActivity.updateActivityItems(it.) }
 
         journalTitle.text = item.data?.title
@@ -67,7 +66,8 @@ class ItemCardMemoryViewHolder(
             if (item.data?.activity.isNullOrEmpty()) this.visibility = View.GONE
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
             isNestedScrollingEnabled = false
-            adapter = adapterActivity
+//            adapter = adapterActivity
+//            item.data?.activity?.let { adapterActivity.updateActivityItems(it) }
         }
 
         buttonDelete.setOnClickListener {

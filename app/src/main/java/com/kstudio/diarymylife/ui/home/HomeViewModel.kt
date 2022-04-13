@@ -71,7 +71,7 @@ class HomeViewModel constructor(
                     viewType = VIEW_ITEM,
                     data = JournalUI(
                         journalId = it.id,
-                        title = it.title + it.id,
+                        title = it.title,
                         desc = it.description,
                         mood = it.mood ?: "",
                         activity = it.activity ,

@@ -9,11 +9,11 @@ import com.kstudio.diarymylife.databinding.ItemMoodBinding
 class MoodAdapter : RecyclerView.Adapter<MoodAdapter.ViewHolder>() {
 
     val moodList = arrayListOf(
-        R.drawable.ic_pencil,
-        R.drawable.ic_group_40,
-        R.drawable.ic_pencil,
-        R.drawable.ic_group_40,
-        R.drawable.ic_pencil,
+        Pair(0, R.drawable.ic_pencil),
+        Pair(1, R.drawable.ic_group_40),
+        Pair(2, R.drawable.ic_pencil),
+        Pair(3, R.drawable.ic_group_40),
+        Pair(4, R.drawable.ic_pencil)
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,10 +31,15 @@ class MoodAdapter : RecyclerView.Adapter<MoodAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemMoodBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Int?) = with(binding) {
-            item?.let {
-                imageMood.setImageResource(item)
+        fun bind(item: Pair<Int,Int?>) = with(binding) {
+            item.let {
+                item.second?.let { it1 -> imageMood.setImageResource(it1) }
             }
         }
+    }
+
+    @JvmName("getMoodList1")
+    fun getMoodList(): ArrayList<Pair<Int, Int>> {
+        return moodList
     }
 }

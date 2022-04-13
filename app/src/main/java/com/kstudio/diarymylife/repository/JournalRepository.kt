@@ -5,7 +5,7 @@ import com.kstudio.diarymylife.data.Journal
 import kotlinx.coroutines.flow.Flow
 
 class JournalRepository(private val journalDao: JournalDao) {
-    suspend fun insert(journal: Journal) {
+    suspend fun insert(journal: Journal){
         journalDao.insert(journal)
     }
 

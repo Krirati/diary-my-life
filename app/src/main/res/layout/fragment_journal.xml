@@ -12,6 +12,16 @@
         android:layout_height="match_parent"
         android:background="@color/secondary_grey10">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_mood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_line"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.85" />
+
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
@@ -49,82 +59,94 @@
                     app:layout_constraintTop_toBottomOf="@+id/back" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/date_title"
+                    android:id="@+id/detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_32"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="@+id/title"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/title">
 
-                    <com.kstudio.diarymylife.ui.widgets.DateView
-                        android:id="@+id/date"
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/date_title"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:paddingTop="4dp" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/icon_date_edit"
-                        android:layout_width="18dp"
                         android:layout_height="wrap_content"
-                        android:gravity="end|center_vertical"
-                        android:tint="@color/dark_brown"
-                        app:layout_constraintBottom_toBottomOf="@+id/title_recent_memory"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/title_recent_memory"
-                        app:srcCompat="@drawable/ic_edit_default" />
-                </androidx.appcompat.widget.LinearLayoutCompat>
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="@+id/title"
+                        app:layout_constraintTop_toBottomOf="@+id/title">
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:id="@+id/activity_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_16"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/date_title">
+                        <com.kstudio.diarymylife.ui.widgets.DateView
+                            android:id="@+id/date"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:paddingTop="4dp" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        style="@style/SubtitleGreyBold"
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/icon_date_edit"
+                            android:layout_width="18dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="end|center_vertical"
+                            android:tint="@color/dark_brown"
+                            app:layout_constraintBottom_toBottomOf="@+id/title_recent_memory"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/title_recent_memory"
+                            app:srcCompat="@drawable/ic_edit_default" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/activity_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        app:layout_constraintTop_toBottomOf="@+id/date_title"
+                        tools:visibility="visible">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/SubtitleGreyBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Activity" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/icon_activity_edit"
+                            android:layout_width="18dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="end|center_vertical"
+                            android:tint="@color/dark_brown"
+                            app:layout_constraintBottom_toBottomOf="@+id/title_recent_memory"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/title_recent_memory"
+                            app:srcCompat="@drawable/ic_edit_default" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerview_activity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Activity" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/icon_activity_edit"
-                        android:layout_width="18dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="end|center_vertical"
-                        android:tint="@color/dark_brown"
-                        app:layout_constraintBottom_toBottomOf="@+id/title_recent_memory"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/title_recent_memory"
-                        app:srcCompat="@drawable/ic_edit_default" />
+                        android:layout_marginTop="@dimen/dp_16"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/acxtivity_title"
+                        tools:listitem="@layout/item_chip_activity_result" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview_activity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_16"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/activity_title"
-                    tools:listitem="@layout/item_chip_activity" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/journal_title_head"
                     style="@style/SubtitleGreyBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_4"
                     android:text="Journal title"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/recyclerview_activity" />
+                    app:layout_constraintTop_toBottomOf="@+id/detail" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/title_container"
@@ -149,10 +171,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:background="@drawable/custom_input"
-                        android:maxLines="1"
                         android:maxLength="60"
+                        android:maxLines="1"
                         android:paddingHorizontal="@dimen/dp_16"
                         android:singleLine="true"
+                        android:hint="Topic of mood"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -167,6 +190,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_24"
                     android:text="Note something for this diary journal"
+                    android:hint="More detail"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/title_container" />
 
@@ -190,10 +214,11 @@
                         android:id="@+id/journal_desc_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="60dp"
                         android:background="@drawable/custom_input"
                         android:maxLines="4"
+                        android:minHeight="60dp"
                         android:paddingHorizontal="@dimen/dp_16"
+                        android:hint="Note more detail"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -223,14 +248,6 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:visibility="gone" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/dp_32"
-            android:background="@drawable/ic_line"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

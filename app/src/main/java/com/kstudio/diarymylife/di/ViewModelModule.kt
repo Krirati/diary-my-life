@@ -1,5 +1,6 @@
 package com.kstudio.diarymylife.di
 
+import com.kstudio.diarymylife.ui.create.CreateJournalViewModel
 import com.kstudio.diarymylife.ui.create.select_activity.SelectActivityViewModel
 import com.kstudio.diarymylife.ui.create.select_mood.SelectMoodViewModel
 import com.kstudio.diarymylife.ui.home.HomeViewModel
@@ -16,4 +17,5 @@ val viewModelModule = module {
     viewModel { JournalEditViewModel(get()) }
     viewModel { SelectMoodViewModel() }
     viewModel { SelectActivityViewModel(get()) }
+    viewModel { CreateJournalViewModel(get()) }
 }

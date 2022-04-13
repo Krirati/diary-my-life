@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
@@ -21,6 +20,7 @@ import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.dpToPx
 import com.kstudio.diarymylife.utils.toStringFormat
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 
@@ -28,7 +28,7 @@ class SelectMoodFragment :
     BaseFragment<FragmentSelectMoodBinding>(FragmentSelectMoodBinding::inflate), SelectDateHandle {
 
     private val viewModel by viewModel<SelectMoodViewModel>()
-    private val shareViewModel: CreateJournalViewModel by activityViewModels()
+    private val shareViewModel by sharedViewModel<CreateJournalViewModel>()
 
     private val adapterMood by lazy { MoodAdapter() }
 
@@ -68,12 +68,11 @@ class SelectMoodFragment :
                 requireContext(),
                 ::onClickDoneBottomSheet,
                 ::onCloseBottomSheet,
-                viewModel
             )
             bottomSheetSelectTime.show(childFragmentManager, "bottom sheet date")
         }
         buttonNext.setOnClickListener { navigateToNextScreen() }
-        back.setOnClickListener { onBackPressed() }
+        back.setOnClickListener { onBackPressedOrFinish() }
     }
 
     override fun handleOnBackPress() {
@@ -81,35 +80,35 @@ class SelectMoodFragment :
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    onBackPressed()
+                    onBackPressedOrFinish()
                 }
             })
     }
 
     override fun onClickDoneBottomSheet(date: ResultSelectDate) {
         date.day?.let {
-            viewModel.setSelectDate(it)
-            viewModel.updateCurrentSelectedDate(it.toStringFormat(), true)
+            shareViewModel.setSelectDate(it)
+            shareViewModel.updateCurrentSelectedDate(it.toStringFormat(), true)
         }
         date.time?.let {
-            viewModel.setSelectTime(it)
+            shareViewModel.setSelectTime(it)
         }
         binding.currentSelectTime.text = convertTime(date.getLocalDateTime())
     }
 
     override fun onCloseBottomSheet() {
-        val currentDate = viewModel.selectedDate.value
+        val currentDate = shareViewModel.selectedDate.value
         if (currentDate != null) {
-            viewModel.updateCurrentSelectedDate(currentDate, true)
+            shareViewModel.updateCurrentSelectedDate(currentDate, true)
         }
     }
 
     private fun observeLiveData() {
-        viewModel.localDateSelect.observe(viewLifecycleOwner) {
+        shareViewModel.localDateSelect.observe(viewLifecycleOwner) {
             Log.d("test", "ob ::" + it)
         }
 
-        viewModel.selectedDate.observe(viewLifecycleOwner) {
+        shareViewModel.selectedDate.observe(viewLifecycleOwner) {
             Log.d("test", "ob frag ::" + it)
         }
     }
@@ -125,7 +124,7 @@ class SelectMoodFragment :
         object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                shareViewModel.setupSelectMood(position)
+                shareViewModel.setupSelectMood(adapterMood.getMoodList()[position])
             }
         }
 }
