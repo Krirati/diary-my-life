@@ -10,7 +10,9 @@ import android.view.WindowManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.R
+import com.kstudio.diarymylife.data.ActivityEvent
 import com.kstudio.diarymylife.databinding.ItemCardEventBinding
+import com.kstudio.diarymylife.model.ActivityDetail
 import com.kstudio.diarymylife.model.JournalItem
 import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
@@ -64,7 +66,9 @@ class ItemCardMemoryViewHolder(
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
             isNestedScrollingEnabled = false
             adapter = adapterActivity
-        }.run { adapterActivity.updateActivityItems(items = mapActivity(item.data?.activity)) }
+        }.run {
+            item.data?.activity?.let { adapterActivity.updateActivityItems(it as ArrayList<ActivityDetail>) }
+        }
         buttonDelete.setOnClickListener { onDelete(absoluteAdapterPosition) }
 
         /* On Touch Swipe */
@@ -77,17 +81,17 @@ class ItemCardMemoryViewHolder(
         }
     }
 
-    private fun mapActivity(activity: ArrayList<String>?): ArrayList<Pair<String, String>> {
-        val pairList = arrayListOf<Pair<String, String>>()
-        activity?.forEach {
-            when (it) {
-                "golf" -> pairList.add(it to itemView.resources.getResourceEntryName(R.drawable.ic_pencil))
-                "foot" -> pairList.add(it to itemView.resources.getResourceEntryName(R.drawable.ic_home))
-                "run" -> pairList.add(it to itemView.resources.getResourceEntryName(R.drawable.ic_pencil))
-            }
-        }
-        return pairList
-    }
+//    private fun mapActivity(activity: ArrayList<ActivityEvent>?): ArrayList<Pair<String, String>> {
+//        val pairList = arrayListOf<Pair<String, String>>()
+//        activity?.forEach {
+//            when (it) {
+//                0 -> pairList.add("it" to itemView.resources.getResourceEntryName(R.drawable.ic_pencil))
+//                1 -> pairList.add("it" to itemView.resources.getResourceEntryName(R.drawable.ic_home))
+//                2 -> pairList.add("it" to itemView.resources.getResourceEntryName(R.drawable.ic_pencil))
+//            }
+//        }
+//        return pairList
+//    }
 
     private fun onAnimate(view: View, dx: Float, duration: Long = 100) {
         if (previousEvent.first == MotionEvent.ACTION_DOWN && previousEvent.second == MotionEvent.ACTION_UP || dx < 0) return

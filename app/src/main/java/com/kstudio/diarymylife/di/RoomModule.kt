@@ -6,4 +6,5 @@ import org.koin.dsl.module
 
 val roomModule = module {
     single { JournalDatabase.getDatabase(androidContext()).journalDao() }
+    single { JournalDatabase.getDatabase(androidContext()).activityEventDao() }
 }

@@ -1,32 +1,40 @@
 package com.kstudio.diarymylife.ui.create.select_activity
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.R
+import com.kstudio.diarymylife.data.ActivityEvent
+import com.kstudio.diarymylife.model.ActivityDetail
+import com.kstudio.diarymylife.repository.ActivityEventRepository
 import com.kstudio.diarymylife.ui.base.BaseViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.launch
 
 
 class SelectActivityViewModel(
-    private val application: Application
+    private val activityEventRepository: ActivityEventRepository
 ) : BaseViewModel() {
-    private var _listActivity: MutableLiveData<ArrayList<Pair<String, String>>> = MutableLiveData()
+    private var _listActivity: MutableLiveData<List<ActivityDetail>> = MutableLiveData()
     var listActivity = _listActivity
 
 
     fun updateListActivity() {
-        val iconName: String = application.resources.getResourceEntryName(R.drawable.ic_pencil)
-        val iconName2: String = application.resources.getResourceEntryName(R.drawable.ic_arrow_left)
-        val iconName3: String = application.resources.getResourceEntryName(R.drawable.ic_very_happy)
-
-        val arrayList = arrayListOf(
-            Pair("run", iconName),
-            Pair("foot", iconName2),
-            Pair("swim", iconName3),
-            Pair("bas", iconName2),
-            Pair("golf", iconName),
-            Pair("tenis", iconName3),
-        )
-        _listActivity.postValue(arrayList)
+        viewModelScope.launch(Dispatchers.IO) {
+            activityEventRepository.getAll()
+                .onStart { }
+                .onCompletion { }
+                .catch { }
+                .collect {
+                    _listActivity.postValue(it.asActivityDetail())
+                }
+        }
     }
+
+
 }

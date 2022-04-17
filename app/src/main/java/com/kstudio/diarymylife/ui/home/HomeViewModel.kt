@@ -1,8 +1,13 @@
 package com.kstudio.diarymylife.ui.home
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.viewModelScope
-import com.kstudio.diarymylife.data.Journal
+import com.kstudio.diarymylife.data.ActivityEvent
+import com.kstudio.diarymylife.data.MoodRequest
+import com.kstudio.diarymylife.data.MoodWithActivity
+import com.kstudio.diarymylife.model.ActivityDetail
 import com.kstudio.diarymylife.model.JournalItem
 import com.kstudio.diarymylife.model.JournalUI
 import com.kstudio.diarymylife.repository.JournalRepository
@@ -26,7 +31,7 @@ class HomeViewModel constructor(
     fun createRecentJournal() {
         viewModelScope.launch {
             journalRepository.insert(
-                Journal(
+                MoodRequest(
                     title = "nine",
                     description = "erre",
                     timestamp = LocalDateTime.now(),
@@ -39,16 +44,26 @@ class HomeViewModel constructor(
     }
 
     fun fetchRecentJournal() {
+//        viewModelScope.launch {
+//            journalRepository.getJournal()
+//                .onStart { }
+//                .onCompletion { }
+//                .catch { }
+//                .collect {
+//                    _memberList.postValue(mapToUI(it))
+//                }
+//        }
+
         viewModelScope.launch {
-            journalRepository.getJournal()
-                .onStart { }
-                .onCompletion { }
-                .catch { }
-                .collect {
-                    _memberList.postValue(mapToUI(it))
-                }
+            journalRepository.getMoodsAndActivities().collect {
+                Log.d("test", "it ::" + it)
+                _memberList.postValue(mapToUI(it))
+            }
         }
+
+
     }
+
 
     fun deleteJournal(journalID: Long?) {
         if (journalID == null) return
@@ -57,7 +72,7 @@ class HomeViewModel constructor(
         }
     }
 
-    private fun mapToUI(list: List<Journal>): List<JournalItem> {
+    private fun mapToUI(list: List<MoodWithActivity>): List<JournalItem> {
         return if (list.isEmpty()) {
             listOf(
                 JournalItem(
@@ -70,12 +85,12 @@ class HomeViewModel constructor(
                 JournalItem(
                     viewType = VIEW_ITEM,
                     data = JournalUI(
-                        journalId = it.id,
-                        title = it.title,
-                        desc = it.description,
-                        mood = it.mood ?: "",
-                        activity = it.activity ,
-                        timestamp = it.timestamp,
+                        journalId = it.journal.moodId,
+                        title = it.journal.title,
+                        desc = it.journal.description,
+                        mood = it.journal.mood ?: "",
+                        activity = it.activities.asActivityDetail(),
+                        timestamp = it.journal.timestamp,
                         imageId = "",
                     )
                 )
@@ -83,5 +98,4 @@ class HomeViewModel constructor(
 
         }
     }
-
 }

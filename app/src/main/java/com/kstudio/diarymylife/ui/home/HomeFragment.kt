@@ -10,8 +10,8 @@ import com.kstudio.diarymylife.databinding.FragmentHomeBinding
 import com.kstudio.diarymylife.model.JournalItem
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.journal.JournalDetailActivity
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
+import com.kstudio.diarymylife.ui.journal.JournalDetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
@@ -22,7 +22,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         super.onViewCreated(view, savedInstanceState)
         observer()
         bindingView()
-        homeViewModel.fetchRecentJournal()
     }
 
     private fun observer() {

@@ -1,6 +1,7 @@
 package com.kstudio.diarymylife.model
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
 import kotlinx.parcelize.Parcelize
 import java.time.LocalDateTime
@@ -19,8 +20,15 @@ data class JournalUI(
     val title: String,
     val desc: String,
     val mood: String,
-    val activity: ArrayList<String>?,
+    val activity: List<ActivityDetail>?,
     val timestamp: LocalDateTime,
     val imageId: String,
     var state : SwipeState = SwipeState.NONE,
+): Parcelable
+
+@Parcelize
+data class ActivityDetail(
+    val eventId: Int,
+    val activityName: String,
+    val activityImage: String,
 ): Parcelable

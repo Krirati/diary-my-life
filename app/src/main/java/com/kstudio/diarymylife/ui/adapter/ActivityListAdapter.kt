@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.R
+import com.kstudio.diarymylife.data.ActivityEvent
 import com.kstudio.diarymylife.databinding.ItemChipActivityBinding
+import com.kstudio.diarymylife.model.ActivityDetail
 
 class ActivityListAdapter(
     private val context: Context,
-    private val onClickSelect: (Pair<String, String>, String) -> Unit?
+    private val onClickSelect: (ActivityDetail, String) -> Unit?
 ) :
     RecyclerView.Adapter<ActivityListAdapter.ViewHolder>() {
 
@@ -18,8 +20,8 @@ class ActivityListAdapter(
         const val UNSELECT = "UNSELECT"
     }
 
-    private var activityItems: ArrayList<Pair<String, String>> = arrayListOf()
-    private var selectActivity: ArrayList<Pair<String, String>> = arrayListOf()
+    private var activityItems: List<ActivityDetail> = arrayListOf()
+    private var selectActivity: ArrayList<ActivityDetail> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -36,12 +38,12 @@ class ActivityListAdapter(
 
     inner class ViewHolder(private val binding: ItemChipActivityBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Pair<String, String>?) = with(binding) {
+        fun bind(item: ActivityDetail?) = with(binding) {
             item?.let { data ->
                 val resID: Int =
-                    context.resources.getIdentifier(data.second, "drawable", context.packageName)
+                    context.resources.getIdentifier(data.activityImage, "drawable", context.packageName)
                 activityImage.setImageResource(resID)
-                activityName.text = data.first
+                activityName.text = data.activityName
                 activityContainer.apply {
                     setOnClickListener { updateSelectActivity(data) }
                     if (data in selectActivity) {
@@ -53,7 +55,7 @@ class ActivityListAdapter(
             }
         }
 
-        private fun updateSelectActivity(data: Pair<String, String>) {
+        private fun updateSelectActivity(data: ActivityDetail) {
             if (data in selectActivity) {
                 selectActivity.remove(data)
                 onClickSelect(data, UNSELECT)
@@ -65,12 +67,12 @@ class ActivityListAdapter(
         }
     }
 
-    fun updateActivityItems(items: ArrayList<Pair<String, String>>) {
+    fun updateActivityItems(items: List<ActivityDetail>) {
         activityItems = items
         notifyItemRangeChanged(0, activityItems.size)
     }
 
-    fun updateFirstTimeSelectActivity(items: ArrayList<Pair<String, String>>) {
+    fun updateFirstTimeSelectActivity(items: ArrayList<ActivityDetail>) {
         if (selectActivity.isNullOrEmpty()) {
             selectActivity = items
             notifyItemRangeChanged(0, activityItems.size)
@@ -78,5 +80,5 @@ class ActivityListAdapter(
 
     }
 
-    private fun getIndexOfData(data: Pair<String, String>): Int = activityItems.indexOf(data)
+    private fun getIndexOfData(data: ActivityDetail): Int = activityItems.indexOf(data)
 }

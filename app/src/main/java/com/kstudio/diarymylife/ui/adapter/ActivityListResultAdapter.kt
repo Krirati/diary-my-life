@@ -4,12 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.kstudio.diarymylife.data.ActivityEvent
 import com.kstudio.diarymylife.databinding.ItemChipActivityResultBinding
+import com.kstudio.diarymylife.model.ActivityDetail
 
 class ActivityListResultAdapter(private val context: Context) :
     RecyclerView.Adapter<ActivityListResultAdapter.ViewHolder>() {
 
-    private var activityItems: ArrayList<Pair<String, String>> = arrayListOf()
+    private var activityItems: ArrayList<ActivityDetail> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -26,17 +28,17 @@ class ActivityListResultAdapter(private val context: Context) :
 
     inner class ViewHolder(private val binding: ItemChipActivityResultBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Pair<String, String>?) = with(binding) {
+        fun bind(item: ActivityDetail?) = with(binding) {
             item?.let { data ->
                 val resID: Int =
-                    context.resources.getIdentifier(data.second, "drawable", context.packageName)
+                    context.resources.getIdentifier(data.activityImage, "drawable", context.packageName)
                 activityImage.setImageResource(resID)
-                activityName.text = data.first
+                activityName.text = data.activityName
             }
         }
     }
 
-    fun updateActivityItems(items: ArrayList<Pair<String, String>>) {
+    fun updateActivityItems(items: ArrayList<ActivityDetail>) {
         activityItems = items
         notifyItemRangeChanged(0, activityItems.size)
     }

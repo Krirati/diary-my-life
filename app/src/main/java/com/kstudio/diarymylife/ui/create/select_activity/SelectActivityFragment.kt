@@ -7,7 +7,9 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.kstudio.diarymylife.data.ActivityEvent
 import com.kstudio.diarymylife.databinding.FragmentSelectActivityBinding
+import com.kstudio.diarymylife.model.ActivityDetail
 import com.kstudio.diarymylife.ui.adapter.ActivityListAdapter
 import com.kstudio.diarymylife.ui.adapter.ActivityListAdapter.Companion.SELECT
 import com.kstudio.diarymylife.ui.base.BaseFragment
@@ -75,7 +77,7 @@ class SelectActivityFragment : BaseFragment<FragmentSelectActivityBinding>
         findNavController().navigate(direction)
     }
 
-    private fun updateSelectActivity(data: Pair<String, String>, state: String) {
+    private fun updateSelectActivity(data: ActivityDetail, state: String) {
         if (state == SELECT) {
             shearViewModel.addSelectActivity(data)
         } else {

@@ -19,6 +19,18 @@ class Converter {
     }
 
     @TypeConverter
+    fun fromInt(value: String?): ArrayList<Int?>? {
+        val listType = object : TypeToken<ArrayList<Int?>?>() {}.type
+        return Gson().fromJson(value, listType)
+    }
+
+    @TypeConverter
+    fun fromArrayListInt(list: ArrayList<Int?>?): String? {
+        val gson = Gson()
+        return gson.toJson(list)
+    }
+
+    @TypeConverter
     fun toDate(dateString: String?): LocalDateTime? {
         return if (dateString == null) {
             null

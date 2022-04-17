@@ -52,7 +52,7 @@ class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournal
     private fun updateJournalDetail() {
         binding.let {
             val journal = Journal(
-                id = args.journalId,
+                moodId = args.journalId,
                 title = it.journalTitleEdit.text.toString(),
                 description = it.journalDescEdit.text.toString(),
                 mood = viewModel.journalData.value!!.mood,
