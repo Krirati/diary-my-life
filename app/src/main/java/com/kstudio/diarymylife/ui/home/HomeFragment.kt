@@ -7,7 +7,7 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentHomeBinding
-import com.kstudio.diarymylife.model.JournalItem
+import com.kstudio.diarymylife.data.JournalItem
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity

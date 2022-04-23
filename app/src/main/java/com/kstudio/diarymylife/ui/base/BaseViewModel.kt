@@ -2,10 +2,10 @@ package com.kstudio.diarymylife.ui.base
 
 import androidx.lifecycle.*
 import androidx.paging.*
-import com.kstudio.diarymylife.data.ActivityEvent
+import com.kstudio.diarymylife.entity.ActivityEvent
 import com.kstudio.diarymylife.database.DateSelectionPageSource
-import com.kstudio.diarymylife.model.ActivityDetail
-import com.kstudio.diarymylife.model.toDateDetails
+import com.kstudio.diarymylife.data.ActivityDetail
+import com.kstudio.diarymylife.data.toDateDetails
 import com.kstudio.diarymylife.utils.toStringFormat
 import java.time.LocalDate
 import java.time.LocalTime

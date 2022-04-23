@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.model
+package com.kstudio.diarymylife.data
 
 import java.time.LocalDate
 import java.time.LocalDateTime

@@ -1,6 +1,5 @@
 package com.kstudio.diarymylife.data
 
-import com.kstudio.diarymylife.model.ActivityDetail
 import java.time.LocalDateTime
 
 data class MoodRequest(

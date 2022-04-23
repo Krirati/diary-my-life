@@ -2,7 +2,7 @@ package com.kstudio.diarymylife.ui.journal.journalEdit
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.kstudio.diarymylife.data.Journal
+import com.kstudio.diarymylife.entity.Mood
 import com.kstudio.diarymylife.repository.JournalRepository
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
@@ -13,8 +13,8 @@ class JournalEditViewModel(
     private val journalRepository: JournalRepository
 ) : BaseViewModel() {
 
-    private var _journalDetail: MutableLiveData<Journal> = MutableLiveData()
-    val journalData: MutableLiveData<Journal> = _journalDetail
+    private var _journalDetail: MutableLiveData<Mood> = MutableLiveData()
+    val journalData: MutableLiveData<Mood> = _journalDetail
 
     fun getJournalDetailFromID(id: Long?) {
         viewModelScope.launch {
@@ -27,9 +27,9 @@ class JournalEditViewModel(
         }
     }
 
-    fun updateJournal(journal: Journal) {
+    fun updateJournal(mood: Mood) {
         viewModelScope.launch(Dispatchers.IO) {
-            journalRepository.updateJournal(journal)
+            journalRepository.updateJournal(mood)
         }
     }
 }

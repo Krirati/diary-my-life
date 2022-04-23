@@ -9,11 +9,9 @@ import android.view.View
 import android.view.WindowManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.data.ActivityEvent
 import com.kstudio.diarymylife.databinding.ItemCardEventBinding
-import com.kstudio.diarymylife.model.ActivityDetail
-import com.kstudio.diarymylife.model.JournalItem
+import com.kstudio.diarymylife.data.ActivityDetail
+import com.kstudio.diarymylife.data.JournalItem
 import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
 import com.kstudio.diarymylife.utils.convertTime

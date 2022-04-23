@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.model
+package com.kstudio.diarymylife.data
 
 import com.kstudio.diarymylife.utils.toStringFormat
 import java.util.*

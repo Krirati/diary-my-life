@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.widgets.select_date_bottomsheet
+package com.kstudio.diarymylife.widgets.select_date_bottomsheet
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -18,9 +18,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.BottomSheetSelectDateBinding
-import com.kstudio.diarymylife.model.DateDetailsUI
-import com.kstudio.diarymylife.model.ResultSelectDate
-import com.kstudio.diarymylife.model.toDateDetails
+import com.kstudio.diarymylife.data.DateDetailsUI
+import com.kstudio.diarymylife.data.ResultSelectDate
+import com.kstudio.diarymylife.data.toDateDetails
 import com.kstudio.diarymylife.ui.adapter.dateSelection.DateSelectionAdapter
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import com.kstudio.diarymylife.utils.toDate

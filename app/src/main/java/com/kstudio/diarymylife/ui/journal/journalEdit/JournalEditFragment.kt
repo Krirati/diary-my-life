@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.kstudio.diarymylife.data.Journal
 import com.kstudio.diarymylife.databinding.FragmentJournalBinding
+import com.kstudio.diarymylife.entity.Mood
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -33,11 +33,11 @@ class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournal
         }
     }
 
-    private fun setUpView(journal: Journal) = with(binding) {
-        title.text = "Journal Edit"
-        date.bindView(journal.timestamp)
-        journalTitleEdit.setText(journal.title)
-        journalDescEdit.setText(journal.description)
+    private fun setUpView(mood: Mood) = with(binding) {
+        title.text = "Mood Edit"
+        date.bindView(mood.timestamp)
+        journalTitleEdit.setText(mood.title)
+        journalDescEdit.setText(mood.description)
         buttonSave.setOnClickListener {
             updateJournalDetail()
         }
@@ -51,7 +51,7 @@ class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournal
 
     private fun updateJournalDetail() {
         binding.let {
-            val journal = Journal(
+            val journal = Mood(
                 moodId = args.journalId,
                 title = it.journalTitleEdit.text.toString(),
                 description = it.journalDescEdit.text.toString(),

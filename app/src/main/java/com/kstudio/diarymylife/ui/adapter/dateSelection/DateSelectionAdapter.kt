@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.kstudio.diarymylife.databinding.ItemChipDayBinding
-import com.kstudio.diarymylife.model.DateDetailsUI
+import com.kstudio.diarymylife.data.DateDetailsUI
 
 class DateSelectionAdapter(
     val lifecycleOwner: LifecycleOwner,

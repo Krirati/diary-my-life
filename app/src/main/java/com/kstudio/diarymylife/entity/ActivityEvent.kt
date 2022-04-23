@@ -1,8 +1,7 @@
-package com.kstudio.diarymylife.data
+package com.kstudio.diarymylife.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 

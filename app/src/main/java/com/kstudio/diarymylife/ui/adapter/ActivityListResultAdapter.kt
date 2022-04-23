@@ -4,9 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.kstudio.diarymylife.data.ActivityEvent
 import com.kstudio.diarymylife.databinding.ItemChipActivityResultBinding
-import com.kstudio.diarymylife.model.ActivityDetail
+import com.kstudio.diarymylife.data.ActivityDetail
 
 class ActivityListResultAdapter(private val context: Context) :
     RecyclerView.Adapter<ActivityListResultAdapter.ViewHolder>() {

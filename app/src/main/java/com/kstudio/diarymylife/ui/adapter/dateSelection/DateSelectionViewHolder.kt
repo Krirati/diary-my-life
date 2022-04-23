@@ -3,7 +3,7 @@ package com.kstudio.diarymylife.ui.adapter.dateSelection
 import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ItemChipDayBinding
-import com.kstudio.diarymylife.model.DateDetailsUI
+import com.kstudio.diarymylife.data.DateDetailsUI
 
 class DateSelectionViewHolder(private val binding: ItemChipDayBinding) :
     RecyclerView.ViewHolder(binding.root) {

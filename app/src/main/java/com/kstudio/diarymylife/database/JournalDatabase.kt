@@ -8,16 +8,16 @@ import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.kstudio.diarymylife.dao.ActivityEventDao
 import com.kstudio.diarymylife.dao.JournalDao
-import com.kstudio.diarymylife.data.ActivityEvent
-import com.kstudio.diarymylife.data.Journal
-import com.kstudio.diarymylife.data.JournalActivityEventCrossRef
+import com.kstudio.diarymylife.entity.ActivityEvent
+import com.kstudio.diarymylife.entity.Mood
+import com.kstudio.diarymylife.entity.relations.MoodActivityEventCrossRef
 import java.util.concurrent.Executors
 
 @Database(
     entities = [
-        Journal::class,
+        Mood::class,
         ActivityEvent::class,
-        JournalActivityEventCrossRef::class,
+        MoodActivityEventCrossRef::class,
     ],
     version = 1,
     exportSchema = true

@@ -2,22 +2,16 @@ package com.kstudio.diarymylife.ui.home
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.viewModelScope
-import com.kstudio.diarymylife.data.ActivityEvent
 import com.kstudio.diarymylife.data.MoodRequest
-import com.kstudio.diarymylife.data.MoodWithActivity
-import com.kstudio.diarymylife.model.ActivityDetail
-import com.kstudio.diarymylife.model.JournalItem
-import com.kstudio.diarymylife.model.JournalUI
+import com.kstudio.diarymylife.entity.relations.MoodWithActivity
+import com.kstudio.diarymylife.data.JournalItem
+import com.kstudio.diarymylife.data.JournalUI
 import com.kstudio.diarymylife.repository.JournalRepository
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter.Companion.VIEW_ADD
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter.Companion.VIEW_ITEM
 import com.kstudio.diarymylife.ui.base.BaseViewModel
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
@@ -85,12 +79,12 @@ class HomeViewModel constructor(
                 JournalItem(
                     viewType = VIEW_ITEM,
                     data = JournalUI(
-                        journalId = it.journal.moodId,
-                        title = it.journal.title,
-                        desc = it.journal.description,
-                        mood = it.journal.mood ?: "",
+                        journalId = it.mood.moodId,
+                        title = it.mood.title,
+                        desc = it.mood.description,
+                        mood = it.mood.mood ?: "",
                         activity = it.activities.asActivityDetail(),
-                        timestamp = it.journal.timestamp,
+                        timestamp = it.mood.timestamp,
                         imageId = "",
                     )
                 )

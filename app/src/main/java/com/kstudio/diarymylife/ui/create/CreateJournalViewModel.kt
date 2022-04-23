@@ -2,10 +2,8 @@ package com.kstudio.diarymylife.ui.create
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.kstudio.diarymylife.data.ActivityEvent
-import com.kstudio.diarymylife.data.Journal
 import com.kstudio.diarymylife.data.MoodRequest
-import com.kstudio.diarymylife.model.ActivityDetail
+import com.kstudio.diarymylife.data.ActivityDetail
 import com.kstudio.diarymylife.repository.JournalRepository
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import kotlinx.coroutines.launch

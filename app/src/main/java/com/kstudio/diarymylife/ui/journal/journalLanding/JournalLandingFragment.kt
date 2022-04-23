@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
-import com.kstudio.diarymylife.data.Journal
 import com.kstudio.diarymylife.databinding.FragmentJournalBinding
+import com.kstudio.diarymylife.entity.Mood
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.journal.JournalDetailViewModel
 import com.kstudio.diarymylife.utils.Keys.Companion.JOURNAL_ID
@@ -52,14 +52,14 @@ class JournalLandingFragment :
         journalDescEdit.visibility = View.GONE
         iconActivityEdit.visibility = View.GONE
         iconDateEdit.visibility = View.GONE
-        title.text = "Journal Detail"
+        title.text = "Mood Detail"
     }
 
-    private fun bindingDetail(journal: Journal) {
+    private fun bindingDetail(mood: Mood) {
         binding.run {
-            date.bindView(journal.timestamp)
-            journalTitle.text = journal.title
-            journalDesc.text = journal.description
+            date.bindView(mood.timestamp)
+            journalTitle.text = mood.title
+            journalDesc.text = mood.description
         }
     }
 

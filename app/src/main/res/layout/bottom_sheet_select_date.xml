@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/appCompatTextView" />
 
-    <com.kstudio.diarymylife.ui.widgets.DateView
+    <com.kstudio.diarymylife.widgets.DateView
         android:id="@+id/dateView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dateView"
         tools:listitem="@layout/item_chip_day" />
 
-    <com.kstudio.diarymylife.ui.widgets.TimePicker
+    <com.kstudio.diarymylife.widgets.TimePicker
         android:id="@+id/widget_time_picker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

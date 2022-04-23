@@ -91,14 +91,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.kstudio.diarymylife.widgets.LinkText
                     android:id="@+id/view_all_button"
                     style="@style/SubtitleAmberBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/dp_16"
                     android:gravity="end|center_vertical"
-                    android:text="View All"
                     app:layout_constraintBottom_toBottomOf="@+id/title_recent_memory"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/title_recent_memory" />

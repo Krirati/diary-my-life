@@ -5,9 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.data.ActivityEvent
 import com.kstudio.diarymylife.databinding.ItemChipActivityBinding
-import com.kstudio.diarymylife.model.ActivityDetail
+import com.kstudio.diarymylife.data.ActivityDetail
 
 class ActivityListAdapter(
     private val context: Context,

@@ -1,14 +1,10 @@
 package com.kstudio.diarymylife.ui.create.select_activity
 
-import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.data.ActivityEvent
-import com.kstudio.diarymylife.model.ActivityDetail
+import com.kstudio.diarymylife.data.ActivityDetail
 import com.kstudio.diarymylife.repository.ActivityEventRepository
 import com.kstudio.diarymylife.ui.base.BaseViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect

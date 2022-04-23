@@ -1,16 +1,15 @@
 package com.kstudio.diarymylife.repository
 
-import android.util.Log
 import com.kstudio.diarymylife.dao.JournalDao
-import com.kstudio.diarymylife.data.Journal
-import com.kstudio.diarymylife.data.JournalActivityEventCrossRef
 import com.kstudio.diarymylife.data.MoodRequest
-import com.kstudio.diarymylife.data.MoodWithActivity
+import com.kstudio.diarymylife.entity.Mood
+import com.kstudio.diarymylife.entity.relations.MoodActivityEventCrossRef
+import com.kstudio.diarymylife.entity.relations.MoodWithActivity
 import kotlinx.coroutines.flow.Flow
 
 class JournalRepository(private val journalDao: JournalDao) {
     suspend fun insert(journal: MoodRequest) {
-        val journalReq = Journal(
+        val journalReq = Mood(
             title = journal.title,
             description = journal.description,
             timestamp = journal.timestamp,
@@ -22,7 +21,7 @@ class JournalRepository(private val journalDao: JournalDao) {
         val moodId = journalDao.insert(journalReq)
         journal.activity?.forEach {
             journalDao.insertStudentSubjectCrossRef(
-                JournalActivityEventCrossRef(
+                MoodActivityEventCrossRef(
                     moodId = moodId,
                     eventId = it.eventId
                 )
@@ -30,7 +29,7 @@ class JournalRepository(private val journalDao: JournalDao) {
         }
     }
 
-    fun getJournal(): Flow<List<Journal>> {
+    fun getJournal(): Flow<List<Mood>> {
         return journalDao.getJournalSortByTimestamp()
     }
 
@@ -38,7 +37,7 @@ class JournalRepository(private val journalDao: JournalDao) {
         return journalDao.getMoodsWithActivities()
     }
 
-    fun getJournalFromID(journalID: Long): Flow<Journal> {
+    fun getJournalFromID(journalID: Long): Flow<Mood> {
         return journalDao.getJournalFromJournalID(journalID = journalID)
     }
 
@@ -46,7 +45,7 @@ class JournalRepository(private val journalDao: JournalDao) {
         return journalDao.deleteJournal(journalID)
     }
 
-    fun updateJournal(journal: Journal) {
+    fun updateJournal(journal: Mood) {
         journalDao.updateJournal(journal = journal)
     }
 

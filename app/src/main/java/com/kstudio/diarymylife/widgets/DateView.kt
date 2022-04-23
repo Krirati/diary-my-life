@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.widgets
+package com.kstudio.diarymylife.widgets
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.kstudio.diarymylife.databinding.ItemDateTimeBinding
-import com.kstudio.diarymylife.model.DateDetailsUI
+import com.kstudio.diarymylife.data.DateDetailsUI
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.toStringFormatApp
 import java.time.LocalDate

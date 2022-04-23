@@ -1,12 +1,9 @@
-package com.kstudio.diarymylife.model
+package com.kstudio.diarymylife.data
 
 import android.os.Parcelable
-import androidx.room.ColumnInfo
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
 import kotlinx.parcelize.Parcelize
 import java.time.LocalDateTime
-import java.util.*
-import kotlin.collections.ArrayList
 
 @Parcelize
 data class JournalItem(
