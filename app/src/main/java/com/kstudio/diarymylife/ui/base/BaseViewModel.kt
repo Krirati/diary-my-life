@@ -2,10 +2,10 @@ package com.kstudio.diarymylife.ui.base
 
 import androidx.lifecycle.*
 import androidx.paging.*
-import com.kstudio.diarymylife.entity.ActivityEvent
-import com.kstudio.diarymylife.database.DateSelectionPageSource
 import com.kstudio.diarymylife.data.ActivityDetail
 import com.kstudio.diarymylife.data.toDateDetails
+import com.kstudio.diarymylife.database.DateSelectionPageSource
+import com.kstudio.diarymylife.entity.ActivityEvent
 import com.kstudio.diarymylife.utils.toStringFormat
 import java.time.LocalDate
 import java.time.LocalTime
@@ -20,12 +20,13 @@ open class BaseViewModel : ViewModel() {
     val localTimeSelect: MutableLiveData<LocalTime> = _localTimeSelect
 
     private val _selectedDate = MutableLiveData(Date().toStringFormat())
-
     val selectedDate: LiveData<String> = _selectedDate
 
     private val _resetDateList = MutableLiveData<Long?>()
-
     val resetDateList: LiveData<Long?> get() = _resetDateList
+
+    private val _currentScreen = MutableLiveData<Int>()
+    val currentScreen: LiveData<Int> = _currentScreen
 
     private val dateSelectionPager: LiveData<PagingData<Date>> =
         Transformations.switchMap(selectedDate) { changedSelectedDate ->
@@ -38,6 +39,10 @@ open class BaseViewModel : ViewModel() {
         pagingData.map { mealDate ->
             mealDate.toDateDetails()
         }
+    }
+
+    fun selectCurrentPage(page: Int) {
+        _currentScreen.postValue(page)
     }
 
     @JvmOverloads

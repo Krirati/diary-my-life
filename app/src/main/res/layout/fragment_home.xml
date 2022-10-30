@@ -60,7 +60,7 @@
                 <CalendarView
                     android:id="@+id/calendar"
                     android:layout_width="match_parent"
-                    android:layout_height="310dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/bg_round_black"
                     android:backgroundTint="@color/white"
                     android:dateTextAppearance="@style/SubtitleBlackLeft"
