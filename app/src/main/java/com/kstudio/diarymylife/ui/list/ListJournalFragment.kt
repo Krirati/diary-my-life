@@ -9,6 +9,7 @@ import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.JournalItem
 import com.kstudio.diarymylife.databinding.FragmentListJournalBinding
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter
+import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter.Companion.VIEW_ADD
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
 import com.kstudio.diarymylife.ui.journal.JournalDetailActivity
@@ -60,14 +61,15 @@ class ListJournalFragment : BaseFragment<FragmentListJournalBinding>(
             layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
             adapter = memberAdapter
         }
-        bindingCard(memberList.size, memberList.size)
+        bindingCard(memberList)
         memberAdapter.notifyDataSetChanged()
 
     }
 
-    private fun bindingCard(sizeMood:Int, diffDate: Int) = with(binding){
-        cardTotal.setValue(sizeMood)
-        cardAverage.setValue(diffDate)
+    private fun bindingCard(mood: List<JournalItem>) = with(binding){
+        val moodTotal = mood.filter { mood -> mood.viewType != VIEW_ADD }.size
+        cardTotal.setValue(moodTotal)
+        cardAverage.setValue(moodTotal)
     }
 
     private fun navigateToCreateJournal() {
