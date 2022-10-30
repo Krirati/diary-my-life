@@ -1,18 +1,15 @@
 package com.kstudio.diarymylife.ui.home
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.data.JournalItem
 import com.kstudio.diarymylife.data.JournalUI
-import com.kstudio.diarymylife.data.MoodRequest
 import com.kstudio.diarymylife.entity.relations.MoodWithActivity
 import com.kstudio.diarymylife.repository.JournalRepository
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter.Companion.VIEW_ADD
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter.Companion.VIEW_ITEM
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
 
 class HomeViewModel constructor(
     private val journalRepository: JournalRepository
@@ -21,40 +18,12 @@ class HomeViewModel constructor(
     private val _memberList: MutableLiveData<List<JournalItem>> = MutableLiveData()
     fun getMemberList() = _memberList
 
-    fun createRecentJournal() {
-        viewModelScope.launch {
-            journalRepository.insert(
-                MoodRequest(
-                    title = "nine",
-                    description = "erre",
-                    timestamp = LocalDateTime.now(),
-                    createTime = LocalDateTime.now(),
-                    imageName = "",
-                    mood = ""
-                )
-            )
-        }
-    }
-
     fun fetchRecentJournal() {
-//        viewModelScope.launch {
-//            journalRepository.getJournal()
-//                .onStart { }
-//                .onCompletion { }
-//                .catch { }
-//                .collect {
-//                    _memberList.postValue(mapToUI(it))
-//                }
-//        }
-
         viewModelScope.launch {
             journalRepository.getMoodsAndActivitiesWithLimit().collect {
-                Log.d("test", "it ::" + it)
                 _memberList.postValue(mapToUI(it))
             }
         }
-
-
     }
 
 

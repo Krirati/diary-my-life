@@ -14,3 +14,12 @@ class Formats {
     }
 }
 
+class Screen {
+    companion object {
+        const val HOME = 0
+        const val LIST = 1
+        const val CHART = 2
+        const val SETTING = 3
+    }
+}
+

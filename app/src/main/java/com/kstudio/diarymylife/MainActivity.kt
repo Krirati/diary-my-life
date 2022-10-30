@@ -8,7 +8,6 @@ import com.kstudio.diarymylife.databinding.ActivityMainBinding
 import com.kstudio.diarymylife.ui.adapter.ViewPagerAdapter
 import com.kstudio.diarymylife.ui.chart.ChartFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
-import com.kstudio.diarymylife.ui.create.select_mood.SelectMoodFragment
 import com.kstudio.diarymylife.ui.home.HomeFragment
 import com.kstudio.diarymylife.ui.list.ListJournalFragment
 import com.kstudio.diarymylife.ui.setting.SettingFragment
