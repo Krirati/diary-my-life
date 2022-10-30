@@ -24,8 +24,5 @@
         android:name="com.kstudio.diarymylife.ui.journal.journalEdit.JournalEditFragment"
         android:label="JournalEditFragment"
         tools:layout="@layout/fragment_journal">
-        <argument
-            android:name="journalId"
-            app:argType="long" />
     </fragment>
 </navigation>

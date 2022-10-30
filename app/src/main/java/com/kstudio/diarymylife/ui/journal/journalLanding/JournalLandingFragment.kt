@@ -3,7 +3,9 @@ package com.kstudio.diarymylife.ui.journal.journalLanding
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentJournalBinding
 import com.kstudio.diarymylife.entity.Mood
 import com.kstudio.diarymylife.ui.base.BaseFragment
@@ -13,9 +15,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class JournalLandingFragment :
     BaseFragment<FragmentJournalBinding>(FragmentJournalBinding::inflate) {
+
     private val viewModel by viewModel<JournalLandingViewModel>()
     private val journalActivityViewModel by viewModel<JournalDetailViewModel>()
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,21 +31,17 @@ class JournalLandingFragment :
 
     private fun observeLiveData() {
         viewModel.journalData.observe(viewLifecycleOwner) {
-            bindingDetail(it)
+            if (it != null) bindingDetail(it)
         }
     }
 
     private fun setUpArguments() {
-        if (journalActivityViewModel.journalId == null) {
-            journalActivityViewModel.journalId = arguments?.getLong(JOURNAL_ID)
-        }
+        journalActivityViewModel.journalId = arguments?.getLong(JOURNAL_ID)!!
     }
 
     override fun bindingView() = with(binding) {
         back.setOnClickListener { activity?.onBackPressed() }
-        buttonEdit.setOnClickListener {
-            navigateToEditJournal()
-        }
+        buttonEdit.setOnClickListener { navigateToEditJournal() }
     }
 
     private fun setVisibleGone() = with(binding) {
@@ -65,15 +63,11 @@ class JournalLandingFragment :
 
     @SuppressLint("ResourceType")
     private fun navigateToEditJournal() {
-        val direction =
-            journalActivityViewModel.journalId?.let {
-                JournalLandingFragmentDirections.actionJournalDetailFragmentToJournalEditFragment(
-                    it
-                )
-            }
-        if (direction != null) {
-            findNavController().navigate(direction)
-        }
+        val bundle = bundleOf(JOURNAL_ID to journalActivityViewModel.journalId)
+        findNavController().navigate(
+            R.id.action_journalDetailFragment_to_journalEditFragment,
+            bundle
+        )
     }
 
     override fun onResume() {
@@ -82,7 +76,7 @@ class JournalLandingFragment :
     }
 
     private fun getUpJournalDetail() {
-        journalActivityViewModel.journalId?.let { viewModel.getJournalDetailFromID(it) }
+        journalActivityViewModel.journalId.let { viewModel.getJournalDetailFromID(it) }
     }
 
     override fun handleOnBackPress() {

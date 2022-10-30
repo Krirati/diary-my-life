@@ -3,15 +3,14 @@ package com.kstudio.diarymylife.ui.home
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.kstudio.diarymylife.data.MoodRequest
-import com.kstudio.diarymylife.entity.relations.MoodWithActivity
 import com.kstudio.diarymylife.data.JournalItem
 import com.kstudio.diarymylife.data.JournalUI
+import com.kstudio.diarymylife.data.MoodRequest
+import com.kstudio.diarymylife.entity.relations.MoodWithActivity
 import com.kstudio.diarymylife.repository.JournalRepository
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter.Companion.VIEW_ADD
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter.Companion.VIEW_ITEM
 import com.kstudio.diarymylife.ui.base.BaseViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
@@ -49,7 +48,7 @@ class HomeViewModel constructor(
 //        }
 
         viewModelScope.launch {
-            journalRepository.getMoodsAndActivities().collect {
+            journalRepository.getMoodsAndActivitiesWithLimit().collect {
                 Log.d("test", "it ::" + it)
                 _memberList.postValue(mapToUI(it))
             }

@@ -115,9 +115,9 @@ class SelectMoodFragment :
 
     @SuppressLint("ResourceType")
     private fun navigateToNextScreen() {
-        val direction =
-            SelectMoodFragmentDirections.actionWriteFragmentToSelectActivityFragment()
-        findNavController().navigate(direction)
+//        val direction =
+//            SelectMoodFragmentDirections.actionWriteFragmentToSelectActivityFragment()
+        findNavController().navigate(R.id.action_writeFragment_to_selectActivityFragment)
     }
 
     private fun onPageChangeCallback() =

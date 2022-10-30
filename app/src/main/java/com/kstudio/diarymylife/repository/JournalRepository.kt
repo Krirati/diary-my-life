@@ -33,6 +33,10 @@ class JournalRepository(private val journalDao: JournalDao) {
         return journalDao.getJournalSortByTimestamp()
     }
 
+    fun getMoodsAndActivitiesWithLimit(): Flow<List<MoodWithActivity>> {
+        return journalDao.getMoodsWithActivitiesWithLimit()
+    }
+
     fun getMoodsAndActivities(): Flow<List<MoodWithActivity>> {
         return journalDao.getMoodsWithActivities()
     }

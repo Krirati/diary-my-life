@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="60dp"
     android:background="@color/secondary_grey10">
 
     <RelativeLayout
@@ -91,12 +90,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.kstudio.diarymylife.widgets.LinkText
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/view_all_button"
                     style="@style/SubtitleAmberBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/dp_16"
+                    android:text="View all"
                     android:gravity="end|center_vertical"
                     app:layout_constraintBottom_toBottomOf="@+id/title_recent_memory"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -7,6 +7,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentSelectActivityBinding
 import com.kstudio.diarymylife.data.ActivityDetail
 import com.kstudio.diarymylife.ui.adapter.ActivityListAdapter
@@ -71,9 +72,7 @@ class SelectActivityFragment : BaseFragment<FragmentSelectActivityBinding>
 
     @SuppressLint("ResourceType")
     private fun navigateToNextScreen() {
-        val direction =
-            SelectActivityFragmentDirections.actionSelectActivityFragmentToResultJournalFragment()
-        findNavController().navigate(direction)
+        findNavController().navigate(R.id.action_selectActivityFragment_to_resultJournalFragment)
     }
 
     private fun updateSelectActivity(data: ActivityDetail, state: String) {

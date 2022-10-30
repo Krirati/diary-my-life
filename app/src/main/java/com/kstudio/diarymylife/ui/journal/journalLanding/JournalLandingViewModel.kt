@@ -5,15 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.entity.Mood
 import com.kstudio.diarymylife.repository.JournalRepository
 import com.kstudio.diarymylife.ui.base.BaseViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class JournalLandingViewModel(
     private val journalRepository: JournalRepository
 ) : BaseViewModel() {
 
-    private var _journalDetail: MutableLiveData<Mood> = MutableLiveData()
-    val journalData: MutableLiveData<Mood> = _journalDetail
+    private var _journalDetail: MutableLiveData<Mood?> = MutableLiveData()
+    val journalData: MutableLiveData<Mood?> = _journalDetail
 
     fun getJournalDetailFromID(id: Long) {
         viewModelScope.launch {

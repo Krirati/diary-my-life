@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.data.MoodRequest
 import com.kstudio.diarymylife.data.ActivityDetail
+import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.repository.JournalRepository
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
@@ -61,10 +62,11 @@ class CreateJournalViewModel(
         _selectsActivity.value?.forEach {
             activityList.add(it)
         }
+        val time = ResultSelectDate(localDateSelect.value, localTimeSelect.value)
         val req = MoodRequest(
             title = _titleJournal.value.toString(),
             description = _descJournal.value.toString(),
-            timestamp = LocalDateTime.now(),
+            timestamp = time.getLocalDateTime(),
             createTime = LocalDateTime.now(),
             imageName = _selectsMood.value?.second.toString(),
             mood = _selectsMood.value?.first.toString(),

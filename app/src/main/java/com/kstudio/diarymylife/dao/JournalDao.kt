@@ -20,11 +20,15 @@ interface JournalDao {
     suspend fun insertStudentSubjectCrossRef(crossRef: MoodActivityEventCrossRef)
 
     @Query("SELECT * FROM user_mood ORDER BY timestamp DESC  LIMIT :limit")
-    fun getJournalSortByTimestamp(limit: Int = 5): Flow<List<Mood>>
+    fun getJournalSortByTimestamp(limit: Int = 3): Flow<List<Mood>>
 
     @Transaction
     @Query("SELECT * FROM user_mood ORDER BY timestamp DESC  LIMIT :limit")
-    fun getMoodsWithActivities(limit: Int = 5): Flow<List<MoodWithActivity>>
+    fun getMoodsWithActivitiesWithLimit(limit: Int = 3): Flow<List<MoodWithActivity>>
+
+    @Transaction
+    @Query("SELECT * FROM user_mood ORDER BY timestamp DESC")
+    fun getMoodsWithActivities(): Flow<List<MoodWithActivity>>
 
     @Query("SELECT * FROM user_mood WHERE moodId = :journalID")
     fun getJournalFromJournalID(journalID: Long): Flow<Mood>
