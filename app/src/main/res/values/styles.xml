@@ -348,7 +348,7 @@
         <item name="android:paddingVertical">@dimen/dp_16</item>
         <item name="android:paddingHorizontal">@dimen/dp_64</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/bg_round_black</item>
+        <item name="android:background">@drawable/bg_button_selector</item>
     </style>
 
     <style name="ButtonRecBlackCenter">

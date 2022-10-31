@@ -86,9 +86,14 @@ class ResultJournalFragment :
     private fun observeEditText() {
         binding.journalTitleEdit.doOnTextChanged { text, start, before, count ->
             shearViewModel.setUpTitleJournal(text.toString())
+            binding.buttonSave.isEnabled = count > 0
         }
         binding.journalDescEdit.doOnTextChanged { text, start, before, count ->
-            shearViewModel.setUpDescJournal(text.toString())
+            if (count > 0) {
+                shearViewModel.setUpDescJournal(text.toString())
+            } else {
+                shearViewModel.setUpDescJournal("")
+            }
         }
     }
 

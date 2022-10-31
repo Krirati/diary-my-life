@@ -56,6 +56,7 @@ class ItemCardMemoryViewHolder(
     ) = with(binding) {
         journalTitle.text = item.data?.title
         journalDesc.text = item.data?.desc
+        journalDesc.visibility = if (item.data?.desc.isNullOrEmpty()) View.GONE else View.VISIBLE
         journalTime.text = item.data?.timestamp?.let { convertTime(it, "HH:mm") }
         journalDay.text = item.data?.timestamp?.format(DateTimeFormatter.ofPattern("EEEE"))
         journalMonth.text = item.data?.timestamp?.format(DateTimeFormatter.ofPattern("MMMM, dd"))

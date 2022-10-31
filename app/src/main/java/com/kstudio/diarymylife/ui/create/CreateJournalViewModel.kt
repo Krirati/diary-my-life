@@ -22,10 +22,8 @@ class CreateJournalViewModel(
     var selectsActivity: MutableLiveData<ArrayList<ActivityDetail>?> = _selectsActivity
 
     private var _titleJournal: MutableLiveData<String> = MutableLiveData()
-    var titleJournal: MutableLiveData<String> = _titleJournal
 
-    private var _descJournal: MutableLiveData<String> = MutableLiveData()
-    var descJournal: MutableLiveData<String> = _descJournal
+    private var _descJournal: MutableLiveData<String?> = MutableLiveData()
 
     fun setupSelectMood(index: Pair<Int, Int>) {
         _selectsMood.postValue(index)
@@ -35,7 +33,7 @@ class CreateJournalViewModel(
         _titleJournal.postValue(text)
     }
 
-    fun setUpDescJournal(text: String) {
+    fun setUpDescJournal(text: String?) {
         _descJournal.postValue(text)
     }
 
@@ -64,8 +62,8 @@ class CreateJournalViewModel(
         }
         val time = ResultSelectDate(localDateSelect.value, localTimeSelect.value)
         val req = MoodRequest(
-            title = _titleJournal.value.toString(),
-            description = _descJournal.value.toString(),
+            title = _titleJournal.value.orEmpty(),
+            description = _descJournal.value.orEmpty(),
             timestamp = time.getLocalDateTime(),
             createTime = LocalDateTime.now(),
             imageName = _selectsMood.value?.second.toString(),
