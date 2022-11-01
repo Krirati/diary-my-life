@@ -2,14 +2,20 @@ package com.kstudio.diarymylife.ui.journal.journalEdit
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
+import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.databinding.FragmentJournalBinding
 import com.kstudio.diarymylife.entity.Mood
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.utils.Keys
+import com.kstudio.diarymylife.utils.toStringFormat
+import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
+import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournalBinding::inflate) {
+class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournalBinding::inflate),
+    SelectDateHandle {
     private val viewModel by viewModel<JournalEditViewModel>()
 //    private val args: JournalEditFragmentArgs by navArgs()
 
@@ -17,6 +23,7 @@ class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournal
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeLiveData()
+        observeEditText()
         initJournal()
         setVisibleGone()
         bindingView()
@@ -29,12 +36,33 @@ class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournal
 
 
     override fun bindingView() {
-        binding.back.setOnClickListener { activity?.onBackPressedDispatcher }
+        binding.apply {
+            back.setOnClickListener { handleOnBackPress() }
+            date.setOnClickListener { displayBottomSheetSelectDate() }
+        }
+    }
+
+    private fun displayBottomSheetSelectDate() {
+        val bottomSheetSelectTime = SelectDateBottomSheet(
+            requireContext(),
+            ::onClickDoneBottomSheet,
+            ::onCloseBottomSheet
+        )
+        bottomSheetSelectTime.show(childFragmentManager, "bottom sheet date")
     }
 
     private fun observeLiveData() {
-        viewModel.journalData.observe(viewLifecycleOwner) {
+        viewModel.journalDetail.observe(viewLifecycleOwner) {
             if (it != null) setUpView(it)
+        }
+
+        viewModel.event.observe(viewLifecycleOwner) {
+            navigateToDetail()
+        }
+
+        viewModel.journalNewDetail.observe(viewLifecycleOwner) {
+            if (it == null) binding.buttonSave.isEnabled = false
+            binding.buttonSave.isEnabled = viewModel.isEditJournal()
         }
     }
 
@@ -43,9 +71,7 @@ class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournal
         date.bindView(mood.timestamp)
         journalTitleEdit.setText(mood.title)
         journalDescEdit.setText(mood.description)
-        buttonSave.setOnClickListener {
-            updateJournalDetail()
-        }
+        buttonSave.setOnClickListener { viewModel.updateJournal() }
     }
 
     private fun setVisibleGone() = with(binding) {
@@ -54,30 +80,43 @@ class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournal
         journalDesc.visibility = View.GONE
     }
 
-    private fun updateJournalDetail() {
-        val id = arguments?.getLong(Keys.JOURNAL_ID) ?: return
-        binding.let {
-            val journal = Mood(
-                moodId = id,
-                title = it.journalTitleEdit.text.toString(),
-                description = it.journalDescEdit.text.toString(),
-                mood = viewModel.journalData.value!!.mood,
-                activity = viewModel.journalData.value!!.activity,
-                imageName = viewModel.journalData.value!!.imageName,
-                timestamp = it.date.getLocalDateTime(),
-                createTime = viewModel.journalData.value!!.createTime,
-            )
-            viewModel.updateJournal(journal)
-        }
-        navigateToDetail()
-    }
-
     private fun navigateToDetail() {
         findNavController().navigateUp()
     }
 
     override fun handleOnBackPress() {
-        TODO("Not yet implemented")
+        findNavController().navigateUp()
+    }
+
+    override fun onClickDoneBottomSheet(date: ResultSelectDate) {
+        date.day?.let {
+            viewModel.setSelectDate(it)
+            viewModel.updateCurrentSelectedDate(it.toStringFormat(), true)
+        }
+        date.time?.let {
+            viewModel.setSelectTime(it)
+        }
+        binding.date.bindView(date.getLocalDateTime())
+        viewModel.setTimestamp(date.getLocalDateTime())
+    }
+
+    override fun onCloseBottomSheet() {
+        val currentDate = viewModel.selectedDate.value
+        if (currentDate != null) {
+            viewModel.updateCurrentSelectedDate(currentDate, true)
+        }
+    }
+
+    private fun observeEditText() {
+        binding.apply {
+            journalTitleEdit.doOnTextChanged { text, _, _, count ->
+                viewModel.setTitle(text.toString())
+                if (count == 0) binding.buttonSave.isEnabled = false
+            }
+            journalDescEdit.doOnTextChanged { text, _, _, _ ->
+                viewModel.setDescription(text.toString())
+            }
+        }
     }
 
 }

@@ -27,7 +27,6 @@ import java.time.LocalDateTime
 class SelectMoodFragment :
     BaseFragment<FragmentSelectMoodBinding>(FragmentSelectMoodBinding::inflate), SelectDateHandle {
 
-    private val viewModel by viewModel<SelectMoodViewModel>()
     private val shareViewModel by sharedViewModel<CreateJournalViewModel>()
 
     private val adapterMood by lazy { MoodAdapter() }
@@ -115,8 +114,6 @@ class SelectMoodFragment :
 
     @SuppressLint("ResourceType")
     private fun navigateToNextScreen() {
-//        val direction =
-//            SelectMoodFragmentDirections.actionWriteFragmentToSelectActivityFragment()
         findNavController().navigate(R.id.action_writeFragment_to_selectActivityFragment)
     }
 

@@ -32,7 +32,7 @@ import javax.inject.Inject
 class SelectDateBottomSheet @Inject constructor(
     private val getContext: Context,
     private val onClickDone: (ResultSelectDate) -> Unit,
-    private val onClose: () -> Unit,
+    private val onClose: () -> Unit?,
 ) : BottomSheetDialogFragment() {
 
     private val parentView =
@@ -61,6 +61,7 @@ class SelectDateBottomSheet @Inject constructor(
         val dialog = object :
             BottomSheetDialog(getContext, theme) {
             override fun onBackPressed() {
+                super.onBackPressed()
                 this@SelectDateBottomSheet.dismissAllowingStateLoss()
             }
         }
