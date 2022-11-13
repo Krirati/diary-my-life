@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.data.JournalItem
 import com.kstudio.diarymylife.data.JournalUI
-import com.kstudio.diarymylife.entity.relations.MoodWithActivity
+import com.kstudio.diarymylife.database.model.MoodWithActivity
 import com.kstudio.diarymylife.repository.JournalRepository
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter.Companion.VIEW_ADD
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter.Companion.VIEW_ITEM

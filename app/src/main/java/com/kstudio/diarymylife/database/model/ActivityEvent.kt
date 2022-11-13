@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.entity
+package com.kstudio.diarymylife.database.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

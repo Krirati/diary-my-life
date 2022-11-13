@@ -6,11 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.kstudio.diarymylife.dao.ActivityEventDao
-import com.kstudio.diarymylife.dao.JournalDao
-import com.kstudio.diarymylife.entity.ActivityEvent
-import com.kstudio.diarymylife.entity.Mood
-import com.kstudio.diarymylife.entity.relations.MoodActivityEventCrossRef
+import com.kstudio.diarymylife.database.dao.ActivityEventDao
+import com.kstudio.diarymylife.database.dao.JournalDao
+import com.kstudio.diarymylife.database.util.Converter
+import com.kstudio.diarymylife.database.model.ActivityEvent
+import com.kstudio.diarymylife.database.model.Mood
+import com.kstudio.diarymylife.database.model.MoodActivityEventCrossRef
 import java.util.concurrent.Executors
 
 @Database(

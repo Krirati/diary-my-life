@@ -1,10 +1,8 @@
-package com.kstudio.diarymylife.entity.relations
+package com.kstudio.diarymylife.database.model
 
 import androidx.room.Embedded
 import androidx.room.Junction
 import androidx.room.Relation
-import com.kstudio.diarymylife.entity.ActivityEvent
-import com.kstudio.diarymylife.entity.Mood
 
 data class MoodWithActivity(
     @Embedded val mood: Mood,

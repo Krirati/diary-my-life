@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.database
+package com.kstudio.diarymylife.database.util
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

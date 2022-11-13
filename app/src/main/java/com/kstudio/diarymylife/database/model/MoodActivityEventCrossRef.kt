@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.entity.relations
+package com.kstudio.diarymylife.database.model
 
 import androidx.room.Entity
 

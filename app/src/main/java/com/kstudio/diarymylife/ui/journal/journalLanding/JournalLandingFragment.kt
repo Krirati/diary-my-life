@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.R
+import com.kstudio.diarymylife.data.ActivityDetail
+import com.kstudio.diarymylife.data.JournalItem
 import com.kstudio.diarymylife.databinding.FragmentJournalBinding
-import com.kstudio.diarymylife.entity.Mood
+import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.journal.JournalDetailViewModel
 import com.kstudio.diarymylife.utils.Keys.Companion.JOURNAL_ID
@@ -19,6 +22,7 @@ class JournalLandingFragment :
     private val viewModel by viewModel<JournalLandingViewModel>()
     private val journalActivityViewModel by viewModel<JournalDetailViewModel>()
 
+    private val adapterActivity by lazy { ActivityListResultAdapter(requireContext()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,11 +57,21 @@ class JournalLandingFragment :
         title.text = "Mood Detail"
     }
 
-    private fun bindingDetail(mood: Mood) {
+    private fun bindingDetail(journal: JournalItem) {
+        val mood = journal.data
         binding.run {
-            date.bindView(mood.timestamp)
-            journalTitle.text = mood.title
-            journalDesc.text = mood.description
+            date.bindView(mood?.timestamp)
+            journalTitle.text = mood?.title
+            journalDesc.text = mood?.desc
+            activityTitle.visibility= View.VISIBLE
+            recyclerviewActivity.apply {
+                if (mood?.activity.isNullOrEmpty()) this.visibility = View.GONE
+                layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
+                isNestedScrollingEnabled = false
+                adapter = adapterActivity
+            }.run {
+                mood?.activity?.let { adapterActivity.updateActivityItems(it as ArrayList<ActivityDetail>) }
+            }
         }
     }
 

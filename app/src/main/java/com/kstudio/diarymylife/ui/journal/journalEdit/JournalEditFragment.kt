@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import com.kstudio.diarymylife.data.ActivityDetail
+import com.kstudio.diarymylife.data.JournalItem
 import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.databinding.FragmentJournalBinding
-import com.kstudio.diarymylife.entity.Mood
+import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.utils.Keys
 import com.kstudio.diarymylife.utils.toStringFormat
@@ -17,9 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournalBinding::inflate),
     SelectDateHandle {
     private val viewModel by viewModel<JournalEditViewModel>()
-//    private val args: JournalEditFragmentArgs by navArgs()
-
-
+    private val adapterActivity by lazy { ActivityListResultAdapter(requireContext()) }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeLiveData()
@@ -38,7 +39,8 @@ class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournal
     override fun bindingView() {
         binding.apply {
             back.setOnClickListener { handleOnBackPress() }
-            date.setOnClickListener { displayBottomSheetSelectDate() }
+            dateTitle.setOnClickListener { displayBottomSheetSelectDate() }
+            iconDateEdit.setOnClickListener { displayBottomSheetSelectDate() }
         }
     }
 
@@ -60,18 +62,26 @@ class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournal
             navigateToDetail()
         }
 
-        viewModel.journalNewDetail.observe(viewLifecycleOwner) {
-            if (it == null) binding.buttonSave.isEnabled = false
+        viewModel.isChanged.observe(viewLifecycleOwner) {
             binding.buttonSave.isEnabled = viewModel.isEditJournal()
         }
     }
 
-    private fun setUpView(mood: Mood) = with(binding) {
+    private fun setUpView(mood: JournalItem) = with(binding) {
         title.text = "Mood Edit"
-        date.bindView(mood.timestamp)
-        journalTitleEdit.setText(mood.title)
-        journalDescEdit.setText(mood.description)
+        date.bindView(mood.data?.timestamp)
+        journalTitleEdit.setText(mood.data?.title)
+        journalDescEdit.setText(mood.data?.desc)
         buttonSave.setOnClickListener { viewModel.updateJournal() }
+        activityTitle.visibility = View.VISIBLE
+        recyclerviewActivity.apply {
+            if (mood.data?.activity.isNullOrEmpty()) this.visibility = View.GONE
+            layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
+            isNestedScrollingEnabled = false
+            adapter = adapterActivity
+        }.run {
+            mood.data?.activity?.let { adapterActivity.updateActivityItems(it as ArrayList<ActivityDetail>) }
+        }
     }
 
     private fun setVisibleGone() = with(binding) {

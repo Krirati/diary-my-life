@@ -26,7 +26,8 @@ class DateView @JvmOverloads constructor(
         LayoutInflater.from(context),this, true
     )
 
-    fun bindView(localDateTime: LocalDateTime) {
+    fun bindView(localDateTime: LocalDateTime?) {
+        if (localDateTime == null) return
         with(binding) {
             day.text = convertTime(localDateTime, "EEEE")
             month.text = convertTime(localDateTime, "MMMM, dd")

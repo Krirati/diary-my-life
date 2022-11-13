@@ -62,6 +62,7 @@ class CreateJournalViewModel(
         }
         val time = ResultSelectDate(localDateSelect.value, localTimeSelect.value)
         val req = MoodRequest(
+            moodId = null,
             title = _titleJournal.value.orEmpty(),
             description = _descJournal.value.orEmpty(),
             timestamp = time.getLocalDateTime(),

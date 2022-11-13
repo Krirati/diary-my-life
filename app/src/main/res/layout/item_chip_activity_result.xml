@@ -7,9 +7,9 @@
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/dp_6"
     android:layout_marginBottom="@dimen/dp_12"
-    android:background="@drawable/bg_round_card_action"
+    android:background="@drawable/bg_chip_action"
     android:orientation="vertical"
-    android:padding="@dimen/dp_6">
+    android:padding="@dimen/dp_8">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/activity_image"

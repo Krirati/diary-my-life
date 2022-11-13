@@ -3,8 +3,13 @@ package com.kstudio.diarymylife.ui.journal.journalEdit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.kstudio.diarymylife.entity.Mood
+import com.kstudio.diarymylife.data.ActivityDetail
+import com.kstudio.diarymylife.data.JournalItem
+import com.kstudio.diarymylife.data.JournalUI
+import com.kstudio.diarymylife.data.MoodRequest
+import com.kstudio.diarymylife.database.model.MoodWithActivity
 import com.kstudio.diarymylife.repository.JournalRepository
+import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,11 +19,14 @@ class JournalEditViewModel(
     private val journalRepository: JournalRepository
 ) : BaseViewModel() {
 
-    private var _journalDetail: MutableLiveData<Mood?> = MutableLiveData()
-    val journalDetail: MutableLiveData<Mood?> = _journalDetail
+    private var _journalDetail: MutableLiveData<JournalItem?> = MutableLiveData()
+    val journalDetail: MutableLiveData<JournalItem?> = _journalDetail
 
-    private var _journalNewDetail: MutableLiveData<Mood?> = MutableLiveData()
-    val journalNewDetail: MutableLiveData<Mood?> = _journalNewDetail
+    private var _journalNewDetail: MutableLiveData<JournalItem?> = MutableLiveData()
+    val journalNewDetail: MutableLiveData<JournalItem?> = _journalNewDetail
+
+    private var _isChanged: MutableLiveData<Boolean> = MutableLiveData()
+    val isChanged: MutableLiveData<Boolean> = _isChanged
 
     private val _event: MutableLiveData<Unit> = MutableLiveData()
     val event: LiveData<Unit> = _event
@@ -28,11 +36,29 @@ class JournalEditViewModel(
             id?.let { it ->
                 journalRepository.getJournalFromID(it)
                     .collect { journal ->
-                        _journalDetail.postValue(journal)
-                        _journalNewDetail.postValue(journal)
+                        _journalDetail.postValue(mapToUI(journal))
+                        _journalNewDetail.postValue(mapToUI(journal))
                     }
             }
         }
+    }
+
+    private fun mapToUI(mood: MoodWithActivity?): JournalItem? {
+        return mood?.let {
+            JournalItem(
+                viewType = ItemCardMemoryAdapter.VIEW_ITEM,
+                data = JournalUI(
+                    journalId = it.mood.moodId,
+                    title = it.mood.title,
+                    desc = it.mood.description,
+                    mood = it.mood.mood ?: "",
+                    activity = it.activities.asActivityDetail(),
+                    timestamp = it.mood.timestamp,
+                    imageId = "",
+                )
+            )
+        }
+            ?: return null
     }
 
     fun updateJournal() {
@@ -42,42 +68,56 @@ class JournalEditViewModel(
         }
     }
 
-    private fun createRequest(): Mood {
-        return Mood(
-            moodId = _journalDetail.value!!.moodId,
-            title = _journalNewDetail.value?.title.orEmpty(),
-            description = _journalNewDetail.value?.description.orEmpty(),
-            mood = _journalNewDetail.value?.mood.orEmpty(),
-            activity = _journalNewDetail.value?.activity,
-            imageName = _journalNewDetail.value?.imageName,
-            timestamp = _journalNewDetail.value!!.timestamp,
-            createTime = _journalDetail.value!!.createTime,
+    private fun createRequest(): MoodRequest? {
+        val reqValue = _journalNewDetail.value?.data ?: return null
+        val activityList = arrayListOf<ActivityDetail>()
+        reqValue.activity?.forEach {
+            activityList.add(it)
+        }
+        return MoodRequest(
+            moodId = reqValue.journalId,
+            title = reqValue.title,
+            description = reqValue.desc,
+            mood = reqValue.mood,
+            activity = activityList,
+            imageName = reqValue.imageId,
+            timestamp = reqValue.timestamp,
+            createTime = LocalDateTime.now(),
         )
     }
 
     fun isEditJournal(): Boolean {
         if (_journalDetail.value == null) return false
 
-        return _journalNewDetail.value != _journalDetail.value
+        return _journalNewDetail.value?.data != _journalDetail.value?.data
     }
 
+    private fun handlerIsChanged() {
+        _isChanged.postValue(true)
+        _isChanged.postValue(false)
+    }
     fun setTitle(title: String) {
-        _journalNewDetail.value = _journalNewDetail.value?.copy(title = title)
+        handlerIsChanged()
+        _journalNewDetail.value?.data = _journalNewDetail.value?.data?.copy(title = title)
     }
 
     fun setDescription(description: String) {
-        _journalNewDetail.value = _journalNewDetail.value?.copy(description = description)
+        handlerIsChanged()
+        _journalNewDetail.value?.data = _journalNewDetail.value?.data?.copy(desc = description)
     }
 
     fun setMood(mood: String) {
-        _journalNewDetail.value = _journalNewDetail.value?.copy(mood = mood)
+        handlerIsChanged()
+        _journalNewDetail.value?.data = _journalNewDetail.value?.data?.copy(mood = mood)
     }
 
-    fun setActivities(activity: ArrayList<Int>) {
-        _journalNewDetail.value = _journalNewDetail.value?.copy(activity = activity)
+    fun setActivities(activity: List<ActivityDetail>) {
+        handlerIsChanged()
+        _journalNewDetail.value?.data = _journalNewDetail.value?.data?.copy(activity = activity)
     }
 
     fun setTimestamp(timestamp: LocalDateTime) {
-        _journalNewDetail.value = _journalNewDetail.value?.copy(timestamp = timestamp)
+        handlerIsChanged()
+        _journalNewDetail.value?.data = _journalNewDetail.value?.data?.copy(timestamp = timestamp)
     }
 }

@@ -79,17 +79,18 @@
 
                         <com.kstudio.diarymylife.widgets.DateView
                             android:id="@+id/date"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:paddingTop="4dp" />
 
-                        <androidx.appcompat.widget.AppCompatImageView
+                        <androidx.appcompat.widget.AppCompatImageButton
                             android:id="@+id/icon_date_edit"
-                            android:layout_width="18dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="end|center_vertical"
                             android:tint="@color/dark_brown"
+                            android:background="@color/transparent"
                             app:layout_constraintBottom_toBottomOf="@+id/title_recent_memory"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/title_recent_memory"
@@ -114,12 +115,13 @@
                             android:layout_weight="1"
                             android:text="Activity" />
 
-                        <androidx.appcompat.widget.AppCompatImageView
+                        <androidx.appcompat.widget.AppCompatImageButton
                             android:id="@+id/icon_activity_edit"
-                            android:layout_width="18dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="end|center_vertical"
                             android:tint="@color/dark_brown"
+                            android:background="@color/transparent"
                             app:layout_constraintBottom_toBottomOf="@+id/title_recent_memory"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/title_recent_memory"
