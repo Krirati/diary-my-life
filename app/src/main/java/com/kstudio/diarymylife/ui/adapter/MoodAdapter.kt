@@ -8,12 +8,12 @@ import com.kstudio.diarymylife.databinding.ItemMoodBinding
 
 class MoodAdapter : RecyclerView.Adapter<MoodAdapter.ViewHolder>() {
 
-    val moodList = arrayListOf(
-        Pair(0, R.drawable.ic_pencil),
-        Pair(1, R.drawable.ic_group_40),
-        Pair(2, R.drawable.ic_pencil),
-        Pair(3, R.drawable.ic_group_40),
-        Pair(4, R.drawable.ic_pencil)
+    private val moodList = arrayListOf(
+        Pair(0, R.drawable.mood1),
+        Pair(1, R.drawable.mood2),
+        Pair(2, R.drawable.mood3),
+        Pair(3, R.drawable.mood4),
+        Pair(4, R.drawable.mood5)
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

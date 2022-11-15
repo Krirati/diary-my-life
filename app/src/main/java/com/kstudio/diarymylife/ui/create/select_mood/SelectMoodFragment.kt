@@ -9,19 +9,18 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.databinding.FragmentSelectMoodBinding
 import com.kstudio.diarymylife.data.ResultSelectDate
+import com.kstudio.diarymylife.databinding.FragmentSelectMoodBinding
 import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalViewModel
-import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
-import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.dpToPx
 import com.kstudio.diarymylife.utils.toStringFormat
+import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
+import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 
 class SelectMoodFragment :
@@ -52,7 +51,7 @@ class SelectMoodFragment :
             clipToPadding = false   // allow full width shown with padding
             clipChildren = false    // allow left/right item is not clipped
             offscreenPageLimit = 2
-            currentItem = 2
+            currentItem = 5
             setPadding(offsetPx, 0, offsetPx, 0)
             setPageTransformer(marginTransformer)
             binding.dotsIndicator.setViewPager2(this)
