@@ -1,38 +1,38 @@
-package com.kstudio.diarymylife.ui.journal.journalLanding
+package com.kstudio.diarymylife.ui.mood.moodLanding
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.kstudio.diarymylife.data.JournalItem
-import com.kstudio.diarymylife.data.JournalUI
+import com.kstudio.diarymylife.data.MoodItem
+import com.kstudio.diarymylife.data.MoodUI
 import com.kstudio.diarymylife.database.model.MoodWithActivity
-import com.kstudio.diarymylife.repository.JournalRepository
+import com.kstudio.diarymylife.repository.MoodRepository
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
-class JournalLandingViewModel(
-    private val journalRepository: JournalRepository
+class MoodLandingViewModel(
+    private val moodRepository: MoodRepository
 ) : BaseViewModel() {
 
-    private var _journalDetail: MutableLiveData<JournalItem?> = MutableLiveData()
-    val journalData: MutableLiveData<JournalItem?> = _journalDetail
+    private var _moodDetail: MutableLiveData<MoodItem?> = MutableLiveData()
+    val moodData: MutableLiveData<MoodItem?> = _moodDetail
 
-    fun getJournalDetailFromID(id: Long) {
+    fun getMoodDetailFromID(id: Long) {
         viewModelScope.launch {
-            journalRepository.getJournalFromID(id)
+            moodRepository.getMoodFromID(id)
                 .collect {
-                    _journalDetail.postValue(mapToUI(it))
+                    _moodDetail.postValue(mapToUI(it))
                 }
 
         }
     }
 
-    private fun mapToUI(mood: MoodWithActivity?): JournalItem? {
+    private fun mapToUI(mood: MoodWithActivity?): MoodItem? {
         return mood?.let {
-            JournalItem(
+            MoodItem(
                 viewType = ItemCardMemoryAdapter.VIEW_ITEM,
-                data = JournalUI(
-                    journalId = it.mood.moodId,
+                data = MoodUI(
+                    moodId = it.mood.moodId,
                     title = it.mood.title,
                     desc = it.mood.description,
                     mood = it.mood.mood ?: "",

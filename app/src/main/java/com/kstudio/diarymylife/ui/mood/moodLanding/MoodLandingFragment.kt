@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.journal.journalLanding
+package com.kstudio.diarymylife.ui.mood.moodLanding
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,39 +8,39 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.ActivityDetail
-import com.kstudio.diarymylife.data.JournalItem
+import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.databinding.FragmentJournalBinding
 import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.journal.JournalDetailViewModel
-import com.kstudio.diarymylife.utils.Keys.Companion.JOURNAL_ID
+import com.kstudio.diarymylife.ui.mood.MoodDetailViewModel
+import com.kstudio.diarymylife.utils.Keys.Companion.MOOD_ID
+import com.kstudio.diarymylife.utils.mapMoodStringToRes
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class JournalLandingFragment :
+class MoodLandingFragment :
     BaseFragment<FragmentJournalBinding>(FragmentJournalBinding::inflate) {
 
-    private val viewModel by viewModel<JournalLandingViewModel>()
-    private val journalActivityViewModel by viewModel<JournalDetailViewModel>()
-
+    private val viewModel by viewModel<MoodLandingViewModel>()
+    private val moodActivityViewModel by viewModel<MoodDetailViewModel>()
     private val adapterActivity by lazy { ActivityListResultAdapter(requireContext()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpArguments()
-        getUpJournalDetail()
+        getUpMoodDetail()
         setVisibleGone()
         bindingView()
         observeLiveData()
     }
 
     private fun observeLiveData() {
-        viewModel.journalData.observe(viewLifecycleOwner) {
+        viewModel.moodData.observe(viewLifecycleOwner) {
             if (it != null) bindingDetail(it)
         }
     }
 
     private fun setUpArguments() {
-        journalActivityViewModel.journalId = arguments?.getLong(JOURNAL_ID)!!
+        moodActivityViewModel.moodId = arguments?.getLong(MOOD_ID)!!
     }
 
     override fun bindingView() = with(binding) {
@@ -54,13 +54,14 @@ class JournalLandingFragment :
         journalDescEdit.visibility = View.GONE
         iconActivityEdit.visibility = View.GONE
         iconDateEdit.visibility = View.GONE
-        title.text = "Mood Detail"
+        title.text = getString(R.string.mood_detail)
     }
 
-    private fun bindingDetail(journal: JournalItem) {
+    private fun bindingDetail(journal: MoodItem) {
         val mood = journal.data
         binding.run {
             date.bindView(mood?.timestamp)
+            mood?.mood?.let { imageMood.setImageResource(mapMoodStringToRes(it)) }
             journalTitle.text = mood?.title
             journalDesc.text = mood?.desc
             activityTitle.visibility= View.VISIBLE
@@ -77,7 +78,7 @@ class JournalLandingFragment :
 
     @SuppressLint("ResourceType")
     private fun navigateToEditJournal() {
-        val bundle = bundleOf(JOURNAL_ID to journalActivityViewModel.journalId)
+        val bundle = bundleOf(MOOD_ID to moodActivityViewModel.moodId)
         findNavController().navigate(
             R.id.action_journalDetailFragment_to_journalEditFragment,
             bundle
@@ -86,11 +87,11 @@ class JournalLandingFragment :
 
     override fun onResume() {
         super.onResume()
-        getUpJournalDetail()
+        getUpMoodDetail()
     }
 
-    private fun getUpJournalDetail() {
-        journalActivityViewModel.journalId.let { viewModel.getJournalDetailFromID(it) }
+    private fun getUpMoodDetail() {
+        moodActivityViewModel.moodId.let { viewModel.getMoodDetailFromID(it) }
     }
 
     override fun handleOnBackPress() {

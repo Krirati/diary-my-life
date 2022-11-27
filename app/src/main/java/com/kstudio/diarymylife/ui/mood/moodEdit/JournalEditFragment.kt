@@ -1,17 +1,19 @@
-package com.kstudio.diarymylife.ui.journal.journalEdit
+package com.kstudio.diarymylife.ui.mood.moodEdit
 
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.ActivityDetail
-import com.kstudio.diarymylife.data.JournalItem
+import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.databinding.FragmentJournalBinding
 import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.utils.Keys
+import com.kstudio.diarymylife.utils.mapMoodStringToRes
 import com.kstudio.diarymylife.utils.toStringFormat
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
@@ -31,7 +33,7 @@ class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournal
     }
 
     private fun initJournal() {
-        val id = arguments?.getLong(Keys.JOURNAL_ID)
+        val id = arguments?.getLong(Keys.MOOD_ID)
         viewModel.getJournalDetailFromID(id)
     }
 
@@ -54,7 +56,7 @@ class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournal
     }
 
     private fun observeLiveData() {
-        viewModel.journalDetail.observe(viewLifecycleOwner) {
+        viewModel.moodDetail.observe(viewLifecycleOwner) {
             if (it != null) setUpView(it)
         }
 
@@ -67,8 +69,9 @@ class JournalEditFragment : BaseFragment<FragmentJournalBinding>(FragmentJournal
         }
     }
 
-    private fun setUpView(mood: JournalItem) = with(binding) {
-        title.text = "Mood Edit"
+    private fun setUpView(mood: MoodItem) = with(binding) {
+        title.text = getString(R.string.edit_mood)
+        mood.data?.mood?.let { imageMood.setImageResource(mapMoodStringToRes(it)) }
         date.bindView(mood.data?.timestamp)
         journalTitleEdit.setText(mood.data?.title)
         journalDescEdit.setText(mood.data?.desc)

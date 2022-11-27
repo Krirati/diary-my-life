@@ -13,7 +13,7 @@ import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.databinding.FragmentSelectMoodBinding
 import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.create.CreateJournalViewModel
+import com.kstudio.diarymylife.ui.create.CreateMoodViewModel
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.dpToPx
@@ -26,7 +26,7 @@ import java.time.LocalDateTime
 class SelectMoodFragment :
     BaseFragment<FragmentSelectMoodBinding>(FragmentSelectMoodBinding::inflate), SelectDateHandle {
 
-    private val shareViewModel by sharedViewModel<CreateJournalViewModel>()
+    private val shareViewModel by sharedViewModel<CreateMoodViewModel>()
 
     private val adapterMood by lazy { MoodAdapter() }
 
@@ -51,7 +51,6 @@ class SelectMoodFragment :
             clipToPadding = false   // allow full width shown with padding
             clipChildren = false    // allow left/right item is not clipped
             offscreenPageLimit = 2
-            currentItem = 5
             setPadding(offsetPx, 0, offsetPx, 0)
             setPageTransformer(marginTransformer)
             binding.dotsIndicator.setViewPager2(this)

@@ -7,11 +7,11 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentHomeBinding
-import com.kstudio.diarymylife.data.JournalItem
+import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
-import com.kstudio.diarymylife.ui.journal.JournalDetailActivity
+import com.kstudio.diarymylife.ui.mood.MoodDetailActivity
 import com.kstudio.diarymylife.utils.Screen
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,11 +36,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun setUpRecentMemory(memberList: List<JournalItem>) {
+    private fun setUpRecentMemory(memberList: List<MoodItem>) {
         val memberAdapter = ItemCardMemoryAdapter(
             memberList,
             onNavigateToDetail = {
-                navigateToActivity(JournalDetailActivity::class.java, it)
+                navigateToActivity(MoodDetailActivity::class.java, it)
             },
             onDeleted = { homeViewModel.deleteJournal(it) },
             onAddItem = { navigateToCreateJournal() }

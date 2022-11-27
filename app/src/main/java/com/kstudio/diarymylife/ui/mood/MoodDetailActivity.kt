@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.journal
+package com.kstudio.diarymylife.ui.mood
 
 import android.os.Bundle
 import androidx.navigation.findNavController
@@ -6,7 +6,7 @@ import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ActivityJournalDetailBinding
 import com.kstudio.diarymylife.ui.base.BaseActivity
 
-class JournalDetailActivity : BaseActivity() {
+class MoodDetailActivity : BaseActivity() {
 
     private lateinit var binding: ActivityJournalDetailBinding
 

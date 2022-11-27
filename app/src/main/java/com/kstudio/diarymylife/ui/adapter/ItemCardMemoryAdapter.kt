@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.databinding.ItemCardAddBinding
 import com.kstudio.diarymylife.databinding.ItemCardEventBinding
-import com.kstudio.diarymylife.data.JournalItem
+import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
 import com.kstudio.diarymylife.ui.adapter.viewholder.ItemAddViewHolder
 import com.kstudio.diarymylife.ui.adapter.viewholder.ItemCardMemoryViewHolder
 
 class ItemCardMemoryAdapter(
-    private val memoryItems: List<JournalItem>,
+    private val memoryItems: List<MoodItem>,
     private val onNavigateToDetail: (Long?) -> Unit,
     private val onDeleted: (Long?) -> Unit?,
     private val onAddItem: () -> Unit,
@@ -63,7 +63,7 @@ class ItemCardMemoryAdapter(
     }
 
     private fun deleteItem(position: Int) {
-        onDeleted(memoryItems[position].data?.journalId)
+        onDeleted(memoryItems[position].data?.moodId)
         memoryItems.drop(position)
         notifyItemRangeChanged(position, memoryItems.size)
     }

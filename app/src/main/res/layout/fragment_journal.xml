@@ -16,7 +16,7 @@
             android:id="@+id/image_mood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_line"
+            tools:background="@drawable/ic_line"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -54,7 +54,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="@dimen/dp_16"
-                    android:text="Journal Detail"
+                    android:text="@string/mood_detail"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/back" />
 
@@ -113,7 +113,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Activity" />
+                            android:text="@string/activity" />
 
                         <androidx.appcompat.widget.AppCompatImageButton
                             android:id="@+id/icon_activity_edit"
@@ -146,7 +146,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_16"
-                    android:text="Journal title"
+                    android:text="@string/mood_title"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/detail" />
 
@@ -177,7 +177,7 @@
                         android:maxLines="1"
                         android:paddingHorizontal="@dimen/dp_16"
                         android:singleLine="true"
-                        android:hint="Topic of mood"
+                        android:hint="@string/mood_title"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -191,8 +191,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_24"
-                    android:text="Note something for this diary journal"
-                    android:hint="More detail"
+                    android:text="@string/note_something_for_this_mood"
+                    android:hint="@string/more_detail"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/title_container" />
 
@@ -220,7 +220,7 @@
                         android:maxLines="4"
                         android:minHeight="60dp"
                         android:paddingHorizontal="@dimen/dp_16"
-                        android:hint="Note more detail"
+                        android:hint="@string/note_something_for_this_mood"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -244,7 +244,7 @@
             android:id="@+id/button_save"
             style="@style/ButtonBlackCenter"
             android:layout_marginBottom="@dimen/dp_32"
-            android:text="Save"
+            android:text="@string/save"
             android:enabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

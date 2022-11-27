@@ -3,6 +3,7 @@ package com.kstudio.diarymylife.ui.adapter.viewholder
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Point
+import android.util.Log
 import android.view.Display
 import android.view.MotionEvent
 import android.view.View
@@ -11,10 +12,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.databinding.ItemCardEventBinding
 import com.kstudio.diarymylife.data.ActivityDetail
-import com.kstudio.diarymylife.data.JournalItem
+import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
 import com.kstudio.diarymylife.utils.convertTime
+import com.kstudio.diarymylife.utils.mapMoodStringToRes
 import java.time.format.DateTimeFormatter
 
 class ItemCardMemoryViewHolder(
@@ -50,10 +52,12 @@ class ItemCardMemoryViewHolder(
 
     @SuppressLint("ClickableViewAccessibility")
     fun bind(
-        item: JournalItem,
+        item: MoodItem,
         swipeState: SwipeState,
         onDelete: (Int) -> Unit,
     ) = with(binding) {
+        Log.d("test", "mood :: ${item.data?.mood}")
+        item.data?.mood?.let { journalMood.setImageResource(mapMoodStringToRes(it)) }
         journalTitle.text = item.data?.title
         journalDesc.text = item.data?.desc
         journalDesc.visibility = if (item.data?.desc.isNullOrEmpty()) View.GONE else View.VISIBLE
@@ -74,7 +78,7 @@ class ItemCardMemoryViewHolder(
         journalCard.apply {
             setOnClickListener {
                 if (previousEvent.first == MotionEvent.ACTION_MOVE && previousEvent.second == MotionEvent.ACTION_UP) return@setOnClickListener
-                navigateToDetail(item.data?.journalId)
+                navigateToDetail(item.data?.moodId)
             }
             setOnTouchListener { view, event -> handlerOnTouchEvent(item, view, event, swipeState) }
         }
@@ -131,7 +135,7 @@ class ItemCardMemoryViewHolder(
     }
 
     private fun handlerOnTouchEvent(
-        item: JournalItem,
+        item: MoodItem,
         view: View,
         event: MotionEvent,
         swipeState: SwipeState

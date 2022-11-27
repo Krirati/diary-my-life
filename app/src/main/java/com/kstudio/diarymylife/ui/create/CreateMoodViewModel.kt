@@ -5,14 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.data.MoodRequest
 import com.kstudio.diarymylife.data.ActivityDetail
 import com.kstudio.diarymylife.data.ResultSelectDate
-import com.kstudio.diarymylife.repository.JournalRepository
+import com.kstudio.diarymylife.repository.MoodRepository
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
 
-class CreateJournalViewModel(
-    private val journalRepository: JournalRepository
+class CreateMoodViewModel(
+    private val moodRepository: MoodRepository
 ) : BaseViewModel() {
     private var _selectsMood: MutableLiveData<Pair<Int, Int>> = MutableLiveData()
     var selectsMood: MutableLiveData<Pair<Int, Int>> = _selectsMood
@@ -72,7 +72,7 @@ class CreateJournalViewModel(
             activity = activityList
         )
         viewModelScope.launch {
-            journalRepository.insert(req)
+            moodRepository.insert(req)
         }
     }
 }

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.kstudio.diarymylife.database.dao.ActivityEventDao
-import com.kstudio.diarymylife.database.dao.JournalDao
+import com.kstudio.diarymylife.database.dao.MoodDao
 import com.kstudio.diarymylife.database.util.Converter
 import com.kstudio.diarymylife.database.model.ActivityEvent
 import com.kstudio.diarymylife.database.model.Mood
@@ -24,21 +24,21 @@ import java.util.concurrent.Executors
     exportSchema = true
 )
 @TypeConverters(value = [Converter::class])
-abstract class JournalDatabase : RoomDatabase() {
-    abstract fun journalDao(): JournalDao
+abstract class MoodDatabase : RoomDatabase() {
+    abstract fun moodDao(): MoodDao
     abstract fun activityEventDao(): ActivityEventDao
 
     companion object {
         @Volatile
-        private var INSTANT: JournalDatabase? = null
+        private var INSTANT: MoodDatabase? = null
 
-        fun getDatabase(context: Context): JournalDatabase {
+        fun getDatabase(context: Context): MoodDatabase {
             return INSTANT ?: synchronized(this) {
                 val instant = Room
                     .databaseBuilder(
                         context.applicationContext,
-                        JournalDatabase::class.java,
-                        "journal_database"
+                        MoodDatabase::class.java,
+                        "mood_database"
                     )
                     .addCallback(object : Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {

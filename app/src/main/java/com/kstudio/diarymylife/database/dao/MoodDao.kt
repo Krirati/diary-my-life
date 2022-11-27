@@ -8,19 +8,19 @@ import com.kstudio.diarymylife.database.model.MoodWithActivity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface JournalDao {
+interface MoodDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(mood: Mood): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertActivityEvent(journal: ActivityEvent)
+    suspend fun insertActivityEvent(activityEvent: ActivityEvent)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStudentSubjectCrossRef(crossRef: MoodActivityEventCrossRef)
 
     @Query("SELECT * FROM user_mood ORDER BY timestamp DESC  LIMIT :limit")
-    fun getJournalSortByTimestamp(limit: Int = 3): Flow<List<Mood>>
+    fun getMoodSortByTimestamp(limit: Int = 3): Flow<List<Mood>>
 
     @Transaction
     @Query("SELECT * FROM user_mood ORDER BY timestamp DESC  LIMIT :limit")
@@ -31,13 +31,13 @@ interface JournalDao {
     fun getMoodsWithActivities(): Flow<List<MoodWithActivity>>
 
     @Transaction
-    @Query("SELECT * FROM user_mood WHERE moodId = :journalID")
-    fun getJournalFromJournalID(journalID: Long): Flow<MoodWithActivity>
+    @Query("SELECT * FROM user_mood WHERE moodId = :moodID")
+    fun getMoodFromMoodID(moodID: Long): Flow<MoodWithActivity>
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateJournal(journal: Mood)
+    fun updateMood(mood: Mood)
 
-    @Query("DELETE FROM user_mood WHERE moodId = :journalID")
-    suspend fun deleteJournal(journalID: Long)
+    @Query("DELETE FROM user_mood WHERE moodId = :moodID")
+    suspend fun deleteMood(moodID: Long)
 
 }

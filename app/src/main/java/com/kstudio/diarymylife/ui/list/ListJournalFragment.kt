@@ -6,13 +6,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.data.JournalItem
+import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.databinding.FragmentListJournalBinding
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter.Companion.VIEW_ADD
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
-import com.kstudio.diarymylife.ui.journal.JournalDetailActivity
+import com.kstudio.diarymylife.ui.mood.MoodDetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListJournalFragment : BaseFragment<FragmentListJournalBinding>(
@@ -47,11 +47,11 @@ class ListJournalFragment : BaseFragment<FragmentListJournalBinding>(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun setUpRecentMemory(memberList: List<JournalItem>) {
+    private fun setUpRecentMemory(memberList: List<MoodItem>) {
         val memberAdapter = ItemCardMemoryAdapter(
             memberList,
             onNavigateToDetail = {
-                navigateToActivity(JournalDetailActivity::class.java, it)
+                navigateToActivity(MoodDetailActivity::class.java, it)
             },
             onDeleted = { viewModel.deleteJournal(it) },
             onAddItem = { navigateToCreateJournal() }
@@ -66,7 +66,7 @@ class ListJournalFragment : BaseFragment<FragmentListJournalBinding>(
 
     }
 
-    private fun bindingCard(mood: List<JournalItem>) = with(binding){
+    private fun bindingCard(mood: List<MoodItem>) = with(binding){
         val moodTotal = mood.filter { mood -> mood.viewType != VIEW_ADD }.size
         cardTotal.setValue(moodTotal)
         cardAverage.setValue(moodTotal)

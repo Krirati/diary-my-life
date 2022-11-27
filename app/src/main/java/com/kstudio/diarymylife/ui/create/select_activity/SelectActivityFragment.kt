@@ -13,7 +13,7 @@ import com.kstudio.diarymylife.data.ActivityDetail
 import com.kstudio.diarymylife.ui.adapter.ActivityListAdapter
 import com.kstudio.diarymylife.ui.adapter.ActivityListAdapter.Companion.SELECT
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.create.CreateJournalViewModel
+import com.kstudio.diarymylife.ui.create.CreateMoodViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SelectActivityFragment : BaseFragment<FragmentSelectActivityBinding>
@@ -26,7 +26,7 @@ class SelectActivityFragment : BaseFragment<FragmentSelectActivityBinding>
         )
     }
     private val viewModel by viewModel<SelectActivityViewModel>()
-    private val shearViewModel: CreateJournalViewModel by activityViewModels()
+    private val shearViewModel: CreateMoodViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

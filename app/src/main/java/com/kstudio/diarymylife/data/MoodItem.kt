@@ -6,14 +6,14 @@ import kotlinx.parcelize.Parcelize
 import java.time.LocalDateTime
 
 @Parcelize
-data class JournalItem(
+data class MoodItem(
     var viewType: Int,
-    var data: JournalUI?
+    var data: MoodUI?
 ): Parcelable
 
 @Parcelize
-data class JournalUI(
-    val journalId: Long,
+data class MoodUI(
+    val moodId: Long,
     val title: String,
     val desc: String,
     val mood: String,

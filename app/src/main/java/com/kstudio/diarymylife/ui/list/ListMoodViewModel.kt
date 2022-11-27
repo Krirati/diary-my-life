@@ -2,51 +2,51 @@ package com.kstudio.diarymylife.ui.list
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.kstudio.diarymylife.data.JournalItem
-import com.kstudio.diarymylife.data.JournalUI
+import com.kstudio.diarymylife.data.MoodItem
+import com.kstudio.diarymylife.data.MoodUI
 import com.kstudio.diarymylife.database.model.MoodWithActivity
-import com.kstudio.diarymylife.repository.JournalRepository
+import com.kstudio.diarymylife.repository.MoodRepository
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class ListMoodViewModel constructor(
-    private val journalRepository: JournalRepository
+    private val moodRepository: MoodRepository
 ) : BaseViewModel() {
 
-    private val _memberList: MutableLiveData<List<JournalItem>> = MutableLiveData()
+    private val _memberList: MutableLiveData<List<MoodItem>> = MutableLiveData()
     fun getMemberList() = _memberList
 
     fun fetchRecentJournal() {
         viewModelScope.launch {
-            journalRepository.getMoodsAndActivities().collect {
+            moodRepository.getMoodsAndActivities().collect {
                 _memberList.postValue(mapToUI(it))
             }
         }
     }
 
 
-    fun deleteJournal(journalID: Long?) {
-        if (journalID == null) return
+    fun deleteJournal(moodID: Long?) {
+        if (moodID == null) return
         viewModelScope.launch {
-            journalRepository.deleteJournal(journalID = journalID)
+            moodRepository.deleteMood(moodID = moodID)
         }
     }
 
-    private fun mapToUI(list: List<MoodWithActivity>): List<JournalItem> {
+    private fun mapToUI(list: List<MoodWithActivity>): List<MoodItem> {
         return if (list.isEmpty()) {
             listOf(
-                JournalItem(
+                MoodItem(
                     viewType = ItemCardMemoryAdapter.VIEW_ADD, data = null
                 )
             )
 
         } else {
             list.map {
-                JournalItem(
+                MoodItem(
                     viewType = ItemCardMemoryAdapter.VIEW_ITEM,
-                    data = JournalUI(
-                        journalId = it.mood.moodId,
+                    data = MoodUI(
+                        moodId = it.mood.moodId,
                         title = it.mood.title,
                         desc = it.mood.description,
                         mood = it.mood.mood ?: "",

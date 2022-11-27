@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.kstudio.diarymylife.databinding.FragmentJournalBinding
 import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.create.CreateJournalViewModel
+import com.kstudio.diarymylife.ui.create.CreateMoodViewModel
 
 class ResultJournalFragment :
     BaseFragment<FragmentJournalBinding>(FragmentJournalBinding::inflate) {
 
-    private val shearViewModel: CreateJournalViewModel by activityViewModels()
+    private val shearViewModel: CreateMoodViewModel by activityViewModels()
     private val adapterActivity by lazy {
         ActivityListResultAdapter(
             requireContext(),
