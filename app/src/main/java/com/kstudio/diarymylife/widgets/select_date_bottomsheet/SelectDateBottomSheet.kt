@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.fragment.app.activityViewModels
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -17,14 +16,14 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_HIDDEN
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.databinding.BottomSheetSelectDateBinding
 import com.kstudio.diarymylife.data.DateDetailsUI
 import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.data.toDateDetails
+import com.kstudio.diarymylife.databinding.BottomSheetSelectDateBinding
 import com.kstudio.diarymylife.ui.adapter.dateSelection.DateSelectionAdapter
-import com.kstudio.diarymylife.ui.base.BaseViewModel
 import com.kstudio.diarymylife.utils.toDate
 import com.kstudio.diarymylife.utils.toLocalDate
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDate
 import java.time.LocalTime
 import javax.inject.Inject
@@ -42,11 +41,8 @@ class SelectDateBottomSheet @Inject constructor(
         ResultSelectDate(LocalDate.now(), LocalTime.now())
 
     private val binding by lazy { BottomSheetSelectDateBinding.bind(parentView) }
-
     private val dateAdapter by lazy { DateSelectionAdapter(this, ::setSelectedDate) }
-
-    private val shearViewModel: BaseViewModel by activityViewModels()
-
+    private val viewModel by viewModel<SelectDateBottomSheetViewModel>()
     private var date: String = ""
 
     override fun onCreateView(
@@ -92,8 +88,8 @@ class SelectDateBottomSheet @Inject constructor(
     }
 
     private fun bindingView() = with(binding) {
-        shearViewModel.localDateSelect.value?.let { dateView.bindView(it) }
-        shearViewModel.localTimeSelect.value?.let { dateView.bindTime(it) }
+        viewModel.localDateSelect.value?.let { dateView.bindView(it) }
+        viewModel.localTimeSelect.value?.let { dateView.bindTime(it) }
         buttonDone.setOnClickListener {
             resultSelectDate = ResultSelectDate(
                 day = date.toLocalDate(),
@@ -115,26 +111,26 @@ class SelectDateBottomSheet @Inject constructor(
         snapHelper.attachToRecyclerView(binding.rvDates)
         rvDates.adapter = dateAdapter
 
-        shearViewModel.dateDetailsList.observe(this) { integerPagingData ->
+        viewModel.dateDetailsList.observe(this) { integerPagingData ->
             dateAdapter.submitData(lifecycle, integerPagingData)
         }
 
-        shearViewModel.selectedDate.observe(this) { selectedDate ->
+        viewModel.selectedDate.observe(this) { selectedDate ->
             val dateDetailsUI = selectedDate.toDate()?.toDateDetails()
             dateDetailsUI?.let {
                 setSelectedDate(it)
             }
         }
 
-        shearViewModel.resetDateList.observe(this) { timeInMillis ->
+        viewModel.resetDateList.observe(this) { timeInMillis ->
             if (timeInMillis != null) {
                 dateAdapter.submitData(lifecycle, PagingData.empty())
-                shearViewModel.setResetDate(null)
+                viewModel.setResetDate(null)
             }
         }
 
-        shearViewModel.localTimeSelect.observe(this) {
-            shearViewModel.setSelectTime(it)
+        viewModel.localTimeSelect.observe(this) {
+            viewModel.setSelectTime(it)
         }
     }
 

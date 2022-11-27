@@ -2,7 +2,6 @@ package com.kstudio.diarymylife.ui.create.select_mood
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
@@ -13,29 +12,26 @@ import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.databinding.FragmentSelectMoodBinding
 import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.create.CreateMoodViewModel
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.dpToPx
-import com.kstudio.diarymylife.utils.toStringFormat
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 
 class SelectMoodFragment :
     BaseFragment<FragmentSelectMoodBinding>(FragmentSelectMoodBinding::inflate), SelectDateHandle {
 
-    private val shareViewModel by sharedViewModel<CreateMoodViewModel>()
-
+    private val viewModel by viewModel<SelectMoodViewModel>()
     private val adapterMood by lazy { MoodAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleOnBackPress()
         setupViewPager()
-        observeLiveData()
         bindingView()
+        observe()
     }
 
     private fun setupViewPager() {
@@ -68,8 +64,17 @@ class SelectMoodFragment :
             )
             bottomSheetSelectTime.show(childFragmentManager, "bottom sheet date")
         }
-        buttonNext.setOnClickListener { navigateToNextScreen() }
+        buttonNext.setOnClickListener {
+            viewModel.createMood()
+        }
         back.setOnClickListener { onBackPressedOrFinish() }
+    }
+
+    private fun observe() {
+        viewModel.created.observe(viewLifecycleOwner) {
+            // todo model success icon and
+            activity?.finishAfterTransition()
+        }
     }
 
     override fun handleOnBackPress() {
@@ -84,30 +89,19 @@ class SelectMoodFragment :
 
     override fun onClickDoneBottomSheet(date: ResultSelectDate) {
         date.day?.let {
-            shareViewModel.setSelectDate(it)
-            shareViewModel.updateCurrentSelectedDate(it.toStringFormat(), true)
+            viewModel.setSelectDate(it)
         }
         date.time?.let {
-            shareViewModel.setSelectTime(it)
+            viewModel.setSelectTime(it)
         }
         binding.currentSelectTime.text = convertTime(date.getLocalDateTime())
     }
 
     override fun onCloseBottomSheet() {
-        val currentDate = shareViewModel.selectedDate.value
-        if (currentDate != null) {
-            shareViewModel.updateCurrentSelectedDate(currentDate, true)
-        }
-    }
-
-    private fun observeLiveData() {
-        shareViewModel.localDateSelect.observe(viewLifecycleOwner) {
-            Log.d("test", "ob ::" + it)
-        }
-
-        shareViewModel.selectedDate.observe(viewLifecycleOwner) {
-            Log.d("test", "ob frag ::" + it)
-        }
+//        val currentDate = shareViewModel.selectedDate.value
+//        if (currentDate != null) {
+//            shareViewModel.updateCurrentSelectedDate(currentDate, true)
+//        }
     }
 
     @SuppressLint("ResourceType")
@@ -119,7 +113,7 @@ class SelectMoodFragment :
         object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                shareViewModel.setupSelectMood(adapterMood.getMoodList()[position])
+                viewModel.setupSelectMood(adapterMood.getMoodList()[position])
             }
         }
 }
