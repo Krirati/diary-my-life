@@ -6,7 +6,7 @@ data class MoodRequest(
     val moodId: Long?,
     val title: String,
     val description: String,
-    val mood: String?,
+    val mood: Int?,
     val activity: ArrayList<ActivityDetail>? = arrayListOf(),
     val imageName: String?,
     val timestamp: LocalDateTime,

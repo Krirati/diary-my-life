@@ -51,7 +51,7 @@ class MoodRepository(private val moodDao: MoodDao) {
             moodId = mood.moodId,
             title = mood.title,
             description = mood.description,
-            mood = mood.mood.orEmpty(),
+            mood = mood.mood,
             activity = null,
             imageName = mood.imageName,
             timestamp = mood.timestamp,
@@ -67,6 +67,4 @@ class MoodRepository(private val moodDao: MoodDao) {
             )
         }
     }
-
-
 }

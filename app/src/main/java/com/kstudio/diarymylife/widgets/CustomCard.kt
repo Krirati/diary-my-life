@@ -22,7 +22,7 @@ class CustomCard @JvmOverloads constructor(
         cardIcon?.let { icon.setImageResource(it) }
     }
 
-    fun setValue(cardValue: Int) = with(binding){
+    fun setValue(cardValue: Long) = with(binding){
         value.text = cardValue.toString()
     }
 }

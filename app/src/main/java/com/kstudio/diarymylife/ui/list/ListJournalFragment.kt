@@ -39,6 +39,10 @@ class ListJournalFragment : BaseFragment<FragmentListJournalBinding>(
         viewModel.getMemberList().observe(viewLifecycleOwner) {
             setUpRecentMemory(it)
         }
+
+        viewModel.averageMood.observe(viewLifecycleOwner) {
+            binding.cardAverage.setValue(it)
+        }
     }
 
 
@@ -66,10 +70,9 @@ class ListJournalFragment : BaseFragment<FragmentListJournalBinding>(
 
     }
 
-    private fun bindingCard(mood: List<MoodItem>) = with(binding){
-        val moodTotal = mood.filter { mood -> mood.viewType != VIEW_ADD }.size
-        cardTotal.setValue(moodTotal)
-        cardAverage.setValue(moodTotal)
+    private fun bindingCard(mood: List<MoodItem>) = with(binding) {
+        val moodTotal = mood.filter { mood -> mood.viewType != VIEW_ADD }
+        cardTotal.setValue(moodTotal.size.toLong())
     }
 
     private fun navigateToCreateJournal() {

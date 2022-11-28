@@ -35,7 +35,7 @@ class MoodLandingViewModel(
                     moodId = it.mood.moodId,
                     title = it.mood.title,
                     desc = it.mood.description,
-                    mood = it.mood.mood ?: "",
+                    mood = it.mood.mood,
                     activity = it.activities.asActivityDetail(),
                     timestamp = it.mood.timestamp,
                     imageId = "",

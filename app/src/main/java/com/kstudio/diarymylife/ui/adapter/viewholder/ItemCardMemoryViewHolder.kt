@@ -3,20 +3,19 @@ package com.kstudio.diarymylife.ui.adapter.viewholder
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Point
-import android.util.Log
 import android.view.Display
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.kstudio.diarymylife.databinding.ItemCardEventBinding
 import com.kstudio.diarymylife.data.ActivityDetail
 import com.kstudio.diarymylife.data.MoodItem
+import com.kstudio.diarymylife.databinding.ItemCardEventBinding
 import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
 import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
 import com.kstudio.diarymylife.utils.convertTime
-import com.kstudio.diarymylife.utils.mapMoodStringToRes
+import com.kstudio.diarymylife.utils.mapMoodIntToRes
 import java.time.format.DateTimeFormatter
 
 class ItemCardMemoryViewHolder(
@@ -56,8 +55,7 @@ class ItemCardMemoryViewHolder(
         swipeState: SwipeState,
         onDelete: (Int) -> Unit,
     ) = with(binding) {
-        Log.d("test", "mood :: ${item.data?.mood}")
-        item.data?.mood?.let { journalMood.setImageResource(mapMoodStringToRes(it)) }
+        item.data?.mood?.let { journalMood.setImageResource(mapMoodIntToRes(it)) }
         journalTitle.text = item.data?.title
         journalDesc.text = item.data?.desc
         journalDesc.visibility = if (item.data?.desc.isNullOrEmpty()) View.GONE else View.VISIBLE
@@ -83,18 +81,6 @@ class ItemCardMemoryViewHolder(
             setOnTouchListener { view, event -> handlerOnTouchEvent(item, view, event, swipeState) }
         }
     }
-
-//    private fun mapActivity(activity: ArrayList<ActivityEvent>?): ArrayList<Pair<String, String>> {
-//        val pairList = arrayListOf<Pair<String, String>>()
-//        activity?.forEach {
-//            when (it) {
-//                0 -> pairList.add("it" to itemView.resources.getResourceEntryName(R.drawable.ic_pencil))
-//                1 -> pairList.add("it" to itemView.resources.getResourceEntryName(R.drawable.ic_home))
-//                2 -> pairList.add("it" to itemView.resources.getResourceEntryName(R.drawable.ic_pencil))
-//            }
-//        }
-//        return pairList
-//    }
 
     private fun onAnimate(view: View, dx: Float, duration: Long = 100) {
         if (previousEvent.first == MotionEvent.ACTION_DOWN && previousEvent.second == MotionEvent.ACTION_UP || dx < 0) return

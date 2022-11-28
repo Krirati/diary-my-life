@@ -1,5 +1,6 @@
 package com.kstudio.diarymylife.ui.list
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.data.MoodItem
@@ -15,16 +16,30 @@ class ListMoodViewModel constructor(
 ) : BaseViewModel() {
 
     private val _memberList: MutableLiveData<List<MoodItem>> = MutableLiveData()
-    fun getMemberList() = _memberList
+    fun getMemberList(): LiveData<List<MoodItem>> = _memberList
+
+    private val _averageMood: MutableLiveData<Long> = MutableLiveData(0)
+    val averageMood: LiveData<Long> = _averageMood
 
     fun fetchRecentJournal() {
         viewModelScope.launch {
             moodRepository.getMoodsAndActivities().collect {
                 _memberList.postValue(mapToUI(it))
+                setMoodAverage(it)
             }
         }
     }
 
+
+    private fun setMoodAverage(list: List<MoodWithActivity>) {
+        var moodScore = 0L
+        var average = 0L
+        list.forEach { moodScore += it.mood.mood ?: 0 }
+        if (list.isNotEmpty()) {
+            average = moodScore / list.size
+        }
+        _averageMood.postValue(average)
+    }
 
     fun deleteJournal(moodID: Long?) {
         if (moodID == null) return
@@ -49,14 +64,13 @@ class ListMoodViewModel constructor(
                         moodId = it.mood.moodId,
                         title = it.mood.title,
                         desc = it.mood.description,
-                        mood = it.mood.mood ?: "",
+                        mood = it.mood.mood,
                         activity = it.activities.asActivityDetail(),
                         timestamp = it.mood.timestamp,
                         imageId = "",
                     )
                 )
             }
-
         }
     }
 }

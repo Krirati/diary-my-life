@@ -49,7 +49,7 @@ class SelectMoodViewModel(
             timestamp = time.getLocalDateTime(),
             createTime = LocalDateTime.now(),
             imageName = _selectsMood.value?.second.toString(),
-            mood = _selectsMood.value?.first.toString(),
+            mood = _selectsMood.value?.first,
             activity = arrayListOf()
         )
         viewModelScope.launch {

@@ -16,7 +16,7 @@ data class MoodUI(
     val moodId: Long,
     val title: String,
     val desc: String,
-    val mood: String,
+    val mood: Int?,
     val activity: List<ActivityDetail>?,
     val timestamp: LocalDateTime,
     val imageId: String,

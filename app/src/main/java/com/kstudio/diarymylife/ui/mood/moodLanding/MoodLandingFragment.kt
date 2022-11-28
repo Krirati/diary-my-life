@@ -14,7 +14,7 @@ import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.mood.MoodDetailViewModel
 import com.kstudio.diarymylife.utils.Keys.Companion.MOOD_ID
-import com.kstudio.diarymylife.utils.mapMoodStringToRes
+import com.kstudio.diarymylife.utils.mapMoodIntToRes
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoodLandingFragment :
@@ -44,7 +44,7 @@ class MoodLandingFragment :
     }
 
     override fun bindingView() = with(binding) {
-        back.setOnClickListener { activity?.onBackPressed() }
+        back.setOnClickListener { activity?.onBackPressedDispatcher?.onBackPressed() }
         buttonEdit.setOnClickListener { navigateToEditJournal() }
     }
 
@@ -61,7 +61,7 @@ class MoodLandingFragment :
         val mood = journal.data
         binding.run {
             date.bindView(mood?.timestamp)
-            mood?.mood?.let { imageMood.setImageResource(mapMoodStringToRes(it)) }
+            mood?.mood?.let { imageMood.setImageResource(mapMoodIntToRes(it)) }
             journalTitle.text = mood?.title
             journalDesc.text = mood?.desc
             activityTitle.visibility= View.VISIBLE
