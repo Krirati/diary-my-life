@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/secondary_grey10">
+        android:background="@color/background">
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
@@ -101,7 +101,7 @@
             android:id="@+id/button_next"
             style="@style/ButtonBlackCenter"
             android:layout_marginBottom="@dimen/dp_32"
-            android:text="Continue"
+            android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

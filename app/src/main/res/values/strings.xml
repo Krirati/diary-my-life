@@ -17,4 +17,7 @@
     <string name="edit_mood">Edit Mood</string>
     <string name="save">Save</string>
     <string name="create_mood">Create Mood</string>
+    <string name="lists">Lists</string>
+    <string name="what_have_you_been_up_to">What have you been up to?</string>
+    <string name="chart">Chart</string>
 </resources>
