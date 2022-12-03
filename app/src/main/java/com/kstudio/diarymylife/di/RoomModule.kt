@@ -7,4 +7,5 @@ import org.koin.dsl.module
 val roomModule = module {
     single { MoodDatabase.getDatabase(androidContext()).moodDao() }
     single { MoodDatabase.getDatabase(androidContext()).activityEventDao() }
+    single { MoodDatabase.getDatabase(androidContext()).profileDao() }
 }

@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 
 @Entity(tableName = "user_mood")
 data class Mood(
-    @PrimaryKey(autoGenerate = true ) val moodId: Long = 0,
+    @PrimaryKey(autoGenerate = true) val moodId: Long = 0,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "mood") val mood: Int?,
