@@ -45,13 +45,21 @@ class SelectDateBottomSheet @Inject constructor(
     private val viewModel by viewModel<SelectDateBottomSheetViewModel>()
     private var date: String = ""
 
+    companion object {
+        fun newInstance(
+            getContext: Context,
+            onClickDone: (ResultSelectDate) -> Unit,
+            onClose: () -> Unit?
+        ) = SelectDateBottomSheet(getContext, onClickDone, onClose)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View = binding.root
 
-    override fun getTheme(): Int = R.style.BottomSheetDialogTheme
+    override fun getTheme(): Int = R.style.BaseBottomSheetDialog
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = object :

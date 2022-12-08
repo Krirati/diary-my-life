@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary_honestwhite">#ffffff</color>
-    <color name="primary_trustednavy">#002d63</color>
     <color name="secondary_grey100">#5b6a83</color>
     <color name="secondary_grey70">#7d8999</color>
     <color name="secondary_grey50">#b0bccb</color>
@@ -10,11 +9,6 @@
     <color name="hint">#9eafc2</color>
     <color name="transparent">#00000000</color>
     <color name="default_dot">#b0bccb</color>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#2575f2</color>
@@ -25,17 +19,13 @@
     <color name="grey">#CDD3DC</color>
     <color name="background_card_action">#F1F1F1</color>
     <color name="background">@color/white</color>
-    <color name="royal_blue">#246EE9</color>
-    <color name="royal_blue_dark">#0D60EC</color>
-    <color name="royal_blue_drop">#D6E5FF</color>
     <color name="dark_brown">#272727</color>
     <color name="bg_bottom_grey">#E6E9E6</color>
     <color name="brown_text">#4A4A53</color>
     <color name="red_700">#A53834</color>
     <color name="red_500">#C06556</color>
     <color name="red_200">#D68A7B</color>
-    <color name="bittersweet">#FA7D79</color>
-    
+
     <color name="amber_600">#FFB300</color>
     <color name="amber_700">#FFA000</color>
     <color name="amber_800">#FF8F00</color>

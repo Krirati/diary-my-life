@@ -112,3 +112,5 @@ lint/tmp/
 # Android Profiling
 *.hprof
 
+app/schemas
+

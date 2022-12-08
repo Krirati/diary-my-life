@@ -235,7 +235,7 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/button_edit"
-            style="@style/ButtonRecBlackCenter"
+            style="@style/Button.Space.Long"
             android:layout_marginEnd="@dimen/dp_32"
             android:layout_marginBottom="@dimen/dp_32"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -243,7 +243,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_save"
-            style="@style/ButtonBlackCenter"
+            style="@style/Button.Space.Long"
             android:layout_marginBottom="@dimen/dp_32"
             android:text="@string/save"
             android:enabled="false"

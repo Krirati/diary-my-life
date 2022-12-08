@@ -23,11 +23,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         super.onViewCreated(view, savedInstanceState)
         observer()
         bindingView()
+        homeViewModel.performWelcomeText()
     }
 
     private fun observer() {
         homeViewModel.getMemberList().observe(viewLifecycleOwner) {
             setUpRecentMemory(it)
+        }
+        homeViewModel.welcomeText.observe(viewLifecycleOwner) {
+            binding.titleWelcome.text = it
         }
     }
 

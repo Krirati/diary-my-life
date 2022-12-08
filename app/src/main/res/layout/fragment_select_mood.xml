@@ -99,8 +99,10 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_next"
-            style="@style/ButtonBlackCenter"
+            style="@style/Button.Space.Long"
+            android:layout_width="match_parent"
             android:layout_marginBottom="@dimen/dp_32"
+            android:layout_marginHorizontal="@dimen/dp_16"
             android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

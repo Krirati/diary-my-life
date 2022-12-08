@@ -10,25 +10,6 @@
         <item name="android:letterSpacing">0.04</item>
     </style>
 
-    <style name="H1WhiteRight">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">end</item>
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/primary_honestwhite</item>
-    </style>
-
-    <style name="H1WhiteLeft">
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/primary_honestwhite</item>
-    </style>
-
     <style name="H1WhiteCenter">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -38,79 +19,6 @@
         <item name="android:textSize">24sp</item>
         <item name="android:letterSpacing">0.02</item>
         <item name="android:textColor">@color/primary_honestwhite</item>
-    </style>
-
-    <style name="H1RoyalBlueRight">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">end</item>
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/royal_blue_dark</item>
-    </style>
-
-    <style name="H1RoyalBlueLeft">
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/royal_blue_dark</item>
-    </style>
-
-    <style name="H1RoyalBlueCenter">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_horizontal</item>
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/royal_blue_dark</item>
-    </style>
-
-    <style name="H1NavyRight">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">end</item>
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/primary_trustednavy</item>
-    </style>
-
-    <style name="H1NavyLeft">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/primary_trustednavy</item>
-    </style>
-
-    <style name="H1NavyCenter">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_horizontal</item>
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/primary_trustednavy</item>
-    </style>
-
-    <style name="H1BlackRight">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">end</item>
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="H1BlackLeft">
@@ -134,27 +42,6 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="H2BlackRight">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">end</item>
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="H2BlackLeft">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
-
     <style name="H2BlackCenter">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -164,74 +51,6 @@
         <item name="android:textSize">20sp</item>
         <item name="android:letterSpacing">0.02</item>
         <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="H2NavyRight">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">end</item>
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:lineSpacingExtra">6sp</item>
-        <item name="android:textColor">@color/primary_trustednavy</item>
-    </style>
-
-    <style name="H2BlackLeftNormal">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/raleway_light</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="H2BlackCenterNormal">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_horizontal</item>
-        <item name="android:fontFamily">@font/raleway_light</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="H2NavyRightNormal">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">end</item>
-        <item name="android:fontFamily">@font/raleway_light</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:lineSpacingExtra">6sp</item>
-        <item name="android:textColor">@color/primary_trustednavy</item>
-    </style>
-
-    <style name="H2NavyLeft">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:lineSpacingExtra">6sp</item>
-        <item name="android:textColor">@color/royal_blue_dark</item>
-    </style>
-
-    <style name="H2NavyCenter">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_horizontal</item>
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:lineSpacingExtra">6sp</item>
-        <item name="android:textColor">@color/primary_trustednavy</item>
     </style>
 
     <style name="SubtitleGreyRight">
@@ -340,29 +159,26 @@
         <item name="bottomSheetStyle">@style/BottomSheet</item>
     </style>
 
-    <style name="BottomSheetDialogTheme" parent="BaseBottomSheetDialog" />
-    
-    <style name="ButtonBlackCenter">
+
+    <style name="Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:background">@drawable/bg_button_selector</item>
+    </style>
+
+    <style name="Button.Space.Long" parent="Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingVertical">@dimen/dp_16</item>
         <item name="android:paddingHorizontal">@dimen/dp_64</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/bg_button_selector</item>
     </style>
 
-    <style name="ButtonRecBlackCenter">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="ButtonRecBlackCenter" parent="Button">
         <item name="android:paddingVertical">@dimen/dp_16</item>
         <item name="android:paddingHorizontal">@dimen/dp_16</item>
-        <item name="android:textColor">@color/white</item>
         <item name="android:src">@drawable/ic_edit</item>
-        <item name="android:background">@drawable/bg_round_black</item>
-    </style>
-
-    <style name="NumberPicker" parent="H2BlackCenter">
-
     </style>
 
 </resources>

@@ -25,6 +25,13 @@ class SelectMoodFragment :
 
     private val viewModel by viewModel<SelectMoodViewModel>()
     private val adapterMood by lazy { MoodAdapter() }
+    private val bottomSheetSelectTime by lazy {
+        SelectDateBottomSheet.newInstance(
+            requireContext(),
+            ::onClickDoneBottomSheet,
+            ::onCloseBottomSheet,
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,15 +61,10 @@ class SelectMoodFragment :
     }
 
     override fun bindingView() = with(binding) {
-        howYouFeel.text = "Hello Nine. How are you feeling?"
+        howYouFeel.text = getString(R.string.how_are_you_feel)
         currentSelectTime.text = convertTime(LocalDateTime.now(), DATE_TIME_FORMAT_APP)
         currentSelectTime.setOnClickListener {
-            val bottomSheetSelectTime = SelectDateBottomSheet(
-                requireContext(),
-                ::onClickDoneBottomSheet,
-                ::onCloseBottomSheet,
-            )
-            bottomSheetSelectTime.show(childFragmentManager, "bottom sheet date")
+            bottomSheetSelectTime.show(childFragmentManager, bottomSheetSelectTime.tag)
         }
         buttonNext.setOnClickListener {
             viewModel.createMood()
