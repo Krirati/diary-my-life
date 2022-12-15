@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <stroke
+                android:color="@color/secondary_grey20"
+                android:dashWidth="@dimen/dp_8"
+                android:width="2dp"
+                android:dashGap="4dp" />
+            <corners android:radius="@dimen/card_radius" />
+            <solid android:color="@color/white" />
+        </shape>
+    </item>
+</layer-list>
