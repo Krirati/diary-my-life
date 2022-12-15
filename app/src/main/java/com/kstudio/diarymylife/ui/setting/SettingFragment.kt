@@ -24,11 +24,11 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
                 setIcon(R.drawable.ic_notification)
             }
             settingPrivacy.apply {
-                setTitle("Privacy and security")
+                setTitle("Term of service")
                 setIcon(R.drawable.ic_shield)
             }
             settingCredit.apply {
-                setTitle("Credit")
+                setTitle("License summary")
                 setIcon(R.drawable.ic_credit_card)
             }
             settingClearData.apply {

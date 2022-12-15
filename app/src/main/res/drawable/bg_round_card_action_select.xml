@@ -2,8 +2,9 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
+            <stroke android:width="2dp" android:color="@color/brown_text"/>
             <corners android:radius="@dimen/card_radius" />
-            <solid android:color="@color/amber_800" />
+            <solid android:color="@color/secondary_grey10" />
         </shape>
     </item>
 </layer-list>
