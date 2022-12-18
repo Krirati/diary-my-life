@@ -4,10 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.addCallback
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.databinding.FragmentHomeBinding
 import com.kstudio.diarymylife.data.MoodItem
+import com.kstudio.diarymylife.databinding.FragmentHomeBinding
 import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
@@ -24,6 +25,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         observer()
         bindingView()
         homeViewModel.performWelcomeText()
+        handleOnBackPress()
     }
 
     private fun observer() {
@@ -36,6 +38,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun bindingView() = with(binding) {
+        checkInButton.setOnClickListener {
+            navigateToActivity(
+                CreateJournalActivity::class.java,
+                transitionIn = R.anim.slide_in_bottom,
+                transitionOut = R.anim.slide_out_top
+            )
+        }
         viewAllButton.setOnClickListener { homeViewModel.selectCurrentPage(Screen.LIST) }
     }
 
@@ -72,6 +81,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     override fun handleOnBackPress() {
-        TODO("Not yet implemented")
+        activity?.onBackPressedDispatcher?.addCallback {
+            minimizeApp()
+        }
     }
+
+    private fun minimizeApp() {
+        val startMain = Intent(Intent.ACTION_MAIN)
+        startMain.addCategory(Intent.CATEGORY_HOME)
+        startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(startMain)
+    }
+
 }

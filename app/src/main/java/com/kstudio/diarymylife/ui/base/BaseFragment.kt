@@ -35,12 +35,14 @@ abstract class BaseFragment<VB : ViewBinding>(
 
     protected fun <T : Activity> navigateToActivity(
         activity: Class<T>?,
-        journalId: Long?,
+        journalId: Long? = null,
+        transitionIn: Int = R.anim.slide_in_right,
+        transitionOut: Int = R.anim.slide_out_left
     ) {
         val intent = Intent(context, activity)
         intent.putExtra(MOOD_ID, journalId)
         startActivity(intent)
-        requireActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+        requireActivity().overridePendingTransition(transitionIn, transitionOut)
     }
 
     open fun onBackPressedOrFinish() {

@@ -72,14 +72,14 @@
                         android:layout_marginBottom="@dimen/dp_16"
                         android:gravity="end"
                         android:text="@string/check_in_daily_n_how_you_feel"
-                        app:layout_constraintBottom_toTopOf="@+id/appCompatButton"
+                        app:layout_constraintBottom_toTopOf="@+id/checkInButton"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1"
                         app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/appCompatButton"
+                        android:id="@+id/checkInButton"
                         style="@style/Button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                     style="@style/H2BlackCenter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Recent Mood"
+                    android:text="@string/recent_mood"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
