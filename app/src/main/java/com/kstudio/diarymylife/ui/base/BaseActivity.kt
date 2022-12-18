@@ -9,7 +9,7 @@ open class BaseActivity : AppCompatActivity() {
     fun navigateToActivity(activity: Class<*>?) {
         val intent = Intent(this, activity)
         startActivity(intent)
-        overridePendingTransition(R.anim.slide_in_bottom, R.anim.not_slide)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 
     override fun finish() {
