@@ -26,4 +26,5 @@
     <string name="done">Done</string>
     <string name="how_are_you_feel">Hello {Name}. How are you feeling?</string>
     <string name="recent_mood">Recent Mood</string>
+    <string name="notification">Notification</string>
 </resources>

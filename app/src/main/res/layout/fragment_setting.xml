@@ -125,8 +125,8 @@
                     style="@style/SubtitleBlackLeft"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="version 1.0"
                     android:layout_marginTop="@dimen/dp_32"
+                    android:text="version 1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
