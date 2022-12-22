@@ -11,7 +11,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/month"
-            style="@style/SubtitleBlackLeftBold"
+            style="@style/TextAppearance.DiaryMyLife.H3.Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -21,7 +21,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/day"
-            style="@style/SubtitleBlackLeft"
+            style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_8"
@@ -32,7 +32,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/at"
-            style="@style/SubtitleBlackLeft"
+            style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_8"
@@ -43,7 +43,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/time"
-            style="@style/SubtitleBlackLeft"
+            style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_8"

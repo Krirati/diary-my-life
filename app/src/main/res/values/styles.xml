@@ -10,10 +10,13 @@
         <item name="android:letterSpacing">0.04</item>
     </style>
 
-    <style name="H1WhiteCenter">
+    <style name="TextAppearance.DiaryMyLife" parent="">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_horizontal</item>
+        <item name="android:fontFamily">@font/raleway_light</item>
+    </style>
+
+    <style name="TextAppearance.DiaryMyLife.H1" parent="TextAppearance.DiaryMyLife">
         <item name="android:fontFamily">@font/raleway_bold</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">24sp</item>
@@ -21,9 +24,7 @@
         <item name="android:textColor">@color/primary_honestwhite</item>
     </style>
 
-    <style name="H1BlackLeft">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="TextAppearance.DiaryMyLife.H1.Black" parent="TextAppearance.DiaryMyLife">
         <item name="android:fontFamily">@font/raleway_bold</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">24sp</item>
@@ -31,21 +32,7 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="H1BlackCenter">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_horizontal</item>
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">24sp</item>
-        <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="H2BlackCenter">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_horizontal</item>
+    <style name="TextAppearance.DiaryMyLife.H2.Black" parent="TextAppearance.DiaryMyLife">
         <item name="android:fontFamily">@font/raleway_bold</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">20sp</item>
@@ -53,79 +40,23 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="SubtitleGreyRight">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">end</item>
-        <item name="android:fontFamily">@font/raleway_light</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:letterSpacing">0.03</item>
-        <item name="android:lineSpacingExtra">6sp</item>
-        <item name="android:textColor">#728092</item>
-    </style>
-
-    <style name="SubtitleGreyLeft">
-        <item name="android:fontFamily">@font/raleway_light</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:letterSpacing">0.04</item>
-        <item name="android:textColor">#728092</item>
-    </style>
-
-    <style name="SubtitleGreyCenter">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_horizontal</item>
-        <item name="android:fontFamily">@font/raleway_light</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:letterSpacing">0.03</item>
-        <item name="android:lineSpacingExtra">6sp</item>
-        <item name="android:textColor">#728092</item>
-    </style>
-
-    <style name="SubtitleBlackRight">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">end</item>
-        <item name="android:fontFamily">@font/raleway_light</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:letterSpacing">0.03</item>
-        <item name="android:lineSpacingExtra">6sp</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="SubtitleBlackLeft">
-        <item name="android:fontFamily">@font/raleway_light</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:letterSpacing">0.04</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="SubtitleBlackLeftBold">
+    <style name="TextAppearance.DiaryMyLife.H3.Black" parent="TextAppearance.DiaryMyLife">
         <item name="android:fontFamily">@font/raleway_bold</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:letterSpacing">0.04</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.02</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="SubtitleGreyBold">
-        <item name="android:fontFamily">@font/raleway_bold</item>
-        <item name="android:textStyle">bold</item>
+    <style name="TextAppearance.DiaryMyLife.Subtitle.Grey" parent="TextAppearance.DiaryMyLife">
+        <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:letterSpacing">0.04</item>
-        <item name="android:textColor">@color/secondary_grey70</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:textColor">#728092</item>
     </style>
 
-    <style name="SubtitleBlackCenter">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_horizontal</item>
-        <item name="android:fontFamily">@font/raleway_light</item>
+    <style name="TextAppearance.DiaryMyLife.Subtitle.Black" parent="TextAppearance.DiaryMyLife">
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>
         <item name="android:letterSpacing">0.03</item>

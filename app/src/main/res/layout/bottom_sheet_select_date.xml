@@ -8,7 +8,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appCompatTextView"
-        style="@style/H2BlackCenter"
+        style="@style/TextAppearance.DiaryMyLife.H2.Black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/select_date"

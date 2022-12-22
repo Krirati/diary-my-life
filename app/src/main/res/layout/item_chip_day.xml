@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dp_6"
         android:background="@drawable/bg_round_card_action"
-        android:paddingVertical="@dimen/dp_16"
         android:paddingHorizontal="@dimen/dp_12"
+        android:paddingVertical="@dimen/dp_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,20 +20,20 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/day"
-            style="@style/SubtitleBlackRight"
+            style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Wed"
             android:autoSizeMaxTextSize="14sp"
             android:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Wed" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/day_number"
-            style="@style/H2BlackCenter"
+            style="@style/TextAppearance.DiaryMyLife.H2.Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

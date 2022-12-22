@@ -49,7 +49,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/title"
-                    style="@style/H1BlackLeft"
+                    style="@style/TextAppearance.DiaryMyLife.H1.Black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -110,7 +110,7 @@
                         tools:visibility="visible">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            style="@style/SubtitleGreyBold"
+                            style="@style/TextAppearance.DiaryMyLife.Subtitle.Grey"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -143,7 +143,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/journal_title_head"
-                    style="@style/SubtitleGreyBold"
+                    style="@style/TextAppearance.DiaryMyLife.Subtitle.Grey"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_16"
@@ -161,7 +161,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/journal_title"
-                        style="@style/H1BlackLeft"
+                        style="@style/TextAppearance.DiaryMyLife.H1.Black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toStartOf="parent"
@@ -188,7 +188,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/journal_desc_head"
-                    style="@style/SubtitleGreyBold"
+                    style="@style/TextAppearance.DiaryMyLife.Subtitle.Grey"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_24"
@@ -206,7 +206,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/journal_desc"
-                        style="@style/H1BlackLeft"
+                        style="@style/TextAppearance.DiaryMyLife.H1.Black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintStart_toStartOf="parent"

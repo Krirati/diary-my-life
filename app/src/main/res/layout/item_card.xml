@@ -36,7 +36,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title"
-                style="@style/SubtitleGreyRight"
+                style="@style/TextAppearance.DiaryMyLife.Subtitle.Grey"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/value"
-            style="@style/H1BlackCenter"
+            style="@style/TextAppearance.DiaryMyLife.H1.Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

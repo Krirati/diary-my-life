@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -18,10 +19,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/content_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:paddingHorizontal="@dimen/dp_16"
                 android:paddingVertical="@dimen/dp_16">
 
@@ -36,7 +38,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/title"
-                    style="@style/H1BlackCenter"
+                    style="@style/TextAppearance.DiaryMyLife.H1.Black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -46,9 +48,85 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/back" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/turnOnOffNotification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_32"
+                    android:elevation="@dimen/dp_8"
+                    app:cardElevation="0dp"
+                    app:layout_constraintTop_toBottomOf="@id/title">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/card_edge"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/dp_8"
+                        android:paddingVertical="@dimen/dp_16">
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchEnableNotification"
+                            style="@style/TextAppearance.DiaryMyLife.H3.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="@dimen/dp_8"
+                            android:checked="true"
+                            android:text="Enable notification"
+                            android:thumb="@drawable/thumb_selector"
+                            app:track="@drawable/track_selector" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/subtitleNotification"
+                            android:layout_width="wrap_content"
+                            style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
+                            android:layout_height="wrap_content"
+                            android:text="Check-in reminders" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/turnOn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_32"
+                    android:elevation="@dimen/dp_8"
+                    app:cardElevation="0dp"
+                    app:layout_constraintTop_toBottomOf="@id/title">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_qb_selector"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/dp_8"
+                        android:paddingVertical="@dimen/dp_16">
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/switchEnable"
+                            style="@style/TextAppearance.DiaryMyLife.H3.Black"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginVertical="@dimen/dp_8"
+                            android:checked="true"
+                            android:text="Enable notification"
+                            android:thumb="@drawable/thumb_selector"
+                            app:track="@drawable/track_selector" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/subtitle"
+                            android:layout_width="wrap_content"
+                            style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
+                            android:layout_height="wrap_content"
+                            android:text="Check-in reminders" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.cardview.widget.CardView>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.core.widget.NestedScrollView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

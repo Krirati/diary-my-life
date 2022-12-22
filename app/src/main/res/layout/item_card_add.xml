@@ -38,7 +38,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/add"
-                style="@style/SubtitleGreyBold"
+                style="@style/TextAppearance.DiaryMyLife.Subtitle.Grey"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_8"

@@ -114,7 +114,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/journal_title"
-                            style="@style/H2BlackCenter"
+                            style="@style/TextAppearance.DiaryMyLife.H2.Black"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +129,7 @@
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/journal_desc"
-                                style="@style/SubtitleBlackLeft"
+                                style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:duplicateParentState="true"
@@ -160,21 +160,21 @@
                                 android:id="@+id/journal_month"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                style="@style/SubtitleBlackLeft"
+                                style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
                                 tools:text="October, 30"/>
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/journal_day"
                                 android:layout_marginStart="@dimen/dp_8"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                style="@style/SubtitleBlackLeft"
+                                style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
                                 tools:text="Sunday"/>
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/journal_time"
                                 android:layout_marginStart="@dimen/dp_8"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                style="@style/SubtitleBlackLeft"
+                                style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
                                 tools:text="Sunday"/>
                         </LinearLayout>
                     </LinearLayout>

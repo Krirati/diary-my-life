@@ -11,7 +11,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
-            style="@style/H1BlackLeft"
+            style="@style/TextAppearance.DiaryMyLife.H1.Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"

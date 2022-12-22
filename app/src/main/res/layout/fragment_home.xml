@@ -17,7 +17,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title_welcome"
-                style="@style/H1BlackLeft"
+                style="@style/TextAppearance.DiaryMyLife.H1.Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -30,7 +30,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title_username"
-                style="@style/H1BlackLeft"
+                style="@style/TextAppearance.DiaryMyLife.H2.Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title_welcome"
@@ -66,7 +66,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/appCompatTextView2"
-                        style="@style/H2BlackCenter"
+                        style="@style/TextAppearance.DiaryMyLife.H2.Black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/dp_16"
@@ -118,7 +118,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/title_recent_memory"
-                    style="@style/H2BlackCenter"
+                    style="@style/TextAppearance.DiaryMyLife.H2.Black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/recent_mood"
