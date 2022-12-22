@@ -51,7 +51,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/bg_round_stock_dark"
+                    android:background="@drawable/bg_round_stroke_dark"
                     android:orientation="horizontal"
                     android:padding="@dimen/dp_16">
 
