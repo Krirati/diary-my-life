@@ -64,7 +64,7 @@
                     android:id="@+id/journal_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_qb_selector"
+                    android:background="@drawable/bg_round_card_action"
                     android:minWidth="310dp"
                     android:paddingVertical="@dimen/dp_16"
                     android:paddingHorizontal="@dimen/dp_16"
