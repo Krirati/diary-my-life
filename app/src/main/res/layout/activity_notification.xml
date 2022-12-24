@@ -47,86 +47,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/back" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/turnOnOffNotification"
+                <com.kstudio.diarymylife.widgets.custom_switch.CustomSwitch
+                    android:id="@+id/switchEnableNotification"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_32"
-                    android:elevation="@dimen/dp_8"
-                    app:cardElevation="0dp"
-                    app:layout_constraintTop_toBottomOf="@id/title">
+                    android:elevation="0dp"
+                    app:custom_switch_state="false"
+                    app:custom_switch_subtitle="Get push notification on your device"
+                    app:custom_switch_title="Enable notification" />
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/bg_round_stroke_dark"
-                        android:orientation="vertical"
-                        android:paddingHorizontal="@dimen/dp_16"
-                        android:paddingVertical="@dimen/dp_24">
-
-                        <androidx.appcompat.widget.SwitchCompat
-                            android:id="@+id/switchEnableNotification"
-                            style="@style/TextAppearance.DiaryMyLife.H3.Black"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:checked="true"
-                            android:text="Enable notification"
-                            android:thumb="@drawable/thumb_selector"
-                            app:track="@drawable/track_selector" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/subtitleNotification"
-                            style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_8"
-                            android:text="Get push notification on your device" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/turnOn"
+                <com.kstudio.diarymylife.widgets.custom_switch.CustomSwitch
+                    android:id="@+id/switchDailyTest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_16"
-                    android:elevation="@dimen/dp_8"
-                    app:cardElevation="0dp"
-                    app:layout_constraintTop_toBottomOf="@id/title">
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/bg_round_stroke_selector"
-                        android:orientation="vertical"
-                        android:paddingHorizontal="@dimen/dp_16"
-                        android:paddingVertical="@dimen/dp_24">
-
-                        <androidx.appcompat.widget.SwitchCompat
-                            android:id="@+id/switchEnable"
-                            style="@style/TextAppearance.DiaryMyLife.H3.Black"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginVertical="@dimen/dp_8"
-                            android:checked="false"
-                            android:enabled="false"
-                            android:text="Daily reminder"
-                            android:textColor="@drawable/text_dark_selector"
-                            android:thumb="@drawable/thumb_selector"
-                            app:track="@drawable/track_selector" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/subtitle"
-                            style="@style/TextAppearance.DiaryMyLife.Subtitle.Black.Bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_8"
-                            android:enabled="false"
-                            android:text="10:00 PM"
-                            android:textColor="@drawable/text_dark_selector" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                </androidx.cardview.widget.CardView>
+                    android:elevation="0dp"
+                    app:custom_switch_state="true"
+                    app:custom_switch_subtitle="ok"
+                    app:custom_switch_checked="true"
+                    app:custom_switch_enabled="true"
+                    app:custom_switch_title="Daily reminder" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

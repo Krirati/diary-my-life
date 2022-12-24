@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomSwitch">
+        <attr name="custom_switch_title" format="string" />
+        <attr name="custom_switch_subtitle" format="string" />
+        <attr name="custom_switch_enabled" format="boolean" />
+        <attr name="custom_switch_checked" format="boolean" />
+        <attr name="custom_switch_state" format="boolean" />
+        <attr name="android:enabled"/>
+    </declare-styleable>
+</resources>
