@@ -37,12 +37,12 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title"
                 style="@style/TextAppearance.DiaryMyLife.Subtitle.Grey"
-                android:textStyle="bold"
-                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/app_name"
                 android:layout_gravity="center_vertical"
+                android:text="@string/app_name"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 tools:text="Day" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

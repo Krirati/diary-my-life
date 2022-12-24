@@ -9,34 +9,36 @@
         android:id="@+id/activity_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_16"
         android:background="@drawable/bg_round_card_action_selector"
         android:clickable="true"
         android:orientation="vertical"
         android:paddingHorizontal="@dimen/dp_16"
-        android:paddingVertical="@dimen/dp_16">
+        android:paddingVertical="@dimen/dp_24">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/card_image"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="@dimen/dp_32"
+            android:layout_height="@dimen/dp_32"
             android:layout_gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:tint="@drawable/text_dark_selector"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:tint="@drawable/text_dark_selector"
             tools:src="@drawable/ic_trash" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/card_name"
             style="@style/TextAppearance.DiaryMyLife.H3.Black"
-            android:textColor="@drawable/text_dark_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dp_8"
-            app:layout_constraintEnd_toEndOf="@+id/card_image"
-            app:layout_constraintStart_toStartOf="@+id/card_image"
-            app:layout_constraintTop_toBottomOf="@+id/card_image"
+            android:layout_marginHorizontal="@dimen/dp_16"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@drawable/text_dark_selector"
+            app:layout_constraintBottom_toBottomOf="@id/card_image"
+            app:layout_constraintStart_toEndOf="@id/card_image"
+            app:layout_constraintTop_toTopOf="@id/card_image"
             tools:text="Activity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

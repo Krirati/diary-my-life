@@ -42,8 +42,8 @@
     <item name="trailing" format="float" type="dimen">0.90</item>
 
     <!-- CardView Radius -->
-    <dimen name="card_radius_macro">10dp</dimen>
-    <dimen name="card_radius">16dp</dimen>
+    <dimen name="card_radius">24dp</dimen>
+    <dimen name="card_radius_macro">16dp</dimen>
     <dimen name="card_radius_minimum">5dp</dimen>
     <dimen name="card_radius_micro">3dp</dimen>
 

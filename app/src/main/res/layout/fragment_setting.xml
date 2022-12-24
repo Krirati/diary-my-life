@@ -14,10 +14,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/content_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
                 android:paddingHorizontal="@dimen/dp_16">
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -32,93 +33,46 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout"
+                <com.kstudio.diarymylife.widgets.CardSetting
+                    android:id="@+id/setting_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_32"
+                    app:layout_constraintEnd_toStartOf="@+id/setting_noti"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <com.kstudio.diarymylife.widgets.CardSetting
+                    android:id="@+id/setting_noti"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title">
+                    app:layout_constraintStart_toEndOf="@+id/setting_username"
+                    app:layout_constraintTop_toTopOf="@+id/setting_username" />
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/setting_section_one"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:weightSum="2"
-                        app:layout_constraintTop_toTopOf="parent">
+                <com.kstudio.diarymylife.widgets.CardSetting
+                    android:id="@+id/setting_privacy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@+id/setting_credit"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                        <com.kstudio.diarymylife.widgets.CardSetting
-                            android:id="@+id/setting_username"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:layout_constraintEnd_toStartOf="@+id/setting_noti"
-                            app:layout_constraintStart_toStartOf="parent" />
+                <com.kstudio.diarymylife.widgets.CardSetting
+                    android:id="@+id/setting_credit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/setting_privacy"
+                    app:layout_constraintTop_toTopOf="@+id/setting_privacy" />
 
-                        <com.kstudio.diarymylife.widgets.CardSetting
-                            android:id="@+id/setting_noti"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dp_16"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/setting_username"
-                            app:layout_constraintTop_toTopOf="@+id/setting_username" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+                <com.kstudio.diarymylife.widgets.CardSetting
+                    android:id="@+id/setting_clear_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toStartOf="@+id/setting_credit"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/setting_section_two"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_16"
-                        android:gravity="center_horizontal"
-                        android:weightSum="2"
-                        app:layout_constraintTop_toBottomOf="@+id/setting_section_one">
-
-                        <com.kstudio.diarymylife.widgets.CardSetting
-                            android:id="@+id/setting_privacy"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:layout_constraintEnd_toStartOf="@+id/setting_credit"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                        <com.kstudio.diarymylife.widgets.CardSetting
-                            android:id="@+id/setting_credit"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dp_16"
-                            android:layout_weight="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/setting_privacy"
-                            app:layout_constraintTop_toTopOf="@+id/setting_privacy" />
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/setting_section_three"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_16"
-                        android:gravity="center_horizontal"
-                        android:weightSum="2"
-                        app:layout_constraintTop_toBottomOf="@+id/setting_section_two">
-
-                        <com.kstudio.diarymylife.widgets.CardSetting
-                            android:id="@+id/setting_clear_data"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:layout_constraintEnd_toStartOf="@+id/setting_credit"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appVersion"
@@ -130,7 +84,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.core.widget.NestedScrollView>
 
