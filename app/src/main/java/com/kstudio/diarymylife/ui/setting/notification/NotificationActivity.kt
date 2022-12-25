@@ -59,8 +59,8 @@ class NotificationActivity : BaseActivity(), SelectDateHandle {
             this@NotificationActivity,
             ::onClickDoneBottomSheet,
             ::onCloseBottomSheet,
+            SelectDateBottomSheet.BottomSheetType.DISPLAY_TIME
         )
-        bottomSheetSelectTime.setDisplayType(SelectDateBottomSheet.BottomSheetType.DISPLAY_TIME)
         bottomSheetSelectTime.show(
             this@NotificationActivity.supportFragmentManager,
             bottomSheetSelectTime.tag

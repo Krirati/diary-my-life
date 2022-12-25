@@ -13,7 +13,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
         private const val PROFILE = "Profile"
         private const val NOTIFICATION = "Notification"
         private const val TERM_OF_SERVICE = "Term of service"
-        private const val LICENSE_SUMMARY = "License summary"
+        private const val LICENSE_SUMMARY = "Open Source License"
         private const val CLEAR_DATA = "Clear data"
     }
 
@@ -31,9 +31,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
             settingNoti.apply {
                 setTitle(NOTIFICATION)
                 setIcon(R.drawable.ic_notification)
-                onWidgetClick {
-                    navigateToActivity(NotificationActivity::class.java)
-                }
+                onWidgetClick { navigateToActivity(NotificationActivity::class.java) }
             }
             settingPrivacy.apply {
                 setTitle(TERM_OF_SERVICE)

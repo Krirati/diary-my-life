@@ -32,6 +32,7 @@ class SelectDateBottomSheet @Inject constructor(
     private val getContext: Context,
     private val onClickDone: (ResultSelectDate) -> Unit,
     private val onClose: () -> Unit?,
+    private val type: BottomSheetType = BottomSheetType.DISPLAY_DATE_TIME,
 ) : BottomSheetDialogFragment() {
 
     private val parentView =
@@ -59,8 +60,7 @@ class SelectDateBottomSheet @Inject constructor(
     override fun getTheme(): Int = R.style.BaseBottomSheetDialog
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = object :
-            BottomSheetDialog(getContext, theme) {
+        val dialog = object : BottomSheetDialog(getContext, theme) {
             override fun onBackPressed() {
                 super.onBackPressed()
                 this@SelectDateBottomSheet.dismissAllowingStateLoss()
@@ -88,6 +88,7 @@ class SelectDateBottomSheet @Inject constructor(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setDisplayType(type)
         observeLiveDate()
         bindingView()
         setUpTimePicker()
