@@ -22,9 +22,10 @@
     <string name="chart">Chart</string>
     <string name="check_in_now">Check in now</string>
     <string name="check_in_daily_n_how_you_feel">Check in daily \n how you feel</string>
-    <string name="select_date">Select date</string>
+    <string name="select_date">Select Date</string>
     <string name="done">Done</string>
     <string name="how_are_you_feel">Hello {Name}. How are you feeling?</string>
     <string name="recent_mood">Recent Mood</string>
     <string name="notification">Notification</string>
+    <string name="select_time">Select Time</string>
 </resources>

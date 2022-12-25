@@ -1,6 +1,5 @@
 package com.kstudio.diarymylife.widgets.custom_switch
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
@@ -22,7 +21,6 @@ class CustomSwitch @JvmOverloads constructor(
         setup(attrs, defStyleAttr)
     }
 
-    @SuppressLint("Recycle")
     private fun setup(attrs: AttributeSet?, defStyleAttr: Int) {
         val attribute =
             context.obtainStyledAttributes(attrs, R.styleable.CustomSwitch, defStyleAttr, 0)
@@ -38,7 +36,6 @@ class CustomSwitch @JvmOverloads constructor(
                     R.styleable.CustomSwitch_custom_switch_checked,
                     false
                 )
-                setOnCheckedChangeListener { _, isCheck -> binding.subtitle.isEnabled = isCheck }
 
 
             }
@@ -49,6 +46,31 @@ class CustomSwitch @JvmOverloads constructor(
                     attribute.getBoolean(R.styleable.CustomSwitch_custom_switch_enabled, false)
             }
         }
+        attribute.recycle()
+    }
 
+    fun setStateEnable(isEnable: Boolean) {
+        binding.apply {
+            layoutSwitch.isActivated = isEnable
+            switchEnable.apply {
+                isEnabled = isEnable
+                if (!isEnable) isChecked = false
+            }
+            subtitle.isEnabled = isEnable
+        }
+    }
+
+    fun setOnSwitchCheckChange(listener: (Boolean) -> Unit) {
+        binding.switchEnable.setOnCheckedChangeListener { _, isCheck -> listener(isCheck) }
+    }
+
+    fun setOnClickWidget(listener: () -> Unit) {
+        if (binding.switchEnable.isChecked) {
+            binding.root.setOnClickListener { listener() }
+        }
+    }
+
+    fun setSubtitle(text: String) {
+        binding.subtitle.text = text
     }
 }

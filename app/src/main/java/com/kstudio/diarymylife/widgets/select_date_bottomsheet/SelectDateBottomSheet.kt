@@ -45,12 +45,9 @@ class SelectDateBottomSheet @Inject constructor(
     private val viewModel by viewModel<SelectDateBottomSheetViewModel>()
     private var date: String = ""
 
-    companion object {
-        fun newInstance(
-            getContext: Context,
-            onClickDone: (ResultSelectDate) -> Unit,
-            onClose: () -> Unit?
-        ) = SelectDateBottomSheet(getContext, onClickDone, onClose)
+    enum class BottomSheetType {
+        DISPLAY_DATE_TIME,
+        DISPLAY_TIME
     }
 
     override fun onCreateView(
@@ -69,6 +66,7 @@ class SelectDateBottomSheet @Inject constructor(
                 this@SelectDateBottomSheet.dismissAllowingStateLoss()
             }
         }
+
         dialog.setCanceledOnTouchOutside(false)
         dialog.behavior.state = STATE_HIDDEN
         dialog.behavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
@@ -152,6 +150,33 @@ class SelectDateBottomSheet @Inject constructor(
     private fun setUpTimePicker() {
         binding.widgetTimePicker.localTime.observe(this) {
             binding.dateView.bindTime(it)
+        }
+    }
+
+    fun setDisplayType(type: BottomSheetType = BottomSheetType.DISPLAY_DATE_TIME) {
+        when (type) {
+            BottomSheetType.DISPLAY_DATE_TIME -> {
+                displayBottomSheetDateTime()
+            }
+            BottomSheetType.DISPLAY_TIME -> {
+                displayBottomSheetTime()
+            }
+        }
+    }
+
+    private fun displayBottomSheetDateTime() {
+        binding.apply {
+            titleBottomSheet.text = getString(R.string.select_date)
+            dateView.visibility = View.VISIBLE
+            rvDates.visibility = View.VISIBLE
+        }
+    }
+
+    private fun displayBottomSheetTime() {
+        binding.apply {
+            titleBottomSheet.text = getString(R.string.select_time)
+            dateView.visibility = View.GONE
+            rvDates.visibility = View.GONE
         }
     }
 }

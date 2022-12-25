@@ -35,10 +35,12 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/subtitle"
-                style="@style/TextAppearance.DiaryMyLife.Subtitle.Black.Bold"
+                style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_8"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textColor="@drawable/text_dark_selector"
                 tools:text="10:00 PM" />
         </androidx.appcompat.widget.LinearLayoutCompat>
