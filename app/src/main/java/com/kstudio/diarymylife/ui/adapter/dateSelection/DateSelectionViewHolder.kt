@@ -19,9 +19,17 @@ class DateSelectionViewHolder(private val binding: ItemChipDayBinding) :
         this.adapter = adapter
 
         if (dateDetailsUI.dateKey == selectDate) {
-            binding.containerDate.setBackgroundResource(R.drawable.bg_round_card_action_select)
+            binding.apply {
+                containerDate.setBackgroundResource(R.drawable.bg_round_card_action_select)
+                day.isSelected = true
+                dayNumber.isSelected = true
+            }
         } else {
-            binding.containerDate.setBackgroundResource(R.drawable.bg_round_card_action)
+            binding.apply {
+                containerDate.setBackgroundResource(R.drawable.bg_round_card_action)
+                day.isSelected = false
+                dayNumber.isSelected = false
+            }
         }
 
         binding.apply {

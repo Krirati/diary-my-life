@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@drawable/bg_round_stroke_disable" android:state_activated="false"/>
-    <item android:drawable="@drawable/bg_round_stroke_dark" android:state_activated="true"/> <!-- default -->
+    <item android:drawable="@drawable/bg_round_card_action" android:state_activated="true"/> <!-- default -->
 </selector>

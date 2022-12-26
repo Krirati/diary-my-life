@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/dp_8"
-                android:textColor="@drawable/text_dark_selector"
+                android:textColor="@drawable/text_light_selector"
                 android:thumb="@drawable/thumb_selector"
                 app:track="@drawable/track_selector"
                 tools:text="Daily reminder" />
@@ -41,7 +41,7 @@
                 android:layout_marginTop="@dimen/dp_8"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textColor="@drawable/text_dark_selector"
+                android:textColor="@drawable/text_light_selector"
                 tools:text="10:00 PM" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -70,7 +70,7 @@ class CustomSwitch @JvmOverloads constructor(
         }
     }
 
-    fun setSubtitle(text: String) {
+    fun setSubtitle(text: String = "") {
         binding.subtitle.text = text
     }
 }

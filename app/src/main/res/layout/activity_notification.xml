@@ -61,7 +61,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:custom_switch_state="true"
-                    app:custom_switch_subtitle="ok"
                     app:custom_switch_checked="true"
                     app:custom_switch_enabled="true"
                     app:custom_switch_title="Daily reminder" />
