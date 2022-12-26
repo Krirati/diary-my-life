@@ -29,7 +29,7 @@ class NotificationActivity : BaseActivity(), SelectDateHandle {
         }
         switchDaily.apply {
             setOnSwitchCheckChange { viewModel.setIsDailyNotification(it) }
-            setOnClickWidget { showBottomSheetSelectTime() }
+            setOnClickWidget { viewModel.setPerformBottomSheetSetTime() }
         }
     }
 
@@ -45,7 +45,11 @@ class NotificationActivity : BaseActivity(), SelectDateHandle {
             }
 
             isDailyChange.observe(this@NotificationActivity) {
-                binding.switchDaily.setSubtitle(it.toString())
+                if (it != null) binding.switchDaily.setSubtitle(it.toString())
+            }
+
+            performBottomSheetSetTime.observe(this@NotificationActivity) {
+                showBottomSheetSelectTime()
             }
         }
     }

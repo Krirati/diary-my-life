@@ -16,6 +16,9 @@ class NotificationViewModel : BaseViewModel() {
     private val _isDailyChange = MutableLiveData<LocalTime?>(null)
     val isDailyChange: LiveData<LocalTime?> = _isDailyChange
 
+    private val _performBottomSheetSetTime = MutableLiveData<Unit>()
+    val performBottomSheetSetTime: LiveData<Unit> = _performBottomSheetSetTime
+
     fun setIsEnableNotification(isEnable: Boolean) {
         _isEnableNotification.postValue(isEnable)
     }
@@ -26,5 +29,11 @@ class NotificationViewModel : BaseViewModel() {
 
     fun setIsDailyChange(time: LocalTime?) {
         _isDailyChange.postValue(time)
+    }
+
+    fun setPerformBottomSheetSetTime() {
+        if (_isDailyNotification.value == true) {
+            _performBottomSheetSetTime.postValue(Unit)
+        }
     }
 }
