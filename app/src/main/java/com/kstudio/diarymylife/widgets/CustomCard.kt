@@ -16,13 +16,17 @@ class CustomCard @JvmOverloads constructor(
 
     private val binding: ItemCardBinding by lazy { ItemCardBinding.bind(parentView) }
 
-    fun bind(cardTitle: String, cardValue: Int, @DrawableRes cardIcon: Int?) = with(binding) {
+    fun bind(
+        cardTitle: String,
+        cardValue: Int,
+        @DrawableRes cardIcon: Int?,
+    ) = with(binding) {
         title.text = cardTitle
         value.text = cardValue.toString()
         cardIcon?.let { icon.setImageResource(it) }
     }
 
-    fun setValue(cardValue: Long) = with(binding){
+    fun setValue(cardValue: Long) = with(binding) {
         value.text = cardValue.toString()
     }
 }

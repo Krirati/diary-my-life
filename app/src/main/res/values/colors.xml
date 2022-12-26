@@ -31,9 +31,11 @@
     <color name="amber_800">#FF8F00</color>
 
     <!--  emotional color  -->
+    <color name="beige">#D3DDC3</color>
     <color name="nyanza">#E8F3D6</color>
     <color name="light_goldenrod_yellow">#F2F6CA</color>
     <color name="lemon_chiffon">#FCF9BE</color>
     <color name="navajo_white">#FFDCA9</color>
-    <color name="macaroni_and_chesse">#FDC491</color>
+    <color name="macaroni_and_cheese">#FDC491</color>
+    <color name="sandy_brown">#FAAB78</color>
 </resources>
