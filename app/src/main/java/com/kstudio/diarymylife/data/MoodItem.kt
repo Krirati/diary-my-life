@@ -1,7 +1,7 @@
 package com.kstudio.diarymylife.data
 
 import android.os.Parcelable
-import com.kstudio.diarymylife.ui.base.SwipeEvent.SwipeState
+import com.kstudio.diarymylife.ui.base.swipe_event.SwipeState
 import kotlinx.parcelize.Parcelize
 import java.time.LocalDateTime
 

@@ -11,7 +11,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/month"
-            style="@style/TextAppearance.DiaryMyLife.H3.Black"
+            style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

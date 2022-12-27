@@ -1,84 +1,57 @@
-package com.kstudio.diarymylife.ui.adapter.viewholder
+package com.kstudio.diarymylife.widgets.custom_card_swipe
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Point
+import android.util.AttributeSet
 import android.view.Display
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.kstudio.diarymylife.data.ActivityDetail
-import com.kstudio.diarymylife.data.MoodItem
-import com.kstudio.diarymylife.databinding.ItemCardEventBinding
-import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
+import android.widget.FrameLayout
+import com.kstudio.diarymylife.R
+import com.kstudio.diarymylife.databinding.CustomCardSwipeBinding
 import com.kstudio.diarymylife.ui.base.swipe_event.SwipeState
-import com.kstudio.diarymylife.utils.convertTime
-import com.kstudio.diarymylife.utils.mapMoodIntToRes
-import java.time.format.DateTimeFormatter
 
-class ItemCardMemoryViewHolder(
-    val binding: ItemCardEventBinding,
-    private val context: Context,
-    private val navigateToDetail: (Long?) -> Unit,
-) :
-    RecyclerView.ViewHolder(binding.root) {
+class CustomCardSwipe @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : FrameLayout(context, attrs, defStyleAttr) {
 
-    /** On Swipe */
+    private val parentView: View = inflate(context, R.layout.custom_card_swipe, this)
+    private val binding: CustomCardSwipeBinding by lazy { CustomCardSwipeBinding.bind(parentView) }
+
     private val size: Point = Point()
     private val display: Display
     private val windowManager: WindowManager =
         context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-    private val cardViewLeading: Float
-    private val cardViewLeadEdge: Float
-    private val cardViewTrailEdge: Float
-    private val cardViewTrailing: Float
+    private var cardViewLeading: Float
+    private var cardViewLeadEdge: Float
+    private var cardViewTrailEdge: Float
+    private var cardViewTrailing: Float
     private var dXLead: Float = 0.toFloat()
     private var dXTrail: Float = 0.toFloat()
     private var previousEvent: Pair<Int?, Int?> = Pair(null, null)
-
-    private val adapterActivity by lazy { ActivityListResultAdapter(context) }
+    var state: SwipeState = SwipeState.NONE
+    private val swipeState: SwipeState = SwipeState.LEFT_RIGHT
 
     init {
         display = windowManager.defaultDisplay
         display.getSize(size)
-        cardViewLeading = size.x.toFloat() * 0.15f //leading
-        cardViewLeadEdge = size.x.toFloat() * 0.15f //leading_rubber
-        cardViewTrailEdge = size.x.toFloat() * 0.75f //trailing_rubber
+        cardViewLeading = size.x.toFloat() * 0.04f
+        cardViewLeadEdge = size.x.toFloat() * 0.20f //start position when card swipe to right
+        cardViewTrailEdge = size.x.toFloat() * 0.96f //trailing_rubber
         cardViewTrailing = size.x.toFloat() * 0.90f //trailing
-    }
-
-    @SuppressLint("ClickableViewAccessibility")
-    fun bind(
-        item: MoodItem,
-        swipeState: SwipeState,
-        onDelete: (Int) -> Unit,
-    ) = with(binding) {
-        item.data?.mood?.let { journalMood.setImageResource(mapMoodIntToRes(it)) }
-        journalTitle.text = item.data?.title
-        journalDesc.text = item.data?.desc
-        journalDesc.visibility = if (item.data?.desc.isNullOrEmpty()) View.GONE else View.VISIBLE
-        journalTime.text = item.data?.timestamp?.let { convertTime(it, "HH:mm") }
-        journalDay.text = item.data?.timestamp?.format(DateTimeFormatter.ofPattern("EEEE"))
-        journalMonth.text = item.data?.timestamp?.format(DateTimeFormatter.ofPattern("MMMM, dd"))
-        journalActivity.apply {
-            if (item.data?.activity.isNullOrEmpty()) this.visibility = View.GONE
-            layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
-            isNestedScrollingEnabled = false
-            adapter = adapterActivity
-        }.run {
-            item.data?.activity?.let { adapterActivity.updateActivityItems(it as ArrayList<ActivityDetail>) }
-        }
-        buttonDelete.setOnClickListener { onDelete(absoluteAdapterPosition) }
 
         /* On Touch Swipe */
-        journalCard.apply {
+        binding.cardDetail.apply {
             setOnClickListener {
                 if (previousEvent.first == MotionEvent.ACTION_MOVE && previousEvent.second == MotionEvent.ACTION_UP) return@setOnClickListener
-                navigateToDetail(item.data?.moodId)
             }
-            setOnTouchListener { view, event -> handlerOnTouchEvent(item, view, event, swipeState) }
+            setOnTouchListener { view, event ->
+                handlerOnTouchEvent(view, event, swipeState)
+                performClick()
+            }
         }
     }
 
@@ -100,7 +73,7 @@ class ItemCardMemoryViewHolder(
     private fun onSwipeUp(swipeState: SwipeState): Float {
         return when (swipeState) {
             SwipeState.NONE -> cardViewLeading
-            SwipeState.LEFT -> 0F
+            SwipeState.LEFT -> cardViewLeading
             SwipeState.RIGHT -> cardViewLeadEdge
             else -> cardViewLeading
         }
@@ -121,7 +94,6 @@ class ItemCardMemoryViewHolder(
     }
 
     private fun handlerOnTouchEvent(
-        item: MoodItem,
         view: View,
         event: MotionEvent,
         swipeState: SwipeState
@@ -136,17 +108,16 @@ class ItemCardMemoryViewHolder(
             MotionEvent.ACTION_MOVE -> {
                 previousEvent = previousEvent.copy(first = event.action)
                 onAnimate(view, onSwipeMove(event.rawX + dXLead, swipeState), 0)
-                item.data?.state =
-                    getSwipeState(
-                        event.rawX + dXLead,
-                        event.rawX + dXTrail,
-                        swipeState
-                    )
+                state = getSwipeState(
+                    event.rawX + dXLead,
+                    event.rawX + dXTrail,
+                    swipeState
+                )
                 false
             }
             MotionEvent.ACTION_UP -> {
                 previousEvent = previousEvent.copy(second = event.action)
-                item.data?.let { onSwipeUp(it.state) }?.let { onAnimate(view, it) }
+                onAnimate(view, onSwipeUp(state))
                 false
             }
             else -> true
