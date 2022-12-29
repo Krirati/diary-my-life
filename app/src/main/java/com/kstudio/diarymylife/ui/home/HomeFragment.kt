@@ -1,6 +1,5 @@
 package com.kstudio.diarymylife.ui.home
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -9,7 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.databinding.FragmentHomeBinding
-import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter
+import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
 import com.kstudio.diarymylife.ui.mood.MoodDetailActivity
@@ -20,6 +19,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private val homeViewModel by viewModel<HomeViewModel>()
 
+    private val moodAdapter by lazy {
+        ItemCardSwipeAdapter(
+            onAddItem = { navigateToCreateJournal() },
+            onDeleted = { homeViewModel.deleteJournal(it) },
+            onNavigateToDetail = { navigateToActivity(MoodDetailActivity::class.java, it) },
+        )
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observer()
@@ -28,16 +35,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         handleOnBackPress()
     }
 
-    private fun observer() {
-        homeViewModel.getMemberList().observe(viewLifecycleOwner) {
-            setUpRecentMemory(it)
+    private fun observer() = with(homeViewModel) {
+        getMemberList().observe(viewLifecycleOwner) {
+            updateRecentMood(it)
         }
-        homeViewModel.welcomeText.observe(viewLifecycleOwner) {
+        welcomeText.observe(viewLifecycleOwner) {
             binding.titleWelcome.text = it
         }
     }
 
     override fun bindingView() = with(binding) {
+        recentWidget.apply {
+            layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
+            isNestedScrollingEnabled = false
+            adapter = moodAdapter
+            onFlingListener = null
+        }
         checkInButton.setOnClickListener {
             navigateToActivity(
                 CreateJournalActivity::class.java,
@@ -48,25 +61,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         viewAllButton.setOnClickListener { homeViewModel.selectCurrentPage(Screen.LIST) }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun setUpRecentMemory(memberList: List<MoodItem>) {
-        val memberAdapter = ItemCardMemoryAdapter(
-            memberList,
-            onNavigateToDetail = {
-                navigateToActivity(MoodDetailActivity::class.java, it)
-            },
-            onDeleted = { homeViewModel.deleteJournal(it) },
-            onAddItem = { navigateToCreateJournal() }
-        )
-
-        binding.recentWidget.apply {
-            layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
-            isNestedScrollingEnabled = false
-            adapter = memberAdapter
-            onFlingListener = null
-        }
-
-        memberAdapter.notifyDataSetChanged()
+    private fun updateRecentMood(moodList: List<MoodItem>) {
+        moodAdapter.updateMoodItems(moodList)
     }
 
     override fun onResume() {

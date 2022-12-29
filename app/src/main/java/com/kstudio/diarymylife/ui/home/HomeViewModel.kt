@@ -17,7 +17,7 @@ class HomeViewModel constructor(
     private val moodRepository: MoodRepository
 ) : BaseViewModel() {
 
-    companion object{
+    companion object {
         const val GOOD_MORNING = "Good morning"
         const val GOOD_AFTERNOON = "Good afternoon"
         const val GOOD_EVENING = "Good evening"
@@ -25,7 +25,7 @@ class HomeViewModel constructor(
     }
 
     private val _memberList: MutableLiveData<List<MoodItem>> = MutableLiveData()
-    fun getMemberList() = _memberList
+    fun getMemberList(): LiveData<List<MoodItem>> = _memberList
 
     private val _welcomeText: MutableLiveData<String> = MutableLiveData()
     val welcomeText: LiveData<String> = _welcomeText

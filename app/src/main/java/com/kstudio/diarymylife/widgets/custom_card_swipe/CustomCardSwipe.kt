@@ -1,9 +1,9 @@
 package com.kstudio.diarymylife.widgets.custom_card_swipe
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Point
 import android.util.AttributeSet
-import android.view.Display
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
@@ -11,7 +11,9 @@ import android.widget.FrameLayout
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.CustomCardSwipeBinding
 import com.kstudio.diarymylife.ui.base.swipe_event.SwipeState
+import java.time.LocalDateTime
 
+@SuppressLint("ClickableViewAccessibility")
 class CustomCardSwipe @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -22,7 +24,6 @@ class CustomCardSwipe @JvmOverloads constructor(
     private val binding: CustomCardSwipeBinding by lazy { CustomCardSwipeBinding.bind(parentView) }
 
     private val size: Point = Point()
-    private val display: Display
     private val windowManager: WindowManager =
         context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     private var cardViewLeading: Float
@@ -35,8 +36,11 @@ class CustomCardSwipe @JvmOverloads constructor(
     var state: SwipeState = SwipeState.NONE
     private val swipeState: SwipeState = SwipeState.LEFT_RIGHT
 
+    private var onClickActionListener: () -> Unit? = {}
+    private var onClickWidgetListener: () -> Unit? = {}
+
     init {
-        display = windowManager.defaultDisplay
+        val display = windowManager.defaultDisplay
         display.getSize(size)
         cardViewLeading = size.x.toFloat() * 0.04f
         cardViewLeadEdge = size.x.toFloat() * 0.20f //start position when card swipe to right
@@ -44,15 +48,29 @@ class CustomCardSwipe @JvmOverloads constructor(
         cardViewTrailing = size.x.toFloat() * 0.90f //trailing
 
         /* On Touch Swipe */
-        binding.cardDetail.apply {
-            setOnClickListener {
-                if (previousEvent.first == MotionEvent.ACTION_MOVE && previousEvent.second == MotionEvent.ACTION_UP) return@setOnClickListener
+        binding.apply {
+            cardDetail.apply {
+                setOnClickListener {
+                    if (previousEvent.first == MotionEvent.ACTION_MOVE && previousEvent.second == MotionEvent.ACTION_UP) return@setOnClickListener
+                    onClickWidgetListener.invoke()
+                }
+                setOnTouchListener { view, event -> handlerOnTouchEvent(view, event, swipeState) }
             }
-            setOnTouchListener { view, event ->
-                handlerOnTouchEvent(view, event, swipeState)
-                performClick()
-            }
+            cardAction.setOnClickListener { onClickActionListener.invoke() }
         }
+    }
+
+    fun setTitleAndDate(title: String, date: LocalDateTime) {
+        binding.cardTitle.text = title
+        binding.cardDate.bindView(date)
+    }
+
+    fun setOnClickWidget(onClick: () -> Unit) {
+        this.onClickWidgetListener = onClick
+    }
+
+    fun setOnClickAction(onClick: () -> Unit) {
+        this.onClickActionListener = onClick
     }
 
     private fun onAnimate(view: View, dx: Float, duration: Long = 100) {

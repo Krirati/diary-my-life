@@ -2,20 +2,19 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_16">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineVerticalStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.04"
-            />
+            app:layout_constraintGuide_percent="0.04" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineVerticalEnd"
@@ -37,9 +36,9 @@
             android:layout_height="0dp"
             android:background="@drawable/bg_round_card_action"
             android:backgroundTint="@color/brown_text"
+            app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
             app:layout_constraintEnd_toStartOf="@id/guidelineVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineVerticalStart"
-            app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -58,11 +57,11 @@
             android:id="@+id/cardDetail"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/bg_round_card_action"
             android:padding="@dimen/dp_16"
-            android:background="@drawable/bg_round_stroke_dark"
+            app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
             app:layout_constraintEnd_toStartOf="@id/guidelineVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineVerticalStart"
-            app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -70,9 +69,9 @@
                 style="@style/TextAppearance.DiaryMyLife.H2.Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Title"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="Title" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.kstudio.diarymylife.widgets.DateView
                 android:id="@+id/cardDate"
