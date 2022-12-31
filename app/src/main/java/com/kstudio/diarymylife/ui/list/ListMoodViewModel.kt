@@ -7,7 +7,7 @@ import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.data.MoodUI
 import com.kstudio.diarymylife.database.model.MoodWithActivity
 import com.kstudio.diarymylife.repository.MoodRepository
-import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter
+import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
@@ -52,14 +52,14 @@ class ListMoodViewModel constructor(
         return if (list.isEmpty()) {
             listOf(
                 MoodItem(
-                    viewType = ItemCardMemoryAdapter.VIEW_ADD, data = null
+                    viewType = ItemCardSwipeAdapter.VIEW_ADD, data = null
                 )
             )
 
         } else {
             list.map {
                 MoodItem(
-                    viewType = ItemCardMemoryAdapter.VIEW_ITEM,
+                    viewType = ItemCardSwipeAdapter.VIEW_ITEM,
                     data = MoodUI(
                         moodId = it.mood.moodId,
                         title = it.mood.title,

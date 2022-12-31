@@ -7,8 +7,8 @@ import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.data.MoodUI
 import com.kstudio.diarymylife.database.model.MoodWithActivity
 import com.kstudio.diarymylife.repository.MoodRepository
-import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter.Companion.VIEW_ADD
-import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter.Companion.VIEW_ITEM
+import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter.Companion.VIEW_ADD
+import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter.Companion.VIEW_ITEM
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
@@ -65,12 +65,7 @@ class HomeViewModel constructor(
 
     private fun mapToUI(list: List<MoodWithActivity>): List<MoodItem> {
         return if (list.isEmpty()) {
-            listOf(
-                MoodItem(
-                    viewType = VIEW_ADD, data = null
-                )
-            )
-
+            listOf(MoodItem(viewType = VIEW_ADD, data = null))
         } else {
             list.map {
                 MoodItem(

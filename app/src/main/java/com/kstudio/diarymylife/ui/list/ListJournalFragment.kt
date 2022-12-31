@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.databinding.FragmentListJournalBinding
-import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter
-import com.kstudio.diarymylife.ui.adapter.ItemCardMemoryAdapter.Companion.VIEW_ADD
+import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
+import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter.Companion.VIEW_ADD
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
 import com.kstudio.diarymylife.ui.mood.MoodDetailActivity
@@ -20,6 +20,13 @@ class ListJournalFragment : BaseFragment<FragmentListJournalBinding>(
 ) {
 
     private val viewModel by viewModel<ListMoodViewModel>()
+    private val moodAdapter by lazy {
+        ItemCardSwipeAdapter(
+            onAddItem = { navigateToCreateJournal() },
+            onDeleted = { viewModel.deleteJournal(it) },
+            onNavigateToDetail = { navigateToActivity(MoodDetailActivity::class.java, it) },
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,7 +39,12 @@ class ListJournalFragment : BaseFragment<FragmentListJournalBinding>(
         binding.apply {
             cardAverage.bind("Mood average", 5, R.drawable.ic_pie_chart)
             cardTotal.bind("Total mood", 5, R.drawable.ic_calendar)
+            recyclerview.apply {
+                layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
+                adapter = moodAdapter
+            }
         }
+
     }
 
     private fun observeLiveData() {
@@ -51,23 +63,9 @@ class ListJournalFragment : BaseFragment<FragmentListJournalBinding>(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun setUpRecentMemory(memberList: List<MoodItem>) {
-        val memberAdapter = ItemCardMemoryAdapter(
-            memberList,
-            onNavigateToDetail = {
-                navigateToActivity(MoodDetailActivity::class.java, it)
-            },
-            onDeleted = { viewModel.deleteJournal(it) },
-            onAddItem = { navigateToCreateJournal() }
-        )
-
-        binding.recyclerview.apply {
-            layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
-            adapter = memberAdapter
-        }
-        bindingCard(memberList)
-        memberAdapter.notifyDataSetChanged()
-
+    private fun setUpRecentMemory(moodList: List<MoodItem>) {
+        bindingCard(moodList)
+        moodAdapter.updateMoodItems(moodList)
     }
 
     private fun bindingCard(mood: List<MoodItem>) = with(binding) {

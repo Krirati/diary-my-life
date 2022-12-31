@@ -6,39 +6,48 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background"
-        android:paddingHorizontal="@dimen/dp_16">
+        android:background="@color/background">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title"
-            style="@style/TextAppearance.DiaryMyLife.H1.Black"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sectionHeader"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="@dimen/dp_32"
-            android:text="@string/lists"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.kstudio.diarymylife.widgets.CustomCard
-            android:id="@+id/card_average"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp_32"
-            app:layout_constraintEnd_toStartOf="@+id/card_total"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
-
-        <com.kstudio.diarymylife.widgets.CustomCard
-            android:id="@+id/card_total"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_16"
-            app:layout_constraintBottom_toBottomOf="@+id/card_average"
+            android:layout_marginHorizontal="@dimen/dp_16"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/card_average"
-            app:layout_constraintTop_toTopOf="@+id/card_average" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title"
+                style="@style/TextAppearance.DiaryMyLife.H1.Black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="@dimen/dp_32"
+                android:text="@string/lists"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.kstudio.diarymylife.widgets.CustomCard
+                android:id="@+id/card_average"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_32"
+                app:layout_constraintEnd_toStartOf="@+id/card_total"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <com.kstudio.diarymylife.widgets.CustomCard
+                android:id="@+id/card_total"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_16"
+                app:layout_constraintBottom_toBottomOf="@+id/card_average"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/card_average"
+                app:layout_constraintTop_toTopOf="@+id/card_average" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
@@ -46,13 +55,11 @@
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_16"
             android:nestedScrollingEnabled="true"
-            android:paddingEnd="-16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_average"
+            app:layout_constraintTop_toBottomOf="@+id/sectionHeader"
             app:layout_constraintVertical_bias="0.0"
             tools:itemCount="1"
-            tools:layout_editor_absoluteX="17dp"
-            tools:listitem="@layout/item_card_event" />
+            tools:layout_editor_absoluteX="17dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

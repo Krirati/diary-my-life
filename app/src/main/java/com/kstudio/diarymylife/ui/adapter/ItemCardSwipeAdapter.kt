@@ -17,10 +17,15 @@ class ItemCardSwipeAdapter(
 
     var moodItems: List<MoodItem> = listOf()
 
+    companion object {
+        const val VIEW_ITEM = 10
+        const val VIEW_ADD = 11
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
-            ItemCardMemoryAdapter.VIEW_ITEM -> ItemCardSwipeViewHolder(
+            VIEW_ITEM -> ItemCardSwipeViewHolder(
                 ItemSwipeCardBinding.inflate(
                     inflater,
                     parent,
@@ -42,14 +47,14 @@ class ItemCardSwipeAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            ItemCardMemoryAdapter.VIEW_ITEM -> {
+            VIEW_ITEM -> {
                 (holder as ItemCardSwipeViewHolder).bind(
                     item = moodItems[position],
                     onActionClickDelete = ::onClickDeleteItem,
                     onClickToDetail = onNavigateToDetail
                 )
             }
-            ItemCardMemoryAdapter.VIEW_ADD -> (holder as ItemAddViewHolder).bind()
+            VIEW_ADD -> (holder as ItemAddViewHolder).bind()
         }
     }
 
