@@ -21,5 +21,5 @@ val viewModelModule = module {
     viewModel { CreateMoodViewModel() }
     viewModel { ListMoodViewModel(get()) }
     viewModel { SelectDateBottomSheetViewModel() }
-    viewModel { NotificationViewModel() }
+    viewModel { NotificationViewModel(get()) }
 }

@@ -2,10 +2,13 @@ package com.kstudio.diarymylife.ui.setting.notification
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.kstudio.diarymylife.data.shared_preferences.SharedPreferencesRepository
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import java.time.LocalTime
 
-class NotificationViewModel : BaseViewModel() {
+class NotificationViewModel constructor(
+    private val appPreferenceRepository: SharedPreferencesRepository
+) : BaseViewModel() {
 
     private val _isEnableNotification = MutableLiveData(false)
     val isEnableNotification: LiveData<Boolean> = _isEnableNotification
