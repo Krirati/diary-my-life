@@ -1,14 +1,14 @@
-package com.kstudio.diarymylife.repository
+package com.kstudio.diarymylife.data.mood
 
-import com.kstudio.diarymylife.database.dao.MoodDao
 import com.kstudio.diarymylife.data.MoodRequest
+import com.kstudio.diarymylife.database.dao.MoodDao
 import com.kstudio.diarymylife.database.model.Mood
 import com.kstudio.diarymylife.database.model.MoodActivityEventCrossRef
 import com.kstudio.diarymylife.database.model.MoodWithActivity
 import kotlinx.coroutines.flow.Flow
 
-class MoodRepository(private val moodDao: MoodDao) {
-    suspend fun insert(mood: MoodRequest) {
+class MoodRepositoryImpl(private val moodDao: MoodDao) : MoodRepository {
+    override suspend fun insert(mood: MoodRequest) {
         val moodReq = Mood(
             title = mood.title,
             description = mood.description,
@@ -29,23 +29,23 @@ class MoodRepository(private val moodDao: MoodDao) {
         }
     }
 
-    fun getMoodsAndActivitiesWithLimit(): Flow<List<MoodWithActivity>> {
+    override fun getMoodsAndActivitiesWithLimit(): Flow<List<MoodWithActivity>> {
         return moodDao.getMoodsWithActivitiesWithLimit()
     }
 
-    fun getMoodsAndActivities(): Flow<List<MoodWithActivity>> {
+    override fun getMoodsAndActivities(): Flow<List<MoodWithActivity>> {
         return moodDao.getMoodsWithActivities()
     }
 
-    fun getMoodFromID(moodID: Long): Flow<MoodWithActivity> {
+    override fun getMoodFromID(moodID: Long): Flow<MoodWithActivity> {
         return moodDao.getMoodFromMoodID(moodID = moodID)
     }
 
-    suspend fun deleteMood(moodID: Long) {
+    override suspend fun deleteMood(moodID: Long) {
         return moodDao.deleteMood(moodID)
     }
 
-    suspend fun updateMood(mood: MoodRequest?) {
+    override suspend fun updateMood(mood: MoodRequest?) {
         if (mood?.moodId == null) return
         val request = Mood(
             moodId = mood.moodId,

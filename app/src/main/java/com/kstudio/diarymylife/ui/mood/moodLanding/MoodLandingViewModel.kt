@@ -5,13 +5,13 @@ import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.data.MoodUI
 import com.kstudio.diarymylife.database.model.MoodWithActivity
-import com.kstudio.diarymylife.repository.MoodRepository
+import com.kstudio.diarymylife.data.mood.MoodRepositoryImpl
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class MoodLandingViewModel(
-    private val moodRepository: MoodRepository
+    private val moodRepositoryImpl: MoodRepositoryImpl
 ) : BaseViewModel() {
 
     private var _moodDetail: MutableLiveData<MoodItem?> = MutableLiveData()
@@ -19,7 +19,7 @@ class MoodLandingViewModel(
 
     fun getMoodDetailFromID(id: Long) {
         viewModelScope.launch {
-            moodRepository.getMoodFromID(id)
+            moodRepositoryImpl.getMoodFromID(id)
                 .collect {
                     _moodDetail.postValue(mapToUI(it))
                 }
