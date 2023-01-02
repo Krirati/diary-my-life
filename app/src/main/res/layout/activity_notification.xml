@@ -53,17 +53,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_32"
                     app:custom_switch_state="false"
-                    app:custom_switch_subtitle="Get push notification on your device"
-                    app:custom_switch_title="Enable notification" />
-
-                <com.kstudio.diarymylife.widgets.custom_switch.CustomSwitch
-                    android:id="@+id/switchDaily"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:custom_switch_state="true"
-                    app:custom_switch_checked="true"
                     app:custom_switch_enabled="true"
-                    app:custom_switch_title="Daily reminder" />
+                    app:custom_switch_title="Enable notification" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

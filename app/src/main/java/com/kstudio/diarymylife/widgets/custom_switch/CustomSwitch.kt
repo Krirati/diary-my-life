@@ -32,7 +32,7 @@ class CustomSwitch @JvmOverloads constructor(
                 text = attribute.getText(R.styleable.CustomSwitch_custom_switch_title)
                 isEnabled =
                     attribute.getBoolean(R.styleable.CustomSwitch_custom_switch_enabled, false)
-                isChecked = if (!isEnabled) false else attribute.getBoolean(
+                isChecked = attribute.getBoolean(
                     R.styleable.CustomSwitch_custom_switch_checked,
                     false
                 )
@@ -60,14 +60,16 @@ class CustomSwitch @JvmOverloads constructor(
         }
     }
 
+    fun setStateCheck(isChecked: Boolean) {
+        binding.switchEnable.isChecked = isChecked
+    }
+
     fun setOnSwitchCheckChange(listener: (Boolean) -> Unit) {
         binding.switchEnable.setOnCheckedChangeListener { _, isCheck -> listener(isCheck) }
     }
 
     fun setOnClickWidget(listener: () -> Unit) {
-        if (binding.switchEnable.isChecked) {
-            binding.root.setOnClickListener { listener() }
-        }
+        binding.root.setOnClickListener { listener() }
     }
 
     fun setSubtitle(text: String = "") {

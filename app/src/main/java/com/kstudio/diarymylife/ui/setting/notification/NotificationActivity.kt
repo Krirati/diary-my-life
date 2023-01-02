@@ -3,6 +3,7 @@ package com.kstudio.diarymylife.ui.setting.notification
 import android.os.Bundle
 import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.databinding.ActivityNotificationBinding
+import com.kstudio.diarymylife.extensions.NotificationService
 import com.kstudio.diarymylife.ui.base.BaseActivity
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
@@ -26,9 +27,6 @@ class NotificationActivity : BaseActivity(), SelectDateHandle {
         switchEnableNotification.apply {
             setStateEnable(true)
             setOnSwitchCheckChange { viewModel.setIsEnableNotification(it) }
-        }
-        switchDaily.apply {
-            setOnSwitchCheckChange { viewModel.setIsDailyNotification(it) }
             setOnClickWidget { viewModel.setPerformBottomSheetSetTime() }
         }
     }
@@ -36,16 +34,29 @@ class NotificationActivity : BaseActivity(), SelectDateHandle {
     private fun observer() {
         viewModel.apply {
             isEnableNotification.observe(this@NotificationActivity) {
-                binding.switchDaily.setStateEnable(it)
-                // set up notification enable
+                if (it != null) {
+                    binding.switchEnableNotification.setStateCheck(it)
+                    if (it == false) {
+                        NotificationService(context = applicationContext).cancelScheduleNotification()
+                    } else {
+                        NotificationService(context = applicationContext).scheduleNotification(
+                            viewModel.isDailyTimeChange.value?.hour ?: 10,
+                            viewModel.isDailyTimeChange.value?.minute ?: 0
+                        )
+                    }
+                }
             }
 
-            isDailyNotification.observe(this@NotificationActivity) {
-                // set up notification daily
-            }
-
-            isDailyChange.observe(this@NotificationActivity) {
-                if (it != null) binding.switchDaily.setSubtitle(it.toString())
+            isDailyTimeChange.observe(this@NotificationActivity) {
+                if (it != null) {
+                    binding.switchEnableNotification.setSubtitle("Daily reminder time at $it")
+                    if (isEnableNotification.value == true) {
+                        NotificationService(context = applicationContext).scheduleNotification(
+                            it.hour,
+                            it.minute
+                        )
+                    }
+                }
             }
 
             performBottomSheetSetTime.observe(this@NotificationActivity) {
@@ -77,4 +88,5 @@ class NotificationActivity : BaseActivity(), SelectDateHandle {
 
     override fun onCloseBottomSheet() {
     }
+
 }
