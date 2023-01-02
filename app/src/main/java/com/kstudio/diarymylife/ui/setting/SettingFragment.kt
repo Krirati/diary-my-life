@@ -6,6 +6,7 @@ import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentSettingBinding
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.setting.notification.NotificationActivity
+import com.kstudio.diarymylife.ui.setting.profile.ProfileActivity
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
 
@@ -27,6 +28,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
             settingUsername.apply {
                 setTitle(PROFILE)
                 setIcon(R.drawable.ic_user)
+                onWidgetClick { navigateToActivity(ProfileActivity::class.java) }
             }
             settingNoti.apply {
                 setTitle(NOTIFICATION)

@@ -19,4 +19,8 @@ open class BaseActivity : AppCompatActivity() {
             R.anim.slide_out_right
         )
     }
+
+    fun handleBackPass() {
+        onBackPressedDispatcher.onBackPressed()
+    }
 }

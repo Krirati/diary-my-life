@@ -65,9 +65,7 @@ class NotificationActivity : BaseActivity(), SelectDateHandle {
         }
     }
 
-    private fun handleBackPass() {
-        onBackPressedDispatcher.onBackPressed()
-    }
+
 
     private fun showBottomSheetSelectTime() {
         val bottomSheetSelectTime = SelectDateBottomSheet(
