@@ -22,6 +22,7 @@
     <color name="dark_brown">#272727</color>
     <color name="bg_bottom_grey">#E6E9E6</color>
     <color name="brown_text">#4A4A53</color>
+    <color name="grey_text">#4A4A53</color>
     <color name="red_700">#A53834</color>
     <color name="red_500">#C06556</color>
     <color name="red_200">#D68A7B</color>

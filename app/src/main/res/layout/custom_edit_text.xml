@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_round_card_action"
+    android:minHeight="@dimen/dp_64"
+    android:padding="@dimen/dp_8">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iconLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_game" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title"
+        style="@style/TextAppearance.DiaryMyLife.Label.Grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/iconLeft"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/placeholder"
+        style="@style/TextAppearance.DiaryMyLife.H3.Grey"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/iconLeft"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Placeholder" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editText"
+        style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:hapticFeedbackEnabled="true"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iconLeft"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:text="test" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/valueText"
+        style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:hapticFeedbackEnabled="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iconLeft"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:text="Value" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

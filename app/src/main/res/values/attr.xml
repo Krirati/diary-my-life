@@ -8,4 +8,12 @@
         <attr name="custom_switch_state" format="boolean" />
         <attr name="android:enabled"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomEditText">
+        <attr name="custom_edit_text_max_line" format="integer"/>
+        <attr name="custom_edit_text_title" format="string"/>
+        <attr name="custom_edit_text_placeholder" format="string"/>
+        <attr name="custom_edit_icon_left" format="integer"/>
+        <attr name="custom_edit_action_custom" format="boolean"/>
+    </declare-styleable>
 </resources>
