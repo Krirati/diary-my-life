@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.mood.moodLanding
+package com.kstudio.diarymylife.ui.detail.moodLanding
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -12,7 +12,7 @@ import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.databinding.FragmentJournalBinding
 import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.mood.MoodDetailViewModel
+import com.kstudio.diarymylife.ui.detail.MoodDetailViewModel
 import com.kstudio.diarymylife.utils.Keys.Companion.MOOD_ID
 import com.kstudio.diarymylife.utils.mapMoodIntToRes
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,11 +26,11 @@ class MoodLandingFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpArguments()
-        getUpMoodDetail()
-        setVisibleGone()
-        bindingView()
-        observeLiveData()
+//        setUpArguments()
+//        getUpMoodDetail()
+//        setVisibleGone()
+//        bindingView()
+//        observeLiveData()
     }
 
     private fun observeLiveData() {
@@ -91,7 +91,7 @@ class MoodLandingFragment :
     }
 
     private fun getUpMoodDetail() {
-        moodActivityViewModel.moodId.let { viewModel.getMoodDetailFromID(it) }
+//        moodActivityViewModel.moodId.let { viewModel.getMoodDetailFromID(it) }
     }
 
     override fun handleOnBackPress() {

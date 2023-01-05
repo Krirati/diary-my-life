@@ -29,7 +29,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".ui.mood.MoodDetailActivity"
+            android:name=".ui.detail.MoodDetailActivity"
             android:theme="@style/Theme.DiaryMyLife"
             android:windowSoftInputMode="adjustPan" />
         <activity

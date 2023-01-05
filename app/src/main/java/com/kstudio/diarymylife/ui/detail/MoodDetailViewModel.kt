@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.mood
+package com.kstudio.diarymylife.ui.detail
 
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 

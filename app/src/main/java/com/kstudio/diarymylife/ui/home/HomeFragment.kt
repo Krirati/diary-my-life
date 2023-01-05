@@ -11,7 +11,7 @@ import com.kstudio.diarymylife.databinding.FragmentHomeBinding
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
-import com.kstudio.diarymylife.ui.mood.MoodDetailActivity
+import com.kstudio.diarymylife.ui.detail.MoodDetailActivity
 import com.kstudio.diarymylife.utils.Screen
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

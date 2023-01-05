@@ -1,10 +1,8 @@
 package com.kstudio.diarymylife.ui.create.select_mood
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.kstudio.diarymylife.R
@@ -102,11 +100,6 @@ class SelectMoodFragment :
 //        if (currentDate != null) {
 //            shareViewModel.updateCurrentSelectedDate(currentDate, true)
 //        }
-    }
-
-    @SuppressLint("ResourceType")
-    private fun navigateToNextScreen() {
-        findNavController().navigate(R.id.action_writeFragment_to_selectActivityFragment)
     }
 
     private fun onPageChangeCallback() =

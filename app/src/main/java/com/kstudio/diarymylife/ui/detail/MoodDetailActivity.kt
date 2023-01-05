@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.mood
+package com.kstudio.diarymylife.ui.detail
 
 import android.os.Bundle
 import androidx.navigation.findNavController

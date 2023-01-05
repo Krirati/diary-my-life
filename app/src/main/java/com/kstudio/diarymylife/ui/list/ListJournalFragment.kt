@@ -12,7 +12,7 @@ import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter.Companion.VIEW_ADD
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
-import com.kstudio.diarymylife.ui.mood.MoodDetailActivity
+import com.kstudio.diarymylife.ui.detail.MoodDetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListJournalFragment : BaseFragment<FragmentListJournalBinding>(

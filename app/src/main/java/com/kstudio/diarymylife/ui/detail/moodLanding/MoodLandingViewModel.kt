@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.mood.moodLanding
+package com.kstudio.diarymylife.ui.detail.moodLanding
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope

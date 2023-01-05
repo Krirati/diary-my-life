@@ -5,8 +5,8 @@ import com.kstudio.diarymylife.ui.create.select_activity.SelectActivityViewModel
 import com.kstudio.diarymylife.ui.create.select_mood.SelectMoodViewModel
 import com.kstudio.diarymylife.ui.home.HomeViewModel
 import com.kstudio.diarymylife.ui.list.ListMoodViewModel
-import com.kstudio.diarymylife.ui.mood.MoodDetailViewModel
-import com.kstudio.diarymylife.ui.mood.moodLanding.MoodLandingViewModel
+import com.kstudio.diarymylife.ui.detail.MoodDetailViewModel
+import com.kstudio.diarymylife.ui.detail.moodLanding.MoodLandingViewModel
 import com.kstudio.diarymylife.ui.setting.notification.NotificationViewModel
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheetViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
