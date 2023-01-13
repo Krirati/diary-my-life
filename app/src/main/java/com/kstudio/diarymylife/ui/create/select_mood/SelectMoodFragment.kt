@@ -1,11 +1,9 @@
 package com.kstudio.diarymylife.ui.create.select_mood
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.kstudio.diarymylife.R
@@ -26,14 +24,18 @@ class SelectMoodFragment :
 
     private val viewModel by viewModel<SelectMoodViewModel>()
     private val adapterMood by lazy { MoodAdapter() }
-    private var latestTmpUri: Uri? = null
-    private val takeImageResult = registerForActivityResult(ActivityResultContracts.TakePicture()) {
-        if (it) {
-            latestTmpUri?.let { uri ->
-//                loadPhotosFromInternalStorageIntoView()
+
+    private val selectImageFromGalleryResult =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            uri?.let {
+                binding.buttonImage.visibility = View.GONE
+                binding.imageView.apply {
+                    setImageURI(uri)
+                    visibility = View.VISIBLE
+                }
             }
         }
-    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleOnBackPress()
@@ -76,6 +78,9 @@ class SelectMoodFragment :
             viewModel.createMood()
         }
         back.setOnClickListener { onBackPressedOrFinish() }
+        selectedImage.setOnClickListener { selectImageFromGallery() }
+        buttonImage.setOnClickListener { selectImageFromGallery() }
+        imageView.setOnClickListener { selectImageFromGallery() }
     }
 
     private fun observe() {
@@ -105,7 +110,7 @@ class SelectMoodFragment :
         binding.currentSelectTime.text = convertTime(date.getLocalDateTime())
     }
 
-    override fun onCloseBottomSheet() {
+    override fun onCloseBottomSheet() { /* DO nothing */
     }
 
     private fun onPageChangeCallback() =
@@ -116,9 +121,5 @@ class SelectMoodFragment :
             }
         }
 
-    private fun takeImage() {
-        lifecycleScope.launchWhenStarted {
-
-        }
-    }
+    private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 }

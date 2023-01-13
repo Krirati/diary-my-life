@@ -23,10 +23,8 @@ class SelectMoodViewModel(
     private var _selectsMood: MutableLiveData<Pair<Int, Int>> = MutableLiveData()
 
     private val _localDateSelect: MutableLiveData<LocalDate> = MutableLiveData(LocalDate.now())
-    val localDateSelect: MutableLiveData<LocalDate> = _localDateSelect
 
     private val _localTimeSelect: MutableLiveData<LocalTime> = MutableLiveData(LocalTime.now())
-    val localTimeSelect: MutableLiveData<LocalTime> = _localTimeSelect
 
     fun setupSelectMood(index: Pair<Int, Int>) {
         _selectsMood.postValue(index)
@@ -41,8 +39,16 @@ class SelectMoodViewModel(
     }
 
     fun createMood() {
-        val time = ResultSelectDate(localDateSelect.value, localTimeSelect.value)
-        val req = MoodRequest(
+        viewModelScope.launch {
+            val res = moodRepository.insert(setupMoodRequest())
+            _created.postValue(res)
+        }
+    }
+
+    private fun setupMoodRequest(): MoodRequest{
+        val time = ResultSelectDate(_localDateSelect.value, _localTimeSelect.value)
+
+        return MoodRequest(
             moodId = null,
             title = mapMoodStringToTitle(_selectsMood.value?.first),
             description = "",
@@ -52,9 +58,5 @@ class SelectMoodViewModel(
             mood = _selectsMood.value?.first,
             activity = arrayListOf()
         )
-        viewModelScope.launch {
-            val res = moodRepository.insert(req)
-            _created.postValue(res)
-        }
     }
 }

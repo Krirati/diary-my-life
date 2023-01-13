@@ -132,7 +132,15 @@
     </style>
 
     <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
+        <item name="color">@color/black</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize20" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/dp_24</item>
+        <item name="color">@color/black</item>
     </style>
 
 </resources>
