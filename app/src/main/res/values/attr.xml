@@ -16,4 +16,8 @@
         <attr name="custom_edit_icon_left" format="integer"/>
         <attr name="custom_edit_action_custom" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomCard">
+        <attr name="custom_card_background_color" format="integer"/>
+    </declare-styleable>
 </resources>

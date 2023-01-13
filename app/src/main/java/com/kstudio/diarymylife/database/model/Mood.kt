@@ -11,7 +11,6 @@ data class Mood(
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "mood") val mood: Int?,
-    @ColumnInfo(name = "activity") val activity: ArrayList<Int>? = arrayListOf(),
     @ColumnInfo(name = "image_name") val imageName: String?,
     @ColumnInfo(name = "timestamp") val timestamp: LocalDateTime,
     @ColumnInfo(name = "create_time") val createTime: LocalDateTime,

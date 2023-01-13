@@ -8,11 +8,9 @@ import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.kstudio.diarymylife.database.dao.ActivityEventDao
 import com.kstudio.diarymylife.database.dao.MoodDao
-import com.kstudio.diarymylife.database.dao.ProfileDao
 import com.kstudio.diarymylife.database.model.ActivityEvent
 import com.kstudio.diarymylife.database.model.Mood
 import com.kstudio.diarymylife.database.model.MoodActivityEventCrossRef
-import com.kstudio.diarymylife.database.model.Profile
 import com.kstudio.diarymylife.database.util.Converter
 import java.util.concurrent.Executors
 
@@ -20,8 +18,7 @@ import java.util.concurrent.Executors
     entities = [
         Mood::class,
         ActivityEvent::class,
-        MoodActivityEventCrossRef::class,
-        Profile::class
+        MoodActivityEventCrossRef::class
     ],
     version = 1,
     exportSchema = true
@@ -30,8 +27,6 @@ import java.util.concurrent.Executors
 abstract class MoodDatabase : RoomDatabase() {
     abstract fun moodDao(): MoodDao
     abstract fun activityEventDao(): ActivityEventDao
-
-    abstract fun profileDao(): ProfileDao
 
     companion object {
         @Volatile

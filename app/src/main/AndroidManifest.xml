@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -16,7 +18,7 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
         <activity
@@ -53,6 +55,10 @@
             android:theme="@style/Theme.DiaryMyLife" />
         <activity
             android:name=".ui.setting.profile.ProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.DiaryMyLife" />
+        <activity
+            android:name=".ui.setting.SettingActivity"
             android:exported="false"
             android:theme="@style/Theme.DiaryMyLife" />
 

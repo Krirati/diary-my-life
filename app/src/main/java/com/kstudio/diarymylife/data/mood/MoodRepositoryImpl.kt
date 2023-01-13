@@ -15,8 +15,7 @@ class MoodRepositoryImpl(private val moodDao: MoodDao) : MoodRepository {
             timestamp = mood.timestamp,
             createTime = mood.createTime,
             imageName = mood.imageName,
-            mood = mood.mood,
-            activity = null
+            mood = mood.mood
         )
         val moodId = moodDao.insert(moodReq)
         mood.activity?.forEach {
@@ -52,7 +51,6 @@ class MoodRepositoryImpl(private val moodDao: MoodDao) : MoodRepository {
             title = mood.title,
             description = mood.description,
             mood = mood.mood,
-            activity = null,
             imageName = mood.imageName,
             timestamp = mood.timestamp,
             createTime = mood.createTime,

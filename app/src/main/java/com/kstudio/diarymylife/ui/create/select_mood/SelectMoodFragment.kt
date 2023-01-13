@@ -1,8 +1,11 @@
 package com.kstudio.diarymylife.ui.create.select_mood
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.kstudio.diarymylife.R
@@ -23,7 +26,14 @@ class SelectMoodFragment :
 
     private val viewModel by viewModel<SelectMoodViewModel>()
     private val adapterMood by lazy { MoodAdapter() }
-
+    private var latestTmpUri: Uri? = null
+    private val takeImageResult = registerForActivityResult(ActivityResultContracts.TakePicture()) {
+        if (it) {
+            latestTmpUri?.let { uri ->
+//                loadPhotosFromInternalStorageIntoView()
+            }
+        }
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handleOnBackPress()
@@ -96,10 +106,6 @@ class SelectMoodFragment :
     }
 
     override fun onCloseBottomSheet() {
-//        val currentDate = shareViewModel.selectedDate.value
-//        if (currentDate != null) {
-//            shareViewModel.updateCurrentSelectedDate(currentDate, true)
-//        }
     }
 
     private fun onPageChangeCallback() =
@@ -109,4 +115,10 @@ class SelectMoodFragment :
                 viewModel.setupSelectMood(adapterMood.getMoodList()[position])
             }
         }
+
+    private fun takeImage() {
+        lifecycleScope.launchWhenStarted {
+
+        }
+    }
 }

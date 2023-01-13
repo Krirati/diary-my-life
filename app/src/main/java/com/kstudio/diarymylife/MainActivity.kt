@@ -6,11 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.kstudio.diarymylife.databinding.ActivityMainBinding
 import com.kstudio.diarymylife.ui.adapter.ViewPagerAdapter
-import com.kstudio.diarymylife.ui.chart.ChartFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
 import com.kstudio.diarymylife.ui.home.HomeFragment
 import com.kstudio.diarymylife.ui.list.ListJournalFragment
-import com.kstudio.diarymylife.ui.setting.SettingFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,8 +27,6 @@ class MainActivity : AppCompatActivity() {
         val fragment: ArrayList<Fragment> = arrayListOf(
             HomeFragment(),
             ListJournalFragment(),
-            ChartFragment(),
-            SettingFragment()
         )
 
         binding.viewPager.apply {
@@ -43,7 +39,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupNavigationBar() {
         binding.bottomNavigation.apply {
             background = null
-            menu.getItem(2).isEnabled = false
         }
 
         binding.fab.setOnClickListener {
@@ -54,16 +49,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.navigation_write -> {
-                    binding.viewPager.currentItem = 1
-                    return@setOnItemSelectedListener true
-                }
                 R.id.navigation_chart -> {
                     binding.viewPager.currentItem = 2
-                    return@setOnItemSelectedListener true
-                }
-                R.id.navigation_setting -> {
-                    binding.viewPager.currentItem = 3
                     return@setOnItemSelectedListener true
                 }
                 else -> {

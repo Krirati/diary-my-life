@@ -4,25 +4,11 @@
         android:id="@+id/navigation_calendar"
         android:icon="@drawable/ic_home"
         android:title="@string/home" />
-
-    <item
-        android:id="@+id/navigation_write"
-        android:icon="@drawable/ic_calendar"
-        android:title="@string/list" />
-
     <item
         android:id="@+id/placholfer"
         android:title="" />
-
     <item
         android:id="@+id/navigation_chart"
         android:icon="@drawable/ic_pie_chart"
         android:title="Chart" />
-
-    <item
-        android:id="@+id/navigation_setting"
-        android:icon="@drawable/ic_settings"
-        android:title="@string/setting" />
-
-
 </menu>

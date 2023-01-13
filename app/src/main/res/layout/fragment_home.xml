@@ -98,17 +98,14 @@
 
             </androidx.cardview.widget.CardView>
 
-
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/notificationButton"
+                android:id="@+id/settingButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/dp_16"
                 android:background="@drawable/ic_notification_layer"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/title_welcome"
-                app:srcCompat="@drawable/ic_notification" />
-
+                app:layout_constraintTop_toTopOf="@+id/title_welcome" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -127,18 +124,6 @@
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/view_all_button"
-                    style="@style/SubtitleAmberBold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/dp_16"
-                    android:gravity="end|center_vertical"
-                    android:text="View all"
-                    app:layout_constraintBottom_toBottomOf="@+id/title_recent_memory"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/title_recent_memory" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recent_widget"
