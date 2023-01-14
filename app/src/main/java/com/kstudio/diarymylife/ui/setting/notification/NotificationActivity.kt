@@ -84,7 +84,7 @@ class NotificationActivity : BaseActivity(), SelectDateHandle {
         viewModel.setIsDailyChange(date.time)
     }
 
-    override fun onCloseBottomSheet() {
+    override fun onCloseBottomSheet() { /* Do nothing*/
     }
 
 }

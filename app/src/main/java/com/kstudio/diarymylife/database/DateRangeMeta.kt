@@ -53,7 +53,6 @@ val maxDate: Date
         val calendar: Calendar = GregorianCalendar()
         calendar.time = currentDate
         calendar.add(Calendar.YEAR, NUMBER_OF_YEARS)
-        //calendar.add(Calendar.DATE, 50)
         return calendar.time
     }
 val minDate: Date
@@ -62,6 +61,5 @@ val minDate: Date
         val calendar: Calendar = GregorianCalendar()
         calendar.time = currentDate
         calendar.add(Calendar.YEAR, -NUMBER_OF_YEARS)
-        //calendar.add(Calendar.DATE, -50)
         return calendar.time
     }

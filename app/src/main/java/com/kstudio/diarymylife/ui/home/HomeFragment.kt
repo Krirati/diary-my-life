@@ -13,7 +13,6 @@ import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
 import com.kstudio.diarymylife.ui.detail.MoodDetailActivity
 import com.kstudio.diarymylife.ui.setting.SettingActivity
-import com.kstudio.diarymylife.utils.Screen
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {

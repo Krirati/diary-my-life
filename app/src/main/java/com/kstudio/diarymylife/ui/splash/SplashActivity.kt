@@ -30,13 +30,16 @@ class SplashActivity : BaseActivity() {
     }
 
     val listener = object : RiveArtboardRenderer.Listener {
-        override fun notifyPlay(animation: PlayableInstance) {
+        override fun notifyPlay(animation: PlayableInstance) {/* Do nothing*/
         }
 
-        override fun notifyStateChanged(stateMachineName: String, stateName: String) {
+        override fun notifyStateChanged(
+            stateMachineName: String,
+            stateName: String
+        ) {/* Do nothing*/
         }
 
-        override fun notifyPause(animation: PlayableInstance) {
+        override fun notifyPause(animation: PlayableInstance) {/* Do nothing*/
         }
 
         override fun notifyStop(animation: PlayableInstance) {
@@ -44,7 +47,7 @@ class SplashActivity : BaseActivity() {
             finish()
         }
 
-        override fun notifyLoop(animation: PlayableInstance) {
+        override fun notifyLoop(animation: PlayableInstance) {/* Do nothing*/
         }
     }
 }

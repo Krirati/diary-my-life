@@ -18,6 +18,14 @@
     </declare-styleable>
 
     <declare-styleable name="CustomCard">
-        <attr name="custom_card_background_color" format="integer"/>
+        <attr name="custom_card_background_color" format="enum">
+            <enum name="BEIGE" value="6"/>
+            <enum name="NYANZA" value="5"/>
+            <enum name="LIGHT_GOLDENROD_YELLOW" value="4"/>
+            <enum name="LEMON_CHIFFON" value="3"/>
+            <enum name="NAVAJO_WHITE" value="2"/>
+            <enum name="MACARONI_AND_CHEESE" value="1"/>
+            <enum name="SANDY_BROWN" value="0"/>
+        </attr>
     </declare-styleable>
 </resources>
