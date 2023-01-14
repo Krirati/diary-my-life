@@ -7,6 +7,7 @@ import android.content.Context
 import com.kstudio.diarymylife.di.repositoryModule
 import com.kstudio.diarymylife.di.roomModule
 import com.kstudio.diarymylife.di.sharedPreferencesModule
+import com.kstudio.diarymylife.di.useCaseModule
 import com.kstudio.diarymylife.di.viewModelModule
 import com.kstudio.diarymylife.extensions.CHANNEL_ID
 import org.koin.android.ext.koin.androidContext
@@ -26,6 +27,7 @@ class MyApplication : Application() {
                 viewModelModule,
                 roomModule,
                 repositoryModule,
+                useCaseModule,
                 sharedPreferencesModule
             )
         }

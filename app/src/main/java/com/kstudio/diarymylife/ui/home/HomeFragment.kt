@@ -6,8 +6,8 @@ import android.view.View
 import androidx.activity.addCallback
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.databinding.FragmentHomeBinding
+import com.kstudio.diarymylife.domain.model.MoodViewType
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
@@ -61,7 +61,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         settingButton.setOnClickListener { navigateToActivity(SettingActivity::class.java) }
     }
 
-    private fun updateRecentMood(moodList: List<MoodItem>) {
+    private fun updateRecentMood(moodList: List<MoodViewType>) {
         moodAdapter.updateMoodItems(moodList)
     }
 

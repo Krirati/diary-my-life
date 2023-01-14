@@ -3,9 +3,9 @@ package com.kstudio.diarymylife.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.databinding.ItemCardAddBinding
 import com.kstudio.diarymylife.databinding.ItemSwipeCardBinding
+import com.kstudio.diarymylife.domain.model.MoodViewType
 import com.kstudio.diarymylife.ui.adapter.viewholder.ItemAddViewHolder
 import com.kstudio.diarymylife.ui.adapter.viewholder.ItemCardSwipeViewHolder
 
@@ -15,7 +15,7 @@ class ItemCardSwipeAdapter(
     private val onNavigateToDetail: (Long?) -> Unit,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var moodItems: List<MoodItem> = listOf()
+    var moodItems: List<MoodViewType> = listOf()
 
     companion object {
         const val VIEW_ITEM = 10
@@ -64,7 +64,7 @@ class ItemCardSwipeAdapter(
         notifyItemRangeChanged(position, moodItems.size)
     }
 
-    fun updateMoodItems(moodItem: List<MoodItem>) {
+    fun updateMoodItems(moodItem: List<MoodViewType>) {
         moodItems = moodItem
         notifyItemRangeChanged(0, moodItems.size)
     }

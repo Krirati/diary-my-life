@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.databinding.FragmentListJournalBinding
+import com.kstudio.diarymylife.domain.model.MoodViewType
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter.Companion.VIEW_ADD
 import com.kstudio.diarymylife.ui.base.BaseFragment
@@ -63,12 +63,12 @@ class ListJournalFragment : BaseFragment<FragmentListJournalBinding>(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun setUpRecentMemory(moodList: List<MoodItem>) {
+    private fun setUpRecentMemory(moodList: List<MoodViewType>) {
         bindingCard(moodList)
         moodAdapter.updateMoodItems(moodList)
     }
 
-    private fun bindingCard(mood: List<MoodItem>) = with(binding) {
+    private fun bindingCard(mood: List<MoodViewType>) = with(binding) {
         val moodTotal = mood.filter { mood -> mood.viewType != VIEW_ADD }
         cardTotal.setValue(moodTotal.size.toLong())
     }

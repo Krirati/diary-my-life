@@ -7,11 +7,10 @@ import java.time.LocalDateTime
 
 @Entity(tableName = "user_mood")
 data class Mood(
-    @PrimaryKey(autoGenerate = true) val moodId: Long = 0,
-    @ColumnInfo(name = "title") val title: String,
-    @ColumnInfo(name = "description") val description: String,
+    @PrimaryKey val moodId: Long = 0,
     @ColumnInfo(name = "mood") val mood: Int?,
-    @ColumnInfo(name = "image_name") val imageName: String?,
+    @ColumnInfo(name = "description") val description: String,
+    @ColumnInfo(name = "image_uri") val imageUri: String?,
     @ColumnInfo(name = "timestamp") val timestamp: LocalDateTime,
     @ColumnInfo(name = "create_time") val createTime: LocalDateTime,
 )

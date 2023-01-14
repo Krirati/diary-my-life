@@ -10,12 +10,11 @@ import kotlinx.coroutines.flow.Flow
 class MoodRepositoryImpl(private val moodDao: MoodDao) : MoodRepository {
     override suspend fun insert(mood: MoodRequest) {
         val moodReq = Mood(
-            title = mood.title,
+            mood = mood.mood,
             description = mood.description,
+            imageUri = mood.imageName,
             timestamp = mood.timestamp,
             createTime = mood.createTime,
-            imageName = mood.imageName,
-            mood = mood.mood
         )
         val moodId = moodDao.insert(moodReq)
         mood.activity?.forEach {
@@ -48,10 +47,9 @@ class MoodRepositoryImpl(private val moodDao: MoodDao) : MoodRepository {
         if (mood?.moodId == null) return
         val request = Mood(
             moodId = mood.moodId,
-            title = mood.title,
-            description = mood.description,
             mood = mood.mood,
-            imageName = mood.imageName,
+            description = mood.description,
+            imageUri = mood.imageName,
             timestamp = mood.timestamp,
             createTime = mood.createTime,
         )

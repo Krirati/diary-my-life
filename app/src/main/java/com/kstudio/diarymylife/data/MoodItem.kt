@@ -14,12 +14,11 @@ data class MoodItem(
 @Parcelize
 data class MoodUI(
     val moodId: Long,
-    val title: String,
     val desc: String,
     val mood: Int?,
     val activity: List<ActivityDetail>?,
     val timestamp: LocalDateTime,
-    val imageId: String,
+    val imageUri: String,
     var state : SwipeState = SwipeState.NONE,
 ): Parcelable
 

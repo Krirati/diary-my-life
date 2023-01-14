@@ -62,7 +62,7 @@ class MoodLandingFragment :
         binding.run {
             date.bindView(mood?.timestamp)
             mood?.mood?.let { imageMood.setImageResource(mapMoodIntToRes(it)) }
-            journalTitle.text = mood?.title
+            journalTitle.text = mood?.mood.toString()
             journalDesc.text = mood?.desc
             activityTitle.visibility= View.VISIBLE
             recyclerviewActivity.apply {
