@@ -4,9 +4,8 @@ import java.time.LocalDateTime
 
 data class MoodRequest(
     val moodId: Long?,
-    val title: String,
-    val description: String,
     val mood: Int?,
+    val description: String,
     val activity: ArrayList<ActivityDetail>? = arrayListOf(),
     val imageName: String?,
     val timestamp: LocalDateTime,

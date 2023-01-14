@@ -3,6 +3,7 @@ package com.kstudio.diarymylife.ui.adapter.viewholder
 import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.databinding.ItemSwipeCardBinding
 import com.kstudio.diarymylife.domain.model.MoodViewType
+import com.kstudio.diarymylife.utils.mapMoodStringToTitle
 
 class ItemCardSwipeViewHolder(
     val binding: ItemSwipeCardBinding
@@ -15,7 +16,7 @@ class ItemCardSwipeViewHolder(
     ) {
         binding.apply {
             item.data?.apply {
-                customCard.setTitleAndDate(this.mood.toString(), this.timestamp)
+                customCard.setTitleAndDate(mapMoodStringToTitle(this.mood), this.timestamp)
                 customCard.setOnClickWidget { onClickToDetail(this.moodId) }
                 customCard.setOnClickAction { onActionClickDelete(absoluteAdapterPosition) }
             }

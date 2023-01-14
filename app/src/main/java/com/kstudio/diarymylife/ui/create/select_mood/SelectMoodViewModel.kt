@@ -7,7 +7,6 @@ import com.kstudio.diarymylife.data.MoodRequest
 import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.data.mood.MoodRepository
 import com.kstudio.diarymylife.ui.base.BaseViewModel
-import com.kstudio.diarymylife.utils.mapMoodStringToTitle
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -45,17 +44,16 @@ class SelectMoodViewModel(
         }
     }
 
-    private fun setupMoodRequest(): MoodRequest{
+    private fun setupMoodRequest(): MoodRequest {
         val time = ResultSelectDate(_localDateSelect.value, _localTimeSelect.value)
 
         return MoodRequest(
             moodId = null,
-            title = mapMoodStringToTitle(_selectsMood.value?.first),
+            mood = _selectsMood.value?.first,
             description = "",
             timestamp = time.getLocalDateTime(),
             createTime = LocalDateTime.now(),
             imageName = _selectsMood.value?.second.toString(),
-            mood = _selectsMood.value?.first,
             activity = arrayListOf()
         )
     }
