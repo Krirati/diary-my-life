@@ -41,4 +41,10 @@
     <color name="macaroni_and_cheese">#FAAF7E</color>
     <color name="pewter_blue">#89b0ae</color>
     <color name="new_york_pink">@color/red_200</color>
+
+<!--    <color name="laurel_green">#c9cfb8</color>-->
+<!--    <color name="pale_sprint_bud">#e9eed9</color>-->
+<!--    <color name="lemon_yellow_crayola">#fefde8</color>-->
+<!--    <color name="deep_champagne">#ffefd5</color>-->
+<!--    <color name="macaroni_and_cheese">#fee8d6</color>-->
 </resources>
