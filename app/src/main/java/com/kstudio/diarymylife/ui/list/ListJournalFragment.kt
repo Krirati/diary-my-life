@@ -37,8 +37,8 @@ class ListJournalFragment : BaseFragment<FragmentListJournalBinding>(
 
     override fun bindingView() {
         binding.apply {
-            cardAverage.bind("Mood average", 5, R.drawable.ic_pie_chart)
-            cardTotal.bind("Total mood", 5, R.drawable.ic_calendar)
+            cardAverage.bind("Mood avg", 5, R.drawable.pie_chart_24)
+            cardTotal.bind("Total mood", 5, R.drawable.ic_calendar_24)
             recyclerview.apply {
                 layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
                 adapter = moodAdapter

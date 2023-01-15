@@ -64,6 +64,14 @@
         <item name="android:textColor">@color/grey_text</item>
     </style>
 
+    <style name="TextAppearance.DiaryMyLife.Subtitle.Grey.BOLD" parent="TextAppearance.DiaryMyLife">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:textColor">@color/grey_text</item>
+    </style>
+
     <style name="TextAppearance.DiaryMyLife.Subtitle.Black" parent="TextAppearance.DiaryMyLife">
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>

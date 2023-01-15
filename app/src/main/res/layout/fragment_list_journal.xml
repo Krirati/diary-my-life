@@ -2,6 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -34,7 +37,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_32"
-                app:custom_card_background_color="NYANZA"
+                app:custom_card_background_color="8"
                 app:layout_constraintEnd_toStartOf="@+id/card_total"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -44,11 +47,41 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_16"
-                app:custom_card_background_color="NAVAJO_WHITE"
+                app:custom_card_background_color="7"
                 app:layout_constraintBottom_toBottomOf="@+id/card_average"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/card_average"
                 app:layout_constraintTop_toTopOf="@+id/card_average" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/chartSection"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="@dimen/dp_16"
+                android:background="@drawable/bg_round_card_action"
+                app:layout_constraintTop_toBottomOf="@+id/card_total"
+                tools:layout_editor_absoluteX="16dp">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/buttonImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:src="@drawable/ic_image_64"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/TextAppearance.DiaryMyLife.H3.Grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chart"
+                    app:layout_constraintEnd_toEndOf="@+id/buttonImage"
+                    app:layout_constraintStart_toStartOf="@+id/buttonImage"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonImage" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView

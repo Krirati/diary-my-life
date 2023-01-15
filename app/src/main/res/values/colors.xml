@@ -33,10 +33,12 @@
 
     <!--  emotional color  -->
     <color name="beige">#D3DDC3</color>
-    <color name="nyanza">#E8F3D6</color>
-    <color name="light_goldenrod_yellow">#F2F6CA</color>
-    <color name="lemon_chiffon">#FCF9BE</color>
-    <color name="navajo_white">#FFDCA9</color>
-    <color name="macaroni_and_cheese">#FDC491</color>
+    <color name="laurel_green">#B1B999</color>
+    <color name="pale_sprint_bud">#D7E0B9</color>
+    <color name="lemon_yellow_crayola">#FFFBAC</color>
+    <color name="deep_champagne">#FFD495</color>
     <color name="sandy_brown">#FAAB78</color>
+    <color name="macaroni_and_cheese">#FAAF7E</color>
+    <color name="pewter_blue">#89b0ae</color>
+    <color name="new_york_pink">@color/red_200</color>
 </resources>

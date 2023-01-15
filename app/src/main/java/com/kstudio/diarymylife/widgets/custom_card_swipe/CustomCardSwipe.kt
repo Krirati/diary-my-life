@@ -3,6 +3,7 @@ package com.kstudio.diarymylife.widgets.custom_card_swipe
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Point
+import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
@@ -63,6 +64,16 @@ class CustomCardSwipe @JvmOverloads constructor(
     fun setTitleAndDate(title: String, date: LocalDateTime) {
         binding.cardTitle.text = title
         binding.cardDate.bindView(date)
+    }
+
+    fun setBackgroundAndKeepPadding(backgroundDrawable: Int) {
+        val drawablePadding = Rect()
+        val top = binding.cardDetail.paddingTop + drawablePadding.top
+        val left = binding.cardDetail.paddingLeft + drawablePadding.left
+        val right = binding.cardDetail.paddingRight + drawablePadding.right
+        val bottom = binding.cardDetail.paddingBottom + drawablePadding.bottom
+        binding.cardDetail.setBackgroundResource(backgroundDrawable)
+        binding.cardDetail.setPadding(left, top, right, bottom)
     }
 
     fun setOnClickWidget(onClick: () -> Unit) {

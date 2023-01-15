@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -36,6 +37,7 @@
             android:layout_height="0dp"
             android:background="@drawable/bg_round_card_action"
             android:backgroundTint="@color/brown_text"
+            android:layout_marginHorizontal="@dimen/dp_6"
             app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
             app:layout_constraintEnd_toStartOf="@id/guidelineVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineVerticalStart"
@@ -57,12 +59,12 @@
             android:id="@+id/cardDetail"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/bg_round_card_action"
             android:padding="@dimen/dp_16"
             app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
             app:layout_constraintEnd_toStartOf="@id/guidelineVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineVerticalStart"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/bg_round_card_action">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/cardTitle"
