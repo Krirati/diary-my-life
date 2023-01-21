@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.R
-import com.kstudio.diarymylife.databinding.FragmentListJournalBinding
+import com.kstudio.diarymylife.databinding.FragmentMoodListBinding
 import com.kstudio.diarymylife.domain.model.MoodViewType
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter.Companion.VIEW_ADD
@@ -15,8 +15,8 @@ import com.kstudio.diarymylife.ui.create.CreateJournalActivity
 import com.kstudio.diarymylife.ui.detail.MoodDetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ListJournalFragment : BaseFragment<FragmentListJournalBinding>(
-    FragmentListJournalBinding::inflate
+class MoodListFragment : BaseFragment<FragmentMoodListBinding>(
+    FragmentMoodListBinding::inflate
 ) {
 
     private val viewModel by viewModel<ListMoodViewModel>()

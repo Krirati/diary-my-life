@@ -8,7 +8,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.ResultSelectDate
-import com.kstudio.diarymylife.databinding.FragmentSelectMoodBinding
+import com.kstudio.diarymylife.databinding.FragmentMoodCreateBinding
 import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
@@ -19,8 +19,8 @@ import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 
-class SelectMoodFragment :
-    BaseFragment<FragmentSelectMoodBinding>(FragmentSelectMoodBinding::inflate), SelectDateHandle {
+class MoodCreateFragment :
+    BaseFragment<FragmentMoodCreateBinding>(FragmentMoodCreateBinding::inflate), SelectDateHandle {
 
     private val viewModel by viewModel<SelectMoodViewModel>()
     private val adapterMood by lazy { MoodAdapter() }

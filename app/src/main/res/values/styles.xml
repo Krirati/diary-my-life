@@ -21,7 +21,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">24sp</item>
         <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/primary_honestwhite</item>
+        <item name="android:textColor">@color/brown_text</item>
     </style>
 
     <style name="TextAppearance.DiaryMyLife.H1.Black" parent="TextAppearance.DiaryMyLife">
@@ -29,7 +29,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">24sp</item>
         <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/brown_text</item>
     </style>
 
     <style name="TextAppearance.DiaryMyLife.H2.Black" parent="TextAppearance.DiaryMyLife">
@@ -37,7 +37,7 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">20sp</item>
         <item name="android:letterSpacing">0.02</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/brown_text</item>
     </style>
 
     <style name="TextAppearance.DiaryMyLife.H3.Black" parent="TextAppearance.DiaryMyLife">

@@ -9,20 +9,7 @@
         android:id="@+id/journalDetailFragment"
         android:name="com.kstudio.diarymylife.ui.detail.moodLanding.MoodLandingFragment"
         android:label="JournalDetailFragment"
-        tools:layout="@layout/fragment_journal">
-        <action
-            android:id="@+id/action_journalDetailFragment_to_journalEditFragment"
-            app:destination="@id/journalEditFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+        tools:layout="@layout/fragment_mood_detail">
     </fragment>
 
-    <fragment
-        android:id="@+id/journalEditFragment"
-        android:name="com.kstudio.diarymylife.ui.detail.moodEdit.JournalEditFragment"
-        android:label="JournalEditFragment"
-        tools:layout="@layout/fragment_journal">
-    </fragment>
 </navigation>
