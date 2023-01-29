@@ -3,27 +3,33 @@ package com.kstudio.diarymylife.ui.list
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.mood.MoodRepository
-import com.kstudio.diarymylife.domain.GetMoodsAndActivitiesWithLimitUseCase
+import com.kstudio.diarymylife.domain.GetMoodsAndActivityUseCase
 import com.kstudio.diarymylife.domain.model.MoodViewType
 import com.kstudio.diarymylife.ui.base.BaseViewModel
+import com.kstudio.diarymylife.widgets.custom_chart.BarData
 import kotlinx.coroutines.launch
 
 class ListMoodViewModel constructor(
     private val moodRepository: MoodRepository,
-    private val getMoodsAndActivitiesWithLimitUseCase: GetMoodsAndActivitiesWithLimitUseCase
+    private val getMoodsAndActivityUseCase: GetMoodsAndActivityUseCase
 ) : BaseViewModel() {
 
     private val _memberList: MutableLiveData<List<MoodViewType>> = MutableLiveData()
     fun getMemberList(): LiveData<List<MoodViewType>> = _memberList
+
+    private val _barData: MutableLiveData<Pair<Int, ArrayList<BarData>>> = MutableLiveData()
+    val barData: LiveData<Pair<Int, ArrayList<BarData>>> = _barData
 
     private val _averageMood: MutableLiveData<Long> = MutableLiveData(0)
     val averageMood: LiveData<Long> = _averageMood
 
     fun fetchRecentJournal() {
         viewModelScope.launch {
-            getMoodsAndActivitiesWithLimitUseCase.invoke().collect {
+            getMoodsAndActivityUseCase.invoke().collect {
                 _memberList.postValue(it)
+                mappingDataToChart(it)
                 setMoodAverage(it)
             }
         }
@@ -45,5 +51,24 @@ class ListMoodViewModel constructor(
         viewModelScope.launch {
             moodRepository.deleteMood(moodID = moodID)
         }
+    }
+
+    private fun mappingDataToChart(moodViewTypes: List<MoodViewType>) {
+        val dataList = ArrayList<BarData>()
+        var maxValue = 0
+        moodViewTypes.groupBy { it.data?.mood }.forEach { (moodType, moods) ->
+            maxValue = if (moods.size > maxValue) moods.size else maxValue
+            val data = when (moodType) {
+                1 -> BarData(moods.size.toFloat(), R.color.sandy_brown, R.drawable.mood1)
+                2 -> BarData(moods.size.toFloat(), R.color.deep_champagne, R.drawable.mood2)
+                3 -> BarData(moods.size.toFloat(), R.color.lemon_yellow_crayola, R.drawable.mood3)
+                4 -> BarData(moods.size.toFloat(), R.color.pale_sprint_bud, R.drawable.mood4)
+                5 -> BarData(moods.size.toFloat(), R.color.laurel_green, R.drawable.mood5)
+                else -> null
+            }
+            data?.let { dataList.add(it) }
+        }
+
+        _barData.postValue(maxValue to dataList)
     }
 }

@@ -139,8 +139,8 @@ class CustomChart @JvmOverloads constructor(
         this.mDataList = dataList
     }
 
-    fun getDataList(): ArrayList<BarData>? {
-        return mDataList
+    fun setMaxValue(max: Int) {
+        mMaxValue = max.toFloat()
     }
 
     private fun getBar(

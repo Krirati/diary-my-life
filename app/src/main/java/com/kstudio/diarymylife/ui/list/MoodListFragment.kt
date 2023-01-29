@@ -13,7 +13,6 @@ import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter.Companion.VIEW_AD
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
 import com.kstudio.diarymylife.ui.detail.MoodDetailActivity
-import com.kstudio.diarymylife.widgets.custom_chart.BarData
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoodListFragment : BaseFragment<FragmentMoodListBinding>(
@@ -34,7 +33,6 @@ class MoodListFragment : BaseFragment<FragmentMoodListBinding>(
         bindingView()
         observeLiveData()
         viewModel.fetchRecentJournal()
-        bindingChart()
     }
 
     override fun bindingView() {
@@ -57,29 +55,13 @@ class MoodListFragment : BaseFragment<FragmentMoodListBinding>(
         viewModel.averageMood.observe(viewLifecycleOwner) {
             binding.cardAverage.setValue(it)
         }
-    }
 
-    private fun bindingChart() {
-        val dataList = ArrayList<BarData>()
-
-        var data = BarData(3.4f, R.color.sandy_brown, R.drawable.mood1)
-        dataList.add(data)
-
-        data = BarData(8f, R.color.deep_champagne, R.drawable.mood2)
-        dataList.add(data)
-
-        data = BarData(1.8f, R.color.lemon_yellow_crayola, R.drawable.mood3)
-        dataList.add(data)
-
-        data = BarData(10f, R.color.pale_sprint_bud, R.drawable.mood4)
-        dataList.add(data)
-
-        data = BarData(6.2f, R.color.laurel_green, R.drawable.mood5)
-        dataList.add(data)
-
-        binding.chart.apply {
-            setDataList(dataList)
-            build()
+        viewModel.barData.observe(viewLifecycleOwner) {
+            binding.chart.apply {
+                setMaxValue(it.first)
+                setDataList(it.second)
+                build()
+            }
         }
     }
 
