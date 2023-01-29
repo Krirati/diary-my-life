@@ -13,6 +13,7 @@ import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter.Companion.VIEW_AD
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateJournalActivity
 import com.kstudio.diarymylife.ui.detail.MoodDetailActivity
+import com.kstudio.diarymylife.widgets.custom_chart.BarData
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoodListFragment : BaseFragment<FragmentMoodListBinding>(
@@ -33,6 +34,7 @@ class MoodListFragment : BaseFragment<FragmentMoodListBinding>(
         bindingView()
         observeLiveData()
         viewModel.fetchRecentJournal()
+        bindingChart()
     }
 
     override fun bindingView() {
@@ -57,6 +59,32 @@ class MoodListFragment : BaseFragment<FragmentMoodListBinding>(
         }
     }
 
+    private fun bindingChart() {
+        val dataList = ArrayList<BarData>()
+
+        var data = BarData("Sep", 3.4f, 0)
+        dataList.add(data)
+
+        data = BarData("Oct", 8f, 0)
+        dataList.add(data)
+
+        data = BarData("Nov", 1.8f, 0)
+        dataList.add(data)
+
+        data = BarData("Dec", 10f, 0)
+        dataList.add(data)
+
+        data = BarData("Jan", 6.2f, 0)
+        dataList.add(data)
+
+        data = BarData("Feb", 3.3f, 0)
+        dataList.add(data)
+
+        binding.chart.apply {
+            setDataList(dataList)
+            build()
+        }
+    }
 
     override fun handleOnBackPress() {
         TODO("Not yet implemented")

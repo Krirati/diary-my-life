@@ -68,10 +68,40 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_16"
-                        android:minHeight="180dp"
                         android:background="@drawable/bg_round_card_action"
+                        android:minHeight="180dp"
                         app:layout_constraintTop_toBottomOf="@+id/card_total">
 
+                        <com.kstudio.diarymylife.widgets.custom_chart.CustomChart
+                            android:id="@+id/chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            app:custom_bar_can_be_click="true"
+                            app:custom_bar_height="170dp"
+                            app:custom_bar_radius="10dp"
+                            app:custom_bar_title_color="@color/brown_text"
+                            app:custom_bar_title_margin_top="9dp"
+                            app:custom_bar_title_selected_color="@color/amber_600"
+                            app:custom_bar_title_txt_size="12sp"
+                            app:custom_bar_width="7dp"
+                            app:custom_empty_color="@color/sandy_brown"
+                            app:custom_max_value="10"
+                            app:custom_pin_background_color="@color/secondary_grey100"
+                            app:custom_pin_drawable="@drawable/bg_chip_action"
+                            app:custom_pin_margin_bottom="55dp"
+                            app:custom_pin_margin_end="22dp"
+                            app:custom_pin_margin_top="10dp"
+                            app:custom_pin_padding_bottom="5dp"
+                            app:custom_pin_text_color="@color/pewter_blue"
+                            app:custom_pin_txt_size="17sp"
+                            app:custom_progress_click_color="@color/red_200"
+                            app:custom_progress_color="@color/macaroni_and_cheese"
+                            app:custom_progress_disable_color="@color/deep_champagne"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

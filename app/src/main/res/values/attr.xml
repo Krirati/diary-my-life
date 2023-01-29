@@ -20,4 +20,33 @@
     <declare-styleable name="CustomCard">
         <attr name="custom_card_background_color" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomChart">
+        <attr name="custom_max_value" format="float"/>
+        <attr name="custom_bar_width" format="dimension"/>
+        <attr name="custom_bar_height" format="dimension"/>
+        <attr name="custom_empty_color" format="color"/>
+        <attr name="custom_progress_color" format="color"/>
+        <attr name="custom_progress_disable_color" format="color"/>
+        <attr name="custom_progress_click_color" format="color"/>
+        <attr name="custom_bar_radius" format="dimension"/>
+        <attr name="custom_pin_text_color" format="color"/>
+        <attr name="custom_pin_background_color" format="color"/>
+        <attr name="custom_pin_padding_top" format="dimension"/>
+        <attr name="custom_pin_padding_bottom" format="dimension"/>
+        <attr name="custom_pin_padding_end" format="dimension"/>
+        <attr name="custom_pin_padding_start" format="dimension"/>
+        <attr name="custom_bar_can_be_click" format="boolean"/>
+        <attr name="custom_bar_title_color" format="color"/>
+        <attr name="custom_bar_title_margin_top" format="dimension"/>
+        <attr name="custom_bar_title_txt_size" format="dimension"/>
+        <attr name="custom_pin_txt_size" format="dimension"/>
+        <attr name="custom_pin_margin_top" format="dimension"/>
+        <attr name="custom_pin_margin_bottom" format="dimension"/>
+        <attr name="custom_pin_margin_end" format="dimension"/>
+        <attr name="custom_pin_margin_start" format="dimension"/>
+        <attr name="custom_pin_drawable" format="integer"/>
+        <attr name="custom_bar_title_selected_color" format="color"/>
+        <attr name="custom_bar_can_be_toggle" format="boolean"/>
+    </declare-styleable>
 </resources>
