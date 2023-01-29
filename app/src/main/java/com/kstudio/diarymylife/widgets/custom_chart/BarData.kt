@@ -1,7 +1,10 @@
 package com.kstudio.diarymylife.widgets.custom_chart
 
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+
 data class BarData(
-    val barTitle: String,
     val barValue: Float,
-    var barColor: Int
+    @ColorRes val barColor: Int,
+    @DrawableRes val iconDrawable: Int
 )

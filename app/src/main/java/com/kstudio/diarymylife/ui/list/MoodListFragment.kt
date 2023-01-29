@@ -62,22 +62,19 @@ class MoodListFragment : BaseFragment<FragmentMoodListBinding>(
     private fun bindingChart() {
         val dataList = ArrayList<BarData>()
 
-        var data = BarData("Sep", 3.4f, 0)
+        var data = BarData(3.4f, R.color.sandy_brown, R.drawable.mood1)
         dataList.add(data)
 
-        data = BarData("Oct", 8f, 0)
+        data = BarData(8f, R.color.deep_champagne, R.drawable.mood2)
         dataList.add(data)
 
-        data = BarData("Nov", 1.8f, 0)
+        data = BarData(1.8f, R.color.lemon_yellow_crayola, R.drawable.mood3)
         dataList.add(data)
 
-        data = BarData("Dec", 10f, 0)
+        data = BarData(10f, R.color.pale_sprint_bud, R.drawable.mood4)
         dataList.add(data)
 
-        data = BarData("Jan", 6.2f, 0)
-        dataList.add(data)
-
-        data = BarData("Feb", 3.3f, 0)
+        data = BarData(6.2f, R.color.laurel_green, R.drawable.mood5)
         dataList.add(data)
 
         binding.chart.apply {

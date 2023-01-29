@@ -1,6 +1,7 @@
 package com.kstudio.diarymylife.widgets.custom_chart
 
 import android.content.Context
+import android.graphics.drawable.LayerDrawable
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
@@ -8,8 +9,9 @@ import android.view.ViewTreeObserver
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.ProgressBar
-import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import com.kstudio.diarymylife.R
 
 
@@ -141,7 +143,12 @@ class CustomChart @JvmOverloads constructor(
         return mDataList
     }
 
-    private fun getBar(barTitle: String, barValue: Float, index: Int): FrameLayout {
+    private fun getBar(
+        barValue: Float,
+        index: Int,
+        barColor: Int,
+        iconDrawable: Int
+    ): FrameLayout {
         val maxValue = mMaxValue * 100
 
         val linearLayout = LinearLayout(context)
@@ -159,12 +166,15 @@ class CustomChart @JvmOverloads constructor(
 
         //Adding bar
         val bar = ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal)
+        val drawable = ContextCompat.getDrawable(context, R.drawable.progress_bar_shape)
         bar.apply {
             progress = barValue.toInt()
             visibility = View.VISIBLE
             isIndeterminate = false
             max = maxValue.toInt()
-            progressDrawable = ContextCompat.getDrawable(context, R.drawable.progress_bar_shape)
+            progressDrawable = drawable
+            val wrappedDrawable = (drawable as LayerDrawable).findDrawableByLayerId(R.id.progress)
+            DrawableCompat.setTint(wrappedDrawable, ContextCompat.getColor(context, barColor))
         }
 
         val progressParams = LayoutParams(mBarWidth, mBarHeight)
@@ -180,23 +190,15 @@ class CustomChart @JvmOverloads constructor(
 
         linearLayout.addView(bar)
 
-        //Adding txt below bar
-        val txtBar = TextView(context)
-        val txtParams = LayoutParams(
-            LayoutParams.WRAP_CONTENT,
-            LayoutParams.WRAP_CONTENT
-        )
-
-        txtBar.apply {
-            textSize = 12f
-            text = barTitle
-            gravity = Gravity.CENTER
-            setTextColor(ContextCompat.getColor(context, mBarTitleColor))
-            setPadding(0, mBarTitleMarginTop, 0, 0)
-            layoutParams = txtParams
+        val imageView = AppCompatImageView(context)
+        val imageViewParams = LayoutParams(64, 64)
+        imageViewParams.setMargins(0, mBarTitleMarginTop, 0, 0)
+        imageView.apply {
+            setBackgroundResource(iconDrawable)
+            layoutParams = imageViewParams
         }
 
-        linearLayout.addView(txtBar)
+        linearLayout.addView(imageView)
 
         val rootFrameLayout = FrameLayout(context)
         val rootParams = LinearLayout.LayoutParams(
@@ -239,7 +241,7 @@ class CustomChart @JvmOverloads constructor(
         if (mDataList != null) {
             for (data in mDataList!!) {
                 val barValue = data.barValue * 100
-                val bar = getBar(data.barTitle, barValue, i)
+                val bar = getBar(barValue, i, data.barColor, data.iconDrawable)
                 linearLayout.addView(bar)
                 i++
             }
