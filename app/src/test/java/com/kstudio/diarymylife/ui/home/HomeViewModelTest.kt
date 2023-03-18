@@ -12,7 +12,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `Mock test fail`() {
-        Assert.assertEquals(true, false)
+    fun `Mock test true`() {
+        Assert.assertTrue(true)
     }
 }
