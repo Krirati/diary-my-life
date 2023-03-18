@@ -4,6 +4,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 
 data class BarData(
+    val barOrder: Int,
     val barValue: Float,
     @ColorRes val barColor: Int,
     @DrawableRes val iconDrawable: Int
