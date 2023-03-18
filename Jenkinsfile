@@ -5,6 +5,7 @@ pipeline {
             steps {
                 sh 'echo "Clean Build"'
                 sh './gradlew clean'
+                sh 'echo $JAVA_HOME'
             }
         }
         stage('Test') {
@@ -22,6 +23,9 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Build"'
+                dir("android") {
+                    sh './gradlew assembleRelease'
+                }
             }
         }
         stage('Deploy') {
