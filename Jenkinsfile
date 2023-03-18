@@ -10,12 +10,18 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'echo "Test"'
-                sh './gradlew testDevDebugUnitTestCoverage'
+                sh './gradlew testDebugUnitTest'
+            }
+        }
+        stage('Check Ktlint') {
+            steps {
+                sh 'echo "Check Ktlint"'
+                sh './gradlew ktlint'
             }
         }
         stage('Build') {
             steps {
-                sh 'echo "Test"'
+                sh 'echo "Build"'
             }
         }
         stage('Deploy') {
