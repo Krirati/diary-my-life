@@ -4,13 +4,13 @@ pipeline {
         stage('Clean Build') {
             steps {
                 sh 'echo "Clean Build"'
-                sh './gradlew clean'
+                sh './gradlew clean --no-daemon'
             }
         }
         stage('Test') {
             steps {
                 sh 'echo "Test"'
-                sh './gradlew testDebugUnitTest'
+                sh './gradlew testDebugUnitTest --no-daemon'
             }
         }
         stage('Check Ktlint') {
@@ -25,9 +25,14 @@ pipeline {
                 sh './gradlew assembleRelease'
             }
         }
-        stage('Deploy') {
+        stage('Deploy With fastlane') {
             steps {
                 sh 'echo "Deploy"'
+            }
+        }
+        stage('Notify') {
+            steps {
+                sh 'echo "Notify"'
             }
         }
     }

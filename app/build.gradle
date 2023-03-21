@@ -7,7 +7,7 @@ plugins {
 
 android {
     compileSdk 33
-
+    buildToolsVersion "33.0.1"
     defaultConfig {
         applicationId "com.kstudio.diarymylife"
         minSdk 26
