@@ -4,6 +4,7 @@ pipeline {
         stage('Clean Build') {
             steps {
                 sh 'echo "Clean Build"'
+                sh './gradlew --stop'
                 sh './gradlew clean'
             }
         }
@@ -25,9 +26,14 @@ pipeline {
                 sh './gradlew assembleRelease'
             }
         }
-        stage('Deploy') {
+        stage('Deploy With fastlane') {
             steps {
                 sh 'echo "Deploy"'
+            }
+        }
+        stage('Notify') {
+            steps {
+                sh 'echo "Notify"'
             }
         }
     }
