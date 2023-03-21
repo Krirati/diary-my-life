@@ -4,14 +4,14 @@ pipeline {
         stage('Clean Build') {
             steps {
                 sh 'echo "Clean Build"'
-                sh './gradlew --stop'
-                sh './gradlew clean'
+                sh './gradlew --stop --no-daemon'
+                sh './gradlew clean --no-daemon'
             }
         }
         stage('Test') {
             steps {
                 sh 'echo "Test"'
-                sh './gradlew testDebugUnitTest'
+                sh './gradlew testDebugUnitTest --no-daemon'
             }
         }
         stage('Check Ktlint') {
