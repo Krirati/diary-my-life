@@ -87,26 +87,28 @@ class CustomEditText @JvmOverloads constructor(
     }
 
     fun setOnTextChange(
-        beforeTextChanged: (s: CharSequence?, start: Int, count: Int, after: Int) -> Unit,
         onTextChanged: (s: CharSequence?, start: Int, before: Int, count: Int) -> Unit,
-        afterTextChanged: (s: Editable?) -> Unit
     ) {
         binding.editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                beforeTextChanged(s, start, count, after)
+                /*DO NOT ANYTHING*/
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 onTextChanged(s, start, before, count)
             }
 
-            override fun afterTextChanged(s: Editable?) {
-                afterTextChanged(s)
+            override fun afterTextChanged(s: Editable?) { /*DO NOT ANYTHING*/
             }
         })
     }
 
-    fun setDefaultTextValue(value: String) {
-        binding.valueText.text = value
+    fun setDefaultTextValue(value: String) = with(binding) {
+        valueText.text = value
+        title.visibility =
+            if (value.isEmpty()) View.GONE else View.VISIBLE
+        placeholder.visibility =
+            if (value.isEmpty()) View.VISIBLE else View.GONE
+
     }
 }

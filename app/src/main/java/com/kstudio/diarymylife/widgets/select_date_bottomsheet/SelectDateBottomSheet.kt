@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.window.OnBackInvokedDispatcher
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -21,7 +22,7 @@ import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.data.toDateDetails
 import com.kstudio.diarymylife.databinding.BottomSheetSelectDateBinding
 import com.kstudio.diarymylife.ui.adapter.dateSelection.DateSelectionAdapter
-import com.kstudio.diarymylife.utils.toDate
+import com.kstudio.diarymylife.utils.toDateFormat
 import com.kstudio.diarymylife.utils.toLocalDate
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDate
@@ -61,9 +62,11 @@ class SelectDateBottomSheet @Inject constructor(
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = object : BottomSheetDialog(getContext, theme) {
-            override fun onBackPressed() {
-                super.onBackPressed()
+
+
+            override fun getOnBackInvokedDispatcher(): OnBackInvokedDispatcher {
                 this@SelectDateBottomSheet.dismissAllowingStateLoss()
+                return super.getOnBackInvokedDispatcher()
             }
         }
 
@@ -123,7 +126,7 @@ class SelectDateBottomSheet @Inject constructor(
         }
 
         viewModel.selectedDate.observe(this) { selectedDate ->
-            val dateDetailsUI = selectedDate.toDate()?.toDateDetails()
+            val dateDetailsUI = selectedDate.toDateFormat()?.toDateDetails()
             dateDetailsUI?.let {
                 setSelectedDate(it)
             }

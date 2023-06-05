@@ -1,6 +1,6 @@
 package com.kstudio.diarymylife.database
 
-import com.kstudio.diarymylife.utils.toDate
+import com.kstudio.diarymylife.utils.toDateFormat
 import com.kstudio.diarymylife.utils.toStringFormat
 import java.util.*
 
@@ -15,8 +15,8 @@ internal fun getDateRangeMeta(
     nextDateRange: List<Date>,
     prevDateRange: List<Date>
 ): DateRangeMeta {
-    val endDate = maxDate.toStringFormat().toDate()
-    val startDate = minDate.toStringFormat().toDate()
+    val endDate = maxDate.toStringFormat().toDateFormat()
+    val startDate = minDate.toStringFormat().toDateFormat()
     return when {
         nextDateRange.contains(endDate) -> {
             val index = nextDateRange.indexOf(endDate)

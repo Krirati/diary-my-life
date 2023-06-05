@@ -45,3 +45,9 @@ class BackgroundTheme {
     }
 }
 
+enum class Gender(val gender: String) {
+    MEN("Men"),
+    WOMEN("Women"),
+    OTHER("Other")
+}
+

@@ -3,7 +3,7 @@ package com.kstudio.diarymylife.database
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.kstudio.diarymylife.utils.toDate
+import com.kstudio.diarymylife.utils.toDateFormat
 import java.util.*
 
 class DateSelectionPageSource(private val startDate: String) : PagingSource<String, Date>() {
@@ -11,8 +11,8 @@ class DateSelectionPageSource(private val startDate: String) : PagingSource<Stri
         return try {
             val key = params.key ?: startDate
             val loadSize = 30
-            val nextDateRange: List<Date> = addDayToDate(key.toDate()!!, loadSize - 1)
-            val prevDateRange: List<Date> = removeDayToDate(key.toDate()!!, loadSize.unaryMinus())
+            val nextDateRange: List<Date> = addDayToDate(key.toDateFormat()!!, loadSize - 1)
+            val prevDateRange: List<Date> = removeDayToDate(key.toDateFormat()!!, loadSize.unaryMinus())
 
             val (newDateList, nextKey, prevKey) = getDateRangeMeta(nextDateRange, prevDateRange)
             Log.d("DateSource", "Next Key = $nextKey")
