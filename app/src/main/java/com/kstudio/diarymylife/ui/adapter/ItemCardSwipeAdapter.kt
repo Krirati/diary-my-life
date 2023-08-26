@@ -15,7 +15,7 @@ class ItemCardSwipeAdapter(
     private val onNavigateToDetail: (Long?) -> Unit,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var moodItems: List<MoodViewType> = listOf()
+    private var moodItems: List<MoodViewType> = listOf()
 
     companion object {
         const val VIEW_ITEM = 10
@@ -66,6 +66,6 @@ class ItemCardSwipeAdapter(
 
     fun updateMoodItems(moodItem: List<MoodViewType>) {
         moodItems = moodItem
-        notifyItemRangeChanged(0, moodItems.size)
+        notifyDataSetChanged()
     }
 }
