@@ -42,6 +42,7 @@ class MoodCreateFragment :
         setupViewPager()
         bindingView()
         observe()
+        bindTextField()
     }
 
     private fun setupViewPager() {
@@ -88,6 +89,10 @@ class MoodCreateFragment :
             // todo model success icon and
             activity?.finishAfterTransition()
         }
+
+        viewModel.isChange.observe(viewLifecycleOwner) {
+            binding.buttonNext.isEnabled = it
+        }
     }
 
     override fun handleOnBackPress() {
@@ -122,4 +127,10 @@ class MoodCreateFragment :
         }
 
     private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
+
+    private fun bindTextField() = with(binding) {
+        moodDesc.setOnTextChange { s, _, _, _ ->
+            viewModel.setMoodDesc(s.toString())
+        }
+    }
 }

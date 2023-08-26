@@ -162,6 +162,7 @@
             android:drawableStart="@drawable/save"
             android:drawablePadding="@dimen/dp_16"
             android:text="@string/save"
+            android:enabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
