@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentMoodListBinding
@@ -57,6 +58,7 @@ class ListMoodFragment : BaseFragment<FragmentMoodListBinding>(
         }
 
         viewModel.barData.observe(viewLifecycleOwner) {
+            binding.chartSection.isVisible = !it.second.isNullOrEmpty()
             binding.chart.apply {
                 setMaxValue(it.first)
                 setDataList(it.second)
