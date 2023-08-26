@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/journalDetailFragment"
-        android:name="com.kstudio.diarymylife.ui.detail.moodLanding.MoodLandingFragment"
+        android:name="com.kstudio.diarymylife.ui.detail.moodLanding.MoodDetailLandingFragment"
         android:label="JournalDetailFragment"
         tools:layout="@layout/fragment_mood_detail">
     </fragment>

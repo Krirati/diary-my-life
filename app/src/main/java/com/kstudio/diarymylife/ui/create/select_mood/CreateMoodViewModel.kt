@@ -12,7 +12,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 
-class SelectMoodViewModel(
+class CreateMoodViewModel(
     private val moodRepository: MoodRepository
 ) : BaseViewModel() {
 

@@ -6,7 +6,7 @@ import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ActivityJournalWriteBinding
 import com.kstudio.diarymylife.ui.base.BaseActivity
 
-class CreateJournalActivity : BaseActivity() {
+class CreateMoodActivity : BaseActivity() {
 
     private lateinit var binding: ActivityJournalWriteBinding
 

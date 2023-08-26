@@ -10,7 +10,7 @@ import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
-class MoodLandingViewModel(
+class MoodDetailLandingViewModel(
     private val moodRepositoryImpl: MoodRepositoryImpl
 ) : BaseViewModel() {
 

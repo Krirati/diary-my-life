@@ -19,10 +19,10 @@ import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 
-class MoodCreateFragment :
+class CreateMoodFragment :
     BaseFragment<FragmentMoodCreateBinding>(FragmentMoodCreateBinding::inflate), SelectDateHandle {
 
-    private val viewModel by viewModel<SelectMoodViewModel>()
+    private val viewModel by viewModel<CreateMoodViewModel>()
     private val adapterMood by lazy { MoodAdapter() }
 
     private val selectImageFromGalleryResult =

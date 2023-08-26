@@ -9,10 +9,10 @@ import com.kstudio.diarymylife.ui.detail.MoodDetailViewModel
 import com.kstudio.diarymylife.utils.Keys.Companion.MOOD_ID
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MoodLandingFragment :
+class MoodDetailLandingFragment :
     BaseFragment<FragmentMoodListBinding>(FragmentMoodListBinding::inflate) {
 
-    private val viewModel by viewModel<MoodLandingViewModel>()
+    private val viewModel by viewModel<MoodDetailLandingViewModel>()
     private val moodActivityViewModel by viewModel<MoodDetailViewModel>()
     private val adapterActivity by lazy { ActivityListResultAdapter(requireContext()) }
 
