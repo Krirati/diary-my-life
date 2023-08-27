@@ -27,7 +27,8 @@ class GetMoodsAndActivityUseCase constructor(
                             desc = mood.mood.description,
                             imageUri = mood.mood.imageUri.orEmpty(),
                             timestamp = mood.mood.timestamp,
-                            createTime = mood.mood.createTime
+                            createTime = mood.mood.createTime,
+                            fileName = mood.mood.fileName
                         )
                     )
                 }

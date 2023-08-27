@@ -1,5 +1,6 @@
-package com.kstudio.diarymylife.ui.create.select_mood
+package com.kstudio.diarymylife.ui.create
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -12,7 +13,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 
-class CreateMoodViewModel(
+class CreateNewMoodViewModel(
     private val moodRepository: MoodRepository
 ) : BaseViewModel() {
 
@@ -20,20 +21,10 @@ class CreateMoodViewModel(
     var created: LiveData<Unit> = _created
 
     private var _selectsMood: MutableLiveData<Pair<Int, Int>> = MutableLiveData()
-    private var _oldSelectsMood: MutableLiveData<Pair<Int, Int>> = MutableLiveData()
-
-    private val _oldLocalDateSelect: MutableLiveData<LocalDate> = MutableLiveData(LocalDate.now())
     private val _localDateSelect: MutableLiveData<LocalDate> = MutableLiveData(LocalDate.now())
-
-    private val _oldLocalTimeSelect: MutableLiveData<LocalTime> = MutableLiveData(LocalTime.now())
     private val _localTimeSelect: MutableLiveData<LocalTime> = MutableLiveData(LocalTime.now())
-
-    private val _oldMoodDesc: MutableLiveData<String> = MutableLiveData()
     private val _moodDesc: MutableLiveData<String> = MutableLiveData()
-
-
-    private val _isChanged: MutableLiveData<Boolean> = MutableLiveData(false)
-    val isChange: LiveData<Boolean> = _isChanged
+    private val _imageUrl: MutableLiveData<Uri?> = MutableLiveData()
 
     fun setupSelectMood(index: Pair<Int, Int>) {
         _selectsMood.postValue(index)
@@ -56,15 +47,10 @@ class CreateMoodViewModel(
 
     fun setMoodDesc(desc: String) {
         _moodDesc.postValue(desc)
-        handleCheckChanged()
     }
 
-    private fun handleCheckChanged() {
-        if (_oldMoodDesc != _moodDesc) {
-            _isChanged.postValue(true)
-        } else {
-            _isChanged.postValue(false)
-        }
+    fun setImageUri(uri: Uri?) {
+        _imageUrl.value = uri
     }
 
     private fun setupMoodRequest(): MoodRequest {
@@ -77,7 +63,8 @@ class CreateMoodViewModel(
             timestamp = time.getLocalDateTime(),
             createTime = LocalDateTime.now(),
             imageName = _selectsMood.value?.second.toString(),
-            activity = arrayListOf()
+            activity = arrayListOf(),
+            uri = _imageUrl.value
         )
     }
 }

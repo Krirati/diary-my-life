@@ -1,5 +1,6 @@
 package com.kstudio.diarymylife.data
 
+import android.net.Uri
 import java.time.LocalDateTime
 
 data class MoodRequest(
@@ -10,4 +11,6 @@ data class MoodRequest(
     val imageName: String?,
     val timestamp: LocalDateTime,
     val createTime: LocalDateTime,
+    val uri: Uri? = null,
+    val fileName: String? = null
 )

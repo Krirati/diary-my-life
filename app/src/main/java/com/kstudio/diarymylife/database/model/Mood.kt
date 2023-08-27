@@ -13,4 +13,5 @@ data class Mood(
     @ColumnInfo(name = "image_uri") val imageUri: String?,
     @ColumnInfo(name = "timestamp") val timestamp: LocalDateTime,
     @ColumnInfo(name = "create_time") val createTime: LocalDateTime,
+    @ColumnInfo(name = "fileName") val fileName: String?,
 )

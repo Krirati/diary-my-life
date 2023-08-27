@@ -9,7 +9,7 @@ import com.kstudio.diarymylife.data.shared_preferences.SharedPreferencesReposito
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single<MoodRepository> { MoodRepositoryImpl(get()) }
+    single<MoodRepository> { MoodRepositoryImpl(get(), get()) }
     single<ActivityEventRepository> { ActivityEventRepositoryImpl(get()) }
     single<SharedPreferencesRepository> { SharedPreferencesRepositoryImpl(sharedPreferences = get()) }
 }

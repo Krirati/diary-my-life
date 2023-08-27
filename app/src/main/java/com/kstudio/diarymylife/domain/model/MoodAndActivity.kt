@@ -8,7 +8,8 @@ data class MoodAndActivityUI(
     val mood: Int?,
     val imageUri: String,
     val timestamp: LocalDateTime,
-    val createTime: LocalDateTime
+    val createTime: LocalDateTime,
+    val fileName: String?,
 )
 
 data class MoodViewType(

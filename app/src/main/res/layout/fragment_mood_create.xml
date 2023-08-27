@@ -138,7 +138,8 @@
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
-                    android:layout_height="160dp"
+                    android:layout_height="wrap_content"
+                    android:minHeight="160dp"
                     android:layout_marginTop="@dimen/dp_16"
                     android:adjustViewBounds="false"
                     android:scaleType="centerCrop"
@@ -162,7 +163,7 @@
             android:drawableStart="@drawable/save"
             android:drawablePadding="@dimen/dp_16"
             android:text="@string/save"
-            android:enabled="false"
+            android:enabled="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
