@@ -44,7 +44,6 @@ class SplashActivity : BaseActivity() {
 
         override fun notifyStop(animation: PlayableInstance) {
             navigateToActivity(MainActivity::class.java)
-            finish()
         }
 
         override fun notifyLoop(animation: PlayableInstance) {/* Do nothing*/
