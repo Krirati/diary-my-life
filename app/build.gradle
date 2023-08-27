@@ -31,9 +31,26 @@ android {
             testCoverageEnabled false
         }
         debug {
+            applicationIdSuffix ".debug"
             testCoverageEnabled true
         }
     }
+
+    flavorDimensions "version"
+    productFlavors {
+        production {
+            dimension "version"
+            applicationId "com.kstudio.diarymylifeflavorpro"
+            proguardFile 'proguard-rules.pro'
+        }
+
+        dev {
+            dimension "version"
+            applicationId "com.kstudio.diarymylifeflavordev"
+            proguardFile 'proguard-rules.pro'
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
