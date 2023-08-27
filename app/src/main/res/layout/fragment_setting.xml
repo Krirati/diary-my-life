@@ -50,37 +50,12 @@
                     app:layout_constraintStart_toEndOf="@+id/setting_username"
                     app:layout_constraintTop_toTopOf="@+id/setting_username" />
 
-                <com.kstudio.diarymylife.widgets.CardSetting
-                    android:id="@+id/setting_privacy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toStartOf="@+id/setting_credit"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <com.kstudio.diarymylife.widgets.CardSetting
-                    android:id="@+id/setting_credit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/setting_privacy"
-                    app:layout_constraintTop_toTopOf="@+id/setting_privacy" />
-
-                <com.kstudio.diarymylife.widgets.CardSetting
-                    android:id="@+id/setting_clear_data"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toStartOf="@+id/setting_credit"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appVersion"
                     style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_32"
-                    android:text="version 1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 

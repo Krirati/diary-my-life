@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentMoodListBinding
@@ -11,11 +12,11 @@ import com.kstudio.diarymylife.domain.model.MoodViewType
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter.Companion.VIEW_ADD
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.create.CreateJournalActivity
+import com.kstudio.diarymylife.ui.create.CreateMoodActivity
 import com.kstudio.diarymylife.ui.detail.MoodDetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MoodListFragment : BaseFragment<FragmentMoodListBinding>(
+class ListMoodFragment : BaseFragment<FragmentMoodListBinding>(
     FragmentMoodListBinding::inflate
 ) {
 
@@ -57,6 +58,7 @@ class MoodListFragment : BaseFragment<FragmentMoodListBinding>(
         }
 
         viewModel.barData.observe(viewLifecycleOwner) {
+            binding.chartSection.isVisible = !it.second.isNullOrEmpty()
             binding.chart.apply {
                 setMaxValue(it.first)
                 setDataList(it.second)
@@ -81,7 +83,7 @@ class MoodListFragment : BaseFragment<FragmentMoodListBinding>(
     }
 
     private fun navigateToCreateJournal() {
-        val intent = Intent(activity, CreateJournalActivity::class.java)
+        val intent = Intent(activity, CreateMoodActivity::class.java)
         startActivity(intent)
         requireActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
     }

@@ -6,9 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.kstudio.diarymylife.databinding.ActivityMainBinding
 import com.kstudio.diarymylife.ui.adapter.ViewPagerAdapter
-import com.kstudio.diarymylife.ui.create.CreateJournalActivity
+import com.kstudio.diarymylife.ui.create.CreateMoodActivity
 import com.kstudio.diarymylife.ui.home.HomeFragment
-import com.kstudio.diarymylife.ui.list.MoodListFragment
+import com.kstudio.diarymylife.ui.list.ListMoodFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewPager() {
         val fragment: ArrayList<Fragment> = arrayListOf(
             HomeFragment(),
-            MoodListFragment(),
+            ListMoodFragment(),
         )
 
         binding.viewPager.apply {
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.fab.setOnClickListener {
-            val intent = Intent(this, CreateJournalActivity::class.java)
+            val intent = Intent(this, CreateMoodActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
         }

@@ -10,7 +10,7 @@ import com.kstudio.diarymylife.databinding.FragmentHomeBinding
 import com.kstudio.diarymylife.domain.model.MoodViewType
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.create.CreateJournalActivity
+import com.kstudio.diarymylife.ui.create.CreateMoodActivity
 import com.kstudio.diarymylife.ui.detail.MoodDetailActivity
 import com.kstudio.diarymylife.ui.setting.SettingActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -53,7 +53,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
         checkInButton.setOnClickListener {
             navigateToActivity(
-                CreateJournalActivity::class.java,
+                CreateMoodActivity::class.java,
                 transitionIn = R.anim.slide_in_bottom,
                 transitionOut = R.anim.slide_out_top
             )
@@ -71,7 +71,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun navigateToCreateJournal() {
-        val intent = Intent(activity, CreateJournalActivity::class.java)
+        val intent = Intent(activity, CreateMoodActivity::class.java)
         startActivity(intent)
         requireActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
     }

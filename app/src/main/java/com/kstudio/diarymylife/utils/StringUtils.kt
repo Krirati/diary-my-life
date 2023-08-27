@@ -28,12 +28,7 @@ fun Date.toStringFormat(stringFormat: String = DATE_FORMAT): String {
     }
 }
 
-fun LocalDate.toStringFormat(stringFormat: String = DATE_FORMAT): String {
-    val formatter = DateTimeFormatter.ofPattern(stringFormat)
-    return this.format(formatter)
-}
-
-fun String.toDate(stringFormat: String = DATE_FORMAT): Date? {
+fun String.toDateFormat(stringFormat: String = DATE_FORMAT): Date? {
     val format = SimpleDateFormat(stringFormat, Locale.US)
     return try {
         format.parse(this)
@@ -51,13 +46,6 @@ fun String.toLocalDate(stringFormat: String = DATE_FORMAT): LocalDate? {
 fun LocalDate.toStringFormatApp(stringFormat: String = DATE_FORMAT_APP): String? {
     val formatter = DateTimeFormatter.ofPattern(stringFormat)
     return this.format(formatter)
-}
-
-fun getFormatDate(day: Int, month: Int, year: Int): String {
-    val twoDigit = "%1$02d" // two digits
-    val twoDigitDay = String.format(twoDigit, day)
-    val twoDigitMonth = String.format(twoDigit, month)
-    return "${twoDigitDay}-${twoDigitMonth}-${year}"
 }
 
 fun Int.dpToPx(displayMetrics: DisplayMetrics): Int = (this * displayMetrics.density).toInt()

@@ -35,7 +35,7 @@
             android:theme="@style/Theme.DiaryMyLife"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.create.CreateJournalActivity"
+            android:name=".ui.create.CreateMoodActivity"
             android:theme="@style/Theme.DiaryMyLife"
             android:windowSoftInputMode="adjustPan" />
         <activity
