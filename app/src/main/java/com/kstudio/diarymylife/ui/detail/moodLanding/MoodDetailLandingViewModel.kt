@@ -4,14 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.data.MoodUI
+import com.kstudio.diarymylife.data.mood.MoodRepository
 import com.kstudio.diarymylife.database.model.MoodWithActivity
-import com.kstudio.diarymylife.data.mood.MoodRepositoryImpl
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class MoodDetailLandingViewModel(
-    private val moodRepositoryImpl: MoodRepositoryImpl
+    private val moodRepository: MoodRepository,
 ) : BaseViewModel() {
 
     private var _moodDetail: MutableLiveData<MoodItem?> = MutableLiveData()
@@ -19,11 +19,10 @@ class MoodDetailLandingViewModel(
 
     fun getMoodDetailFromID(id: Long) {
         viewModelScope.launch {
-            moodRepositoryImpl.getMoodFromID(id)
+            moodRepository.getMoodFromID(id)
                 .collect {
                     _moodDetail.postValue(mapToUI(it))
                 }
-
         }
     }
 
@@ -37,7 +36,8 @@ class MoodDetailLandingViewModel(
                     mood = it.mood.mood,
                     activity = it.activities.asActivityDetail(),
                     timestamp = it.mood.timestamp,
-                    imageUri = "",
+                    imageUri = it.mood.fileName ?: "",
+                    fileName = it.mood.fileName ?: ""
                 )
             )
         }

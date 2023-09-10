@@ -61,6 +61,7 @@ class CustomEditText @JvmOverloads constructor(
                         title.visibility = View.VISIBLE
                         placeholder.visibility = View.GONE
                     }
+
                     false -> {
                         title.visibility =
                             if (this.text.isNullOrEmpty()) View.GONE else View.VISIBLE
@@ -105,10 +106,8 @@ class CustomEditText @JvmOverloads constructor(
 
     fun setDefaultTextValue(value: String) = with(binding) {
         valueText.text = value
-        title.visibility =
-            if (value.isEmpty()) View.GONE else View.VISIBLE
-        placeholder.visibility =
-            if (value.isEmpty()) View.VISIBLE else View.GONE
-
+        title.visibility = if (value.isEmpty()) View.GONE else View.VISIBLE
+        placeholder.visibility = if (value.isEmpty()) View.VISIBLE else View.GONE
+        valueText.visibility = if (value.isEmpty()) View.GONE else View.VISIBLE
     }
 }

@@ -2,48 +2,52 @@ package com.kstudio.diarymylife.ui.detail.moodLanding
 
 import android.os.Bundle
 import android.view.View
-import com.kstudio.diarymylife.databinding.FragmentMoodListBinding
-import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
+import com.kstudio.diarymylife.databinding.FragmentMoodCreateBinding
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.detail.MoodDetailViewModel
+import com.kstudio.diarymylife.utils.FileUtility.getUriImage
 import com.kstudio.diarymylife.utils.Keys.Companion.MOOD_ID
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoodDetailLandingFragment :
-    BaseFragment<FragmentMoodListBinding>(FragmentMoodListBinding::inflate) {
+    BaseFragment<FragmentMoodCreateBinding>(FragmentMoodCreateBinding::inflate) {
 
-    private val viewModel by viewModel<MoodDetailLandingViewModel>()
-    private val moodActivityViewModel by viewModel<MoodDetailViewModel>()
-    private val adapterActivity by lazy { ActivityListResultAdapter(requireContext()) }
+    private val moodActivityViewModel by viewModel<MoodDetailLandingViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpArguments()
-        getUpMoodDetail()
         bindingView()
+        handleOnBackPress()
         observeLiveData()
+        setUpArguments()
     }
 
     private fun observeLiveData() {
+        moodActivityViewModel.moodData.observe(viewLifecycleOwner) {
+            it?.data?.let { mood ->
+                binding.apply {
+                    val imageURI = getUriImage(requireContext(), mood.fileName)
+                    moodDesc.setDefaultTextValue(mood.desc)
+                    buttonImage.visibility = View.GONE
+                    imageView.apply {
+                        visibility = View.VISIBLE
+                        setImageURI(imageURI)
+                    }
+                }
+            }
+        }
     }
 
     private fun setUpArguments() {
-        moodActivityViewModel.moodId = arguments?.getLong(MOOD_ID)!!
+        val moodID = arguments?.getLong(MOOD_ID)
+        if (moodID == null) this.activity?.finish()
+        else moodActivityViewModel.getMoodDetailFromID(moodID)
     }
 
     override fun bindingView() = with(binding) {
-    }
-
-    override fun onResume() {
-        super.onResume()
-        getUpMoodDetail()
-    }
-
-    private fun getUpMoodDetail() {
-//        moodActivityViewModel.moodId.let { viewModel.getMoodDetailFromID(it) }
+        title.text = "Detail Mood"
     }
 
     override fun handleOnBackPress() {
-        TODO("Not yet implemented")
+        binding.back.setOnClickListener { this.activity?.finish() }
     }
 }

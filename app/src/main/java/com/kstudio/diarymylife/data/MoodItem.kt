@@ -20,6 +20,7 @@ data class MoodUI(
     val timestamp: LocalDateTime,
     val imageUri: String,
     var state : SwipeState = SwipeState.NONE,
+    val fileName: String
 ): Parcelable
 
 @Parcelize

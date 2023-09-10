@@ -59,7 +59,7 @@ class CreateNewMoodViewModel(
         return MoodRequest(
             moodId = null,
             mood = _selectsMood.value?.first,
-            description = "",
+            description = _moodDesc.value ?: "",
             timestamp = time.getLocalDateTime(),
             createTime = LocalDateTime.now(),
             imageName = _selectsMood.value?.second.toString(),

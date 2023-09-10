@@ -34,14 +34,6 @@ class MoodRepositoryImpl(
         )
 
         val moodId = moodDao.insert(moodReq)
-        mood.activity?.forEach {
-            moodDao.insertStudentSubjectCrossRef(
-                MoodActivityEventCrossRef(
-                    moodId = moodId,
-                    eventId = it.eventId
-                )
-            )
-        }
     }
 
     override suspend fun updateMood(mood: MoodRequest?) {
