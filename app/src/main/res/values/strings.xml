@@ -34,4 +34,6 @@
     <string name="other">Other</string>
     <string name="image">Image</string>
     <string name="detail_mood">Detail Mood</string>
+    <string name="hour">Hour</string>
+    <string name="minute">Minute</string>
 </resources>

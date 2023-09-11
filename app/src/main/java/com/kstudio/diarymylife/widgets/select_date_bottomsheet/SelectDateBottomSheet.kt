@@ -26,6 +26,7 @@ import com.kstudio.diarymylife.utils.toDateFormat
 import com.kstudio.diarymylife.utils.toLocalDate
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
 import javax.inject.Inject
 
@@ -34,6 +35,7 @@ class SelectDateBottomSheet @Inject constructor(
     private val onClickDone: (ResultSelectDate) -> Unit,
     private val onClose: () -> Unit?,
     private val type: BottomSheetType = BottomSheetType.DISPLAY_DATE_TIME,
+    private val currentTimeSelected: LocalDateTime? = null
 ) : BottomSheetDialogFragment() {
 
     private val parentView =
@@ -80,6 +82,7 @@ class SelectDateBottomSheet @Inject constructor(
                         onClose()
                         this@SelectDateBottomSheet.dismiss()
                     }
+
                     else -> Unit
                 }
             }
@@ -91,6 +94,7 @@ class SelectDateBottomSheet @Inject constructor(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setInitTime()
         setDisplayType(type)
         observeLiveDate()
         bindingView()
@@ -157,15 +161,21 @@ class SelectDateBottomSheet @Inject constructor(
         }
     }
 
-    fun setDisplayType(type: BottomSheetType = BottomSheetType.DISPLAY_DATE_TIME) {
+    private fun setDisplayType(type: BottomSheetType = BottomSheetType.DISPLAY_DATE_TIME) {
         when (type) {
             BottomSheetType.DISPLAY_DATE_TIME -> {
                 displayBottomSheetDateTime()
             }
+
             BottomSheetType.DISPLAY_TIME -> {
                 displayBottomSheetTime()
             }
         }
+    }
+
+    private fun setInitTime() {
+        viewModel.setSelectDate(currentTimeSelected)
+        binding.widgetTimePicker.setSelectTime(currentTimeSelected?.toLocalTime())
     }
 
     private fun displayBottomSheetDateTime() {

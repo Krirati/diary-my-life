@@ -105,9 +105,10 @@ class MoodDetailLandingFragment :
         howYouFeel.text = getString(R.string.how_are_you_feel)
         currentSelectTime.setOnClickListener {
             val bottomSheetSelectTime = SelectDateBottomSheet(
-                requireContext(),
-                ::onClickDoneBottomSheet,
-                ::onCloseBottomSheet,
+                getContext = requireContext(),
+                onClickDone = ::onClickDoneBottomSheet,
+                onClose = ::onCloseBottomSheet,
+                currentTimeSelected = viewModel.getLocalDateTime()
             )
             bottomSheetSelectTime.show(childFragmentManager, bottomSheetSelectTime.tag)
         }
