@@ -1,5 +1,6 @@
 package com.kstudio.diarymylife.di
 
+import com.kstudio.diarymylife.ui.base.BaseMoodViewModel
 import com.kstudio.diarymylife.ui.create.CreateMoodViewModel
 import com.kstudio.diarymylife.ui.create.CreateNewMoodViewModel
 import com.kstudio.diarymylife.ui.detail.MoodDetailViewModel
@@ -22,4 +23,5 @@ val viewModelModule = module {
     viewModel { SelectDateBottomSheetViewModel() }
     viewModel { NotificationViewModel(get()) }
     viewModel { ProfileViewModel() }
+    viewModel { BaseMoodViewModel(get()) }
 }

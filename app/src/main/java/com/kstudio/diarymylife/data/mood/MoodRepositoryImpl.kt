@@ -5,7 +5,6 @@ import android.net.Uri
 import com.kstudio.diarymylife.data.MoodRequest
 import com.kstudio.diarymylife.database.dao.MoodDao
 import com.kstudio.diarymylife.database.model.Mood
-import com.kstudio.diarymylife.database.model.MoodActivityEventCrossRef
 import com.kstudio.diarymylife.database.model.MoodWithActivity
 import com.kstudio.diarymylife.utils.FileUtility
 import kotlinx.coroutines.flow.Flow
@@ -33,11 +32,13 @@ class MoodRepositoryImpl(
             uri = mood.uri
         )
 
-        val moodId = moodDao.insert(moodReq)
+        moodDao.insert(moodReq)
     }
 
     override suspend fun updateMood(mood: MoodRequest?) {
         if (mood?.moodId == null) return
+        val fileName =
+            if (mood.fileName.isNullOrBlank()) UUID.randomUUID().toString() else mood.fileName
         val request = Mood(
             moodId = mood.moodId,
             mood = mood.mood,
@@ -45,24 +46,16 @@ class MoodRepositoryImpl(
             imageUri = mood.imageName,
             timestamp = mood.timestamp,
             createTime = mood.createTime,
-            fileName = mood.fileName
+            fileName = fileName
         )
 
         copyPhotoToInternalStorage(
             context = context,
-            fileName = mood.fileName.orEmpty(),
+            fileName = fileName,
             uri = mood.uri
         )
 
         moodDao.updateMood(mood = request)
-        mood.activity?.forEach {
-            moodDao.insertStudentSubjectCrossRef(
-                MoodActivityEventCrossRef(
-                    moodId = mood.moodId,
-                    eventId = it.eventId
-                )
-            )
-        }
     }
 
     private fun copyPhotoToInternalStorage(

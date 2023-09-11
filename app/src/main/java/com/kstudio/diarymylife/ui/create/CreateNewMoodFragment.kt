@@ -72,9 +72,7 @@ class CreateNewMoodFragment :
             )
             bottomSheetSelectTime.show(childFragmentManager, bottomSheetSelectTime.tag)
         }
-        buttonNext.setOnClickListener {
-            viewModel.createMood()
-        }
+        buttonNext.setOnClickListener { viewModel.createNewMood() }
         back.setOnClickListener { onBackPressedOrFinish() }
         selectedImage.setOnClickListener { selectImageFromGallery() }
         buttonImage.setOnClickListener { selectImageFromGallery() }

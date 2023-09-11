@@ -38,7 +38,7 @@ class CreateNewMoodViewModel(
         _localTimeSelect.postValue(localTime)
     }
 
-    fun createMood() {
+    fun createNewMood() {
         viewModelScope.launch {
             val res = moodRepository.insert(setupMoodRequest())
             _created.postValue(res)

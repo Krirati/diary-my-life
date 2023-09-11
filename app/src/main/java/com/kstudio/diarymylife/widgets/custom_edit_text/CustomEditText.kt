@@ -43,7 +43,6 @@ class CustomEditText @JvmOverloads constructor(
                         false
                     )
                 ) {
-                    valueText.visibility = View.VISIBLE
                     View.GONE
                 } else View.VISIBLE
                 maxLines = attribute.getInt(R.styleable.CustomEditText_custom_edit_text_max_line, 1)
@@ -105,9 +104,8 @@ class CustomEditText @JvmOverloads constructor(
     }
 
     fun setDefaultTextValue(value: String) = with(binding) {
-        valueText.text = value
         title.visibility = if (value.isEmpty()) View.GONE else View.VISIBLE
         placeholder.visibility = if (value.isEmpty()) View.VISIBLE else View.GONE
-        valueText.visibility = if (value.isEmpty()) View.GONE else View.VISIBLE
+        editText.setText(value)
     }
 }
