@@ -65,7 +65,7 @@ class MoodDetailLandingFragment :
                         visibility = View.VISIBLE
                         setImageURI(imageURI)
                     }
-                    viewPagerMood.currentItem = mood.mood ?: 0
+                    viewPagerMood.currentItem = adapterMood.mapMoodToPosition(mood.mood)
                 }
             }
         }
