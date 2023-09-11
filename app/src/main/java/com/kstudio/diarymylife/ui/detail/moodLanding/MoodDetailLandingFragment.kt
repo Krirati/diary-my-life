@@ -8,16 +8,21 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.MoodUI
+import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.databinding.FragmentMoodCreateBinding
 import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.utils.FileUtility.getUriImage
+import com.kstudio.diarymylife.utils.Formats
 import com.kstudio.diarymylife.utils.Keys.Companion.MOOD_ID
+import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.dpToPx
+import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
+import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoodDetailLandingFragment :
-    BaseFragment<FragmentMoodCreateBinding>(FragmentMoodCreateBinding::inflate) {
+    BaseFragment<FragmentMoodCreateBinding>(FragmentMoodCreateBinding::inflate), SelectDateHandle {
 
     private val viewModel by viewModel<MoodDetailLandingViewModel>()
     private val adapterMood by lazy { MoodAdapter() }
@@ -85,6 +90,7 @@ class MoodDetailLandingFragment :
                 setImageURI(imageURI)
             }
             viewPagerMood.currentItem = adapterMood.mapMoodToPosition(mood.mood)
+            currentSelectTime.text = convertTime(mood.timestamp, Formats.DATE_TIME_FORMAT_APP)
         }
     }
 
@@ -95,7 +101,16 @@ class MoodDetailLandingFragment :
     }
 
     override fun bindingView() = with(binding) {
-        title.text = "Detail Mood"
+        title.text = getString(R.string.detail_mood)
+        howYouFeel.text = getString(R.string.how_are_you_feel)
+        currentSelectTime.setOnClickListener {
+            val bottomSheetSelectTime = SelectDateBottomSheet(
+                requireContext(),
+                ::onClickDoneBottomSheet,
+                ::onCloseBottomSheet,
+            )
+            bottomSheetSelectTime.show(childFragmentManager, bottomSheetSelectTime.tag)
+        }
         buttonNext.setOnClickListener { viewModel.updateMoodDetail() }
         selectedImage.setOnClickListener { selectImageFromGallery() }
         buttonImage.setOnClickListener { selectImageFromGallery() }
@@ -123,5 +138,18 @@ class MoodDetailLandingFragment :
             }
         }
         viewModel.setImageUri(uri)
+    }
+
+    override fun onClickDoneBottomSheet(date: ResultSelectDate) {
+        date.day?.let {
+            viewModel.setSelectDate(it)
+        }
+        date.time?.let {
+            viewModel.setSelectTime(it)
+        }
+        binding.currentSelectTime.text = convertTime(date.getLocalDateTime())
+    }
+
+    override fun onCloseBottomSheet() { /* DO nothing */
     }
 }
