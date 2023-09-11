@@ -17,6 +17,6 @@ class MoodDetailActivity : BaseActivity() {
         binding = ActivityJournalDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        navController.setGraph(R.navigation.journal_detail_nav_graph, intent.extras)
+        navController.setGraph(R.navigation.mood_detail_nav_graph, intent.extras)
     }
 }

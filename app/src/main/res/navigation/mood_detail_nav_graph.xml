@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/edit_journal_nav_graph"
     app:startDestination="@id/journalDetailFragment">
 
     <fragment
         android:id="@+id/journalDetailFragment"
         android:name="com.kstudio.diarymylife.ui.detail.moodLanding.MoodDetailLandingFragment"
-        android:label="JournalDetailFragment"
-        tools:layout="@layout/fragment_mood_detail">
+        android:label="JournalDetailFragment">
     </fragment>
 
 </navigation>

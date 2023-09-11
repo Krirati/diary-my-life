@@ -58,7 +58,7 @@ class ListMoodFragment : BaseFragment<FragmentMoodListBinding>(
         }
 
         viewModel.barData.observe(viewLifecycleOwner) {
-            binding.chartSection.isVisible = !it.second.isNullOrEmpty()
+            binding.chartSection.isVisible = it.second.isNotEmpty()
             binding.chart.apply {
                 setMaxValue(it.first)
                 setDataList(it.second)
