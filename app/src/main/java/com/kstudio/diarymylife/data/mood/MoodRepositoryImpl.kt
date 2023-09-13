@@ -17,7 +17,7 @@ class MoodRepositoryImpl(
     private val moodDao: MoodDao
 ) : MoodRepository {
     override suspend fun insert(mood: MoodRequest) {
-        val fileName = UUID.randomUUID().toString()
+        val fileName = if (mood.uri == null) null else UUID.randomUUID().toString()
         val moodReq = Mood(
             mood = mood.mood,
             description = mood.description,
@@ -26,11 +26,13 @@ class MoodRepositoryImpl(
             createTime = mood.createTime,
             fileName = fileName
         )
-        copyPhotoToInternalStorage(
-            context = context,
-            fileName = fileName,
-            uri = mood.uri
-        )
+        if (mood.uri != null && fileName != null) {
+            copyPhotoToInternalStorage(
+                context = context,
+                fileName = fileName,
+                uri = mood.uri
+            )
+        }
 
         moodDao.insert(moodReq)
     }
@@ -49,11 +51,13 @@ class MoodRepositoryImpl(
             fileName = fileName
         )
 
-        copyPhotoToInternalStorage(
-            context = context,
-            fileName = fileName,
-            uri = mood.uri
-        )
+        if (mood.uri != null) {
+            copyPhotoToInternalStorage(
+                context = context,
+                fileName = fileName,
+                uri = mood.uri
+            )
+        }
 
         moodDao.updateMood(mood = request)
     }

@@ -75,7 +75,12 @@ class MoodDetailLandingFragment :
         viewModel.moodData.observe(viewLifecycleOwner) {
             it?.data?.let { mood ->
                 bindMoodData(mood)
-                viewModel.setImageUri(getUriImage(requireContext(), mood.fileName))
+                if (mood.fileName.isNotBlank()) viewModel.setImageUri(
+                    getUriImage(
+                        requireContext(),
+                        mood.fileName
+                    )
+                )
                 viewModel.setUpInitDetail(mood)
             }
         }
