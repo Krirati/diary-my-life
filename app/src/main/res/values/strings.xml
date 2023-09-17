@@ -36,4 +36,5 @@
     <string name="detail_mood">Detail Mood</string>
     <string name="hour">Hour</string>
     <string name="minute">Minute</string>
+    <string name="version">version %1$s</string>
 </resources>

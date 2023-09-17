@@ -45,11 +45,14 @@ abstract class BaseFragment<VB : ViewBinding>(
         requireActivity().overridePendingTransition(transitionIn, transitionOut)
     }
 
-    open fun onBackPressedOrFinish() {
+    open fun onBackPressedOrFinish(
+        transitionIn: Int = R.anim.slide_in_left,
+        transitionOut: Int = R.anim.slide_out_right
+    ) {
         requireActivity().finishAfterTransition()
         requireActivity().overridePendingTransition(
-            R.anim.slide_in_top,
-            R.anim.slide_out_bottom
+            transitionIn,
+            transitionOut
         )
     }
 

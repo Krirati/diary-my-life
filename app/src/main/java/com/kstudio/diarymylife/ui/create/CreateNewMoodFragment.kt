@@ -73,7 +73,12 @@ class CreateNewMoodFragment :
             bottomSheetSelectTime.show(childFragmentManager, bottomSheetSelectTime.tag)
         }
         buttonNext.setOnClickListener { viewModel.createNewMood() }
-        back.setOnClickListener { onBackPressedOrFinish() }
+        back.setOnClickListener {
+            onBackPressedOrFinish(
+                transitionIn = R.anim.slide_in_top,
+                transitionOut = R.anim.slide_out_bottom
+            )
+        }
         selectedImage.setOnClickListener { selectImageFromGallery() }
         buttonImage.setOnClickListener { selectImageFromGallery() }
         imageView.setOnClickListener { selectImageFromGallery() }
