@@ -43,17 +43,6 @@ class MoodAdapter : RecyclerView.Adapter<MoodAdapter.ViewHolder>() {
         }
     }
 
-    fun mapMoodToPosition(position: Int?): Int {
-        return when(position) {
-            5 -> 0
-            4 -> 1
-            3 -> 2
-            2 -> 3
-            1 -> 4
-            else -> 0
-        }
-    }
-
     @JvmName("getMoodList1")
     fun getMoodList(): ArrayList<Pair<Int, Int>> {
         return moodList

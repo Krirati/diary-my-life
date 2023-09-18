@@ -51,6 +51,17 @@ class BackgroundTheme {
             else -> ""
         }
     }
+
+    fun mapMoodToPosition(mood: Int?): Int {
+        return when (mood) {
+            Excellent -> 0
+            Good -> 1
+            Average -> 2
+            Poor -> 3
+            Very_Poor -> 4
+            else -> 0
+        }
+    }
 }
 
 enum class Gender(val gender: String) {
