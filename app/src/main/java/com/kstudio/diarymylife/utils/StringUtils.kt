@@ -4,11 +4,13 @@ import android.annotation.SuppressLint
 import android.util.DisplayMetrics
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_FORMAT
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_FORMAT_APP
+import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -41,6 +43,11 @@ fun String.toDateFormat(stringFormat: String = DATE_FORMAT): Date? {
 fun String.toLocalDate(stringFormat: String = DATE_FORMAT): LocalDate? {
     val formatter = DateTimeFormatter.ofPattern(stringFormat)
     return LocalDate.parse(this, formatter)
+}
+
+fun String.toLocalTime(stringFormat: String = DATE_TIME_FORMAT): LocalTime? {
+    val formatter = DateTimeFormatter.ofPattern(stringFormat)
+    return LocalTime.parse(this, formatter)
 }
 
 fun LocalDate.toStringFormatApp(stringFormat: String = DATE_FORMAT_APP): String? {

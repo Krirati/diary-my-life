@@ -13,6 +13,7 @@ class Formats {
         const val DATE_FORMAT = "dd-MM-yyyy"
         const val DATE_FORMAT_APP = "MMMM, dd EEEE"
         const val DATE_TIME_FORMAT_APP = "MMMM, dd EEEE HH:mm"
+        const val DATE_TIME_FORMAT = "HH:mm"
     }
 }
 

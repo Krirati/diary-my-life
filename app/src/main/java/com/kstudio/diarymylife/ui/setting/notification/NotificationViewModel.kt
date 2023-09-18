@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kstudio.diarymylife.data.shared_preferences.SharedPreferencesRepository
 import com.kstudio.diarymylife.ui.base.BaseViewModel
-import java.time.LocalDateTime
+import com.kstudio.diarymylife.utils.toLocalTime
 import java.time.LocalTime
-import java.time.ZoneOffset
 
 
 class NotificationViewModel constructor(
@@ -39,11 +38,16 @@ class NotificationViewModel constructor(
         _performBottomSheetSetTime.postValue(Unit)
     }
 
+    fun saveNotificationTime(time: LocalTime?) {
+        if (time == null) return
+        appPreferenceRepository.dailyTime = time.toString()
+    }
+
     private fun initNotification() {
         val enableNotification = appPreferenceRepository.enableNotification
         val dailyTime = appPreferenceRepository.dailyTime
-        val dateTime = LocalDateTime.ofEpochSecond(dailyTime, 0, ZoneOffset.UTC)
-        setIsEnableNotification(enableNotification)
-        setIsDailyChange(dateTime.toLocalTime())
+
+        setIsEnableNotification(enableNotification && !dailyTime.isNullOrBlank())
+        setIsDailyChange(dailyTime?.toLocalTime())
     }
 }

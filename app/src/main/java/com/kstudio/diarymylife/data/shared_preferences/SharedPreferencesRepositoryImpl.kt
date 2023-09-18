@@ -1,8 +1,6 @@
 package com.kstudio.diarymylife.data.shared_preferences
 
 import android.content.SharedPreferences
-import java.time.LocalDateTime
-import java.time.ZoneOffset
 
 class SharedPreferencesRepositoryImpl constructor(
     private val sharedPreferences: SharedPreferences
@@ -15,7 +13,7 @@ class SharedPreferencesRepositoryImpl constructor(
         }
 
     override var enableNotification: Boolean
-        get() = sharedPreferences.getBoolean(PrefsKeys.ENABLE_NOTIFICATION.name, true)
+        get() = sharedPreferences.getBoolean(PrefsKeys.ENABLE_NOTIFICATION.name, false)
         set(value) {
             sharedPreferences.edit().putBoolean(PrefsKeys.ENABLE_NOTIFICATION.name, value)
                 .apply()
@@ -28,12 +26,10 @@ class SharedPreferencesRepositoryImpl constructor(
                 .apply()
         }
 
-    override var dailyTime: Long
-        get() = sharedPreferences.getLong(
-            PrefsKeys.DAILY_TIME.name, LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)
-        )
+    override var dailyTime: String?
+        get() = sharedPreferences.getString(PrefsKeys.DAILY_TIME.name, null)
         set(value) {
-            sharedPreferences.edit().putLong(PrefsKeys.DAILY_TIME.name, value).apply()
+            sharedPreferences.edit().putString(PrefsKeys.DAILY_TIME.name, value).apply()
         }
 
     override var freshInstall: Boolean
