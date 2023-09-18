@@ -37,7 +37,6 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
 
             appVersion.apply {
                 text = context.getString(R.string.version, BuildConfig.VERSION_NAME)
-                setOnClickListener { navigateToActivity(NotificationActivity::class.java) }
             }
 
             back.setOnClickListener { onBackPressedOrFinish() }

@@ -49,14 +49,3 @@ fun LocalDate.toStringFormatApp(stringFormat: String = DATE_FORMAT_APP): String?
 }
 
 fun Int.dpToPx(displayMetrics: DisplayMetrics): Int = (this * displayMetrics.density).toInt()
-
-fun mapMoodStringToTitle(mood: Int?): String {
-    return when (mood) {
-        1 -> "Very Poor"
-        2 -> "Poor"
-        3 -> "Average"
-        4 -> "Good"
-        5 -> "Excellent"
-        else -> ""
-    }
-}

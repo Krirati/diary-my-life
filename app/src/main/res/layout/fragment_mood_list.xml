@@ -99,7 +99,7 @@
                             app:custom_pin_text_color="@color/pewter_blue"
                             app:custom_pin_txt_size="17sp"
                             app:custom_progress_click_color="@color/red_200"
-                            app:custom_progress_color="@color/macaroni_and_cheese"
+                            app:custom_progress_color="@color/deep_champagne"
                             app:custom_progress_disable_color="@color/deep_champagne"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_16"
-                        android:text="All Moods"
+                        android:text="@string/all_moods"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/chartSection" />

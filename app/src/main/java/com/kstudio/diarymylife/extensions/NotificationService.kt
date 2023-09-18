@@ -40,8 +40,8 @@ class NotificationService(
 
     fun scheduleNotification(hour: Int, minute: Int) {
         val intent = Intent(context, Notification::class.java)
-        val title = "Test"
-        val message = "Message"
+        val title = context.getString(R.string.diary_mood)
+        val message = context.getString(R.string.diary_mood_desc)
         intent.putExtra(TITLE_EXTRA, title)
         intent.putExtra(CONTENT_EXTRA, message)
 
