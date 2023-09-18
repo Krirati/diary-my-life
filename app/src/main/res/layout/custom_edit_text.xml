@@ -6,7 +6,9 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_round_card_action"
     android:minHeight="@dimen/dp_64"
-    android:padding="@dimen/dp_8">
+    android:padding="@dimen/dp_8"
+    android:paddingStart="@dimen/dp_12"
+    android:paddingEnd="@dimen/dp_12">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iconLeft"
