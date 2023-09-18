@@ -119,6 +119,8 @@
     </style>
 
     <style name="BaseBottomSheetDialog" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:background">@color/shadow_outer</item>
+        <item name="android:colorBackground">@color/shadow_outer</item>
         <item name="android:windowIsFloating">false</item>
         <item name="bottomSheetStyle">@style/BottomSheet</item>
     </style>
