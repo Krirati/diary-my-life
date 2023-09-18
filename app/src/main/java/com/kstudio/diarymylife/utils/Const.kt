@@ -24,6 +24,8 @@ class BackgroundTheme {
         const val Average = 2
         const val Poor = 1
         const val Very_Poor = 0
+        const val Mood_Avg = 10
+        const val Mood_Tool = 11
     }
 
     fun mapperThemeCard(background: Int): Int {
@@ -33,6 +35,8 @@ class BackgroundTheme {
             Average -> R.drawable.bg_round_lemon_yellow_crayola
             Poor -> R.drawable.bg_round_deep_champagne
             Very_Poor -> R.drawable.bg_round_sandy_brown
+            Mood_Tool -> R.drawable.bg_round_new_york_pink
+            Mood_Avg -> R.drawable.bg_round_pewter_blue
             else -> R.drawable.bg_round_card_action
         }
     }

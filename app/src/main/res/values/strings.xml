@@ -40,4 +40,5 @@
     <string name="diary_mood">Diary Mood</string>
     <string name="diary_mood_desc">this time to update your mood!!</string>
     <string name="all_moods">All Moods</string>
+    <string name="mood_stats">Mood stats</string>
 </resources>

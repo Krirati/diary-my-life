@@ -39,8 +39,8 @@
     <color name="deep_champagne">#F8F0E5</color>
     <color name="sandy_brown">#E1D7C6</color>
     <color name="macaroni_and_cheese">#FAAF7E</color>
-    <color name="pewter_blue">#89b0ae</color>
-    <color name="new_york_pink">@color/red_200</color>
+    <color name="pewter_blue">#FAF3F0</color>
+    <color name="new_york_pink">#D4E2D4</color>
 
 <!--    <color name="laurel_green">#c9cfb8</color>-->
 <!--    <color name="pale_sprint_bud">#e9eed9</color>-->
