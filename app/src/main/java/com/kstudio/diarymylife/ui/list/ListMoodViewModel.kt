@@ -64,16 +64,16 @@ class ListMoodViewModel constructor(
         moodViewTypes.groupBy { it.data?.mood }.forEach { (moodType, moods) ->
             maxValue = if (moods.size > maxValue) moods.size else maxValue
             val data = when (moodType) {
-                Very_Poor -> BarData(5, moods.size.toFloat(), R.color.sandy_brown, R.drawable.mood1)
-                Poor -> BarData(4, moods.size.toFloat(), R.color.deep_champagne, R.drawable.mood2)
+                Very_Poor -> BarData(5, moods.size.toFloat(), R.color.sandy_brown, R.drawable.crying)
+                Poor -> BarData(4, moods.size.toFloat(), R.color.deep_champagne, R.drawable.sad)
                 Average -> BarData(
                     3,
                     moods.size.toFloat(),
                     R.color.lemon_yellow_crayola,
-                    R.drawable.mood3
+                    R.drawable.neutral
                 )
-                Good -> BarData(2, moods.size.toFloat(), R.color.pale_sprint_bud, R.drawable.mood4)
-                Excellent-> BarData(1, moods.size.toFloat(), R.color.laurel_green, R.drawable.mood5)
+                Good -> BarData(2, moods.size.toFloat(), R.color.pale_sprint_bud, R.drawable.smile)
+                Excellent-> BarData(1, moods.size.toFloat(), R.color.laurel_green, R.drawable.lol)
                 else -> null
             }
             data?.let { dataList.add(it) }

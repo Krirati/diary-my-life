@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.04" />
+            app:layout_constraintGuide_percent="0.0" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineVerticalEnd"
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="100dp" />
+            app:layout_constraintGuide_begin="120dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cardAction"
@@ -82,6 +82,14 @@
                 android:layout_marginTop="@dimen/dp_8"
                 app:layout_constraintStart_toStartOf="@+id/cardTitle"
                 app:layout_constraintTop_toBottomOf="@+id/cardTitle" />
+
+            <com.kstudio.diarymylife.widgets.PillView
+                android:id="@+id/pill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

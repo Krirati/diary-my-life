@@ -14,11 +14,11 @@ import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Very_Poor
 class MoodAdapter : RecyclerView.Adapter<MoodAdapter.ViewHolder>() {
 
     private val moodList = arrayListOf(
-        Pair(Excellent, R.drawable.mood5),
-        Pair(Good, R.drawable.mood4),
-        Pair(Average, R.drawable.mood3),
-        Pair(Poor, R.drawable.mood2),
-        Pair(Very_Poor, R.drawable.mood1),
+        Pair(Excellent, R.drawable.lol),
+        Pair(Good, R.drawable.smile),
+        Pair(Average, R.drawable.neutral),
+        Pair(Poor, R.drawable.sad),
+        Pair(Very_Poor, R.drawable.crying),
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
