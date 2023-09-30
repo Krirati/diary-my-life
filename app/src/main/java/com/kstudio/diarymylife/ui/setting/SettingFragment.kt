@@ -2,6 +2,7 @@ package com.kstudio.diarymylife.ui.setting
 
 import android.os.Bundle
 import android.view.View
+import com.kstudio.diarymylife.BuildConfig
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentSettingBinding
 import com.kstudio.diarymylife.ui.base.BaseFragment
@@ -18,6 +19,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindingView()
+
     }
 
     override fun bindingView() {
@@ -33,7 +35,11 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
                 onWidgetClick { navigateToActivity(NotificationActivity::class.java) }
             }
 
-            appVersion.setOnClickListener { navigateToActivity(NotificationActivity::class.java) }
+            appVersion.apply {
+                text = context.getString(R.string.version, BuildConfig.VERSION_NAME)
+            }
+
+            back.setOnClickListener { onBackPressedOrFinish() }
         }
     }
 

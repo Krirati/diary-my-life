@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.addCallback
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentHomeBinding
 import com.kstudio.diarymylife.domain.model.MoodViewType
@@ -46,7 +46,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun bindingView() = with(binding) {
         recentWidget.apply {
-            layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             isNestedScrollingEnabled = false
             adapter = moodAdapter
             onFlingListener = null
@@ -62,6 +62,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun updateRecentMood(moodList: List<MoodViewType>) {
+        binding.recentWidget.apply {
+            removeAllViews()
+            recycledViewPool.clear()
+        }
         moodAdapter.updateMoodItems(moodList)
     }
 

@@ -9,8 +9,10 @@ import java.time.LocalDateTime
 data class Mood(
     @PrimaryKey(autoGenerate = true) val moodId: Long = 0,
     @ColumnInfo(name = "mood") val mood: Int?,
+    @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "image_uri") val imageUri: String?,
     @ColumnInfo(name = "timestamp") val timestamp: LocalDateTime,
     @ColumnInfo(name = "create_time") val createTime: LocalDateTime,
+    @ColumnInfo(name = "fileName") val fileName: String?,
 )

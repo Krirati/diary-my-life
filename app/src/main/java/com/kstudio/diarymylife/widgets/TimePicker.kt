@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.lifecycle.MutableLiveData
+import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.WidgetSelectTimeBinding
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -41,13 +42,13 @@ class TimePicker @JvmOverloads constructor(
 
     private fun bindView() = with(binding) {
         hour.apply {
-            typeNumber.text = "Hour"
+            typeNumber.text = context.getString(R.string.hour)
             selectNumber.text = String.format("%02d", currentHour)
             buttonPlus.setOnClickListener { plusHour() }
             buttonMinus.setOnClickListener { minusHour() }
         }
         minute.apply {
-            typeNumber.text = "Minute"
+            typeNumber.text = context.getString(R.string.minute)
             selectNumber.text = String.format("%02d", currentMinute)
             buttonPlus.setOnClickListener { plusMinute() }
             buttonMinus.setOnClickListener { minusMinute() }
@@ -56,6 +57,13 @@ class TimePicker @JvmOverloads constructor(
 
     fun getCurrentSelectTime(): LocalTime {
         return LocalTime.of(currentHour, currentMinute)
+    }
+
+    fun setSelectTime(localTime: LocalTime?) {
+        if (localTime == null) return
+        currentHour = localTime.hour
+        currentMinute = localTime.minute
+        bindView()
     }
 
     private fun plusHour() {

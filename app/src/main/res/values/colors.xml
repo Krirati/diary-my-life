@@ -33,14 +33,25 @@
 
     <!--  emotional color  -->
     <color name="beige">#D3DDC3</color>
-    <color name="laurel_green">#B1B999</color>
-    <color name="pale_sprint_bud">#D7E0B9</color>
-    <color name="lemon_yellow_crayola">#FFFBAC</color>
-    <color name="deep_champagne">#FFD495</color>
-    <color name="sandy_brown">#FAAB78</color>
+
+    <color name="mood_excellent">#9EB384</color>
+    <color name="mood_excellent_drop">#D2E2BA</color>
+
+    <color name="mood_good">#A7C186</color>
+    <color name="mood_good_drop">#E1ECC8</color>
+
+    <color name="mood_average">#BEC398</color>
+    <color name="mood_average_drop">#EDEED7</color>
+
+    <color name="mood_pool">#C6B293</color>
+    <color name="mood_pool_drop">#F8F0E5</color>
+
+    <color name="mood_very_pool">#BCA37F</color>
+    <color name="mood_very_pool_drop">#E1D7C6</color>
+
     <color name="macaroni_and_cheese">#FAAF7E</color>
-    <color name="pewter_blue">#89b0ae</color>
-    <color name="new_york_pink">@color/red_200</color>
+    <color name="pewter_blue">#FAF3F0</color>
+    <color name="new_york_pink">#D4E2D4</color>
 
 <!--    <color name="laurel_green">#c9cfb8</color>-->
 <!--    <color name="pale_sprint_bud">#e9eed9</color>-->

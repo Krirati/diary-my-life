@@ -4,7 +4,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.databinding.ItemSwipeCardBinding
 import com.kstudio.diarymylife.domain.model.MoodViewType
 import com.kstudio.diarymylife.utils.BackgroundTheme
-import com.kstudio.diarymylife.utils.mapMoodStringToTitle
 
 class ItemCardSwipeViewHolder(
     val binding: ItemSwipeCardBinding
@@ -17,8 +16,17 @@ class ItemCardSwipeViewHolder(
     ) {
         binding.apply {
             item.data?.apply {
-                customCard.setTitleAndDate(mapMoodStringToTitle(this.mood), this.timestamp)
-                customCard.setBackgroundAndKeepPadding(BackgroundTheme().mapperThemeCard(this.mood ?: 3))
+                val colorTheme = BackgroundTheme().mapperThemeColor(this.mood)
+                customCard.setTitleAndDate(
+                    title = item.data?.title ?: "",
+                    detail = item.data?.desc ?: "",
+                    date = this.timestamp
+                )
+                customCard.setBackgroundAndKeepPadding(colorTheme.second)
+                customCard.setPillTag(
+                    BackgroundTheme().mapMoodStringToTitle(this.mood),
+                    colorTheme.first
+                )
                 customCard.setOnClickWidget { onClickToDetail(this.moodId) }
                 customCard.setOnClickAction { onActionClickDelete(absoluteAdapterPosition) }
             }

@@ -50,7 +50,7 @@ class CustomCardSwipe @JvmOverloads constructor(
 
         /* On Touch Swipe */
         binding.apply {
-            cardDetail.apply {
+            cardDetailContainer.apply {
                 setOnClickListener {
                     if (previousEvent.first == MotionEvent.ACTION_MOVE && previousEvent.second == MotionEvent.ACTION_UP) return@setOnClickListener
                     onClickWidgetListener.invoke()
@@ -61,19 +61,24 @@ class CustomCardSwipe @JvmOverloads constructor(
         }
     }
 
-    fun setTitleAndDate(title: String, date: LocalDateTime) {
+    fun setTitleAndDate(title: String, detail: String, date: LocalDateTime) {
         binding.cardTitle.text = title
+        binding.cardDetail.text = detail
         binding.cardDate.bindView(date)
     }
 
     fun setBackgroundAndKeepPadding(backgroundDrawable: Int) {
         val drawablePadding = Rect()
-        val top = binding.cardDetail.paddingTop + drawablePadding.top
-        val left = binding.cardDetail.paddingLeft + drawablePadding.left
-        val right = binding.cardDetail.paddingRight + drawablePadding.right
-        val bottom = binding.cardDetail.paddingBottom + drawablePadding.bottom
-        binding.cardDetail.setBackgroundResource(backgroundDrawable)
-        binding.cardDetail.setPadding(left, top, right, bottom)
+        val top = binding.cardDetailContainer.paddingTop + drawablePadding.top
+        val left = binding.cardDetailContainer.paddingLeft + drawablePadding.left
+        val right = binding.cardDetailContainer.paddingRight + drawablePadding.right
+        val bottom = binding.cardDetailContainer.paddingBottom + drawablePadding.bottom
+        binding.cardDetailContainer.setBackgroundResource(backgroundDrawable)
+        binding.cardDetailContainer.setPadding(left, top, right, bottom)
+    }
+
+    fun setPillTag(value: String, colorInt: Int) {
+        binding.pill.bindView(value, colorInt)
     }
 
     fun setOnClickWidget(onClick: () -> Unit) {
@@ -134,6 +139,7 @@ class CustomCardSwipe @JvmOverloads constructor(
                 dXTrail = view.right - event.rawX
                 false
             }
+
             MotionEvent.ACTION_MOVE -> {
                 previousEvent = previousEvent.copy(first = event.action)
                 onAnimate(view, onSwipeMove(event.rawX + dXLead, swipeState), 0)
@@ -144,11 +150,13 @@ class CustomCardSwipe @JvmOverloads constructor(
                 )
                 false
             }
+
             MotionEvent.ACTION_UP -> {
                 previousEvent = previousEvent.copy(second = event.action)
                 onAnimate(view, onSwipeUp(state))
                 false
             }
+
             else -> true
         }
     }

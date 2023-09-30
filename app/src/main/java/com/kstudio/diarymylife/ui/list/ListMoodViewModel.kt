@@ -8,6 +8,11 @@ import com.kstudio.diarymylife.data.mood.MoodRepository
 import com.kstudio.diarymylife.domain.GetMoodsAndActivityUseCase
 import com.kstudio.diarymylife.domain.model.MoodViewType
 import com.kstudio.diarymylife.ui.base.BaseViewModel
+import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Poor
+import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Excellent
+import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Average
+import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Good
+import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Very_Poor
 import com.kstudio.diarymylife.widgets.custom_chart.BarData
 import kotlinx.coroutines.launch
 
@@ -59,16 +64,16 @@ class ListMoodViewModel constructor(
         moodViewTypes.groupBy { it.data?.mood }.forEach { (moodType, moods) ->
             maxValue = if (moods.size > maxValue) moods.size else maxValue
             val data = when (moodType) {
-                1 -> BarData(5, moods.size.toFloat(), R.color.sandy_brown, R.drawable.mood1)
-                2 -> BarData(4, moods.size.toFloat(), R.color.deep_champagne, R.drawable.mood2)
-                3 -> BarData(
+                Very_Poor -> BarData(5, moods.size.toFloat(), R.color.mood_very_pool_drop, R.drawable.crying)
+                Poor -> BarData(4, moods.size.toFloat(), R.color.mood_pool_drop, R.drawable.sad)
+                Average -> BarData(
                     3,
                     moods.size.toFloat(),
-                    R.color.lemon_yellow_crayola,
-                    R.drawable.mood3
+                    R.color.mood_average_drop,
+                    R.drawable.neutral
                 )
-                4 -> BarData(2, moods.size.toFloat(), R.color.pale_sprint_bud, R.drawable.mood4)
-                5 -> BarData(1, moods.size.toFloat(), R.color.laurel_green, R.drawable.mood5)
+                Good -> BarData(2, moods.size.toFloat(), R.color.mood_good_drop, R.drawable.smile)
+                Excellent-> BarData(1, moods.size.toFloat(), R.color.mood_excellent_drop, R.drawable.lol)
                 else -> null
             }
             data?.let { dataList.add(it) }

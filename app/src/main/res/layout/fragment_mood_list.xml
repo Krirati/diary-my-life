@@ -47,7 +47,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_32"
-                        app:custom_card_background_color="8"
+                        app:custom_card_background_color="10"
                         app:layout_constraintEnd_toStartOf="@+id/card_total"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -57,7 +57,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp_16"
-                        app:custom_card_background_color="7"
+                        app:custom_card_background_color="11"
                         app:layout_constraintBottom_toBottomOf="@+id/card_average"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/card_average"
@@ -67,12 +67,44 @@
                         android:id="@+id/chartSection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="100dp"
                         android:layout_marginTop="@dimen/dp_16"
-                        android:paddingBottom="@dimen/dp_16"
                         android:background="@drawable/bg_round_card_action"
-                        android:minHeight="180dp"
+                        android:backgroundTint="#F9F9F9"
+                        android:padding="@dimen/dp_16"
                         android:visibility="gone"
-                        app:layout_constraintTop_toBottomOf="@+id/card_total">
+                        app:layout_constraintTop_toBottomOf="@+id/card_total"
+                        tools:visibility="visible">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/headerMoodStats"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="start"
+                                android:background="@drawable/bg_icon_white"
+                                android:src="@drawable/ic_bar_chart"
+                                tools:src="@drawable/ic_bar_chart" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/appCompatTextView"
+                                style="@style/TextAppearance.DiaryMyLife.H3.Black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dp_8"
+                                android:text="@string/mood_stats"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
 
                         <com.kstudio.diarymylife.widgets.custom_chart.CustomChart
                             android:id="@+id/chart"
@@ -88,7 +120,7 @@
                             app:custom_bar_title_selected_color="@color/amber_600"
                             app:custom_bar_title_txt_size="12sp"
                             app:custom_bar_width="@dimen/dp_16"
-                            app:custom_empty_color="@color/sandy_brown"
+                            app:custom_empty_color="@color/mood_very_pool"
                             app:custom_max_value="10"
                             app:custom_pin_background_color="@color/secondary_grey100"
                             app:custom_pin_drawable="@drawable/bg_chip_action"
@@ -99,11 +131,11 @@
                             app:custom_pin_text_color="@color/pewter_blue"
                             app:custom_pin_txt_size="17sp"
                             app:custom_progress_click_color="@color/red_200"
-                            app:custom_progress_color="@color/macaroni_and_cheese"
-                            app:custom_progress_disable_color="@color/deep_champagne"
+                            app:custom_progress_color="@color/mood_pool_drop"
+                            app:custom_progress_disable_color="@color/mood_pool_drop"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toBottomOf="@+id/headerMoodStats" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -113,10 +145,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_16"
-                        android:text="All Moods"
+                        android:text="@string/all_moods"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/chartSection" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/buttonSort"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_round_transparent"
+                        android:src="@drawable/ic_sliders"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/title_recent_memory" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.recyclerview.widget.RecyclerView

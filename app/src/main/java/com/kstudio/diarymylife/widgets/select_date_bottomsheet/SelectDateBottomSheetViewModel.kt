@@ -1,14 +1,25 @@
 package com.kstudio.diarymylife.widgets.select_date_bottomsheet
 
-import androidx.lifecycle.*
-import androidx.paging.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.map
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.liveData
+import androidx.paging.map
 import com.kstudio.diarymylife.data.toDateDetails
 import com.kstudio.diarymylife.database.DateSelectionPageSource
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import com.kstudio.diarymylife.utils.toStringFormat
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
-import java.util.*
+import java.time.ZoneId
+import java.util.Date
 
 class SelectDateBottomSheetViewModel : BaseViewModel() {
     private val _localDateSelect: MutableLiveData<LocalDate> = MutableLiveData(LocalDate.now())
@@ -42,5 +53,13 @@ class SelectDateBottomSheetViewModel : BaseViewModel() {
 
     fun setResetDate(reset: Long?) {
         _resetDateList.postValue(reset)
+    }
+
+    fun setSelectDate(localDateTime: LocalDateTime?) {
+        if (localDateTime == null) return
+        val date: Date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant())
+
+        _selectedDate.value = date.toStringFormat()
+        _localTimeSelect.value = localDateTime.toLocalTime()
     }
 }

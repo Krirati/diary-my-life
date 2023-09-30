@@ -1,49 +1,167 @@
 package com.kstudio.diarymylife.ui.detail.moodLanding
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import com.kstudio.diarymylife.databinding.FragmentMoodListBinding
-import com.kstudio.diarymylife.ui.adapter.ActivityListResultAdapter
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2
+import com.kstudio.diarymylife.R
+import com.kstudio.diarymylife.data.MoodUI
+import com.kstudio.diarymylife.data.ResultSelectDate
+import com.kstudio.diarymylife.databinding.FragmentMoodCreateBinding
+import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.detail.MoodDetailViewModel
+import com.kstudio.diarymylife.utils.BackgroundTheme
+import com.kstudio.diarymylife.utils.FileUtility.getUriImage
+import com.kstudio.diarymylife.utils.Formats
 import com.kstudio.diarymylife.utils.Keys.Companion.MOOD_ID
+import com.kstudio.diarymylife.utils.convertTime
+import com.kstudio.diarymylife.utils.dpToPx
+import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
+import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoodDetailLandingFragment :
-    BaseFragment<FragmentMoodListBinding>(FragmentMoodListBinding::inflate) {
+    BaseFragment<FragmentMoodCreateBinding>(FragmentMoodCreateBinding::inflate), SelectDateHandle {
 
     private val viewModel by viewModel<MoodDetailLandingViewModel>()
-    private val moodActivityViewModel by viewModel<MoodDetailViewModel>()
-    private val adapterActivity by lazy { ActivityListResultAdapter(requireContext()) }
+    private val adapterMood by lazy { MoodAdapter() }
+
+    private val selectImageFromGalleryResult =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            uri?.let {
+                handleSelectImage(uri)
+            }
+        }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpArguments()
-        getUpMoodDetail()
+        setupViewPager()
         bindingView()
+        bindTextField()
+        handleOnBackPress()
         observeLiveData()
+        setUpArguments()
     }
 
+    private fun setupViewPager() {
+        val offsetPx =
+            resources.getDimension(R.dimen.dp_16).toInt().dpToPx(resources.displayMetrics)
+        val pageMarginPx =
+            resources.getDimension(R.dimen.dp_6).toInt().dpToPx(resources.displayMetrics)
+        val marginTransformer = MarginPageTransformer(pageMarginPx)
+
+        binding.viewPagerMood.apply {
+            registerOnPageChangeCallback(onPageChangeCallback())
+            adapter = adapterMood
+            clipToPadding = false   // allow full width shown with padding
+            clipChildren = false    // allow left/right item is not clipped
+            offscreenPageLimit = 2
+            setPadding(offsetPx, 0, offsetPx, 0)
+            setPageTransformer(marginTransformer)
+            binding.dotsIndicator.setViewPager2(this)
+        }
+    }
+
+    private fun onPageChangeCallback() =
+        object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                viewModel.setupSelectMood(adapterMood.getMoodList()[position])
+            }
+        }
+
     private fun observeLiveData() {
+        viewModel.moodData.observe(viewLifecycleOwner) {
+            it?.data?.let { mood ->
+                bindMoodData(mood)
+                if (mood.fileName.isNotBlank()) viewModel.setImageUri(
+                    getUriImage(
+                        requireContext(),
+                        mood.fileName
+                    )
+                )
+                viewModel.setUpInitDetail(mood)
+            }
+        }
+    }
+
+    private fun bindMoodData(mood: MoodUI) {
+        binding.apply {
+            val imageURI = getUriImage(requireContext(), mood.fileName)
+            moodTitle.setDefaultTextValue(mood.title)
+            moodDesc.setDefaultTextValue(mood.desc)
+            imageView.apply {
+                visibility = View.VISIBLE
+                setImageURI(imageURI)
+            }
+            viewPagerMood.currentItem = BackgroundTheme().mapMoodToPosition(mood.mood)
+            currentSelectTime.text = convertTime(mood.timestamp, Formats.DATE_TIME_FORMAT_APP)
+        }
     }
 
     private fun setUpArguments() {
-        moodActivityViewModel.moodId = arguments?.getLong(MOOD_ID)!!
+        val moodID = arguments?.getLong(MOOD_ID)
+        if (moodID == null) this.activity?.finish()
+        else viewModel.getMoodDetailFromID(moodID)
     }
 
     override fun bindingView() = with(binding) {
+        title.text = getString(R.string.detail_mood)
+        howYouFeel.text = getString(R.string.how_are_you_feel)
+        currentSelectTime.setOnClickListener {
+            val bottomSheetSelectTime = SelectDateBottomSheet(
+                getContext = requireContext(),
+                onClickDone = ::onClickDoneBottomSheet,
+                onClose = ::onCloseBottomSheet,
+                currentTimeSelected = viewModel.getLocalDateTime()
+            )
+            bottomSheetSelectTime.show(childFragmentManager, bottomSheetSelectTime.tag)
+        }
+        buttonNext.setOnClickListener { viewModel.updateMoodDetail() }
+        selectedImage.setOnClickListener { selectImageFromGallery() }
+        buttonImage.setOnClickListener { selectImageFromGallery() }
+        imageView.setOnClickListener { selectImageFromGallery() }
     }
 
-    override fun onResume() {
-        super.onResume()
-        getUpMoodDetail()
-    }
-
-    private fun getUpMoodDetail() {
-//        moodActivityViewModel.moodId.let { viewModel.getMoodDetailFromID(it) }
+    private fun bindTextField() = with(binding) {
+        moodTitle.setOnTextChange { s, _, _, _ ->
+            viewModel.setMoodTitle(s.toString())
+            binding.buttonNext.isEnabled = s.toString().isNotEmpty()
+        }
+        moodDesc.setOnTextChange { s, _, _, _ ->
+            viewModel.setMoodDesc(s.toString())
+        }
     }
 
     override fun handleOnBackPress() {
-        TODO("Not yet implemented")
+        binding.back.setOnClickListener { this.activity?.finish() }
+    }
+
+    private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
+
+    private fun handleSelectImage(uri: Uri?) {
+        binding.apply {
+            buttonImage.visibility = View.GONE
+            imageView.apply {
+                setImageURI(uri)
+                visibility = View.VISIBLE
+            }
+        }
+        viewModel.setImageUri(uri)
+    }
+
+    override fun onClickDoneBottomSheet(date: ResultSelectDate) {
+        date.day?.let {
+            viewModel.setSelectDate(it)
+        }
+        date.time?.let {
+            viewModel.setSelectTime(it)
+        }
+        binding.currentSelectTime.text = convertTime(date.getLocalDateTime())
+    }
+
+    override fun onCloseBottomSheet() { /* DO nothing */
     }
 }

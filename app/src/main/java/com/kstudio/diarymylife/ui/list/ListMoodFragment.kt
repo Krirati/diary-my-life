@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentMoodListBinding
 import com.kstudio.diarymylife.domain.model.MoodViewType
@@ -41,7 +41,7 @@ class ListMoodFragment : BaseFragment<FragmentMoodListBinding>(
             cardAverage.bind("Mood avg", 5, R.drawable.pie_chart_24)
             cardTotal.bind("Total mood", 5, R.drawable.ic_bar_chart_24)
             recyclerview.apply {
-                layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
                 adapter = moodAdapter
             }
         }
@@ -58,7 +58,7 @@ class ListMoodFragment : BaseFragment<FragmentMoodListBinding>(
         }
 
         viewModel.barData.observe(viewLifecycleOwner) {
-            binding.chartSection.isVisible = !it.second.isNullOrEmpty()
+            binding.chartSection.isVisible = it.second.isNotEmpty()
             binding.chart.apply {
                 setMaxValue(it.first)
                 setDataList(it.second)

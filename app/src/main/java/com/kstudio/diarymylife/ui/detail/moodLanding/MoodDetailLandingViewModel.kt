@@ -4,26 +4,33 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.data.MoodUI
+import com.kstudio.diarymylife.data.mood.MoodRepository
 import com.kstudio.diarymylife.database.model.MoodWithActivity
-import com.kstudio.diarymylife.data.mood.MoodRepositoryImpl
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
-import com.kstudio.diarymylife.ui.base.BaseViewModel
+import com.kstudio.diarymylife.ui.base.BaseMoodViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MoodDetailLandingViewModel(
-    private val moodRepositoryImpl: MoodRepositoryImpl
-) : BaseViewModel() {
+    private val moodRepository: MoodRepository,
+) : BaseMoodViewModel() {
 
-    private var _moodDetail: MutableLiveData<MoodItem?> = MutableLiveData()
-    val moodData: MutableLiveData<MoodItem?> = _moodDetail
+    private var _updated: MutableLiveData<Unit> = MutableLiveData()
 
     fun getMoodDetailFromID(id: Long) {
         viewModelScope.launch {
-            moodRepositoryImpl.getMoodFromID(id)
+            moodRepository.getMoodFromID(id)
                 .collect {
-                    _moodDetail.postValue(mapToUI(it))
+                    setUpMoodDetail(mapToUI(it))
                 }
+        }
+    }
 
+    fun updateMoodDetail() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val req = setupUpdateMoodRequest()
+            val res = moodRepository.updateMood(req)
+            _updated.postValue(res)
         }
     }
 
@@ -33,14 +40,15 @@ class MoodDetailLandingViewModel(
                 viewType = ItemCardSwipeAdapter.VIEW_ITEM,
                 data = MoodUI(
                     moodId = it.mood.moodId,
+                    title = it.mood.title,
                     desc = it.mood.description,
                     mood = it.mood.mood,
                     activity = it.activities.asActivityDetail(),
                     timestamp = it.mood.timestamp,
-                    imageUri = "",
+                    imageUri = it.mood.imageUri ?: "",
+                    fileName = it.mood.fileName ?: ""
                 )
             )
-        }
-            ?: return null
+        } ?: return null
     }
 }

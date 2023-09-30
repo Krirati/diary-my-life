@@ -26,34 +26,41 @@
                 android:paddingHorizontal="@dimen/dp_16"
                 android:paddingVertical="@dimen/dp_16">
 
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/back"
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_round_transparent"
-                    android:src="@drawable/ic_arrow_left"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/title"
-                    style="@style/TextAppearance.DiaryMyLife.H1.Black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="@dimen/dp_16"
-                    android:text="@string/notification"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/back" />
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_round_transparent"
+                        android:src="@drawable/ic_arrow_left"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title"
+                        style="@style/TextAppearance.DiaryMyLife.H1.Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="@dimen/dp_16"
+                        android:text="@string/notification"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/back" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <com.kstudio.diarymylife.widgets.custom_switch.CustomSwitch
                     android:id="@+id/switchEnableNotification"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_32"
-                    app:custom_switch_state="false"
                     app:custom_switch_enabled="true"
+                    app:custom_switch_state="false"
                     app:custom_switch_title="Enable notification" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>

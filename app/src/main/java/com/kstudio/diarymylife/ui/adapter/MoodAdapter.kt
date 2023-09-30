@@ -5,15 +5,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ItemMoodBinding
+import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Poor
+import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Excellent
+import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Average
+import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Good
+import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Very_Poor
 
 class MoodAdapter : RecyclerView.Adapter<MoodAdapter.ViewHolder>() {
 
     private val moodList = arrayListOf(
-        Pair(1, R.drawable.mood1),
-        Pair(2, R.drawable.mood2),
-        Pair(3, R.drawable.mood3),
-        Pair(4, R.drawable.mood4),
-        Pair(5, R.drawable.mood5)
+        Pair(Excellent, R.drawable.lol),
+        Pair(Good, R.drawable.smile),
+        Pair(Average, R.drawable.neutral),
+        Pair(Poor, R.drawable.sad),
+        Pair(Very_Poor, R.drawable.crying),
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

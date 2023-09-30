@@ -19,19 +19,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:paddingHorizontal="@dimen/dp_16">
+                android:paddingHorizontal="@dimen/dp_16"
+                android:paddingVertical="@dimen/dp_16">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/title"
-                    style="@style/TextAppearance.DiaryMyLife.H1.Black"
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginTop="@dimen/dp_32"
-                    android:text="@string/setting"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_round_transparent"
+                        android:src="@drawable/ic_arrow_left" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/title"
+                        style="@style/TextAppearance.DiaryMyLife.H1.Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_16"
+                        android:text="@string/setting" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <com.kstudio.diarymylife.widgets.CardSetting
                     android:id="@+id/setting_username"

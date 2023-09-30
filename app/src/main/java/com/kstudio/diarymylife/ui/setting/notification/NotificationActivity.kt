@@ -8,6 +8,8 @@ import com.kstudio.diarymylife.ui.base.BaseActivity
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 class NotificationActivity : BaseActivity(), SelectDateHandle {
 
@@ -66,13 +68,16 @@ class NotificationActivity : BaseActivity(), SelectDateHandle {
     }
 
 
-
     private fun showBottomSheetSelectTime() {
         val bottomSheetSelectTime = SelectDateBottomSheet(
-            this@NotificationActivity,
-            ::onClickDoneBottomSheet,
-            ::onCloseBottomSheet,
-            SelectDateBottomSheet.BottomSheetType.DISPLAY_TIME
+            getContext = this@NotificationActivity,
+            onClickDone = ::onClickDoneBottomSheet,
+            onClose = ::onCloseBottomSheet,
+            type = SelectDateBottomSheet.BottomSheetType.DISPLAY_TIME,
+            currentTimeSelected = LocalDateTime.of(
+                LocalDate.now(),
+                viewModel.isDailyTimeChange.value
+            )
         )
         bottomSheetSelectTime.show(
             this@NotificationActivity.supportFragmentManager,
@@ -82,6 +87,7 @@ class NotificationActivity : BaseActivity(), SelectDateHandle {
 
     override fun onClickDoneBottomSheet(date: ResultSelectDate) {
         viewModel.setIsDailyChange(date.time)
+        viewModel.saveNotificationTime(date.time)
     }
 
     override fun onCloseBottomSheet() { /* Do nothing*/

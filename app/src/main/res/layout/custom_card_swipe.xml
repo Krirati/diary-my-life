@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.04" />
+            app:layout_constraintGuide_begin="16dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineVerticalEnd"
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="100dp" />
+            app:layout_constraintGuide_begin="128dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cardAction"
@@ -56,9 +56,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cardDetail"
+            android:id="@+id/cardDetailContainer"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@drawable/bg_round_card_action"
             android:padding="@dimen/dp_16"
             app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
             app:layout_constraintEnd_toStartOf="@id/guidelineVerticalEnd"
@@ -68,20 +69,47 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/cardTitle"
-                style="@style/TextAppearance.DiaryMyLife.H2.Black"
-                android:layout_width="wrap_content"
+                style="@style/TextAppearance.DiaryMyLife.H3.Black"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintEnd_toStartOf="@id/pill"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Title" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/cardDetail"
+                style="@style/TextAppearance.DiaryMyLife.Label.Blank"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:maxLines="2"
+                android:layout_marginTop="@dimen/dp_8"
+                android:ellipsize="end"
+                app:layout_constraintBottom_toTopOf="@+id/cardDate"
+                app:layout_constraintEnd_toStartOf="@id/pill"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardTitle"
+                tools:text="TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle" />
 
             <com.kstudio.diarymylife.widgets.DateView
                 android:id="@+id/cardDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_8"
-                app:layout_constraintStart_toStartOf="@+id/cardTitle"
-                app:layout_constraintTop_toBottomOf="@+id/cardTitle" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardDetail"
+                app:layout_constraintVertical_bias="1" />
+
+            <com.kstudio.diarymylife.widgets.PillView
+                android:id="@+id/pill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -28,7 +28,7 @@ class CustomCard @JvmOverloads constructor(
         val attribute =
             context.obtainStyledAttributes(attrs, R.styleable.CustomCard, defStyle, 0)
         val background = attribute.getInt(R.styleable.CustomCard_custom_card_background_color, 6)
-        binding.root.setBackgroundResource(BackgroundTheme().mapperThemeCard(background))
+        binding.root.setBackgroundResource(BackgroundTheme().mapperThemeColor(background).second)
 
         attribute.recycle()
     }

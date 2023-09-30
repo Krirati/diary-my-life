@@ -13,34 +13,54 @@ class Formats {
         const val DATE_FORMAT = "dd-MM-yyyy"
         const val DATE_FORMAT_APP = "MMMM, dd EEEE"
         const val DATE_TIME_FORMAT_APP = "MMMM, dd EEEE HH:mm"
+        const val DATE_TIME_FORMAT = "HH:mm"
     }
 }
 
 class BackgroundTheme {
     companion object {
-        const val NEW_YORK_PINK = 8
-        const val PEWTER_BLUE = 7
-        const val BEIGE = 6
-        const val LAUREL_GREEN = 5
-        const val PALE_SPRINT_BUD = 4
-        const val LEMON_YELLOW_CRAYOLA = 3
-        const val DEEP_CHAMPAGNE = 2
-        const val MACARONI_AND_CHEESE = 1
-        const val SANDY_BROWN = 0
+        const val Excellent = 4
+        const val Good = 3
+        const val Average = 2
+        const val Poor = 1
+        const val Very_Poor = 0
+        const val Mood_Avg = 10
+        const val Mood_Tool = 11
     }
 
-    fun mapperThemeCard(background: Int): Int {
-        return when (background) {
-            BEIGE -> R.drawable.bg_round_beige
-            LAUREL_GREEN -> R.drawable.bg_round_laurel_green
-            PALE_SPRINT_BUD -> R.drawable.bg_round_pale_sprint_bud
-            LEMON_YELLOW_CRAYOLA -> R.drawable.bg_round_lemon_yellow_crayola
-            DEEP_CHAMPAGNE -> R.drawable.bg_round_deep_champagne
-            SANDY_BROWN -> R.drawable.bg_round_sandy_brown
-            MACARONI_AND_CHEESE -> R.drawable.bg_round_macaroni_and_cheese
-            PEWTER_BLUE -> R.drawable.bg_round_pewter_blue
-            NEW_YORK_PINK -> R.drawable.bg_round_new_york_pink
-            else -> R.drawable.bg_round_card_action
+    fun mapperThemeColor(mood: Int?): Pair<Int, Int> {
+        return when (mood) {
+            Excellent -> R.color.mood_excellent to R.drawable.bg_mood_excellent
+            Good -> R.color.mood_good to R.drawable.bg_mood_good
+            Average -> R.color.mood_average to R.drawable.bg_mood_average
+            Poor -> R.color.mood_pool to R.drawable.bg_mood_pool
+            Very_Poor -> R.color.mood_very_pool to R.drawable.bg_mood_very_pool
+
+            Mood_Tool -> R.color.new_york_pink to R.drawable.bg_round_new_york_pink
+            Mood_Avg -> R.color.pewter_blue to R.drawable.bg_round_pewter_blue
+            else -> R.color.secondary_grey10 to R.drawable.bg_round_card_action
+        }
+    }
+
+    fun mapMoodStringToTitle(mood: Int?): String {
+        return when (mood) {
+            Excellent -> "Excellent"
+            Good -> "Good"
+            Average -> "Average"
+            Poor -> "Poor"
+            Very_Poor -> "Very Poor"
+            else -> ""
+        }
+    }
+
+    fun mapMoodToPosition(mood: Int?): Int {
+        return when (mood) {
+            Excellent -> 0
+            Good -> 1
+            Average -> 2
+            Poor -> 3
+            Very_Poor -> 4
+            else -> 0
         }
     }
 }

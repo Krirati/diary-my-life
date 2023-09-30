@@ -1,6 +1,8 @@
 package com.kstudio.diarymylife.di
 
+import com.kstudio.diarymylife.ui.base.BaseMoodViewModel
 import com.kstudio.diarymylife.ui.create.CreateMoodViewModel
+import com.kstudio.diarymylife.ui.create.CreateNewMoodViewModel
 import com.kstudio.diarymylife.ui.detail.MoodDetailViewModel
 import com.kstudio.diarymylife.ui.detail.moodLanding.MoodDetailLandingViewModel
 import com.kstudio.diarymylife.ui.home.HomeViewModel
@@ -15,10 +17,11 @@ val viewModelModule = module {
     viewModel { HomeViewModel(get(), get()) }
     viewModel { MoodDetailViewModel() }
     viewModel { MoodDetailLandingViewModel(get()) }
-    viewModel { com.kstudio.diarymylife.ui.create.select_mood.CreateMoodViewModel(get()) }
+    viewModel { CreateNewMoodViewModel(get()) }
     viewModel { CreateMoodViewModel() }
     viewModel { ListMoodViewModel(get(), get()) }
     viewModel { SelectDateBottomSheetViewModel() }
     viewModel { NotificationViewModel(get()) }
     viewModel { ProfileViewModel() }
+    viewModel { BaseMoodViewModel() }
 }

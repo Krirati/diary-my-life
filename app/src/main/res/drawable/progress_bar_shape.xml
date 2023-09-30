@@ -18,7 +18,7 @@
                     android:radius="@dimen/card_radius"
                     android:topLeftRadius="20dp"
                     android:topRightRadius="20dp" />
-                <solid android:color="@color/sandy_brown" />
+                <solid android:color="@color/mood_very_pool" />
             </shape>
         </scale>
     </item>

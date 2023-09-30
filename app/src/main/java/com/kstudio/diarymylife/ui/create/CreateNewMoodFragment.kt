@@ -1,5 +1,6 @@
-package com.kstudio.diarymylife.ui.create.select_mood
+package com.kstudio.diarymylife.ui.create
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
@@ -19,20 +20,16 @@ import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 
-class CreateMoodFragment :
+class CreateNewMoodFragment :
     BaseFragment<FragmentMoodCreateBinding>(FragmentMoodCreateBinding::inflate), SelectDateHandle {
 
-    private val viewModel by viewModel<CreateMoodViewModel>()
+    private val viewModel by viewModel<CreateNewMoodViewModel>()
     private val adapterMood by lazy { MoodAdapter() }
 
     private val selectImageFromGalleryResult =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             uri?.let {
-                binding.buttonImage.visibility = View.GONE
-                binding.imageView.apply {
-                    setImageURI(uri)
-                    visibility = View.VISIBLE
-                }
+                handleSelectImage(uri)
             }
         }
 
@@ -75,10 +72,16 @@ class CreateMoodFragment :
             )
             bottomSheetSelectTime.show(childFragmentManager, bottomSheetSelectTime.tag)
         }
-        buttonNext.setOnClickListener {
-            viewModel.createMood()
+        buttonNext.apply {
+            isEnabled = false
+            setOnClickListener { viewModel.createNewMood() }
         }
-        back.setOnClickListener { onBackPressedOrFinish() }
+        back.setOnClickListener {
+            onBackPressedOrFinish(
+                transitionIn = R.anim.slide_in_top,
+                transitionOut = R.anim.slide_out_bottom
+            )
+        }
         selectedImage.setOnClickListener { selectImageFromGallery() }
         buttonImage.setOnClickListener { selectImageFromGallery() }
         imageView.setOnClickListener { selectImageFromGallery() }
@@ -86,12 +89,7 @@ class CreateMoodFragment :
 
     private fun observe() {
         viewModel.created.observe(viewLifecycleOwner) {
-            // todo model success icon and
             activity?.finishAfterTransition()
-        }
-
-        viewModel.isChange.observe(viewLifecycleOwner) {
-            binding.buttonNext.isEnabled = it
         }
     }
 
@@ -129,8 +127,23 @@ class CreateMoodFragment :
     private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
     private fun bindTextField() = with(binding) {
+        moodTitle.setOnTextChange { s, _, _, _ ->
+            viewModel.setMoodTitle(s.toString())
+            binding.buttonNext.isEnabled = s.toString().isNotEmpty()
+        }
         moodDesc.setOnTextChange { s, _, _, _ ->
             viewModel.setMoodDesc(s.toString())
         }
+    }
+
+    private fun handleSelectImage(uri: Uri?) {
+        binding.apply {
+            buttonImage.visibility = View.GONE
+            imageView.apply {
+                setImageURI(uri)
+                visibility = View.VISIBLE
+            }
+        }
+        viewModel.setImageUri(uri)
     }
 }

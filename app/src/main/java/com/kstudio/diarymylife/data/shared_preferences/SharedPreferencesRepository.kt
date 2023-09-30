@@ -4,6 +4,6 @@ interface SharedPreferencesRepository {
     var appTheme: String?
     var enableNotification: Boolean
     var enableDaily: Boolean
-    var dailyTime: Long
+    var dailyTime: String?
     var freshInstall: Boolean
 }

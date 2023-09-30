@@ -6,7 +6,9 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_round_card_action"
     android:minHeight="@dimen/dp_64"
-    android:padding="@dimen/dp_8">
+    android:padding="@dimen/dp_8"
+    android:paddingStart="@dimen/dp_12"
+    android:paddingEnd="@dimen/dp_12">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iconLeft"
@@ -52,19 +54,5 @@
         app:layout_constraintStart_toEndOf="@+id/iconLeft"
         app:layout_constraintTop_toBottomOf="@+id/title"
         tools:text="test" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/valueText"
-        style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:background="@null"
-        android:hapticFeedbackEnabled="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iconLeft"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        tools:text="Value" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
