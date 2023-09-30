@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.0" />
+            app:layout_constraintGuide_percent="0.04" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineVerticalEnd"
@@ -60,6 +60,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:padding="@dimen/dp_16"
+            android:background="@drawable/bg_round_card_action"
             app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
             app:layout_constraintEnd_toStartOf="@id/guidelineVerticalEnd"
             app:layout_constraintStart_toStartOf="@id/guidelineVerticalStart"
@@ -87,7 +88,7 @@
                 android:id="@+id/pill"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

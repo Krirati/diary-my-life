@@ -28,16 +28,17 @@ class BackgroundTheme {
         const val Mood_Tool = 11
     }
 
-    fun mapperThemeCard(background: Int): Int {
-        return when (background) {
-            Excellent -> R.drawable.bg_round_laurel_green
-            Good -> R.drawable.bg_round_pale_sprint_bud
-            Average -> R.drawable.bg_round_lemon_yellow_crayola
-            Poor -> R.drawable.bg_round_deep_champagne
-            Very_Poor -> R.drawable.bg_round_sandy_brown
-            Mood_Tool -> R.drawable.bg_round_new_york_pink
-            Mood_Avg -> R.drawable.bg_round_pewter_blue
-            else -> R.drawable.bg_round_card_action
+    fun mapperThemeColor(mood: Int?): Pair<Int, Int> {
+        return when (mood) {
+            Excellent -> R.color.mood_excellent to R.drawable.bg_mood_excellent
+            Good -> R.color.mood_good to R.drawable.bg_mood_good
+            Average -> R.color.mood_average to R.drawable.bg_mood_average
+            Poor -> R.color.mood_pool to R.drawable.bg_mood_pool
+            Very_Poor -> R.color.mood_very_pool to R.drawable.bg_mood_very_pool
+
+            Mood_Tool -> R.color.new_york_pink to R.drawable.bg_round_new_york_pink
+            Mood_Avg -> R.color.pewter_blue to R.drawable.bg_round_pewter_blue
+            else -> R.color.secondary_grey10 to R.drawable.bg_round_card_action
         }
     }
 

@@ -9,12 +9,12 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text"
-        style="@style/TextAppearance.DiaryMyLife.Subtitle.Black.Bold"
+        style="@style/TextAppearance.DiaryMyLife.Subtitle.White.Bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxWidth="128dp"
         android:maxLines="1"
-        tools:text="sdfasfasdfafsdfasfasdfafsdfasfasdfafsdfasfasdfafsdfasfasdfaf" />
+        tools:text="Good" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -76,6 +76,10 @@ class CustomCardSwipe @JvmOverloads constructor(
         binding.cardDetail.setPadding(left, top, right, bottom)
     }
 
+    fun setPillTag(value: String, colorInt: Int) {
+        binding.pill.bindView(value, colorInt)
+    }
+
     fun setOnClickWidget(onClick: () -> Unit) {
         this.onClickWidgetListener = onClick
     }
@@ -134,6 +138,7 @@ class CustomCardSwipe @JvmOverloads constructor(
                 dXTrail = view.right - event.rawX
                 false
             }
+
             MotionEvent.ACTION_MOVE -> {
                 previousEvent = previousEvent.copy(first = event.action)
                 onAnimate(view, onSwipeMove(event.rawX + dXLead, swipeState), 0)
@@ -144,11 +149,13 @@ class CustomCardSwipe @JvmOverloads constructor(
                 )
                 false
             }
+
             MotionEvent.ACTION_UP -> {
                 previousEvent = previousEvent.copy(second = event.action)
                 onAnimate(view, onSwipeUp(state))
                 false
             }
+
             else -> true
         }
     }

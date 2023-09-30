@@ -16,8 +16,16 @@ class ItemCardSwipeViewHolder(
     ) {
         binding.apply {
             item.data?.apply {
-                customCard.setTitleAndDate(BackgroundTheme().mapMoodStringToTitle(this.mood), this.timestamp)
-                customCard.setBackgroundAndKeepPadding(BackgroundTheme().mapperThemeCard(this.mood ?: 3))
+                val colorTheme = BackgroundTheme().mapperThemeColor(this.mood)
+                customCard.setTitleAndDate(
+                    BackgroundTheme().mapMoodStringToTitle(this.mood),
+                    this.timestamp
+                )
+                customCard.setBackgroundAndKeepPadding(colorTheme.second)
+                customCard.setPillTag(
+                    BackgroundTheme().mapMoodStringToTitle(this.mood),
+                    colorTheme.first
+                )
                 customCard.setOnClickWidget { onClickToDetail(this.moodId) }
                 customCard.setOnClickAction { onActionClickDelete(absoluteAdapterPosition) }
             }

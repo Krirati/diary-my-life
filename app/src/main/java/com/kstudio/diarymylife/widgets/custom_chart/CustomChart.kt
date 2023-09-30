@@ -97,7 +97,7 @@ class CustomChart @JvmOverloads constructor(
         )
         mPinBackgroundColor = typedArray.getResourceId(
             R.styleable.CustomChart_custom_pin_background_color,
-            ContextCompat.getColor(context, R.color.laurel_green)
+            ContextCompat.getColor(context, R.color.mood_good_drop)
         )
         mPinPaddingTop =
             typedArray.getDimensionPixelSize(R.styleable.CustomChart_custom_pin_padding_top, 3)
@@ -111,7 +111,7 @@ class CustomChart @JvmOverloads constructor(
             typedArray.getBoolean(R.styleable.CustomChart_custom_bar_can_be_click, false)
         mBarTitleColor = typedArray.getResourceId(
             R.styleable.CustomChart_custom_bar_title_color,
-            ContextCompat.getColor(context, R.color.lemon_yellow_crayola)
+            ContextCompat.getColor(context, R.color.mood_average_drop)
         )
         mMaxValue = typedArray.getFloat(R.styleable.CustomChart_custom_max_value, 1f)
         mBarTitleTxtSize =
