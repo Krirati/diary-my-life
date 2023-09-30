@@ -6,6 +6,7 @@ import java.time.LocalDateTime
 data class MoodRequest(
     val moodId: Long?,
     val mood: Int?,
+    val title: String,
     val description: String,
     val activity: ArrayList<ActivityDetail>? = arrayListOf(),
     val imageName: String?,

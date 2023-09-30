@@ -14,6 +14,7 @@ data class MoodItem(
 @Parcelize
 data class MoodUI(
     val moodId: Long,
+    val title: String,
     val desc: String,
     val mood: Int?,
     val activity: List<ActivityDetail>?,

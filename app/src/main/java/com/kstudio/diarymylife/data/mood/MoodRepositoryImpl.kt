@@ -20,6 +20,7 @@ class MoodRepositoryImpl(
         val fileName = if (mood.uri == null) null else UUID.randomUUID().toString()
         val moodReq = Mood(
             mood = mood.mood,
+            title = mood.title,
             description = mood.description,
             imageUri = mood.imageName,
             timestamp = mood.timestamp,
@@ -44,6 +45,7 @@ class MoodRepositoryImpl(
         val request = Mood(
             moodId = mood.moodId,
             mood = mood.mood,
+            title = mood.title,
             description = mood.description,
             imageUri = mood.imageName,
             timestamp = mood.timestamp,

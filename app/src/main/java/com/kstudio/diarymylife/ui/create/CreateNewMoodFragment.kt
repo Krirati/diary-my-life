@@ -72,7 +72,10 @@ class CreateNewMoodFragment :
             )
             bottomSheetSelectTime.show(childFragmentManager, bottomSheetSelectTime.tag)
         }
-        buttonNext.setOnClickListener { viewModel.createNewMood() }
+        buttonNext.apply {
+            isEnabled = false
+            setOnClickListener { viewModel.createNewMood() }
+        }
         back.setOnClickListener {
             onBackPressedOrFinish(
                 transitionIn = R.anim.slide_in_top,
@@ -86,7 +89,6 @@ class CreateNewMoodFragment :
 
     private fun observe() {
         viewModel.created.observe(viewLifecycleOwner) {
-            // todo model success icon and
             activity?.finishAfterTransition()
         }
     }
@@ -125,6 +127,10 @@ class CreateNewMoodFragment :
     private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
     private fun bindTextField() = with(binding) {
+        moodTitle.setOnTextChange { s, _, _, _ ->
+            viewModel.setMoodTitle(s.toString())
+            binding.buttonNext.isEnabled = s.toString().isNotEmpty()
+        }
         moodDesc.setOnTextChange { s, _, _, _ ->
             viewModel.setMoodDesc(s.toString())
         }

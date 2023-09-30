@@ -40,6 +40,7 @@ class MoodDetailLandingViewModel(
                 viewType = ItemCardSwipeAdapter.VIEW_ITEM,
                 data = MoodUI(
                     moodId = it.mood.moodId,
+                    title = it.mood.title,
                     desc = it.mood.description,
                     mood = it.mood.mood,
                     activity = it.activities.asActivityDetail(),

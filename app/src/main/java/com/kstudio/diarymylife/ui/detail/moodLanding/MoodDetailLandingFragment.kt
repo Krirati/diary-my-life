@@ -90,6 +90,7 @@ class MoodDetailLandingFragment :
     private fun bindMoodData(mood: MoodUI) {
         binding.apply {
             val imageURI = getUriImage(requireContext(), mood.fileName)
+            moodTitle.setDefaultTextValue(mood.title)
             moodDesc.setDefaultTextValue(mood.desc)
             imageView.apply {
                 visibility = View.VISIBLE
@@ -125,6 +126,10 @@ class MoodDetailLandingFragment :
     }
 
     private fun bindTextField() = with(binding) {
+        moodTitle.setOnTextChange { s, _, _, _ ->
+            viewModel.setMoodTitle(s.toString())
+            binding.buttonNext.isEnabled = s.toString().isNotEmpty()
+        }
         moodDesc.setOnTextChange { s, _, _, _ ->
             viewModel.setMoodDesc(s.toString())
         }

@@ -16,6 +16,7 @@ open class BaseMoodViewModel() : BaseViewModel() {
 
     private val _localDateSelect: MutableLiveData<LocalDate> = MutableLiveData(LocalDate.now())
     private val _localTimeSelect: MutableLiveData<LocalTime> = MutableLiveData(LocalTime.now())
+    private val _moodTitle: MutableLiveData<String> = MutableLiveData()
     private val _moodDesc: MutableLiveData<String> = MutableLiveData()
     private val _imageUrl: MutableLiveData<Uri?> = MutableLiveData()
     private var _moodDetail: MutableLiveData<MoodItem?> = MutableLiveData()
@@ -31,6 +32,10 @@ open class BaseMoodViewModel() : BaseViewModel() {
 
     fun setSelectTime(localTime: LocalTime) {
         _localTimeSelect.postValue(localTime)
+    }
+
+    fun setMoodTitle(desc: String) {
+        _moodTitle.postValue(desc)
     }
 
     fun setMoodDesc(desc: String) {
@@ -57,6 +62,7 @@ open class BaseMoodViewModel() : BaseViewModel() {
         return MoodRequest(
             moodId = null,
             mood = _selectsMood.value?.first,
+            title = _moodTitle.value ?: "",
             description = _moodDesc.value ?: "",
             timestamp = time.getLocalDateTime(),
             createTime = LocalDateTime.now(),
@@ -72,6 +78,7 @@ open class BaseMoodViewModel() : BaseViewModel() {
         return MoodRequest(
             moodId = moodId,
             mood = _selectsMood.value?.first,
+            title = _moodTitle.value ?: "",
             description = _moodDesc.value ?: "",
             timestamp = time.getLocalDateTime(),
             createTime = LocalDateTime.now(),

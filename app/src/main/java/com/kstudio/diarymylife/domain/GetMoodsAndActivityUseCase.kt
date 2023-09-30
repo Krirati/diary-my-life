@@ -18,17 +18,19 @@ class GetMoodsAndActivityUseCase constructor(
                     data = null
                 )
             ) else {
-                moods.map { mood ->
+                moods.map { moodItem ->
+                    val mood = moodItem.mood
                     MoodViewType(
                         viewType = ItemCardSwipeAdapter.VIEW_ITEM,
                         data = MoodAndActivityUI(
-                            moodId = mood.mood.moodId,
-                            mood = mood.mood.mood,
-                            desc = mood.mood.description,
-                            imageUri = mood.mood.imageUri.orEmpty(),
-                            timestamp = mood.mood.timestamp,
-                            createTime = mood.mood.createTime,
-                            fileName = mood.mood.fileName
+                            moodId = mood.moodId,
+                            mood = mood.mood,
+                            title = mood.title,
+                            desc = mood.description,
+                            imageUri = mood.imageUri.orEmpty(),
+                            timestamp = mood.timestamp,
+                            createTime = mood.createTime,
+                            fileName = mood.fileName
                         )
                     )
                 }

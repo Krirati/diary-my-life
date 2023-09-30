@@ -4,6 +4,7 @@ import java.time.LocalDateTime
 
 data class MoodAndActivityUI(
     val moodId: Long,
+    val title: String,
     val desc: String,
     val mood: Int?,
     val imageUri: String,

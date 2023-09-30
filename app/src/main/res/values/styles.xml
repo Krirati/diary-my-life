@@ -106,6 +106,14 @@
         <item name="android:textColor">@color/grey_text</item>
     </style>
 
+    <style name="TextAppearance.DiaryMyLife.Label.Blank" parent="TextAppearance.DiaryMyLife">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="SubtitleAmber">
         <item name="android:fontFamily">@font/raleway_light</item>
         <item name="android:textStyle">normal</item>

@@ -18,8 +18,9 @@ class ItemCardSwipeViewHolder(
             item.data?.apply {
                 val colorTheme = BackgroundTheme().mapperThemeColor(this.mood)
                 customCard.setTitleAndDate(
-                    BackgroundTheme().mapMoodStringToTitle(this.mood),
-                    this.timestamp
+                    title = item.data?.title ?: "",
+                    detail = item.data?.desc ?: "",
+                    date = this.timestamp
                 )
                 customCard.setBackgroundAndKeepPadding(colorTheme.second)
                 customCard.setPillTag(

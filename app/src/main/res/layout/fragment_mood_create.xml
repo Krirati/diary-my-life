@@ -98,13 +98,22 @@
                     app:selectedDotColor="@color/dark_brown" />
 
                 <com.kstudio.diarymylife.widgets.custom_edit_text.CustomEditText
+                    android:id="@+id/moodTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_24"
+                    app:custom_edit_text_placeholder="Mood title"
+                    app:custom_edit_text_title="Mood title"
+                    app:layout_constraintTop_toBottomOf="@+id/dots_indicator" />
+
+                <com.kstudio.diarymylife.widgets.custom_edit_text.CustomEditText
                     android:id="@+id/moodDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp_24"
-                    app:custom_edit_text_placeholder="Mood Description"
-                    app:custom_edit_text_title="Mood Description"
-                    app:layout_constraintTop_toBottomOf="@+id/dots_indicator" />
+                    app:custom_edit_text_placeholder="@string/mood_detail_text_field"
+                    app:custom_edit_text_title="@string/mood_detail_text_field"
+                    app:layout_constraintTop_toBottomOf="@+id/moodTitle" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/selectedImage"
