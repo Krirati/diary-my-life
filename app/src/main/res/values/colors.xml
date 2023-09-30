@@ -34,16 +34,16 @@
     <!--  emotional color  -->
     <color name="beige">#D3DDC3</color>
 
-    <color name="mood_excellent">#618264</color>
-    <color name="mood_excellent_drop">#9EB384</color>
+    <color name="mood_excellent">#9EB384</color>
+    <color name="mood_excellent_drop">#ccddb8</color>
 
-    <color name="mood_good">#9EB384</color>
-    <color name="mood_good_drop">#C4D7B2</color>
+    <color name="mood_good">#B5CB99</color>
+    <color name="mood_good_drop">#E1ECC8</color>
 
-    <color name="mood_average">#B5CB99</color>
-    <color name="mood_average_drop">#E1ECC8</color>
+    <color name="mood_average">#C6CAA5</color>
+    <color name="mood_average_drop">#EDEED7</color>
 
-    <color name="mood_pool">#EAD7BB</color>
+    <color name="mood_pool">#d6c8b1</color>
     <color name="mood_pool_drop">#F8F0E5</color>
 
     <color name="mood_very_pool">#BCA37F</color>
