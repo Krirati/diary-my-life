@@ -12,6 +12,7 @@ import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.create.CreateMoodActivity
 import com.kstudio.diarymylife.ui.detail.MoodDetailActivity
+import com.kstudio.diarymylife.ui.list.ListActivity
 import com.kstudio.diarymylife.ui.setting.SettingActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -59,6 +60,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             )
         }
         settingButton.setOnClickListener { navigateToActivity(SettingActivity::class.java) }
+        seeAll.setOnClickListener { navigateToActivity(ListActivity::class.java) }
     }
 
     private fun updateRecentMood(moodList: List<MoodViewType>) {

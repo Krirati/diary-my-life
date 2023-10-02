@@ -130,6 +130,15 @@
         <item name="android:textColor">@color/amber_800</item>
     </style>
 
+    <style name="TextAppearance.DiaryMyLife.Button.Grey" parent="TextAppearance.DiaryMyLife">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:textColor">@color/grey_text</item>
+    </style>
+
     <!-- set the rounded drawable as background to your bottom sheet -->
     <style name="BottomSheet" parent="@style/Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bg_bottom_sheet_dialog_fragment</item>

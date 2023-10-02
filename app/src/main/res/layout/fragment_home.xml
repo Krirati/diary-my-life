@@ -35,9 +35,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title_welcome"
                 android:layout_marginTop="@dimen/dp_8"
-                android:text="Krirati"
                 app:layout_constraintStart_toStartOf="@+id/title_welcome"
-                app:layout_constraintTop_toBottomOf="@+id/title_welcome" />
+                app:layout_constraintTop_toBottomOf="@+id/title_welcome"
+                tools:text="Krirati" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card"
@@ -112,17 +112,32 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/dp_16"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/card">
+                app:layout_constraintTop_toBottomOf="@+id/card"
+                app:layout_constraintVertical_bias="1.0"
+                tools:layout_editor_absoluteX="-205dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/title_recent_memory"
                     style="@style/TextAppearance.DiaryMyLife.H2.Black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/recent_mood"
                     android:layout_marginStart="@dimen/dp_16"
+                    android:text="@string/recent_mood"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/seeAll"
+                    style="@style/TextAppearance.DiaryMyLife.Button.Grey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_16"
+                    android:text="@string/see_all"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="@+id/title_recent_memory"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
