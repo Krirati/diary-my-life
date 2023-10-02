@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.list
+package com.kstudio.diarymylife.ui.summary
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +8,7 @@ import com.kstudio.diarymylife.data.mood.MoodRepository
 import com.kstudio.diarymylife.domain.GetMoodsAndActivityUseCase
 import com.kstudio.diarymylife.domain.model.MoodViewType
 import com.kstudio.diarymylife.ui.base.BaseViewModel
+import com.kstudio.diarymylife.utils.BackgroundTheme
 import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Poor
 import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Excellent
 import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Average
@@ -16,7 +17,7 @@ import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Very_Poor
 import com.kstudio.diarymylife.widgets.custom_chart.BarData
 import kotlinx.coroutines.launch
 
-class ListMoodViewModel constructor(
+class SummaryMoodViewModel constructor(
     private val moodRepository: MoodRepository,
     private val getMoodsAndActivityUseCase: GetMoodsAndActivityUseCase
 ) : BaseViewModel() {
@@ -27,8 +28,8 @@ class ListMoodViewModel constructor(
     private val _barData: MutableLiveData<Pair<Int, ArrayList<BarData>>> = MutableLiveData()
     val barData: LiveData<Pair<Int, ArrayList<BarData>>> = _barData
 
-    private val _averageMood: MutableLiveData<Long> = MutableLiveData(0)
-    val averageMood: LiveData<Long> = _averageMood
+    private val _averageMood: MutableLiveData<String> = MutableLiveData()
+    val averageMood: LiveData<String> = _averageMood
 
     fun fetchRecentJournal() {
         viewModelScope.launch {
@@ -48,7 +49,7 @@ class ListMoodViewModel constructor(
         if (list.isNotEmpty()) {
             average = moodScore / list.size
         }
-        _averageMood.postValue(average)
+        _averageMood.postValue(BackgroundTheme().mapMoodStringToTitle(average.toInt()))
     }
 
     fun deleteJournal(moodID: Long?) {

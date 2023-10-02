@@ -61,6 +61,10 @@
             android:name=".ui.setting.SettingActivity"
             android:exported="false"
             android:theme="@style/Theme.DiaryMyLife" />
+        <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.DiaryMyLife" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
