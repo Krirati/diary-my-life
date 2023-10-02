@@ -18,12 +18,8 @@ import com.kstudio.diarymylife.widgets.custom_chart.BarData
 import kotlinx.coroutines.launch
 
 class SummaryMoodViewModel constructor(
-    private val moodRepository: MoodRepository,
     private val getMoodsAndActivityUseCase: GetMoodsAndActivityUseCase
 ) : BaseViewModel() {
-
-    private val _memberList: MutableLiveData<List<MoodViewType>> = MutableLiveData()
-    fun getMemberList(): LiveData<List<MoodViewType>> = _memberList
 
     private val _barData: MutableLiveData<Pair<Int, ArrayList<BarData>>> = MutableLiveData()
     val barData: LiveData<Pair<Int, ArrayList<BarData>>> = _barData
@@ -34,7 +30,6 @@ class SummaryMoodViewModel constructor(
     fun fetchRecentJournal() {
         viewModelScope.launch {
             getMoodsAndActivityUseCase.invoke().collect {
-                _memberList.postValue(it)
                 mappingDataToChart(it)
                 setMoodAverage(it)
             }
@@ -50,13 +45,6 @@ class SummaryMoodViewModel constructor(
             average = moodScore / list.size
         }
         _averageMood.postValue(BackgroundTheme().mapMoodStringToTitle(average.toInt()))
-    }
-
-    fun deleteJournal(moodID: Long?) {
-        if (moodID == null) return
-        viewModelScope.launch {
-            moodRepository.deleteMood(moodID = moodID)
-        }
     }
 
     private fun mappingDataToChart(moodViewTypes: List<MoodViewType>) {

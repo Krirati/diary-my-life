@@ -1,19 +1,12 @@
 package com.kstudio.diarymylife.ui.summary
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentSummaryMoodBinding
 import com.kstudio.diarymylife.domain.model.MoodViewType
-import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter.Companion.VIEW_ADD
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.create.CreateMoodActivity
-import com.kstudio.diarymylife.ui.detail.MoodDetailActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SummaryMoodFragment : BaseFragment<FragmentSummaryMoodBinding>(
@@ -21,13 +14,6 @@ class SummaryMoodFragment : BaseFragment<FragmentSummaryMoodBinding>(
 ) {
 
     private val viewModel by viewModel<SummaryMoodViewModel>()
-    private val moodAdapter by lazy {
-        ItemCardSwipeAdapter(
-            onAddItem = { navigateToCreateJournal() },
-            onDeleted = { viewModel.deleteJournal(it) },
-            onNavigateToDetail = { navigateToActivity(MoodDetailActivity::class.java, it) },
-        )
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,24 +22,9 @@ class SummaryMoodFragment : BaseFragment<FragmentSummaryMoodBinding>(
         viewModel.fetchRecentJournal()
     }
 
-    override fun bindingView() {
-        binding.apply {
-            recyclerview.apply {
-                layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-                adapter = moodAdapter
-            }
-        }
-
-    }
-
     private fun observeLiveData() {
-        viewModel.getMemberList().observe(viewLifecycleOwner) {
-            setUpRecentMemory(it)
-        }
-
         viewModel.averageMood.observe(viewLifecycleOwner) {
         }
-
         viewModel.barData.observe(viewLifecycleOwner) {
             binding.chartSection.isVisible = it.second.isNotEmpty()
             binding.chart.apply {
@@ -64,23 +35,13 @@ class SummaryMoodFragment : BaseFragment<FragmentSummaryMoodBinding>(
         }
     }
 
-    override fun handleOnBackPress() {
-        TODO("Not yet implemented")
+    override fun bindingView() {
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun setUpRecentMemory(moodList: List<MoodViewType>) {
-        bindingCard(moodList)
-        moodAdapter.updateMoodItems(moodList)
+    override fun handleOnBackPress() {
     }
 
     private fun bindingCard(mood: List<MoodViewType>) = with(binding) {
         val moodTotal = mood.filter { mood -> mood.viewType != VIEW_ADD }
-    }
-
-    private fun navigateToCreateJournal() {
-        val intent = Intent(activity, CreateMoodActivity::class.java)
-        startActivity(intent)
-        requireActivity().overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
     }
 }

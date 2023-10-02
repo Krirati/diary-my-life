@@ -118,39 +118,7 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/title_recent_memory"
-                        style="@style/TextAppearance.DiaryMyLife.H2.Black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp_16"
-                        android:text="@string/all_moods"
-                        app:layout_constraintHorizontal_chainStyle="spread_inside"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/chartSection" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/buttonSort"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_round_transparent"
-                        android:src="@drawable/ic_sliders"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/title_recent_memory" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_16"
-                    android:nestedScrollingEnabled="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sectionHeader"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:itemCount="1"
-                    tools:layout_editor_absoluteX="17dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
