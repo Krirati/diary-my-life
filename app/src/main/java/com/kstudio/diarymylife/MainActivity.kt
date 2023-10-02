@@ -8,7 +8,7 @@ import com.kstudio.diarymylife.databinding.ActivityMainBinding
 import com.kstudio.diarymylife.ui.adapter.ViewPagerAdapter
 import com.kstudio.diarymylife.ui.create.CreateMoodActivity
 import com.kstudio.diarymylife.ui.home.HomeFragment
-import com.kstudio.diarymylife.ui.list.ListMoodFragment
+import com.kstudio.diarymylife.ui.summary.SummaryMoodFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewPager() {
         val fragment: ArrayList<Fragment> = arrayListOf(
             HomeFragment(),
-            ListMoodFragment(),
+            SummaryMoodFragment(),
         )
 
         binding.viewPager.apply {

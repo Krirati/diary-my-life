@@ -6,6 +6,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.kstudio.diarymylife.R
+import com.kstudio.diarymylife.utils.Keys
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -13,6 +14,18 @@ open class BaseActivity : AppCompatActivity() {
         val intent = Intent(this, activity)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+    protected fun <T : Activity> navigateToActivityWithMoodId(
+        activity: Class<T>?,
+        journalId: Long? = null,
+        transitionIn: Int = R.anim.slide_in_right,
+        transitionOut: Int = R.anim.slide_out_left
+    ) {
+        val intent = Intent(this, activity)
+        intent.putExtra(Keys.MOOD_ID, journalId)
+        startActivity(intent)
+        overridePendingTransition(transitionIn, transitionOut)
     }
 
     override fun finish() {

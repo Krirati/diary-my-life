@@ -42,4 +42,5 @@
     <string name="all_moods">All Moods</string>
     <string name="mood_stats">Mood stats</string>
     <string name="mood_detail_text_field">Mood Detail</string>
+    <string name="see_all">See all</string>
 </resources>
