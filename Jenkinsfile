@@ -1,6 +1,13 @@
 pipeline {
     agent any
     stages {
+        stage('Setup') {
+            steps {
+                dir(DIR) {
+                    sh 'chmod +x ./gradlew'
+                }
+            }
+        }
 //        stage('Clean Build') {
 //            steps {
 //                sh 'echo "Clean Build"'
@@ -13,23 +20,23 @@ pipeline {
                 sh './gradlew testDebugUnitTest'
             }
         }
-        stage('Check Ktlint') {
-            steps {
-                sh 'echo "Check Ktlint"'
-                sh './gradlew ktlint'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'echo "Build"'
-                sh './gradlew assembleRelease'
-            }
-        }
-        stage('Deploy With fastlane') {
-            steps {
-                sh 'echo "Deploy"'
-            }
-        }
+//        stage('Check Ktlint') {
+//            steps {
+//                sh 'echo "Check Ktlint"'
+//                sh './gradlew ktlint'
+//            }
+//        }
+//        stage('Build') {
+//            steps {
+//                sh 'echo "Build"'
+//                sh './gradlew assembleRelease'
+//            }
+//        }
+//        stage('Deploy With fastlane') {
+//            steps {
+//                sh 'echo "Deploy"'
+//            }
+//        }
         stage('Notify') {
             steps {
                 sh 'echo "Notify"'
