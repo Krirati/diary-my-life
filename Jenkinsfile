@@ -15,7 +15,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'echo "Test"'
-                sh './gradlew testDebugUnitTest'
+                sh './gradlew testDevDebugUnitTest'
             }
         }
 //        stage('Check Ktlint') {
