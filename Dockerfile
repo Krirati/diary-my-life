@@ -10,4 +10,4 @@ RUN mv ./opt/android-sdk/cmdline-tools/cmdline-tools/ ./opt/android-sdk/cmdline-
 RUN ./opt/android-sdk/cmdline-tools/latest/bin/sdkmanager --version
 RUN ./opt/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
 RUN yes | ./opt/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;30.0.1"
-RUN yes | ./opt/android-sdk/cmdline-tools/latest/bin/sdkmanager "platforms;android-33"
+RUN yes | ./opt/android-sdk/cmdline-tools/latest/bin/sdkmanager "platforms;android-30"
