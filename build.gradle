@@ -23,10 +23,3 @@ configurations {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-task ktlint(type: JavaExec, group: "verification") {
-    description = "Check Kotlin code style."
-    classpath = configurations.ktlint
-    main = "com.pinterest.ktlint.Main"
-    args "src/**/*.kt"
-}
