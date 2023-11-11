@@ -9,7 +9,7 @@ pipeline {
         stage('Clean Build') {
             steps {
                 sh 'echo "Clean Build"'
-                sh './gradlew clean'
+                sh './gradlew clean --no-daemon'
             }
         }
         stage('Test') {
@@ -18,10 +18,15 @@ pipeline {
                 sh './gradlew testDevDebugUnitTest'
             }
         }
+        stage('SonarQube') {
+            steps {
+                sh 'echo SonarQube'
+            }
+        }
         stage('Check Ktlint') {
             steps {
                 sh 'echo "Check Ktlint"'
-                sh './gradlew ktlint'
+                sh './gradlew ktlintCheck'
             }
         }
         stage('Build') {
