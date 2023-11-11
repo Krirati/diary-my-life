@@ -32,8 +32,11 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Build"'
-                sh './gradlew assembleRelease'
+                sh './gradlew assembleDebug'
             }
+        }
+        stage('Compile') {
+            archiveArtifacts artifacts: '**/*.apk', fingerprint: true, onlyIfSuccessful: true
         }
         stage('Deploy With fastlane') {
             steps {
