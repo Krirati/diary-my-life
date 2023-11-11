@@ -69,16 +69,6 @@
             android:name=".ui.list.ListActivity"
             android:exported="false"
             android:theme="@style/Theme.DiaryMyLife" />
-
-        <provider
-            android:name="androidx.startup.InitializationProvider"
-            android:authorities="${applicationId}.androidx-startup"
-            android:exported="false"
-            tools:node="merge">
-            <meta-data
-                android:name="app.rive.runtime.kotlin.RiveInitializer"
-                android:value="androidx.startup" />
-        </provider>
     </application>
 
 </manifest>

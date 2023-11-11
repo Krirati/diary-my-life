@@ -110,5 +110,5 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     //Rive animation
-    implementation 'app.rive:rive-android:4.0.0'
+//    implementation 'app.rive:rive-android:4.0.0'
 }
