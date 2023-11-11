@@ -8,6 +8,6 @@ class ItemAddViewHolder(
     private val onAddItem: () -> Unit,
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind() = with(binding) {
-        journalAdd.setOnClickListener{onAddItem()}
+        journalAdd.setOnClickListener { onAddItem() }
     }
 }

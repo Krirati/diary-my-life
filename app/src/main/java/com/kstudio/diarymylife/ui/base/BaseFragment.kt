@@ -32,7 +32,6 @@ abstract class BaseFragment<VB : ViewBinding>(
         _binding = null
     }
 
-
     protected fun <T : Activity> navigateToActivity(
         activity: Class<T>?,
         journalId: Long? = null,
@@ -58,5 +57,4 @@ abstract class BaseFragment<VB : ViewBinding>(
 
     abstract fun bindingView()
     abstract fun handleOnBackPress()
-
 }

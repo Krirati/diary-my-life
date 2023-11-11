@@ -70,4 +70,3 @@ enum class Gender(val gender: String) {
     WOMEN("Women"),
     OTHER("Other")
 }
-

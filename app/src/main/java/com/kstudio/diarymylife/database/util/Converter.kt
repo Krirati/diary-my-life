@@ -43,5 +43,4 @@ class Converter {
     fun toDateString(date: LocalDateTime?): String? {
         return date?.toString()
     }
-
 }

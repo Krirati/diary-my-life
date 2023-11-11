@@ -51,7 +51,6 @@ class CustomEditText @JvmOverloads constructor(
         attribute.recycle()
     }
 
-
     private fun setOnFocusChange() = with(binding) {
         editText.apply {
             onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->

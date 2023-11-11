@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
+    id 'org.jlleitschuh.gradle.ktlint'
 }
 
 android {
@@ -64,6 +65,14 @@ android {
         dataBinding true
     }
     namespace 'com.kstudio.diarymylife'
+}
+
+ktlint {
+    version = "0.42.1" // Check for the latest version on GitHub
+    reporters {
+        // You can configure the output format here, for example:
+        reporter "checkstyle"
+    }
 }
 
 dependencies {

@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 data class MoodItem(
     var viewType: Int,
     var data: MoodUI?
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class MoodUI(
@@ -20,13 +20,13 @@ data class MoodUI(
     val activity: List<ActivityDetail>?,
     val timestamp: LocalDateTime,
     val imageUri: String,
-    var state : SwipeState = SwipeState.NONE,
+    var state: SwipeState = SwipeState.NONE,
     val fileName: String
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class ActivityDetail(
     val eventId: Int,
     val activityName: String,
     val activityImage: String,
-): Parcelable
+) : Parcelable

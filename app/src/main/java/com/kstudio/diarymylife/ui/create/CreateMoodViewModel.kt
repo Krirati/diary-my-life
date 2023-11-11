@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.kstudio.diarymylife.data.ActivityDetail
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 
-
 class CreateMoodViewModel : BaseViewModel() {
     private var _selectsActivity: MutableLiveData<ArrayList<ActivityDetail>?> =
         MutableLiveData()

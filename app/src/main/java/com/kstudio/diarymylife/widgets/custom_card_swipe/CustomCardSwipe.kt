@@ -44,9 +44,9 @@ class CustomCardSwipe @JvmOverloads constructor(
         val display = windowManager.defaultDisplay
         display.getSize(size)
         cardViewLeading = size.x.toFloat() * 0.04f
-        cardViewLeadEdge = size.x.toFloat() * 0.20f //start position when card swipe to right
-        cardViewTrailEdge = size.x.toFloat() * 0.96f //trailing_rubber
-        cardViewTrailing = size.x.toFloat() * 0.90f //trailing
+        cardViewLeadEdge = size.x.toFloat() * 0.20f // start position when card swipe to right
+        cardViewTrailEdge = size.x.toFloat() * 0.96f // trailing_rubber
+        cardViewTrailing = size.x.toFloat() * 0.90f // trailing
 
         /* On Touch Swipe */
         binding.apply {
