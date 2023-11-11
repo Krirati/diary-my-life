@@ -14,7 +14,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.kstudio.diarymylife.R
 
-
 class CustomChart @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -164,7 +163,7 @@ class CustomChart @JvmOverloads constructor(
             gravity = Gravity.CENTER
         }
 
-        //Adding bar
+        // Adding bar
         val bar = ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal)
         val drawable = ContextCompat.getDrawable(context, R.drawable.progress_bar_shape)
         bar.apply {
@@ -217,7 +216,6 @@ class CustomChart @JvmOverloads constructor(
         return rootFrameLayout
     }
 
-
     fun build() {
         removeAllViews()
 
@@ -248,10 +246,10 @@ class CustomChart @JvmOverloads constructor(
         }
 
         viewTreeObserver.addOnGlobalLayoutListener(object :
-            ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                viewTreeObserver.removeOnGlobalLayoutListener(this)
-            }
-        })
+                ViewTreeObserver.OnGlobalLayoutListener {
+                override fun onGlobalLayout() {
+                    viewTreeObserver.removeOnGlobalLayoutListener(this)
+                }
+            })
     }
 }

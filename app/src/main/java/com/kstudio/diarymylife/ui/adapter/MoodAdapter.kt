@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ItemMoodBinding
-import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Poor
-import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Excellent
 import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Average
+import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Excellent
 import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Good
+import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Poor
 import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Very_Poor
 
 class MoodAdapter : RecyclerView.Adapter<MoodAdapter.ViewHolder>() {
@@ -36,7 +36,7 @@ class MoodAdapter : RecyclerView.Adapter<MoodAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemMoodBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Pair<Int,Int?>) = with(binding) {
+        fun bind(item: Pair<Int, Int?>) = with(binding) {
             item.let {
                 item.second?.let { it1 -> imageMood.setImageResource(it1) }
             }

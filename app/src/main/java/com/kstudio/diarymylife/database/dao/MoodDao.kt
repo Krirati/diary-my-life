@@ -1,6 +1,11 @@
 package com.kstudio.diarymylife.database.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Transaction
+import androidx.room.Update
 import com.kstudio.diarymylife.database.model.ActivityEvent
 import com.kstudio.diarymylife.database.model.Mood
 import com.kstudio.diarymylife.database.model.MoodActivityEventCrossRef
@@ -39,5 +44,4 @@ interface MoodDao {
 
     @Query("DELETE FROM user_mood WHERE moodId = :moodID")
     suspend fun deleteMood(moodID: Long)
-
 }

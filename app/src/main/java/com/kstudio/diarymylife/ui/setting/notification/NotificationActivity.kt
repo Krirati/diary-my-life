@@ -67,7 +67,6 @@ class NotificationActivity : BaseActivity(), SelectDateHandle {
         }
     }
 
-
     private fun showBottomSheetSelectTime() {
         val bottomSheetSelectTime = SelectDateBottomSheet(
             getContext = this@NotificationActivity,
@@ -92,5 +91,4 @@ class NotificationActivity : BaseActivity(), SelectDateHandle {
 
     override fun onCloseBottomSheet() { /* Do nothing*/
     }
-
 }

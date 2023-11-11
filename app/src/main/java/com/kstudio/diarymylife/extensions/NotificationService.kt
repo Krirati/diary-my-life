@@ -8,7 +8,7 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import com.kstudio.diarymylife.MainActivity
 import com.kstudio.diarymylife.R
-import java.util.*
+import java.util.Calendar
 
 class NotificationService(
     private val context: Context

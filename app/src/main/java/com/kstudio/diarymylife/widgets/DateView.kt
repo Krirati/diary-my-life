@@ -5,8 +5,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import com.kstudio.diarymylife.databinding.ItemDateTimeBinding
 import com.kstudio.diarymylife.data.DateDetailsUI
+import com.kstudio.diarymylife.databinding.ItemDateTimeBinding
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.toStringFormatApp
 import java.time.LocalDate
@@ -23,7 +23,7 @@ class DateView @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyle, defStyleRes) {
 
     private var binding = ItemDateTimeBinding.inflate(
-        LayoutInflater.from(context),this, true
+        LayoutInflater.from(context), this, true
     )
 
     fun bindView(localDateTime: LocalDateTime?) {
@@ -45,7 +45,7 @@ class DateView @JvmOverloads constructor(
     fun bindDate(localDateTime: DateDetailsUI) {
         with(binding) {
             day.text = localDateTime.dayOfWeek
-            month.text = localDateTime.monthOfYear + ", "+ localDateTime.day
+            month.text = localDateTime.monthOfYear + ", " + localDateTime.day
         }
     }
 

@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface ActivityEventRepository {
 
-    fun getAll() : Flow<List<ActivityEvent>>
+    fun getAll(): Flow<List<ActivityEvent>>
 }

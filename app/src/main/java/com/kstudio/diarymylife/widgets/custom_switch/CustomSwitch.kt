@@ -36,8 +36,6 @@ class CustomSwitch @JvmOverloads constructor(
                     R.styleable.CustomSwitch_custom_switch_checked,
                     false
                 )
-
-
             }
             subtitle.apply {
                 text =

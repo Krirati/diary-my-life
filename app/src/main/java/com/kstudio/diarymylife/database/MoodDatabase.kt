@@ -45,7 +45,6 @@ abstract class MoodDatabase : RoomDatabase() {
                             super.onCreate(db)
                             Executors.newSingleThreadScheduledExecutor()
                                 .execute { INSTANT?.activityEventDao()?.insertAll(*populateData()) }
-
                         }
                     })
                     .build()
