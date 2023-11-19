@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
@@ -64,7 +64,8 @@
         <activity
             android:name=".ui.onboarding.OnboardingActivity"
             android:exported="false"
-            android:theme="@style/Theme.DiaryMyLife" />
+            android:theme="@style/Theme.DiaryMyLife"
+            android:noHistory="true"/>
         <activity
             android:name=".ui.list.ListActivity"
             android:exported="false"
