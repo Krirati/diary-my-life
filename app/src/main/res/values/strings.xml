@@ -43,4 +43,10 @@
     <string name="mood_stats">Mood stats</string>
     <string name="mood_detail_text_field">Mood Detail</string>
     <string name="see_all">See all</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="create_your_account">Create your account.</string>
+    <string name="welcome_description">Welcome to Diary mood, your personal sanctuary for emotional well-being! 🌈✨. Easily record your mood with a simple tap and choose from a variety of emotive icons.</string>
+    <string name="account_decription">Please enter your name so I can get to know you better.</string>
+    <string name="welcome">Welcome</string>
 </resources>
