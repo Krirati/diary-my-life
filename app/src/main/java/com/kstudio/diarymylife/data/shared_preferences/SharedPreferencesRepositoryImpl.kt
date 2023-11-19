@@ -39,11 +39,19 @@ class SharedPreferencesRepositoryImpl constructor(
                 .apply()
         }
 
+    override var hasAccount: Boolean
+        get() = sharedPreferences.getBoolean(PrefsKeys.HAS_ACCOUNT.name, false)
+        set(value) {
+            sharedPreferences.edit().putBoolean(PrefsKeys.HAS_ACCOUNT.name, value)
+                .apply()
+        }
+
     enum class PrefsKeys(val value: String) {
         APP_THEME("PREF_KEY_APP_THEME"),
         ENABLE_NOTIFICATION("PREF_KEY_ENABLE_NOTIFICATION"),
         ENABLE_DAILY("PREF_KEY_ENABLE_DAILY"),
         DAILY_TIME("PREF_KEY_DAILY_TIME"),
-        FRESH_INSTALL("PREF_KEY_FRESH_INSTALL")
+        FRESH_INSTALL("PREF_KEY_FRESH_INSTALL"),
+        HAS_ACCOUNT("PREF_KEY_HAS_ACCOUNT")
     }
 }

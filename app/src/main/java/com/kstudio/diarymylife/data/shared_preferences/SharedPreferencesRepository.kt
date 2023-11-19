@@ -6,4 +6,5 @@ interface SharedPreferencesRepository {
     var enableDaily: Boolean
     var dailyTime: String?
     var freshInstall: Boolean
+    var hasAccount: Boolean
 }
