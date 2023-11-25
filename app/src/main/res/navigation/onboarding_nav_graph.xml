@@ -14,7 +14,9 @@
             android:id="@+id/action_welcomeFragment_to_accountFragment"
             app:destination="@id/accountFragment"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/permissionFragment"
@@ -23,13 +25,15 @@
         tools:layout="@layout/fragment_onboarding_page" />
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.kstudio.diarymylife.ui.onboarding.accout.AccountFragment"
+        android:name="com.kstudio.diarymylife.ui.onboarding.account.AccountFragment"
         android:label="AccountFragment"
         tools:layout="@layout/fragment_onboarding_page">
         <action
             android:id="@+id/action_accountFragment_to_permissionFragment"
             app:destination="@id/permissionFragment"
             app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left" />
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 </navigation>

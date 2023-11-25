@@ -9,22 +9,28 @@
     android:paddingHorizontal="@dimen/dp_16"
     android:paddingVertical="@dimen/dp_32">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imagePage"
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"
+        app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@drawable/crying" />
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imagePage"
-            android:layout_width="wrap_content"
-            android:layout_height="180dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:src="@drawable/crying" />
+        app:layout_constraintTop_toBottomOf="@id/guidelineHorizontal">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
@@ -32,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_24"
-            android:text="@string/create_your_account" />
+            tools:text="@string/welcome" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/description"
@@ -40,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_16"
-            android:text="@string/account_decription" />
+            tools:text="@string/welcome_description" />
 
         <com.kstudio.diarymylife.widgets.custom_edit_text.CustomEditText
             android:id="@+id/accountEditText"
@@ -49,7 +55,18 @@
             android:layout_marginTop="@dimen/dp_16"
             android:visibility="gone"
             app:custom_edit_text_placeholder="Nickname"
-            app:custom_edit_text_title="Nickname" />
+            app:custom_edit_text_title="Nickname"
+            tools:visibility="visible" />
+
+        <com.kstudio.diarymylife.widgets.custom_switch.CustomSwitch
+            android:id="@+id/switchEnableNotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_32"
+            android:visibility="gone"
+            app:custom_switch_enabled="true"
+            app:custom_switch_state="true"
+            app:custom_switch_title="Enable notification" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
