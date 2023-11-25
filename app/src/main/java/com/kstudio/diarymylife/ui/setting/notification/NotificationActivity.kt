@@ -10,6 +10,7 @@ import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 class NotificationActivity : BaseActivity(), SelectDateHandle {
 
@@ -76,7 +77,7 @@ class NotificationActivity : BaseActivity(), SelectDateHandle {
             type = SelectDateBottomSheet.BottomSheetType.DISPLAY_TIME,
             currentTimeSelected = LocalDateTime.of(
                 LocalDate.now(),
-                viewModel.isDailyTimeChange.value
+                viewModel.isDailyTimeChange.value ?: LocalTime.now()
             )
         )
         bottomSheetSelectTime.show(
