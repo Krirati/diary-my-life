@@ -3,6 +3,7 @@ package com.kstudio.diarymylife.database.util
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 class Converter {
@@ -31,7 +32,7 @@ class Converter {
     }
 
     @TypeConverter
-    fun toDate(dateString: String?): LocalDateTime? {
+    fun toLocalDateTime(dateString: String?): LocalDateTime? {
         return if (dateString == null) {
             null
         } else {
@@ -40,8 +41,21 @@ class Converter {
     }
 
     @TypeConverter
-    fun toDateString(date: LocalDateTime?): String? {
+    fun toLocalDateTimeString(date: LocalDateTime?): String? {
         return date?.toString()
     }
 
+    @TypeConverter
+    fun toLocalDate(dateString: String?): LocalDate? {
+        return if (dateString == null) {
+            null
+        } else {
+            LocalDate.parse(dateString)
+        }
+    }
+
+    @TypeConverter
+    fun toLocalDateString(date: LocalDate?): String? {
+        return date?.toString()
+    }
 }

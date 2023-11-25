@@ -29,5 +29,5 @@ val viewModelModule = module {
     viewModel { BaseMoodViewModel() }
     viewModel { ListViewModel(get(), get()) }
     viewModel { SplashViewModel(get()) }
-    viewModel { OnboardingViewModel()}
+    viewModel { OnboardingViewModel(get(), get()) }
 }

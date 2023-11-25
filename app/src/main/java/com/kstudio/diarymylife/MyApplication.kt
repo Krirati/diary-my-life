@@ -4,6 +4,7 @@ import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import com.kstudio.diarymylife.di.dataStore
 import com.kstudio.diarymylife.di.repositoryModule
 import com.kstudio.diarymylife.di.roomModule
 import com.kstudio.diarymylife.di.sharedPreferencesModule
@@ -28,7 +29,8 @@ class MyApplication : Application() {
                 roomModule,
                 repositoryModule,
                 useCaseModule,
-                sharedPreferencesModule
+                sharedPreferencesModule,
+                dataStore
             )
         }
     }
