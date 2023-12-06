@@ -1,8 +1,10 @@
 package com.kstudio.diarymylife.ui.create
 
+import android.Manifest
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.viewpager2.widget.MarginPageTransformer
@@ -13,6 +15,7 @@ import com.kstudio.diarymylife.databinding.FragmentMoodCreateBinding
 import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
+import com.kstudio.diarymylife.utils.Permissions
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.dpToPx
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
@@ -30,6 +33,19 @@ class CreateNewMoodFragment :
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             uri?.let {
                 handleSelectImage(uri)
+            }
+        }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                selectImageFromGalleryResult.launch("image/*")
+            } else {
+                Toast.makeText(
+                    activity,
+                    "Please allow permission for access media",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
 
@@ -124,7 +140,15 @@ class CreateNewMoodFragment :
             }
         }
 
-    private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
+    private fun selectImageFromGallery() {
+        Permissions.requirePermissionNotification(
+            requireContext(),
+            Manifest.permission.READ_MEDIA_IMAGES,
+            callBack = {
+                selectImageFromGalleryResult.launch("image/*")
+            },
+            requireAccept = { requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES) })
+    }
 
     private fun bindTextField() = with(binding) {
         moodTitle.setOnTextChange { s, _, _, _ ->
