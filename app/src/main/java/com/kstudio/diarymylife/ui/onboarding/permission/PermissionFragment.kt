@@ -25,19 +25,27 @@ class PermissionFragment :
         super.onViewCreated(view, savedInstanceState)
         handleOnBackPress()
         bindingView()
+        observer()
+    }
+
+    private fun observer() {
+        activityViewModel.isDailyTimeChange.observe(viewLifecycleOwner) {
+            binding.switchEnableNotification.setSubtitle("Daily reminder time at $it")
+        }
     }
 
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
             if (isGranted) {
                 Toast.makeText(activity, "Accept for notification", Toast.LENGTH_LONG).show()
-                activityViewModel.nextScreen(OnboardingStep.AcceptNotification)
+                activityViewModel.nextScreen(OnboardingStep.AcceptNotification(activityViewModel.isDailyTimeChange.value))
             } else {
                 Toast.makeText(
                     activity,
                     "Please allow permission for notification",
                     Toast.LENGTH_LONG
                 ).show()
+                activityViewModel.nextScreen(OnboardingStep.AcceptNotification(activityViewModel.isDailyTimeChange.value))
             }
         }
 
@@ -45,25 +53,36 @@ class PermissionFragment :
         imagePage.setImageResource(R.drawable.crying)
         title.text = getString(R.string.permission)
         description.text = getString(R.string.permission_description)
-        nextButton.setOnClickListener {
-            Permissions.requirePermissionNotification(
-                requireContext(),
-                Manifest.permission.SCHEDULE_EXACT_ALARM,
-                callBack = {
-                    activityViewModel.nextScreen(OnboardingStep.AcceptNotification)
-                },
-                requireAccept = { requestPermissionLauncher.launch(Manifest.permission.SCHEDULE_EXACT_ALARM) })
-        }
+        nextButton.setOnClickListener { onClickNext() }
         switchEnableNotification.apply {
             visibility = View.VISIBLE
             setStateEnable(true)
             setStateCheck(true)
-            setOnSwitchCheckChange { }
+            setOnSwitchCheckChange { activityViewModel.setIsEnableNotification(it) }
             setOnClickWidget { showBottomSheetSelectTime() }
         }
     }
 
-    override fun handleOnBackPress() {
+    override fun handleOnBackPress() { /* Do nothing*/
+    }
+
+    private fun onClickNext() = with(binding.switchEnableNotification) {
+        if (isStateCheck()) {
+            checkPermission()
+        } else {
+            activityViewModel.nextScreen(OnboardingStep.DoNotAcceptNotification)
+        }
+    }
+
+    private fun checkPermission() {
+        Permissions.requirePermissionNotification(
+            requireContext(),
+            Manifest.permission.SCHEDULE_EXACT_ALARM,
+            callBack = {
+                activityViewModel.setUpNotification()
+                activityViewModel.nextScreen(OnboardingStep.AcceptNotification(activityViewModel.isDailyTimeChange.value))
+            },
+            requireAccept = { requestPermissionLauncher.launch(Manifest.permission.SCHEDULE_EXACT_ALARM) })
     }
 
     private fun showBottomSheetSelectTime() {
@@ -79,8 +98,7 @@ class PermissionFragment :
     }
 
     override fun onClickDoneBottomSheet(date: ResultSelectDate) {
-//        activityViewModel.setIsDailyChange(date.time)
-//        activityViewModel.saveNotificationTime(date.time)
+        activityViewModel.setIsDailyChange(date.time)
     }
 
     override fun onCloseBottomSheet() { /* Do nothing*/

@@ -75,4 +75,8 @@ class CustomSwitch @JvmOverloads constructor(
     fun setSubtitle(text: String = "") {
         binding.subtitle.text = text
     }
+
+    fun isStateCheck(): Boolean {
+        return binding.switchEnable.isChecked
+    }
 }

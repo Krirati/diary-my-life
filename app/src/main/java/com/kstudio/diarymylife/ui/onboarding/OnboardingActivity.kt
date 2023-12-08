@@ -6,6 +6,7 @@ import androidx.navigation.findNavController
 import com.kstudio.diarymylife.MainActivity
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ActivityOnboardingBinding
+import com.kstudio.diarymylife.extensions.NotificationService
 import com.kstudio.diarymylife.ui.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -35,7 +36,16 @@ class OnboardingActivity : BaseActivity() {
                     navController.navigate(R.id.action_welcomeFragment_to_accountFragment)
                 }
 
-                OnboardingStep.AcceptNotification -> {
+                OnboardingStep.DoNotAcceptNotification-> {
+                    navigateToActivity(MainActivity::class.java)
+                }
+                is OnboardingStep.AcceptNotification -> {
+                    if (it.localTime != null) {
+                        NotificationService(context = applicationContext).scheduleNotification(
+                            it.localTime.hour,
+                            it.localTime.minute
+                        )
+                    }
                     navigateToActivity(MainActivity::class.java)
                 }
 

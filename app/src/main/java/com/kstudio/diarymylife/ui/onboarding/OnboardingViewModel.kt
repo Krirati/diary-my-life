@@ -10,6 +10,7 @@ import com.kstudio.diarymylife.data.shared_preferences.SharedPreferencesReposito
 import com.kstudio.diarymylife.domain.ProfileUseCase
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.LocalTime
 
 class OnboardingViewModel(
     private val profileUseCase: ProfileUseCase,
@@ -18,6 +19,11 @@ class OnboardingViewModel(
 
     private val _onboardingStep = MutableLiveData<OnboardingStep>()
     val onboardingStep: LiveData<OnboardingStep> = _onboardingStep
+
+    private val _isEnableNotification = MutableLiveData<Boolean>(true)
+
+    private val _isDailyTimeChange = MutableLiveData(LocalTime.of(18, 0))
+    val isDailyTimeChange: LiveData<LocalTime?> = _isDailyTimeChange
 
     private var accountName: String = ""
     private var gender: String = ""
@@ -56,5 +62,18 @@ class OnboardingViewModel(
 
     fun setOnAccountNickNameChange(nickname: String) {
         accountName = nickname
+    }
+
+    fun setIsEnableNotification(isEnable: Boolean) {
+        _isEnableNotification.postValue(isEnable)
+    }
+
+    fun setIsDailyChange(time: LocalTime?) {
+        _isDailyTimeChange.postValue(time)
+    }
+
+    fun setUpNotification() {
+        appPreferenceRepository.enableNotification = _isEnableNotification.value ?: false
+        appPreferenceRepository.dailyTime = _isDailyTimeChange.value.toString()
     }
 }
