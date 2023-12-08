@@ -68,6 +68,11 @@ class BackgroundTheme {
 enum class Gender(val gender: String) {
     MEN("Men"),
     WOMEN("Women"),
-    OTHER("Other")
+    OTHER("Other");
+
+    companion object {
+        infix fun fromString(value: String?): Gender =
+            Gender.values().firstOrNull { it.gender == value } ?: OTHER
+    }
 }
 
