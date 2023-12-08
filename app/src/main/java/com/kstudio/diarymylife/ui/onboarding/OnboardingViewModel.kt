@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.data.base.Response
-import com.kstudio.diarymylife.data.profile.ProfileRequest
+import com.kstudio.diarymylife.data.profile.Profile
 import com.kstudio.diarymylife.data.shared_preferences.SharedPreferencesRepository
 import com.kstudio.diarymylife.domain.ProfileUseCase
 import kotlinx.coroutines.launch
@@ -24,9 +24,10 @@ class OnboardingViewModel(
     private var birthdate: LocalDate? = null
 
     fun createAccount() {
-        if (accountName.isNullOrEmpty()) return
+        if (accountName.isEmpty()) return
 
-        val profile = ProfileRequest(
+        val profile = Profile(
+            profileId = 0L,
             nickname = accountName,
             gender = gender,
             birthDate = birthdate
@@ -39,14 +40,10 @@ class OnboardingViewModel(
                 }
 
                 Response.Failed -> {
-                    TODO("error handle display")
+                    OnboardingStep.Error("Cannot create profile").emitStep()
                 }
             }
         }
-    }
-
-    fun checkPermission() {
-
     }
 
     private fun OnboardingStep.emitStep() {

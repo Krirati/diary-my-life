@@ -1,6 +1,7 @@
 package com.kstudio.diarymylife.ui.onboarding
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.navigation.findNavController
 import com.kstudio.diarymylife.MainActivity
 import com.kstudio.diarymylife.R
@@ -36,6 +37,10 @@ class OnboardingActivity : BaseActivity() {
 
                 OnboardingStep.AcceptNotification -> {
                     navigateToActivity(MainActivity::class.java)
+                }
+
+                is OnboardingStep.Error -> {
+                    Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
                 }
             }
         }
