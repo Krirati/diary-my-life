@@ -33,6 +33,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         observer()
         bindingView()
         homeViewModel.performWelcomeText()
+        homeViewModel.getUserName()
         handleOnBackPress()
     }
 
@@ -43,10 +44,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         welcomeText.observe(viewLifecycleOwner) {
             binding.titleWelcome.text = it
         }
+        nickname.observe(viewLifecycleOwner) {
+            binding.titleUsername.text = it
+        }
     }
 
     override fun bindingView() = with(binding) {
-        titleUsername.text = homeViewModel.getUserName()
         recentWidget.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             isNestedScrollingEnabled = false
