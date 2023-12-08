@@ -20,7 +20,7 @@ val viewModelModule = module {
     viewModel { HomeViewModel(get(), get(), get()) }
     viewModel { MoodDetailViewModel() }
     viewModel { MoodDetailLandingViewModel(get()) }
-    viewModel { CreateNewMoodViewModel(get()) }
+    viewModel { CreateNewMoodViewModel(get(), get()) }
     viewModel { CreateMoodViewModel() }
     viewModel { SummaryMoodViewModel(get()) }
     viewModel { SelectDateBottomSheetViewModel() }

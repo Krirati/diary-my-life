@@ -78,7 +78,6 @@ class CreateNewMoodFragment :
     }
 
     override fun bindingView() = with(binding) {
-        howYouFeel.text = getString(R.string.how_are_you_feel)
         currentSelectTime.text = convertTime(LocalDateTime.now(), DATE_TIME_FORMAT_APP)
         currentSelectTime.setOnClickListener {
             val bottomSheetSelectTime = SelectDateBottomSheet(
@@ -104,6 +103,9 @@ class CreateNewMoodFragment :
     }
 
     private fun observe() {
+        viewModel.nickname.observe(viewLifecycleOwner) {
+            binding.howYouFeel.text = getString(R.string.how_are_you_feel).replace("{Name}", it)
+        }
         viewModel.created.observe(viewLifecycleOwner) {
             activity?.finishAfterTransition()
         }
