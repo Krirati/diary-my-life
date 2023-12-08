@@ -6,7 +6,7 @@ sealed class Response {
     object Failed : Response()
 
     fun Long.toResult(): Response {
-        return if (this > 0) {
+        return if (this >= 0) {
             Success(result = this)
         } else {
             Failed
