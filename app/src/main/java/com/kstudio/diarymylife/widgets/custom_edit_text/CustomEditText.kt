@@ -8,6 +8,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.View.OnFocusChangeListener
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.CustomEditTextBinding
 
@@ -105,6 +106,11 @@ class CustomEditText @JvmOverloads constructor(
     fun setDefaultTextValue(value: String) = with(binding) {
         title.visibility = if (value.isEmpty()) View.GONE else View.VISIBLE
         placeholder.visibility = if (value.isEmpty()) View.VISIBLE else View.GONE
-        editText.setText(value)
+        if (editText.isVisible) {
+            editText.setText(value)
+        } else {
+            customValueText.isVisible = true
+            customValueText.text = value
+        }
     }
 }

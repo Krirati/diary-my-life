@@ -1,46 +1,54 @@
 <resources>
-    <string name="app_name">Diary My Life</string>
-    <string name="home">Home</string>
-    <string name="calendar">Calendar</string>
-    <string name="write">Write</string>
-    <string name="todo">ToDo</string>
-    <string name="setting">Setting</string>
-    <string name="back">back</string>
-    <string name="at">At</string>
-    <string name="list">List</string>
-    <string name="add">Add mood</string>
-    <string name="mood_detail">Detail Mood</string>
-    <string name="activity">Activity</string>
-    <string name="mood_title">Mood title</string>
-    <string name="note_something_for_this_mood">Note something for this mood</string>
-    <string name="more_detail">More detail</string>
-    <string name="edit_mood">Edit Mood</string>
-    <string name="save">Save</string>
-    <string name="create_mood">Create Mood</string>
-    <string name="lists">Lists</string>
-    <string name="what_have_you_been_up_to">What have you been up to?</string>
-    <string name="chart">Chart</string>
-    <string name="check_in_now">Check in now</string>
-    <string name="check_in_daily_n_how_you_feel">Check in daily \n how you feel</string>
-    <string name="select_date">Select Date</string>
-    <string name="done">Done</string>
-    <string name="how_are_you_feel">Hello {Name}. How are you feeling?</string>
-    <string name="recent_mood">Recent Mood</string>
-    <string name="notification">Notification</string>
-    <string name="select_time">Select Time</string>
-    <string name="profile">Profile</string>
-    <string name="men">Men</string>
-    <string name="women">Women</string>
-    <string name="other">Other</string>
-    <string name="image">Image</string>
-    <string name="detail_mood">Detail Mood</string>
-    <string name="hour">Hour</string>
-    <string name="minute">Minute</string>
-    <string name="version">version %1$s</string>
-    <string name="diary_mood">Diary Mood</string>
-    <string name="diary_mood_desc">this time to update your mood!!</string>
-    <string name="all_moods">All Moods</string>
-    <string name="mood_stats">Mood stats</string>
-    <string name="mood_detail_text_field">Mood Detail</string>
-    <string name="see_all">See all</string>
+    <string name="app_name" translatable="false">Diary My Life</string>
+    <string name="home" translatable="false">Home</string>
+    <string name="calendar" translatable="false">Calendar</string>
+    <string name="write" translatable="false">Write</string>
+    <string name="todo" translatable="false">ToDo</string>
+    <string name="setting" translatable="false">Setting</string>
+    <string name="back" translatable="false">back</string>
+    <string name="at" translatable="false">At</string>
+    <string name="list" translatable="false">List</string>
+    <string name="add" translatable="false">Add mood</string>
+    <string name="mood_detail" translatable="false">Detail Mood</string>
+    <string name="activity" translatable="false">Activity</string>
+    <string name="mood_title" translatable="false">Mood title</string>
+    <string name="note_something_for_this_mood" translatable="false">Note something for this mood</string>
+    <string name="more_detail" translatable="false">More detail</string>
+    <string name="edit_mood" translatable="false">Edit Mood</string>
+    <string name="save" translatable="false">Save</string>
+    <string name="create_mood" translatable="false">Create Mood</string>
+    <string name="lists" translatable="false">Lists</string>
+    <string name="what_have_you_been_up_to" translatable="false">What have you been up to?</string>
+    <string name="chart" translatable="false">Chart</string>
+    <string name="check_in_now" translatable="false">Check in now</string>
+    <string name="check_in_daily_n_how_you_feel" translatable="false">Check in daily \n how you feel</string>
+    <string name="select_date" translatable="false">Select Date</string>
+    <string name="done" translatable="false">Done</string>
+    <string name="how_are_you_feel" translatable="false">Hello {Name}. How are you feeling?</string>
+    <string name="recent_mood" translatable="false">Recent Mood</string>
+    <string name="notification" translatable="false">Notification</string>
+    <string name="select_time" translatable="false">Select Time</string>
+    <string name="profile" translatable="false">Profile</string>
+    <string name="men" translatable="false">Men</string>
+    <string name="women" translatable="false">Women</string>
+    <string name="other" translatable="false">Other</string>
+    <string name="image" translatable="false">Image</string>
+    <string name="detail_mood" translatable="false">Detail Mood</string>
+    <string name="hour" translatable="false">Hour</string>
+    <string name="minute" translatable="false">Minute</string>
+    <string name="version" translatable="false">version %1$s</string>
+    <string name="diary_mood" translatable="false">Diary Mood</string>
+    <string name="diary_mood_desc" translatable="false">this time to update your mood!!</string>
+    <string name="all_moods" translatable="false">All Moods</string>
+    <string name="mood_stats" translatable="false">Mood stats</string>
+    <string name="mood_detail_text_field" translatable="false">Mood Detail</string>
+    <string name="see_all" translatable="false">See all</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="skip" translatable="false">Skip</string>
+    <string name="create_your_account" translatable="false">Create your account.</string>
+    <string name="welcome_description" translatable="false">Welcome to Diary mood, your personal sanctuary for emotional well-being! 🌈✨. Easily record your mood with a simple tap and choose from a variety of emotive icons.</string>
+    <string name="account_description" translatable="false">Please enter your name so I can get to know you better .</string>
+    <string name="welcome" translatable="false">Welcome</string>
+    <string name="permission">Permission</string>
+    <string name="permission_description">Allow permissions for a better experience.</string>
 </resources>

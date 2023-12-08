@@ -2,7 +2,9 @@ package com.kstudio.diarymylife.ui.setting.profile
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.widget.Toast
 import com.kstudio.diarymylife.R
+import com.kstudio.diarymylife.data.profile.Profile
 import com.kstudio.diarymylife.databinding.ActivityProfileBinding
 import com.kstudio.diarymylife.ui.base.BaseActivity
 import com.kstudio.diarymylife.utils.Gender
@@ -55,6 +57,7 @@ class ProfileActivity : BaseActivity() {
             setOnKeyListener { hideKeyboard(activity = this@ProfileActivity) }
             setOnTextChange(onTextChanged = ::onTextChange)
         }
+        buttonSave.setOnClickListener { viewModel.updateProfile() }
     }
 
     private fun onTextChange(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -67,7 +70,35 @@ class ProfileActivity : BaseActivity() {
         }
 
         viewModel.brithDate.observe(this) {
-            binding.birthdate.setDefaultTextValue(it)
+            binding.birthdate.setDefaultTextValue(it.toString())
+        }
+
+        viewModel.oldProfile.observe(this) {
+            prefillOldProfile(it)
+        }
+
+        viewModel.event.observe(this) {
+            if (it) {
+                Toast.makeText(this, "Update profile success.", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Update profile failed.", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun prefillOldProfile(profile: Profile) = with(binding) {
+        nickname.setDefaultTextValue(profile.nickname)
+        profile.birthDate?.let { birthdate.setDefaultTextValue(it.toString()) }
+        profile.gender.takeIf { it.isEmpty().not() }?.let {
+            radioGroupGender.check(mappingGender(it))
+        }
+    }
+
+    private fun mappingGender(gender: String): Int {
+        return when (Gender.fromString(gender)) {
+            Gender.MEN -> R.id.radioMan
+            Gender.WOMEN -> R.id.radioWoman
+            Gender.OTHER -> R.id.radioOther
         }
     }
 }

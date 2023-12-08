@@ -5,14 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.data.mood.MoodRepository
 import com.kstudio.diarymylife.domain.GetMoodsAndActivitiesWithLimitUseCase
+import com.kstudio.diarymylife.domain.ProfileUseCase
 import com.kstudio.diarymylife.domain.model.MoodViewType
 import com.kstudio.diarymylife.ui.base.BaseViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
 class HomeViewModel constructor(
     private val moodRepository: MoodRepository,
-    private val getMoodsAndActivitiesWithLimitUseCase: GetMoodsAndActivitiesWithLimitUseCase
+    private val getMoodsAndActivitiesWithLimitUseCase: GetMoodsAndActivitiesWithLimitUseCase,
+    private val profileUseCase: ProfileUseCase
 ) : BaseViewModel() {
 
     companion object {
@@ -28,8 +31,11 @@ class HomeViewModel constructor(
     private val _welcomeText: MutableLiveData<String> = MutableLiveData()
     val welcomeText: LiveData<String> = _welcomeText
 
+    private val _nickname: MutableLiveData<String> = MutableLiveData<String>()
+    val nickname: LiveData<String> = _nickname
+
     fun fetchRecentJournal() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             getMoodsAndActivitiesWithLimitUseCase.invoke().collect {
                 _memberList.postValue(it)
             }
@@ -49,15 +55,24 @@ class HomeViewModel constructor(
             in 0..11 -> {
                 _welcomeText.postValue(GOOD_MORNING)
             }
+
             in 12..15 -> {
                 _welcomeText.postValue(GOOD_AFTERNOON)
             }
+
             in 16..20 -> {
                 _welcomeText.postValue(GOOD_EVENING)
             }
+
             else -> {
                 _welcomeText.postValue(GOOD_NIGHT)
             }
+        }
+    }
+
+    fun getUserName() {
+        viewModelScope.launch {
+            _nickname.postValue(profileUseCase.getProfile().nickname)
         }
     }
 }
