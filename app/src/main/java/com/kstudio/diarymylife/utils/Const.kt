@@ -75,4 +75,3 @@ enum class Gender(val gender: String) {
             Gender.values().firstOrNull { it.gender == value } ?: OTHER
     }
 }
-

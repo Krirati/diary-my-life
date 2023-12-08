@@ -65,7 +65,6 @@ class SelectDateBottomSheet @Inject constructor(
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = object : BottomSheetDialog(getContext, theme) {
 
-
             override fun getOnBackInvokedDispatcher(): OnBackInvokedDispatcher {
                 this@SelectDateBottomSheet.dismissAllowingStateLoss()
                 return super.getOnBackInvokedDispatcher()

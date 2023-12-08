@@ -1,7 +1,9 @@
 package com.kstudio.diarymylife.data
 
 import com.kstudio.diarymylife.utils.toStringFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.GregorianCalendar
 
 data class DateDetailsUI(
     val dateKey: String,

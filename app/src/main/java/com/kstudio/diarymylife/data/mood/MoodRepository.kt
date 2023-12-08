@@ -16,5 +16,4 @@ interface MoodRepository {
     suspend fun deleteMood(moodID: Long)
 
     suspend fun updateMood(mood: MoodRequest?)
-
 }

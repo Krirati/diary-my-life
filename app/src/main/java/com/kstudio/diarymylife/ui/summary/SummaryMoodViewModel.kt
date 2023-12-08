@@ -35,7 +35,6 @@ class SummaryMoodViewModel constructor(
         }
     }
 
-
     private fun setMoodAverage(list: List<MoodViewType>) {
         var moodScore = 0L
         var average = 0L

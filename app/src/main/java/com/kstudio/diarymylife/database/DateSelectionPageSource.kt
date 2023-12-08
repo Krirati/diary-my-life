@@ -4,7 +4,9 @@ import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.kstudio.diarymylife.utils.toDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.GregorianCalendar
 
 class DateSelectionPageSource(private val startDate: String) : PagingSource<String, Date>() {
     override suspend fun load(params: LoadParams<String>): LoadResult<String, Date> {
@@ -12,7 +14,8 @@ class DateSelectionPageSource(private val startDate: String) : PagingSource<Stri
             val key = params.key ?: startDate
             val loadSize = 30
             val nextDateRange: List<Date> = addDayToDate(key.toDateFormat()!!, loadSize - 1)
-            val prevDateRange: List<Date> = removeDayToDate(key.toDateFormat()!!, loadSize.unaryMinus())
+            val prevDateRange: List<Date> =
+                removeDayToDate(key.toDateFormat()!!, loadSize.unaryMinus())
 
             val (newDateList, nextKey, prevKey) = getDateRangeMeta(nextDateRange, prevDateRange)
             Log.d("DateSource", "Next Key = $nextKey")

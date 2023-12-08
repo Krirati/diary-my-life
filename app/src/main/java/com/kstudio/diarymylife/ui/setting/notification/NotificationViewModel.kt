@@ -7,7 +7,6 @@ import com.kstudio.diarymylife.ui.base.BaseViewModel
 import com.kstudio.diarymylife.utils.toLocalTime
 import java.time.LocalTime
 
-
 class NotificationViewModel constructor(
     private val appPreferenceRepository: SharedPreferencesRepository
 ) : BaseViewModel() {

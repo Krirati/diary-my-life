@@ -68,8 +68,8 @@ class CreateNewMoodFragment :
         binding.viewPagerMood.apply {
             registerOnPageChangeCallback(onPageChangeCallback())
             adapter = adapterMood
-            clipToPadding = false   // allow full width shown with padding
-            clipChildren = false    // allow left/right item is not clipped
+            clipToPadding = false // allow full width shown with padding
+            clipChildren = false // allow left/right item is not clipped
             offscreenPageLimit = 2
             setPadding(offsetPx, 0, offsetPx, 0)
             setPageTransformer(marginTransformer)
@@ -118,7 +118,8 @@ class CreateNewMoodFragment :
                 override fun handleOnBackPressed() {
                     onBackPressedOrFinish()
                 }
-            })
+            }
+        )
     }
 
     override fun onClickDoneBottomSheet(date: ResultSelectDate) {

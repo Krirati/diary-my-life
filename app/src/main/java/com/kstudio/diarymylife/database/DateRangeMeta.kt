@@ -2,14 +2,15 @@ package com.kstudio.diarymylife.database
 
 import com.kstudio.diarymylife.utils.toDateFormat
 import com.kstudio.diarymylife.utils.toStringFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.GregorianCalendar
 
 internal data class DateRangeMeta(
     val newDateList: List<Date>,
     val nextKey: String?,
     val prevKey: String?
 )
-
 
 internal fun getDateRangeMeta(
     nextDateRange: List<Date>,
@@ -26,6 +27,7 @@ internal fun getDateRangeMeta(
                 prevKey = prevDateRange.reversed().first().toStringFormat()
             )
         }
+
         nextDateRange.contains(startDate) -> {
             val index = nextDateRange.indexOf(startDate)
             val newDateRang = nextDateRange.slice(index until nextDateRange.size)
@@ -35,6 +37,7 @@ internal fun getDateRangeMeta(
                 nextKey = newDateRang.last().toStringFormat()
             )
         }
+
         else -> {
             DateRangeMeta(
                 newDateList = nextDateRange,

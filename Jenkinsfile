@@ -1,28 +1,43 @@
 pipeline {
     agent any
     stages {
-//        stage('Clean Build') {
-//            steps {
-//                sh 'echo "Clean Build"'
-//                sh './gradlew clean'
-//            }
-//        }
+        stage('Setup') {
+            steps {
+                sh 'chmod +x ./gradlew'
+            }
+        }
+        stage('Clean Build') {
+            steps {
+                sh 'echo "Clean Build"'
+                sh './gradlew clean --no-daemon'
+            }
+        }
         stage('Test') {
             steps {
                 sh 'echo "Test"'
-                sh './gradlew testDebugUnitTest'
+                sh './gradlew testDevDebugUnitTest'
+            }
+        }
+        stage('SonarQube') {
+            steps {
+                sh 'echo SonarQube'
             }
         }
         stage('Check Ktlint') {
             steps {
                 sh 'echo "Check Ktlint"'
-                sh './gradlew ktlint'
+                sh './gradlew ktlintCheck'
             }
         }
         stage('Build') {
             steps {
                 sh 'echo "Build"'
-                sh './gradlew assembleRelease'
+                sh './gradlew assembleDebug'
+            }
+        }
+        stage('Compile') {
+            steps {
+                archiveArtifacts artifacts: '**/*.apk', fingerprint: true, onlyIfSuccessful: true
             }
         }
         stage('Deploy With fastlane') {

@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         binding.viewPager.apply {
             isUserInputEnabled = false
             adapter = ViewPagerAdapter(fragment, this@MainActivity)
-            offscreenPageLimit = 4  // make sure left/right item is rendered
+            offscreenPageLimit = 4 // make sure left/right item is rendered
         }
     }
 
