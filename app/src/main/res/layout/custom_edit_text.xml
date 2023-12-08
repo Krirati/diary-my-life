@@ -55,4 +55,20 @@
         app:layout_constraintTop_toBottomOf="@+id/title"
         tools:text="test" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/customValueText"
+        style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:hapticFeedbackEnabled="true"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iconLeft"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:text="test" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
