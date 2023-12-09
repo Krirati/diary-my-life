@@ -3,23 +3,10 @@ package com.kstudio.diarymylife.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ItemMoodBinding
-import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Average
-import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Excellent
-import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Good
-import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Poor
-import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Very_Poor
+import com.kstudio.diarymylife.utils.Moods
 
 class MoodAdapter : RecyclerView.Adapter<MoodAdapter.ViewHolder>() {
-
-    private val moodList = arrayListOf(
-        Pair(Excellent, R.drawable.lol),
-        Pair(Good, R.drawable.smile),
-        Pair(Average, R.drawable.neutral),
-        Pair(Poor, R.drawable.sad),
-        Pair(Very_Poor, R.drawable.crying),
-    )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -29,10 +16,10 @@ class MoodAdapter : RecyclerView.Adapter<MoodAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(moodList[position])
+        holder.bind(Moods().moodList[position])
     }
 
-    override fun getItemCount(): Int = moodList.size
+    override fun getItemCount(): Int = Moods().moodList.size
 
     inner class ViewHolder(private val binding: ItemMoodBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -45,6 +32,6 @@ class MoodAdapter : RecyclerView.Adapter<MoodAdapter.ViewHolder>() {
 
     @JvmName("getMoodList1")
     fun getMoodList(): ArrayList<Pair<Int, Int>> {
-        return moodList
+        return Moods().moodList
     }
 }

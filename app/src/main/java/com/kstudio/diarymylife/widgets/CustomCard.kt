@@ -7,7 +7,7 @@ import android.widget.FrameLayout
 import androidx.annotation.DrawableRes
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ItemCardBinding
-import com.kstudio.diarymylife.utils.BackgroundTheme
+import com.kstudio.diarymylife.utils.Moods
 
 class CustomCard @JvmOverloads constructor(
     context: Context,
@@ -28,7 +28,7 @@ class CustomCard @JvmOverloads constructor(
         val attribute =
             context.obtainStyledAttributes(attrs, R.styleable.CustomCard, defStyle, 0)
         val background = attribute.getInt(R.styleable.CustomCard_custom_card_background_color, 6)
-        binding.root.setBackgroundResource(BackgroundTheme().mapperThemeColor(background).second)
+        binding.root.setBackgroundResource(Moods().mapperThemeColor(background).second)
 
         attribute.recycle()
     }

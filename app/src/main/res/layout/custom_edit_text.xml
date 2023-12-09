@@ -49,6 +49,7 @@
         android:hapticFeedbackEnabled="true"
         android:imeOptions="actionDone"
         android:inputType="text"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iconLeft"
@@ -69,6 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iconLeft"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        tools:text="test" />
+        tools:text="test"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

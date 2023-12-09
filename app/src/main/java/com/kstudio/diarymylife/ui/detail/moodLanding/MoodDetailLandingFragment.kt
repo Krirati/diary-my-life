@@ -12,7 +12,7 @@ import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.databinding.FragmentMoodCreateBinding
 import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.utils.BackgroundTheme
+import com.kstudio.diarymylife.utils.Moods
 import com.kstudio.diarymylife.utils.FileUtility.getUriImage
 import com.kstudio.diarymylife.utils.Formats
 import com.kstudio.diarymylife.utils.Keys.Companion.MOOD_ID
@@ -96,7 +96,7 @@ class MoodDetailLandingFragment :
                 visibility = View.VISIBLE
                 setImageURI(imageURI)
             }
-            viewPagerMood.currentItem = BackgroundTheme().mapMoodToPosition(mood.mood)
+            viewPagerMood.currentItem = Moods().mapMoodToPosition(mood.mood)
             currentSelectTime.text = convertTime(mood.timestamp, Formats.DATE_TIME_FORMAT_APP)
         }
     }
