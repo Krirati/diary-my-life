@@ -7,7 +7,12 @@
 
     <fragment
         android:id="@+id/writeFragment"
-        android:name="com.kstudio.diarymylife.ui.create.CreateNewMoodFragment"
+        android:name="com.kstudio.diarymylife.ui.moods.create.CreateNewMoodFragment"
         android:label="WriteFragment"
-        tools:layout="@layout/fragment_mood_create"/>
+        tools:layout="@layout/fragment_mood" />
+    <fragment
+        android:id="@+id/moodDetailLandingFragment"
+        android:name="com.kstudio.diarymylife.ui.moods.detail.DetailMoodFragment"
+        android:label="MoodDetailLandingFragment"
+        tools:layout="@layout/fragment_mood" />
 </navigation>

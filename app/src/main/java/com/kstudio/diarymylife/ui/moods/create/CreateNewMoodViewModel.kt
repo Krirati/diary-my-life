@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.create
+package com.kstudio.diarymylife.ui.moods.create
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

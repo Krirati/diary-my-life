@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.detail.moodLanding
+package com.kstudio.diarymylife.ui.moods.detail
 
 import android.net.Uri
 import android.os.Bundle
@@ -9,23 +9,23 @@ import androidx.viewpager2.widget.ViewPager2
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.MoodUI
 import com.kstudio.diarymylife.data.ResultSelectDate
-import com.kstudio.diarymylife.databinding.FragmentMoodCreateBinding
+import com.kstudio.diarymylife.databinding.FragmentMoodBinding
 import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.utils.Moods
 import com.kstudio.diarymylife.utils.FileUtility.getUriImage
 import com.kstudio.diarymylife.utils.Formats
 import com.kstudio.diarymylife.utils.Keys.Companion.MOOD_ID
+import com.kstudio.diarymylife.utils.Moods
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.dpToPx
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MoodDetailLandingFragment :
-    BaseFragment<FragmentMoodCreateBinding>(FragmentMoodCreateBinding::inflate), SelectDateHandle {
+class DetailMoodFragment :
+    BaseFragment<FragmentMoodBinding>(FragmentMoodBinding::inflate), SelectDateHandle {
 
-    private val viewModel by viewModel<MoodDetailLandingViewModel>()
+    private val viewModel by viewModel<DetailMoodViewModel>()
     private val adapterMood by lazy { MoodAdapter() }
 
     private val selectImageFromGalleryResult =
@@ -73,6 +73,9 @@ class MoodDetailLandingFragment :
         }
 
     private fun observeLiveData() {
+        viewModel.nickname.observe(viewLifecycleOwner) {
+            binding.howYouFeel.text = getString(R.string.how_are_you_feel).replace("{Name}", it)
+        }
         viewModel.moodData.observe(viewLifecycleOwner) {
             it?.data?.let { mood ->
                 bindMoodData(mood)
