@@ -51,4 +51,6 @@
     <string name="welcome" translatable="false">Welcome</string>
     <string name="permission">Permission</string>
     <string name="permission_description">Allow permissions for a better experience.</string>
+    <string name="summary">Summary</string>
+    <string name="activity_stats">Activity stats</string>
 </resources>
