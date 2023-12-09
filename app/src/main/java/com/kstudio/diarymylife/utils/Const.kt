@@ -17,7 +17,7 @@ class Formats {
     }
 }
 
-class BackgroundTheme {
+class Moods {
     companion object {
         const val Excellent = 4
         const val Good = 3
@@ -27,6 +27,14 @@ class BackgroundTheme {
         const val Mood_Avg = 10
         const val Mood_Tool = 11
     }
+
+    val moodList = arrayListOf(
+        Pair(Excellent, R.drawable.lol),
+        Pair(Good, R.drawable.smile),
+        Pair(Average, R.drawable.neutral),
+        Pair(Poor, R.drawable.sad),
+        Pair(Very_Poor, R.drawable.crying),
+    )
 
     fun mapperThemeColor(mood: Int?): Pair<Int, Int> {
         return when (mood) {

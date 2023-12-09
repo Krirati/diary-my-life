@@ -7,12 +7,12 @@ import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.domain.GetMoodsAndActivityUseCase
 import com.kstudio.diarymylife.domain.model.MoodViewType
 import com.kstudio.diarymylife.ui.base.BaseViewModel
-import com.kstudio.diarymylife.utils.BackgroundTheme
-import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Average
-import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Excellent
-import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Good
-import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Poor
-import com.kstudio.diarymylife.utils.BackgroundTheme.Companion.Very_Poor
+import com.kstudio.diarymylife.utils.Moods
+import com.kstudio.diarymylife.utils.Moods.Companion.Average
+import com.kstudio.diarymylife.utils.Moods.Companion.Excellent
+import com.kstudio.diarymylife.utils.Moods.Companion.Good
+import com.kstudio.diarymylife.utils.Moods.Companion.Poor
+import com.kstudio.diarymylife.utils.Moods.Companion.Very_Poor
 import com.kstudio.diarymylife.widgets.custom_chart.BarData
 import kotlinx.coroutines.launch
 
@@ -42,7 +42,7 @@ class SummaryMoodViewModel constructor(
         if (list.isNotEmpty()) {
             average = moodScore / list.size
         }
-        _averageMood.postValue(BackgroundTheme().mapMoodStringToTitle(average.toInt()))
+        _averageMood.postValue(Moods().mapMoodStringToTitle(average.toInt()))
     }
 
     private fun mappingDataToChart(moodViewTypes: List<MoodViewType>) {

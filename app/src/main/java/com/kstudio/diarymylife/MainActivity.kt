@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.kstudio.diarymylife.databinding.ActivityMainBinding
 import com.kstudio.diarymylife.ui.adapter.ViewPagerAdapter
-import com.kstudio.diarymylife.ui.create.CreateMoodActivity
+import com.kstudio.diarymylife.ui.moods.MoodActivity
 import com.kstudio.diarymylife.ui.home.HomeFragment
 import com.kstudio.diarymylife.ui.summary.SummaryMoodFragment
 
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.fab.setOnClickListener {
-            val intent = Intent(this, CreateMoodActivity::class.java)
+            val intent = Intent(this, MoodActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
         }

@@ -8,8 +8,7 @@ import com.kstudio.diarymylife.databinding.ActivityListBinding
 import com.kstudio.diarymylife.domain.model.MoodViewType
 import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter
 import com.kstudio.diarymylife.ui.base.BaseActivity
-import com.kstudio.diarymylife.ui.create.CreateMoodActivity
-import com.kstudio.diarymylife.ui.detail.MoodDetailActivity
+import com.kstudio.diarymylife.ui.moods.MoodActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListActivity : BaseActivity() {
@@ -23,7 +22,7 @@ class ListActivity : BaseActivity() {
             onDeleted = { viewModel.deleteJournal(it) },
             onNavigateToDetail = {
                 navigateToActivityWithMoodId(
-                    MoodDetailActivity::class.java,
+                    MoodActivity::class.java,
                     it
                 )
             },
@@ -62,7 +61,7 @@ class ListActivity : BaseActivity() {
     }
 
     private fun navigateToCreateJournal() {
-        val intent = Intent(this, CreateMoodActivity::class.java)
+        val intent = Intent(this, MoodActivity::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_bottom, R.anim.slide_out_top)
     }

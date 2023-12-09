@@ -1,12 +1,10 @@
 package com.kstudio.diarymylife.di
 
 import com.kstudio.diarymylife.ui.base.BaseMoodViewModel
-import com.kstudio.diarymylife.ui.create.CreateMoodViewModel
-import com.kstudio.diarymylife.ui.create.CreateNewMoodViewModel
-import com.kstudio.diarymylife.ui.detail.MoodDetailViewModel
-import com.kstudio.diarymylife.ui.detail.moodLanding.MoodDetailLandingViewModel
 import com.kstudio.diarymylife.ui.home.HomeViewModel
 import com.kstudio.diarymylife.ui.list.ListViewModel
+import com.kstudio.diarymylife.ui.moods.create.CreateNewMoodViewModel
+import com.kstudio.diarymylife.ui.moods.detail.DetailMoodViewModel
 import com.kstudio.diarymylife.ui.onboarding.OnboardingViewModel
 import com.kstudio.diarymylife.ui.setting.notification.NotificationViewModel
 import com.kstudio.diarymylife.ui.setting.profile.ProfileViewModel
@@ -18,10 +16,8 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel { HomeViewModel(get(), get(), get()) }
-    viewModel { MoodDetailViewModel() }
-    viewModel { MoodDetailLandingViewModel(get()) }
-    viewModel { CreateNewMoodViewModel(get(), get()) }
-    viewModel { CreateMoodViewModel() }
+    viewModel { DetailMoodViewModel(get(),get()) }
+    viewModel { CreateNewMoodViewModel(get(),get()) }
     viewModel { SummaryMoodViewModel(get()) }
     viewModel { SelectDateBottomSheetViewModel() }
     viewModel { NotificationViewModel(get()) }

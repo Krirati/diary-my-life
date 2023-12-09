@@ -12,7 +12,7 @@
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -21,7 +21,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/content_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="86dp"
                 android:paddingHorizontal="@dimen/dp_16"
                 android:paddingVertical="@dimen/dp_16">
@@ -69,7 +69,8 @@
                     app:chipIcon="@drawable/ic_chevron_down"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/how_you_feel" />
+                    app:layout_constraintTop_toBottomOf="@+id/how_you_feel"
+                    tools:text="@android:string/autofill" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/view_pager_mood"
@@ -101,19 +102,52 @@
                     android:id="@+id/moodTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_16"
                     app:custom_edit_text_placeholder="Mood title"
                     app:custom_edit_text_title="Mood title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/dots_indicator" />
 
                 <com.kstudio.diarymylife.widgets.custom_edit_text.CustomEditText
                     android:id="@+id/moodDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_24"
+                    android:layout_marginTop="@dimen/dp_16"
                     app:custom_edit_text_placeholder="@string/mood_detail_text_field"
                     app:custom_edit_text_title="@string/mood_detail_text_field"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/moodTitle" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/activitySection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_16"
+                    android:background="@drawable/bg_round_card_action"
+                    android:backgroundTint="#F9F9F9"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="@dimen/dp_12"
+                    android:paddingVertical="@dimen/dp_8"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/moodDesc">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/TextAppearance.DiaryMyLife.H3.Black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Choose activity" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/activityRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_8"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/selectedImage"
@@ -121,8 +155,9 @@
                     android:layout_height="160dp"
                     android:layout_marginTop="@dimen/dp_16"
                     android:background="@drawable/bg_round_card_action"
-                    app:layout_constraintTop_toBottomOf="@+id/moodDesc"
-                    tools:layout_editor_absoluteX="16dp">
+                    app:layout_constraintTop_toBottomOf="@+id/activitySection"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:visibility="visible">
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/buttonImage"
@@ -149,9 +184,9 @@
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="160dp"
                     android:layout_marginTop="@dimen/dp_16"
                     android:adjustViewBounds="false"
+                    android:minHeight="160dp"
                     android:scaleType="centerCrop"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -172,8 +207,8 @@
             android:layout_marginBottom="@dimen/dp_32"
             android:drawableStart="@drawable/save"
             android:drawablePadding="@dimen/dp_16"
-            android:text="@string/save"
             android:enabled="true"
+            android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

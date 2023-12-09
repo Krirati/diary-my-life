@@ -1,4 +1,4 @@
-package com.kstudio.diarymylife.ui.create
+package com.kstudio.diarymylife.ui.moods.create
 
 import android.Manifest
 import android.net.Uri
@@ -11,7 +11,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.ResultSelectDate
-import com.kstudio.diarymylife.databinding.FragmentMoodCreateBinding
+import com.kstudio.diarymylife.databinding.FragmentMoodBinding
 import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
@@ -24,7 +24,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 
 class CreateNewMoodFragment :
-    BaseFragment<FragmentMoodCreateBinding>(FragmentMoodCreateBinding::inflate), SelectDateHandle {
+    BaseFragment<FragmentMoodBinding>(FragmentMoodBinding::inflate), SelectDateHandle {
 
     private val viewModel by viewModel<CreateNewMoodViewModel>()
     private val adapterMood by lazy { MoodAdapter() }
