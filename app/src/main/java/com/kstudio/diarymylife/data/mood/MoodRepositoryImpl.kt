@@ -1,15 +1,12 @@
 package com.kstudio.diarymylife.data.mood
 
 import android.content.Context
-import android.net.Uri
 import com.kstudio.diarymylife.data.MoodRequest
 import com.kstudio.diarymylife.database.dao.MoodDao
 import com.kstudio.diarymylife.database.model.Mood
 import com.kstudio.diarymylife.database.model.MoodWithActivity
-import com.kstudio.diarymylife.utils.FileUtility
+import com.kstudio.diarymylife.utils.FileUtility.copyPhotoToInternalStorage
 import kotlinx.coroutines.flow.Flow
-import java.io.File
-import java.io.FileOutputStream
 import java.util.UUID
 
 class MoodRepositoryImpl(
@@ -62,25 +59,6 @@ class MoodRepositoryImpl(
         }
 
         moodDao.updateMood(mood = request)
-    }
-
-    private fun copyPhotoToInternalStorage(
-        context: Context,
-        fileName: String,
-        uri: Uri?
-    ): Uri? {
-        if (uri == null) return null
-
-        val directory = FileUtility.getPhotoDirectory(context)
-        val file = File(directory, fileName)
-        val outputStream = FileOutputStream(file)
-        val inputStream = context.contentResolver.openInputStream(uri) ?: return null
-        inputStream.use {
-            outputStream.use {
-                inputStream.copyTo(outputStream)
-            }
-        }
-        return Uri.fromFile(file)
     }
 
     override fun getMoodsAndActivitiesWithLimit(): Flow<List<MoodWithActivity>> {
