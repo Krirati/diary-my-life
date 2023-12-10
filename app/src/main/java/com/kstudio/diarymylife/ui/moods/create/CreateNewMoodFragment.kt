@@ -9,6 +9,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.chip.ChipGroup
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.databinding.FragmentMoodBinding
@@ -18,6 +19,7 @@ import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
 import com.kstudio.diarymylife.utils.Permissions
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.dpToPx
+import com.kstudio.diarymylife.widgets.ChipView
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -100,6 +102,15 @@ class CreateNewMoodFragment :
         selectedImage.setOnClickListener { selectImageFromGallery() }
         buttonImage.setOnClickListener { selectImageFromGallery() }
         imageView.setOnClickListener { selectImageFromGallery() }
+        addActivityButton.setOnClickListener {
+            binding.chipGroup.addChildChip(
+                createChip(
+                    "tesffsst",
+                    R.drawable.ic_plus,
+                    R.color.mood_good
+                )
+            )
+        }
     }
 
     private fun observe() {
@@ -172,5 +183,18 @@ class CreateNewMoodFragment :
             }
         }
         viewModel.setImageUri(uri)
+    }
+
+    private fun ChipGroup.addChildChip(newChip: ChipView) {
+        addView(newChip)
+    }
+
+    private fun createChip(activityName: String, icon: Int, bgColor: Int): ChipView {
+        return ChipView(requireContext()).apply {
+            text = activityName
+            setImageChipIcon(icon)
+            setChipBackgroundColor(bgColor)
+            setOnClickCloseIcon { binding.chipGroup.removeView(this) }
+        }
     }
 }

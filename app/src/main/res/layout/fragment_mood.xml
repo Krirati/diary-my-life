@@ -135,17 +135,34 @@
                     app:layout_constraintTop_toBottomOf="@id/moodDesc">
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/chooseActivityTv"
                         style="@style/TextAppearance.DiaryMyLife.H3.Black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Choose activity" />
+                        android:text="Choose activity"
+                        app:layout_constraintBottom_toBottomOf="@+id/addActivityButton"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/addActivityButton" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/activityRecyclerView"
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chipGroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_4"
+                        android:orientation="horizontal">
+
+                    </com.google.android.material.chip.ChipGroup>
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/addActivityButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_8"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                        android:background="@drawable/bg_image_button_selector"
+                        android:clickable="true"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
