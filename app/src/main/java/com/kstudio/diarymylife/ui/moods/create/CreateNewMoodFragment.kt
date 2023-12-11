@@ -122,9 +122,11 @@ class CreateNewMoodFragment :
         viewModel.nickname.observe(viewLifecycleOwner) {
             binding.howYouFeel.text = getString(R.string.how_are_you_feel).replace("{Name}", it)
         }
+
         viewModel.created.observe(viewLifecycleOwner) {
             activity?.finishAfterTransition()
         }
+
         viewModel.eventList.observe(viewLifecycleOwner) {
             binding.chipGroup.removeAllViews()
             it.forEach { event ->

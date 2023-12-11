@@ -15,6 +15,7 @@ import com.kstudio.diarymylife.databinding.FragmentMoodBinding
 import com.kstudio.diarymylife.domain.model.Event
 import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
+import com.kstudio.diarymylife.ui.moods.create.CreateNewMoodFragment
 import com.kstudio.diarymylife.utils.FileUtility.getUriImage
 import com.kstudio.diarymylife.utils.Formats
 import com.kstudio.diarymylife.utils.Keys.Companion.MOOD_ID
@@ -22,6 +23,7 @@ import com.kstudio.diarymylife.utils.Moods
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.dpToPx
 import com.kstudio.diarymylife.widgets.ChipView
+import com.kstudio.diarymylife.widgets.event_bottomsheet.EventBottomSheet
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -92,13 +94,19 @@ class DetailMoodFragment :
         viewModel.update.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), "Update successful!", Toast.LENGTH_LONG).show()
         }
+
+        viewModel.eventList.observe(viewLifecycleOwner) {
+            binding.chipGroup.removeAllViews()
+            it.forEach { event ->
+                binding.chipGroup.addChildChip(createChip(event))
+            }
+        }
     }
 
     private fun bindMoodData(mood: MoodUI) {
         binding.apply {
             val imageURI = mood.fileName?.let { getUriImage(requireContext(), it) }
             viewModel.setOldImageUri(imageURI)
-
             moodTitle.setDefaultTextValue(mood.title)
             moodDesc.setDefaultTextValue(mood.description)
             imageView.apply {
@@ -108,7 +116,25 @@ class DetailMoodFragment :
             }
             viewPagerMood.currentItem = Moods().mapMoodToPosition(mood.mood)
             currentSelectTime.text = convertTime(mood.timestamp, Formats.DATE_TIME_FORMAT_APP)
+            addActivityButton.setOnClickListener { openSelectEventBottomSheet() }
         }
+    }
+
+    private fun openSelectEventBottomSheet() {
+        val bottomSheetSelectEvent = EventBottomSheet(
+            getContext = requireContext(),
+            onClose = ::onSelectEventBottomSheetClose,
+        )
+        activity?.supportFragmentManager?.let { fragmentManager ->
+            bottomSheetSelectEvent.show(
+                fragmentManager,
+                CreateNewMoodFragment::class.java.simpleName
+            )
+        }
+    }
+
+    private fun onSelectEventBottomSheetClose(eventList: List<Event>?) {
+        if (eventList != null) viewModel.updateEventSelectedListState(eventList)
     }
 
     private fun setUpArguments() {

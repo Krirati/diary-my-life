@@ -32,6 +32,7 @@ class DetailMoodViewModel(
         viewModelScope.launch {
             moodUseCase.getMoodFromId(id).collect {
                 setUpMoodDetail(it)
+                it.activityEvent?.let { events -> updateEventSelectedListState(events) }
             }
         }
     }
