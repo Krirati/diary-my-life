@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.domain.ActivityEventUseCase
+import com.kstudio.diarymylife.domain.model.Event
 import com.kstudio.diarymylife.widgets.event_bottomsheet.model.EventState
 import kotlinx.coroutines.launch
 
@@ -14,6 +15,9 @@ class EventViewModel(
 
     private val _eventListState = MutableLiveData<List<EventState>>()
     val eventListState: LiveData<List<EventState>> = _eventListState
+
+    private val _eventSelectedListState = MutableLiveData<List<Event>>()
+    val eventSelectedListState: LiveData<List<Event>> = _eventSelectedListState
 
     fun getEventsList() {
         viewModelScope.launch {
@@ -39,5 +43,9 @@ class EventViewModel(
 
     fun removeEvent() {
 
+    }
+
+    fun updateEventSelectedListState(event: List<Event>) {
+        _eventSelectedListState.postValue(event)
     }
 }

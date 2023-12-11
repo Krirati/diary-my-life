@@ -12,6 +12,7 @@ class ActivityEventUseCase constructor(
         return activityEventRepository.getAll().map { activityEvents ->
             activityEvents.map {
                 Event(
+                    eventId = it.eventId,
                     icon = it.activityImage,
                     title = it.activityName,
                     backgroundColor = it.activityColor

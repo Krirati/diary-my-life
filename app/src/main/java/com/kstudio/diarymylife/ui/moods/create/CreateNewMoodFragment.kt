@@ -3,6 +3,7 @@ package com.kstudio.diarymylife.ui.moods.create
 import android.Manifest
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
@@ -13,6 +14,7 @@ import com.google.android.material.chip.ChipGroup
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.databinding.FragmentMoodBinding
+import com.kstudio.diarymylife.domain.model.Event
 import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
@@ -150,7 +152,7 @@ class CreateNewMoodFragment :
     private fun openSelectEventBottomSheet() {
         val bottomSheetSelectEvent = EventBottomSheet(
             getContext = requireContext(),
-            onClose = ::onCloseBottomSheet,
+            onClose = ::onSelectEventBottomSheetClose,
         )
         activity?.supportFragmentManager?.let { fragmentManager ->
             bottomSheetSelectEvent.show(
@@ -158,6 +160,10 @@ class CreateNewMoodFragment :
                 CreateNewMoodFragment::class.java.simpleName
             )
         }
+    }
+
+    private fun onSelectEventBottomSheetClose(eventList: List<Event>?) {
+        Log.d("test", ">> onSelectEventBottomSheetClose $eventList")
     }
 
     private fun selectImageFromGallery() {
