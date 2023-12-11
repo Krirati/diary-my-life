@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.database.dao.ActivityEventDao
 import com.kstudio.diarymylife.database.dao.MoodDao
 import com.kstudio.diarymylife.database.dao.ProfileDao
@@ -58,19 +59,84 @@ abstract class MoodDatabase : RoomDatabase() {
         }
 
         fun populateData() = arrayOf(
-            ActivityEvent(eventId = 0, activityName = "Book", activityImage = "ic_book"),
-            ActivityEvent(eventId = 1, activityName = "Dating", activityImage = "ic_dating"),
-            ActivityEvent(eventId = 2, activityName = "Exercise", activityImage = "ic_exercise"),
-            ActivityEvent(eventId = 3, activityName = "Food", activityImage = "ic_food"),
-            ActivityEvent(eventId = 4, activityName = "Game", activityImage = "ic_game"),
-            ActivityEvent(eventId = 5, activityName = "Health", activityImage = "ic_health"),
-            ActivityEvent(eventId = 6, activityName = "Gift", activityImage = "ic_gift"),
-            ActivityEvent(eventId = 7, activityName = "Travel", activityImage = "ic_map"),
-            ActivityEvent(eventId = 8, activityName = "Music", activityImage = "ic_music"),
-            ActivityEvent(eventId = 9, activityName = "Relax", activityImage = "ic_relax"),
-            ActivityEvent(eventId = 10, activityName = "Music", activityImage = "ic_music"),
-            ActivityEvent(eventId = 11, activityName = "Shopping", activityImage = "ic_shopping"),
-            ActivityEvent(eventId = 12, activityName = "Weather", activityImage = "ic_weather"),
+            ActivityEvent(
+                eventId = 0,
+                activityName = "Book",
+                activityImage = "ic_book",
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 1,
+                activityName = "Dating",
+                activityImage = "ic_dating",
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 2,
+                activityName = "Exercise",
+                activityImage = "ic_exercise",
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 3,
+                activityName = "Food",
+                activityImage = "ic_food",
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 4,
+                activityName = "Game",
+                activityImage = "ic_game",
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 5,
+                activityName = "Health",
+                activityImage = "ic_health",
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 6,
+                activityName = "Gift",
+                activityImage = "ic_gift",
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 7,
+                activityName = "Travel",
+                activityImage = "ic_map",
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 8,
+                activityName = "Music",
+                activityImage = "ic_music",
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 9,
+                activityName = "Relax",
+                activityImage = "ic_relax",
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 10,
+                activityName = "Music",
+                activityImage = "ic_music",
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 11,
+                activityName = "Shopping",
+                activityImage = "ic_shopping",
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 12,
+                activityName = "Weather",
+                activityImage = "ic_weather",
+                activityColor = R.color.white
+            ),
         )
     }
 }

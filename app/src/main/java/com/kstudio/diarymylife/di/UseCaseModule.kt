@@ -1,5 +1,6 @@
 package com.kstudio.diarymylife.di
 
+import com.kstudio.diarymylife.domain.ActivityEventUseCase
 import com.kstudio.diarymylife.domain.GetMoodsAndActivitiesWithLimitUseCase
 import com.kstudio.diarymylife.domain.GetMoodsAndActivityUseCase
 import com.kstudio.diarymylife.domain.ProfileUseCase
@@ -9,4 +10,5 @@ val useCaseModule = module {
     single { GetMoodsAndActivitiesWithLimitUseCase(get()) }
     single { GetMoodsAndActivityUseCase(get()) }
     single { ProfileUseCase(get()) }
+    single { ActivityEventUseCase(get()) }
 }

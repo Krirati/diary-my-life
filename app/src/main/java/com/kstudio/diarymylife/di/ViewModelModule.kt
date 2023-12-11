@@ -10,6 +10,7 @@ import com.kstudio.diarymylife.ui.setting.notification.NotificationViewModel
 import com.kstudio.diarymylife.ui.setting.profile.ProfileViewModel
 import com.kstudio.diarymylife.ui.splash.SplashViewModel
 import com.kstudio.diarymylife.ui.summary.SummaryMoodViewModel
+import com.kstudio.diarymylife.widgets.event_bottomsheet.EventViewModel
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheetViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -26,4 +27,5 @@ val viewModelModule = module {
     viewModel { ListViewModel(get(), get()) }
     viewModel { SplashViewModel(get()) }
     viewModel { OnboardingViewModel(get(), get()) }
+    viewModel { EventViewModel(get()) }
 }

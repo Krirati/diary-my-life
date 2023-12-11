@@ -20,6 +20,7 @@ import com.kstudio.diarymylife.utils.Permissions
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.dpToPx
 import com.kstudio.diarymylife.widgets.ChipView
+import com.kstudio.diarymylife.widgets.event_bottomsheet.EventBottomSheet
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -102,15 +103,7 @@ class CreateNewMoodFragment :
         selectedImage.setOnClickListener { selectImageFromGallery() }
         buttonImage.setOnClickListener { selectImageFromGallery() }
         imageView.setOnClickListener { selectImageFromGallery() }
-        addActivityButton.setOnClickListener {
-            binding.chipGroup.addChildChip(
-                createChip(
-                    "tesffsst",
-                    R.drawable.ic_plus,
-                    R.color.mood_good
-                )
-            )
-        }
+        addActivityButton.setOnClickListener { openSelectEventBottomSheet() }
     }
 
     private fun observe() {
@@ -153,6 +146,19 @@ class CreateNewMoodFragment :
                 viewModel.setupSelectMood(adapterMood.getMoodList()[position])
             }
         }
+
+    private fun openSelectEventBottomSheet() {
+        val bottomSheetSelectEvent = EventBottomSheet(
+            getContext = requireContext(),
+            onClose = ::onCloseBottomSheet,
+        )
+        activity?.supportFragmentManager?.let { fragmentManager ->
+            bottomSheetSelectEvent.show(
+                fragmentManager,
+                CreateNewMoodFragment::class.java.simpleName
+            )
+        }
+    }
 
     private fun selectImageFromGallery() {
         Permissions.requirePermissionNotification(
