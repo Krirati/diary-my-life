@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.time.LocalDateTime
 
-@Entity(tableName = "user_mood")
+@Entity(tableName = "moods")
 data class Mood(
     @PrimaryKey(autoGenerate = true) val moodId: Long = 0,
     @ColumnInfo(name = "mood") val mood: Int?,

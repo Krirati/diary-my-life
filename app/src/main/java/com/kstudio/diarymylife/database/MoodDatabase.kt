@@ -60,14 +60,14 @@ abstract class MoodDatabase : RoomDatabase() {
 
         fun populateData() = arrayOf(
             ActivityEvent(
-                eventId = 0,
+                eventId = 1,
                 activityName = "Game",
                 activityImage = R.drawable.ic_game,
                 activityColor = R.color.white
             ),
             ActivityEvent(
-                eventId = 1,
-                activityName = "Book",
+                eventId = 2,
+                activityName = "Book4",
                 activityImage = R.drawable.ic_book,
                 activityColor = R.color.white
             )
