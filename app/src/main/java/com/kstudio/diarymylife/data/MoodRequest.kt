@@ -15,4 +15,5 @@ data class MoodRequest(
     val createTime: LocalDateTime,
     val uri: Uri? = null,
     val fileName: String? = null,
+    val isImageUriChanged: Boolean
 )

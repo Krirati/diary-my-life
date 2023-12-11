@@ -55,7 +55,7 @@ class MoodRepositoryImpl(
             activityEvent = mood.activity.mappingToActivityEvent()
         )
 
-        if (mood.uri != null) {
+        if (mood.uri != null && mood.isImageUriChanged) {
             copyPhotoToInternalStorage(
                 context = context,
                 fileName = fileName,
