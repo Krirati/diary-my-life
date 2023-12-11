@@ -28,5 +28,6 @@ data class MoodUI(
 data class ActivityDetail(
     val eventId: Int,
     val activityName: String,
-    val activityImage: String,
+    val activityImage: Int,
+    val activityBackgroundColor: Int
 ) : Parcelable

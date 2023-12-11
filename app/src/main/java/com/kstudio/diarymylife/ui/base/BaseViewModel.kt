@@ -3,6 +3,7 @@ package com.kstudio.diarymylife.ui.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.ActivityDetail
 import com.kstudio.diarymylife.database.model.ActivityEvent
 
@@ -19,7 +20,8 @@ open class BaseViewModel : ViewModel() {
         ActivityDetail(
             eventId = it.eventId,
             activityName = it.activityName,
-            activityImage = it.activityImage
+            activityImage = it.activityImage,
+            activityBackgroundColor = R.color.black
         )
     }
 }

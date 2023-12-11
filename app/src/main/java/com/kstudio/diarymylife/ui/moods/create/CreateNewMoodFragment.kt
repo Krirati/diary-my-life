@@ -3,7 +3,6 @@ package com.kstudio.diarymylife.ui.moods.create
 import android.Manifest
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
@@ -63,6 +62,16 @@ class CreateNewMoodFragment :
         bindTextField()
     }
 
+    private fun bindTextField() = with(binding) {
+        moodTitle.setOnTextChange { s, _, _, _ ->
+            viewModel.setMoodTitle(s.toString())
+            binding.buttonNext.isEnabled = s.toString().isNotEmpty()
+        }
+        moodDesc.setOnTextChange { s, _, _, _ ->
+            viewModel.setMoodDesc(s.toString())
+        }
+    }
+
     private fun setupViewPager() {
         val offsetPx =
             resources.getDimension(R.dimen.dp_16).toInt().dpToPx(resources.displayMetrics)
@@ -115,6 +124,12 @@ class CreateNewMoodFragment :
         viewModel.created.observe(viewLifecycleOwner) {
             activity?.finishAfterTransition()
         }
+        viewModel.eventList.observe(viewLifecycleOwner) {
+            binding.chipGroup.removeAllViews()
+            it.forEach { event ->
+                binding.chipGroup.addChildChip(createChip(event))
+            }
+        }
     }
 
     override fun handleOnBackPress() {
@@ -163,7 +178,7 @@ class CreateNewMoodFragment :
     }
 
     private fun onSelectEventBottomSheetClose(eventList: List<Event>?) {
-        Log.d("test", ">> onSelectEventBottomSheetClose $eventList")
+        if (eventList != null) viewModel.updateEventSelectedListState(eventList)
     }
 
     private fun selectImageFromGallery() {
@@ -176,15 +191,6 @@ class CreateNewMoodFragment :
             requireAccept = { requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES) })
     }
 
-    private fun bindTextField() = with(binding) {
-        moodTitle.setOnTextChange { s, _, _, _ ->
-            viewModel.setMoodTitle(s.toString())
-            binding.buttonNext.isEnabled = s.toString().isNotEmpty()
-        }
-        moodDesc.setOnTextChange { s, _, _, _ ->
-            viewModel.setMoodDesc(s.toString())
-        }
-    }
 
     private fun handleSelectImage(uri: Uri?) {
         binding.apply {
@@ -201,12 +207,15 @@ class CreateNewMoodFragment :
         addView(newChip)
     }
 
-    private fun createChip(activityName: String, icon: Int, bgColor: Int): ChipView {
+    private fun createChip(event: Event): ChipView {
         return ChipView(requireContext()).apply {
-            text = activityName
-            setImageChipIcon(icon)
-            setChipBackgroundColor(bgColor)
-            setOnClickCloseIcon { binding.chipGroup.removeView(this) }
+            text = event.title
+            setImageChipIcon(event.icon)
+            setChipBackgroundColor(event.backgroundColor)
+            setOnClickCloseIcon {
+                viewModel.removeEventSelectedList(event)
+                binding.chipGroup.removeView(this)
+            }
         }
     }
 }

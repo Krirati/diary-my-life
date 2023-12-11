@@ -55,4 +55,5 @@
     <string name="activity_stats">Activity stats</string>
     <string name="add_new_event">Add new event</string>
     <string name="select_event">Select event</string>
+    <string name="button_remove">button remove</string>
 </resources>

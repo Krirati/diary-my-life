@@ -8,6 +8,6 @@ import androidx.room.PrimaryKey
 data class ActivityEvent(
     @PrimaryKey(autoGenerate = true) val eventId: Int,
     @ColumnInfo(name = "activity_name") val activityName: String,
-    @ColumnInfo(name = "activity_image") val activityImage: String,
+    @ColumnInfo(name = "activity_image") val activityImage: Int,
     @ColumnInfo(name = "activity_color") val activityColor: Int,
 )

@@ -13,19 +13,21 @@
         android:background="@drawable/bg_chip_selector"
         android:backgroundTint="@color/white"
         android:orientation="horizontal"
-        android:paddingEnd="@dimen/dp_4">
+        android:padding="@dimen/dp_4">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/chipImage"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
+            android:layout_width="@dimen/dp_32"
+            android:layout_height="@dimen/dp_32"
             android:adjustViewBounds="true"
+            android:background="@color/secondary_grey10"
             android:scaleType="fitCenter"
+            app:contentPadding="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/circleImageView"
-            tools:srcCompat="@drawable/ic_user" />
+            tools:srcCompat="@drawable/ic_book" />
 
         <TextView
             android:id="@+id/chipText"
@@ -44,6 +46,7 @@
             android:layout_height="@dimen/dp_16"
             android:layout_marginStart="@dimen/dp_4"
             android:src="@drawable/ic_x"
+            android:contentDescription="@string/button_remove"
             app:layout_constraintBottom_toBottomOf="@+id/chipText"
             app:layout_constraintStart_toEndOf="@id/chipText"
             app:layout_constraintTop_toTopOf="@+id/chipText" />
