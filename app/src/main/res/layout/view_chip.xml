@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/chipText"
-            style="@style/TextAppearance.DiaryMyLife.Label.Blank"
+            style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/dp_4"
