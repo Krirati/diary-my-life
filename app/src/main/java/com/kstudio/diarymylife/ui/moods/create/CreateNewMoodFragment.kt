@@ -2,6 +2,7 @@ package com.kstudio.diarymylife.ui.moods.create
 
 import android.Manifest
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -182,13 +183,20 @@ class CreateNewMoodFragment :
     }
 
     private fun selectImageFromGallery() {
-        Permissions.requirePermissionNotification(
-            requireContext(),
-            Manifest.permission.READ_MEDIA_IMAGES,
-            callBack = {
-                selectImageFromGalleryResult.launch("image/*")
-            },
-            requireAccept = { requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES) })
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Permissions.requirePermissionNotification(
+                requireContext(),
+                Manifest.permission.READ_MEDIA_IMAGES,
+                callBack = {
+                    selectImageFromGalleryResult.launch("image/*")
+                },
+                requireAccept = {
+                    requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
+                }
+            )
+        } else {
+            selectImageFromGalleryResult.launch("image/*")
+        }
     }
 
 
@@ -209,7 +217,7 @@ class CreateNewMoodFragment :
 
     private fun createChip(event: Event): ChipView {
         return ChipView(requireContext()).apply {
-            text = event.title
+            text = event.activityName
             setImageChipIcon(event.icon)
             setChipBackgroundColor(event.backgroundColor)
             setOnClickCloseIcon {

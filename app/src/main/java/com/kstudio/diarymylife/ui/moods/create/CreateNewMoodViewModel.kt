@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.data.mood.MoodRepository
 import com.kstudio.diarymylife.domain.ProfileUseCase
-import com.kstudio.diarymylife.domain.model.Event
 import com.kstudio.diarymylife.ui.base.BaseMoodViewModel
 import kotlinx.coroutines.launch
 
@@ -20,9 +19,6 @@ class CreateNewMoodViewModel(
     private var _nickname: MutableLiveData<String> = MutableLiveData()
     var nickname: LiveData<String> = _nickname
 
-    private val _eventList = MutableLiveData<List<Event>>()
-    val eventList: LiveData<List<Event>> = _eventList
-
     init {
         viewModelScope.launch {
             val nickname = profileUseCase.getProfile().nickname
@@ -35,15 +31,5 @@ class CreateNewMoodViewModel(
             val res = moodRepository.insert(setupCreateMoodRequest())
             _created.postValue(res)
         }
-    }
-
-    fun updateEventSelectedListState(event: List<Event>) {
-        _eventList.postValue(event.toMutableList())
-    }
-
-    fun removeEventSelectedList(event: Event) {
-        val eventList = _eventList.value ?: return
-        val newEventList = eventList.filterNot { it.eventId == event.eventId }
-        _eventList.postValue(newEventList)
     }
 }

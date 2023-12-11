@@ -59,7 +59,7 @@ class EventAdapter(
             removeFromSelectedList: (event: Event, position: Int) -> Unit
         ) = with(binding) {
             chipImage.setImageResource(R.drawable.crying)
-            textView.text = event.title
+            textView.text = event.activityName
             checkButton.isVisible = event.isSelected
             root.setOnClickListener {
                 if (event.isSelected) {

@@ -17,8 +17,8 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel { HomeViewModel(get(), get(), get()) }
-    viewModel { DetailMoodViewModel(get(),get()) }
-    viewModel { CreateNewMoodViewModel(get(),get()) }
+    viewModel { DetailMoodViewModel(get(), get(), get()) }
+    viewModel { CreateNewMoodViewModel(get(), get()) }
     viewModel { SummaryMoodViewModel(get()) }
     viewModel { SelectDateBottomSheetViewModel() }
     viewModel { NotificationViewModel(get()) }

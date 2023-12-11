@@ -1,6 +1,7 @@
 package com.kstudio.diarymylife.domain
 
 import com.kstudio.diarymylife.data.activity_event.ActivityEventRepository
+import com.kstudio.diarymylife.domain.mapping.mappingActivityEventToEvent
 import com.kstudio.diarymylife.domain.model.Event
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -10,14 +11,7 @@ class ActivityEventUseCase constructor(
 ) {
     fun getAllEvent(): Flow<List<Event>> {
         return activityEventRepository.getAll().map { activityEvents ->
-            activityEvents.map {
-                Event(
-                    eventId = it.eventId,
-                    icon = it.activityImage,
-                    title = it.activityName,
-                    backgroundColor = it.activityColor
-                )
-            }
+            activityEvents.mappingActivityEventToEvent()
         }
     }
 }

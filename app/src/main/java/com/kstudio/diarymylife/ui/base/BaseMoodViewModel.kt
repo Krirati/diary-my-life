@@ -1,11 +1,13 @@
 package com.kstudio.diarymylife.ui.base
 
 import android.net.Uri
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kstudio.diarymylife.data.MoodItem
 import com.kstudio.diarymylife.data.MoodRequest
 import com.kstudio.diarymylife.data.MoodUI
 import com.kstudio.diarymylife.data.ResultSelectDate
+import com.kstudio.diarymylife.domain.model.Event
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -20,6 +22,8 @@ open class BaseMoodViewModel() : BaseViewModel() {
     private val _moodDesc: MutableLiveData<String> = MutableLiveData()
     private val _imageUrl: MutableLiveData<Uri?> = MutableLiveData()
     private var _moodDetail: MutableLiveData<MoodItem?> = MutableLiveData()
+    private val _eventList = MutableLiveData<List<Event>>()
+    val eventList: LiveData<List<Event>> = _eventList
     val moodData: MutableLiveData<MoodItem?> = _moodDetail
 
     fun setupSelectMood(index: Pair<Int, Int>) {
@@ -49,7 +53,7 @@ open class BaseMoodViewModel() : BaseViewModel() {
     fun setUpInitDetail(mood: MoodUI) {
         _localDateSelect.value = mood.timestamp.toLocalDate()
         _localTimeSelect.value = mood.timestamp.toLocalTime()
-        _moodDesc.value = mood.desc
+        _moodDesc.value = mood.description
     }
 
     fun setUpMoodDetail(mood: MoodItem?) {
@@ -58,7 +62,6 @@ open class BaseMoodViewModel() : BaseViewModel() {
 
     fun setupCreateMoodRequest(): MoodRequest {
         val time = ResultSelectDate(_localDateSelect.value, _localTimeSelect.value)
-
         return MoodRequest(
             moodId = null,
             mood = _selectsMood.value?.first,
@@ -67,7 +70,7 @@ open class BaseMoodViewModel() : BaseViewModel() {
             timestamp = time.getLocalDateTime(),
             createTime = LocalDateTime.now(),
             imageName = _selectsMood.value?.second.toString(),
-            activity = arrayListOf(),
+            activity = _eventList.value,
             uri = _imageUrl.value
         )
     }
@@ -83,13 +86,23 @@ open class BaseMoodViewModel() : BaseViewModel() {
             timestamp = time.getLocalDateTime(),
             createTime = LocalDateTime.now(),
             imageName = _selectsMood.value?.second.toString(),
-            activity = arrayListOf(),
+            activity = _eventList.value,
             uri = _imageUrl.value,
-            fileName = _moodDetail.value?.data?.fileName
+            fileName = _moodDetail.value?.data?.fileName,
         )
     }
 
     fun getLocalDateTime(): LocalDateTime? {
         return _localDateSelect.value?.atTime(_localTimeSelect.value)
+    }
+
+    fun updateEventSelectedListState(event: List<Event>) {
+        _eventList.postValue(event.toMutableList())
+    }
+
+    fun removeEventSelectedList(event: Event) {
+        val eventList = _eventList.value ?: return
+        val newEventList = eventList.filterNot { it.eventId == event.eventId }
+        _eventList.postValue(newEventList)
     }
 }

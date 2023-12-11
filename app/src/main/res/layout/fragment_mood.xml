@@ -205,11 +205,11 @@
                     android:adjustViewBounds="false"
                     android:minHeight="160dp"
                     android:scaleType="centerCrop"
-                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/moodDesc"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize20">
+                    app:layout_constraintTop_toBottomOf="@+id/activitySection"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize20"
+                    tools:visibility="visible">
 
                 </com.google.android.material.imageview.ShapeableImageView>
 

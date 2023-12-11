@@ -3,6 +3,7 @@ package com.kstudio.diarymylife.di
 import com.kstudio.diarymylife.domain.ActivityEventUseCase
 import com.kstudio.diarymylife.domain.GetMoodsAndActivitiesWithLimitUseCase
 import com.kstudio.diarymylife.domain.GetMoodsAndActivityUseCase
+import com.kstudio.diarymylife.domain.MoodUseCase
 import com.kstudio.diarymylife.domain.ProfileUseCase
 import org.koin.dsl.module
 
@@ -11,4 +12,5 @@ val useCaseModule = module {
     single { GetMoodsAndActivityUseCase(get()) }
     single { ProfileUseCase(get()) }
     single { ActivityEventUseCase(get()) }
+    single { MoodUseCase(get()) }
 }
