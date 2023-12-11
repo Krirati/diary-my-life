@@ -3,6 +3,7 @@ package com.kstudio.diarymylife.database.util
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.kstudio.diarymylife.database.model.ActivityEvent
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -57,5 +58,25 @@ class Converter {
     @TypeConverter
     fun toLocalDateString(date: LocalDate?): String? {
         return date?.toString()
+    }
+
+    @TypeConverter
+    fun fromActivityEventList(value: List<ActivityEvent>?): String? {
+        return if (value == null) {
+            null
+        } else {
+            val gson = Gson()
+            val type = object : TypeToken<List<ActivityEvent>>() {}.type
+            gson.toJson(value, type)
+        }
+
+    }
+
+    @TypeConverter
+    fun toActivityEventList(value: String?): List<ActivityEvent>? {
+        if (value == null) return null
+        val gson = Gson()
+        val type = object : TypeToken<List<ActivityEvent>>() {}.type
+        return gson.fromJson(value, type)
     }
 }
