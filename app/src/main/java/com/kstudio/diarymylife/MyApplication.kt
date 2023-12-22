@@ -37,7 +37,7 @@ class MyApplication : Application() {
 
     private fun createNotificationChannel() {
         val name = "Mood Diary"
-        val desc = "A description of channel"
+        val desc = "This time for update your mood 🧐"
         val importance = NotificationManager.IMPORTANCE_DEFAULT
         val channel = NotificationChannel(CHANNEL_ID, name, importance)
         channel.description = desc

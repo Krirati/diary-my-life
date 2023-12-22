@@ -9,7 +9,11 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.widget.FrameLayout
+import android.widget.ImageView
+import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.shape.ShapeAppearanceModel
 import com.kstudio.diarymylife.R
+import com.kstudio.diarymylife.database.model.ActivityEvent
 import com.kstudio.diarymylife.databinding.CustomCardSwipeBinding
 import com.kstudio.diarymylife.ui.base.swipe_event.SwipeState
 import java.time.LocalDateTime
@@ -87,6 +91,26 @@ class CustomCardSwipe @JvmOverloads constructor(
 
     fun setOnClickAction(onClick: () -> Unit) {
         this.onClickActionListener = onClick
+    }
+
+    fun setActivityEvent(activityEvent: List<ActivityEvent>?) {
+        removeAllViews()
+        activityEvent?.forEach {
+            val icon = createIconView(it.activityImage)
+            binding.activitySection.addView(icon)
+        }
+    }
+
+    private fun createIconView(icon: Int): ShapeableImageView {
+        val shapeAppearance = ShapeAppearanceModel.Builder()
+            .build()
+        val image = ShapeableImageView(context).apply {
+            adjustViewBounds = true
+            scaleType = ImageView.ScaleType.FIT_CENTER
+            shapeAppearanceModel = shapeAppearance
+            setImageResource(icon)
+        }
+        return image
     }
 
     private fun onAnimate(view: View, dx: Float, duration: Long = 100) {
