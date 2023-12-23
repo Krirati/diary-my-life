@@ -61,14 +61,74 @@ abstract class MoodDatabase : RoomDatabase() {
         fun populateData() = arrayOf(
             ActivityEvent(
                 eventId = 1,
-                activityName = "Game",
-                activityImage = R.drawable.ic_game,
+                activityName = "Sports",
+                activityImage = R.drawable.basketball,
                 activityColor = R.color.white
             ),
             ActivityEvent(
                 eventId = 2,
-                activityName = "Book4",
-                activityImage = R.drawable.ic_book,
+                activityName = "Drink",
+                activityImage = R.drawable.beer,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 3,
+                activityName = "Breakfast",
+                activityImage = R.drawable.breakfast,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 4,
+                activityName = "Coffee time",
+                activityImage = R.drawable.coffee,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 5,
+                activityName = "Cooking",
+                activityImage = R.drawable.cooking,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 6,
+                activityName = "Money",
+                activityImage = R.drawable.exchange,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 7,
+                activityName = "Working",
+                activityImage = R.drawable.homework,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 8,
+                activityName = "Plants",
+                activityImage = R.drawable.watering,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 9,
+                activityName = "Love",
+                activityImage = R.drawable.hot_air_balloon,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 10,
+                activityName = "Shopping",
+                activityImage = R.drawable.pay,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 11,
+                activityName = "Trophy",
+                activityImage = R.drawable.trophy,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 12,
+                activityName = "Cleaning",
+                activityImage = R.drawable.washing,
                 activityColor = R.color.white
             )
         )

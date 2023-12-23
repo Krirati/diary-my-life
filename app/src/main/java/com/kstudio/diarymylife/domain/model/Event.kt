@@ -5,5 +5,6 @@ data class Event(
     val icon: Int,
     val activityName: String,
     val backgroundColor: Int,
+    val activityImage: Int,
     val isSelected: Boolean = false
 )

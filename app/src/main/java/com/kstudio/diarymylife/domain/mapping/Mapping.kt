@@ -9,6 +9,7 @@ fun List<ActivityEvent>.mappingActivityEventToEvent() =
             eventId = it.eventId,
             icon = it.activityImage,
             activityName = it.activityName,
-            backgroundColor = it.activityColor
+            backgroundColor = it.activityColor,
+            activityImage = it.activityImage
         )
     }

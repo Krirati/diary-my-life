@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.ItemEventBinding
 import com.kstudio.diarymylife.domain.model.Event
 
@@ -58,7 +57,7 @@ class EventAdapter(
             addToSelectedList: (event: Event, position: Int) -> Unit,
             removeFromSelectedList: (event: Event, position: Int) -> Unit
         ) = with(binding) {
-            chipImage.setImageResource(R.drawable.crying)
+            chipImage.setImageResource(event.activityImage)
             textView.text = event.activityName
             checkButton.isVisible = event.isSelected
             root.setOnClickListener {
