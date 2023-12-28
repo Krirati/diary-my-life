@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.domain.GetMoodsAndActivityUseCase
+import com.kstudio.diarymylife.domain.MoodUseCase
+import com.kstudio.diarymylife.domain.model.ActivityEventCount
 import com.kstudio.diarymylife.domain.model.MoodViewType
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 import com.kstudio.diarymylife.utils.Moods
@@ -14,10 +16,15 @@ import com.kstudio.diarymylife.utils.Moods.Companion.Good
 import com.kstudio.diarymylife.utils.Moods.Companion.Poor
 import com.kstudio.diarymylife.utils.Moods.Companion.Very_Poor
 import com.kstudio.diarymylife.widgets.custom_chart.BarData
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class SummaryMoodViewModel constructor(
-    private val getMoodsAndActivityUseCase: GetMoodsAndActivityUseCase
+    private val getMoodsAndActivityUseCase: GetMoodsAndActivityUseCase,
+    private val moodUseCase: MoodUseCase
 ) : BaseViewModel() {
 
     private val _barData: MutableLiveData<Pair<Int, ArrayList<BarData>>> = MutableLiveData()
@@ -25,6 +32,10 @@ class SummaryMoodViewModel constructor(
 
     private val _averageMood: MutableLiveData<String> = MutableLiveData()
     val averageMood: LiveData<String> = _averageMood
+
+    private val _uiActivityStatState = MutableStateFlow<ActivityEventCount?>(null)
+    val uiState: SharedFlow<ActivityEventCount?> = _uiActivityStatState.asStateFlow()
+
 
     fun fetchRecentJournal() {
         viewModelScope.launch {
@@ -74,5 +85,22 @@ class SummaryMoodViewModel constructor(
         dataList.sortBy { it.barOrder }
 
         _barData.postValue(maxValue to dataList)
+    }
+
+    fun fetchActivityEventGroup() {
+        viewModelScope.launch {
+            moodUseCase.getActivityEventGroup()
+                .onStart { _uiActivityStatState.emit(null)}
+                .collect {
+                    it.forEach { (key, activityEventList) ->
+                        val event = ActivityEventCount(
+                            activityImage = key,
+                            activityName = activityEventList.first().activityName,
+                            count = activityEventList.count()
+                        )
+                        _uiActivityStatState.emit(event)
+                    }
+                }
+        }
     }
 }

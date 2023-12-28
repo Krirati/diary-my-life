@@ -2,6 +2,7 @@ package com.kstudio.diarymylife.domain
 
 import com.kstudio.diarymylife.data.MoodUI
 import com.kstudio.diarymylife.data.mood.MoodRepository
+import com.kstudio.diarymylife.database.model.ActivityEvent
 import com.kstudio.diarymylife.domain.mapping.mappingActivityEventToEvent
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -23,6 +24,17 @@ class MoodUseCase(private val moodRepository: MoodRepository) {
                 )
             }.collect {
                 emit(it)
+            }
+        }
+
+    fun getActivityEventGroup(): Flow<Map<Int, List<ActivityEvent>>> =
+        flow {
+            moodRepository.getAllMoods().collect { listMoods ->
+                val listActivityEvent = mutableListOf<ActivityEvent>()
+                listMoods.forEach { mood -> mood.activityEvent?.forEach { listActivityEvent.add(it) } }
+
+                val group = listActivityEvent.groupBy { it.activityImage }
+                emit(group)
             }
         }
 }

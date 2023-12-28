@@ -66,6 +66,10 @@ class MoodRepositoryImpl(
         moodDao.updateMood(mood = request)
     }
 
+    override fun getAllMoods(): Flow<List<Mood>> {
+        return moodDao.getAllMoods()
+    }
+
     override fun getMoodsAndActivitiesWithLimit(): Flow<List<MoodWithActivity>> {
         return moodDao.getMoodsWithActivitiesWithLimit()
     }

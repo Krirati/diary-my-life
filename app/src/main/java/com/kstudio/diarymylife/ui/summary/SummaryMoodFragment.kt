@@ -3,10 +3,13 @@ package com.kstudio.diarymylife.ui.summary
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kstudio.diarymylife.databinding.FragmentSummaryMoodBinding
-import com.kstudio.diarymylife.domain.model.MoodViewType
-import com.kstudio.diarymylife.ui.adapter.ItemCardSwipeAdapter.Companion.VIEW_ADD
+import com.kstudio.diarymylife.ui.adapter.ActivityEventAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SummaryMoodFragment : BaseFragment<FragmentSummaryMoodBinding>(
@@ -14,12 +17,12 @@ class SummaryMoodFragment : BaseFragment<FragmentSummaryMoodBinding>(
 ) {
 
     private val viewModel by viewModel<SummaryMoodViewModel>()
+    private val adapterActivityEvent by lazy { ActivityEventAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindingView()
         observeLiveData()
-        viewModel.fetchRecentJournal()
     }
 
     private fun observeLiveData() {
@@ -33,15 +36,34 @@ class SummaryMoodFragment : BaseFragment<FragmentSummaryMoodBinding>(
                 build()
             }
         }
+
+        lifecycleScope.launch {
+            viewModel.uiState.collect {
+                if (it == null) {
+                    adapterActivityEvent.clearList()
+                } else {
+                    adapterActivityEvent.updateActivityEvent(it)
+                }
+            }
+        }
     }
 
-    override fun bindingView() {
+    override fun bindingView() = with(binding) {
+        activityEventRecyclerView.apply {
+            adapter = adapterActivityEvent
+            addItemDecoration(
+                DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
+            )
+        }
+        return@with
     }
 
     override fun handleOnBackPress() {
     }
 
-    private fun bindingCard(mood: List<MoodViewType>) = with(binding) {
-        val moodTotal = mood.filter { mood -> mood.viewType != VIEW_ADD }
+    override fun onResume() {
+        super.onResume()
+        viewModel.fetchRecentJournal()
+        viewModel.fetchActivityEventGroup()
     }
 }

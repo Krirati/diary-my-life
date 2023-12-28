@@ -44,4 +44,7 @@ interface MoodDao {
 
     @Query("DELETE FROM moods WHERE moodId = :moodID")
     suspend fun deleteMood(moodID: Long)
+
+    @Query("SELECT * FROM moods ORDER BY timestamp DESC")
+    fun getAllMoods(): Flow<List<Mood>>
 }
