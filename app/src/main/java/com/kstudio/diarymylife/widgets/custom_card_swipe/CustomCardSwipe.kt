@@ -9,9 +9,12 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.widget.FrameLayout
+import androidx.core.view.isVisible
 import com.kstudio.diarymylife.R
+import com.kstudio.diarymylife.database.model.ActivityEvent
 import com.kstudio.diarymylife.databinding.CustomCardSwipeBinding
 import com.kstudio.diarymylife.ui.base.swipe_event.SwipeState
+import com.kstudio.diarymylife.widgets.CircleImageView
 import java.time.LocalDateTime
 
 @SuppressLint("ClickableViewAccessibility")
@@ -87,6 +90,23 @@ class CustomCardSwipe @JvmOverloads constructor(
 
     fun setOnClickAction(onClick: () -> Unit) {
         this.onClickActionListener = onClick
+    }
+
+    fun setActivityEvent(activityEvent: List<ActivityEvent>?) {
+        binding.activitySection.removeAllViews()
+        if (activityEvent != null) {
+            binding.activitySection.isVisible = true
+            activityEvent.forEach {
+                val icon = createChip(it.activityImage)
+                binding.activitySection.addView(icon)
+            }
+        }
+    }
+
+    private fun createChip(icon: Int): CircleImageView {
+        return CircleImageView(context).apply {
+            setIconImage(icon)
+        }
     }
 
     private fun onAnimate(view: View, dx: Float, duration: Long = 100) {

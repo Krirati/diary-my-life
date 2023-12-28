@@ -38,14 +38,13 @@ class Moods {
 
     fun mapperThemeColor(mood: Int?): Pair<Int, Int> {
         return when (mood) {
-            Excellent -> R.color.mood_excellent to R.drawable.bg_mood_excellent
-            Good -> R.color.mood_good to R.drawable.bg_mood_good
-            Average -> R.color.mood_average to R.drawable.bg_mood_average
-            Poor -> R.color.mood_pool to R.drawable.bg_mood_pool
-            Very_Poor -> R.color.mood_very_pool to R.drawable.bg_mood_very_pool
-
-            Mood_Tool -> R.color.new_york_pink to R.drawable.bg_round_new_york_pink
-            Mood_Avg -> R.color.pewter_blue to R.drawable.bg_round_pewter_blue
+            Excellent -> ColorsPair.excellent
+            Good -> ColorsPair.good
+            Average -> ColorsPair.average
+            Poor -> ColorsPair.poor
+            Very_Poor -> ColorsPair.veryPoor
+            Mood_Tool -> ColorsPair.moodTool
+            Mood_Avg -> ColorsPair.moodAvg
             else -> R.color.secondary_grey10 to R.drawable.bg_round_card_action
         }
     }
@@ -70,6 +69,19 @@ class Moods {
             Very_Poor -> 4
             else -> 0
         }
+    }
+}
+
+class ColorsPair {
+    companion object {
+        val excellent = R.color.mood_excellent to R.drawable.bg_mood_excellent
+        val good = R.color.mood_good to R.drawable.bg_mood_good
+        val average = R.color.mood_average to R.drawable.bg_mood_average
+        val poor = R.color.mood_pool to R.drawable.bg_mood_pool
+        val veryPoor = R.color.mood_very_pool to R.drawable.bg_mood_very_pool
+        val moodTool = R.color.new_york_pink to R.drawable.bg_round_new_york_pink
+        val moodAvg = R.color.pewter_blue to R.drawable.bg_round_pewter_blue
+        val primaryColor = R.color.amber_700 to R.color.xanthos
     }
 }
 

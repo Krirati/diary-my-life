@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.database.dao.ActivityEventDao
 import com.kstudio.diarymylife.database.dao.MoodDao
 import com.kstudio.diarymylife.database.dao.ProfileDao
@@ -58,19 +59,78 @@ abstract class MoodDatabase : RoomDatabase() {
         }
 
         fun populateData() = arrayOf(
-            ActivityEvent(eventId = 0, activityName = "Book", activityImage = "ic_book"),
-            ActivityEvent(eventId = 1, activityName = "Dating", activityImage = "ic_dating"),
-            ActivityEvent(eventId = 2, activityName = "Exercise", activityImage = "ic_exercise"),
-            ActivityEvent(eventId = 3, activityName = "Food", activityImage = "ic_food"),
-            ActivityEvent(eventId = 4, activityName = "Game", activityImage = "ic_game"),
-            ActivityEvent(eventId = 5, activityName = "Health", activityImage = "ic_health"),
-            ActivityEvent(eventId = 6, activityName = "Gift", activityImage = "ic_gift"),
-            ActivityEvent(eventId = 7, activityName = "Travel", activityImage = "ic_map"),
-            ActivityEvent(eventId = 8, activityName = "Music", activityImage = "ic_music"),
-            ActivityEvent(eventId = 9, activityName = "Relax", activityImage = "ic_relax"),
-            ActivityEvent(eventId = 10, activityName = "Music", activityImage = "ic_music"),
-            ActivityEvent(eventId = 11, activityName = "Shopping", activityImage = "ic_shopping"),
-            ActivityEvent(eventId = 12, activityName = "Weather", activityImage = "ic_weather"),
+            ActivityEvent(
+                eventId = 1,
+                activityName = "Sports",
+                activityImage = R.drawable.basketball,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 2,
+                activityName = "Drink",
+                activityImage = R.drawable.beer,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 3,
+                activityName = "Breakfast",
+                activityImage = R.drawable.breakfast,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 4,
+                activityName = "Coffee time",
+                activityImage = R.drawable.coffee,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 5,
+                activityName = "Cooking",
+                activityImage = R.drawable.cooking,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 6,
+                activityName = "Money",
+                activityImage = R.drawable.exchange,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 7,
+                activityName = "Working",
+                activityImage = R.drawable.homework,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 8,
+                activityName = "Plants",
+                activityImage = R.drawable.watering,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 9,
+                activityName = "Love",
+                activityImage = R.drawable.hot_air_balloon,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 10,
+                activityName = "Shopping",
+                activityImage = R.drawable.pay,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 11,
+                activityName = "Trophy",
+                activityImage = R.drawable.trophy,
+                activityColor = R.color.white
+            ),
+            ActivityEvent(
+                eventId = 12,
+                activityName = "Cleaning",
+                activityImage = R.drawable.washing,
+                activityColor = R.color.white
+            )
         )
     }
 }

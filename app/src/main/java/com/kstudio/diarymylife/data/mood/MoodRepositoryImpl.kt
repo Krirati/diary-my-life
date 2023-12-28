@@ -1,15 +1,14 @@
 package com.kstudio.diarymylife.data.mood
 
 import android.content.Context
-import android.net.Uri
 import com.kstudio.diarymylife.data.MoodRequest
 import com.kstudio.diarymylife.database.dao.MoodDao
+import com.kstudio.diarymylife.database.model.ActivityEvent
 import com.kstudio.diarymylife.database.model.Mood
 import com.kstudio.diarymylife.database.model.MoodWithActivity
-import com.kstudio.diarymylife.utils.FileUtility
+import com.kstudio.diarymylife.domain.model.Event
+import com.kstudio.diarymylife.utils.FileUtility.copyPhotoToInternalStorage
 import kotlinx.coroutines.flow.Flow
-import java.io.File
-import java.io.FileOutputStream
 import java.util.UUID
 
 class MoodRepositoryImpl(
@@ -18,6 +17,7 @@ class MoodRepositoryImpl(
 ) : MoodRepository {
     override suspend fun insert(mood: MoodRequest) {
         val fileName = if (mood.uri == null) null else UUID.randomUUID().toString()
+
         val moodReq = Mood(
             mood = mood.mood,
             title = mood.title,
@@ -25,7 +25,8 @@ class MoodRepositoryImpl(
             imageUri = mood.imageName,
             timestamp = mood.timestamp,
             createTime = mood.createTime,
-            fileName = fileName
+            fileName = fileName,
+            activityEvent = mood.activity.mappingToActivityEvent()
         )
         if (mood.uri != null && fileName != null) {
             copyPhotoToInternalStorage(
@@ -50,10 +51,11 @@ class MoodRepositoryImpl(
             imageUri = mood.imageName,
             timestamp = mood.timestamp,
             createTime = mood.createTime,
-            fileName = fileName
+            fileName = fileName,
+            activityEvent = mood.activity.mappingToActivityEvent()
         )
 
-        if (mood.uri != null) {
+        if (mood.uri != null && mood.isImageUriChanged) {
             copyPhotoToInternalStorage(
                 context = context,
                 fileName = fileName,
@@ -64,23 +66,8 @@ class MoodRepositoryImpl(
         moodDao.updateMood(mood = request)
     }
 
-    private fun copyPhotoToInternalStorage(
-        context: Context,
-        fileName: String,
-        uri: Uri?
-    ): Uri? {
-        if (uri == null) return null
-
-        val directory = FileUtility.getPhotoDirectory(context)
-        val file = File(directory, fileName)
-        val outputStream = FileOutputStream(file)
-        val inputStream = context.contentResolver.openInputStream(uri) ?: return null
-        inputStream.use {
-            outputStream.use {
-                inputStream.copyTo(outputStream)
-            }
-        }
-        return Uri.fromFile(file)
+    override fun getAllMoods(): Flow<List<Mood>> {
+        return moodDao.getAllMoods()
     }
 
     override fun getMoodsAndActivitiesWithLimit(): Flow<List<MoodWithActivity>> {
@@ -97,5 +84,16 @@ class MoodRepositoryImpl(
 
     override suspend fun deleteMood(moodID: Long) {
         return moodDao.deleteMood(moodID)
+    }
+
+    private fun List<Event>?.mappingToActivityEvent(): List<ActivityEvent>? {
+        return this?.map {
+            ActivityEvent(
+                eventId = it.eventId,
+                activityName = it.activityName,
+                activityImage = it.icon,
+                activityColor = it.backgroundColor
+            )
+        }
     }
 }

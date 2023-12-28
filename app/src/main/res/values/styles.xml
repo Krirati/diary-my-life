@@ -106,7 +106,7 @@
         <item name="android:textColor">@color/grey_text</item>
     </style>
 
-    <style name="TextAppearance.DiaryMyLife.Label.Blank" parent="TextAppearance.DiaryMyLife">
+    <style name="TextAppearance.DiaryMyLife.Label.Black" parent="TextAppearance.DiaryMyLife">
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">12sp</item>
         <item name="android:letterSpacing">0.03</item>
@@ -180,6 +180,12 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">@dimen/dp_24</item>
         <item name="color">@color/black</item>
+    </style>
+
+    <style name="circleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+        <item name="android:background">@color/white</item>
     </style>
 
 </resources>

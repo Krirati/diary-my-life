@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/dp_4">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_chip_selector"
+        android:backgroundTint="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp_4">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/chipImage"
+            android:layout_width="@dimen/dp_32"
+            android:layout_height="@dimen/dp_32"
+            android:adjustViewBounds="true"
+            android:background="@color/secondary_grey10"
+            android:scaleType="fitCenter"
+            app:contentPadding="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/circleImageView"
+            tools:srcCompat="@drawable/ic_book" />
+
+        <TextView
+            android:id="@+id/chipText"
+            style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_4"
+            app:layout_constraintBottom_toBottomOf="@+id/chipImage"
+            app:layout_constraintStart_toEndOf="@id/chipImage"
+            app:layout_constraintTop_toTopOf="@+id/chipImage"
+            tools:text="Custom ChipView" />
+
+        <ImageView
+            android:id="@+id/chipClose"
+            android:layout_width="@dimen/dp_16"
+            android:layout_height="@dimen/dp_16"
+            android:layout_marginStart="@dimen/dp_4"
+            android:src="@drawable/ic_x"
+            android:contentDescription="@string/button_remove"
+            app:layout_constraintBottom_toBottomOf="@+id/chipText"
+            app:layout_constraintStart_toEndOf="@id/chipText"
+            app:layout_constraintTop_toTopOf="@+id/chipText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
+

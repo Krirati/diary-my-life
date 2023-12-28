@@ -27,6 +27,7 @@ class ItemCardSwipeViewHolder(
                     Moods().mapMoodStringToTitle(this.mood),
                     colorTheme.first
                 )
+                customCard.setActivityEvent(this.activityEvent)
                 customCard.setOnClickWidget { onClickToDetail(this.moodId) }
                 customCard.setOnClickAction { onActionClickDelete(absoluteAdapterPosition) }
             }

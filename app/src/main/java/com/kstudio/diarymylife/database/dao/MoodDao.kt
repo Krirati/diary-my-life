@@ -24,24 +24,27 @@ interface MoodDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertStudentSubjectCrossRef(crossRef: MoodActivityEventCrossRef)
 
-    @Query("SELECT * FROM user_mood ORDER BY timestamp DESC  LIMIT :limit")
+    @Query("SELECT * FROM moods ORDER BY timestamp DESC  LIMIT :limit")
     fun getMoodSortByTimestamp(limit: Int = 3): Flow<List<Mood>>
 
     @Transaction
-    @Query("SELECT * FROM user_mood ORDER BY timestamp DESC  LIMIT :limit")
+    @Query("SELECT * FROM moods ORDER BY timestamp DESC  LIMIT :limit")
     fun getMoodsWithActivitiesWithLimit(limit: Int = 3): Flow<List<MoodWithActivity>>
 
     @Transaction
-    @Query("SELECT * FROM user_mood ORDER BY timestamp DESC")
+    @Query("SELECT * FROM moods ORDER BY timestamp DESC")
     fun getMoodsWithActivities(): Flow<List<MoodWithActivity>>
 
     @Transaction
-    @Query("SELECT * FROM user_mood WHERE moodId = :moodID")
+    @Query("SELECT * FROM moods WHERE moodId = :moodID")
     fun getMoodFromMoodID(moodID: Long): Flow<MoodWithActivity>
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun updateMood(mood: Mood)
 
-    @Query("DELETE FROM user_mood WHERE moodId = :moodID")
+    @Query("DELETE FROM moods WHERE moodId = :moodID")
     suspend fun deleteMood(moodID: Long)
+
+    @Query("SELECT * FROM moods ORDER BY timestamp DESC")
+    fun getAllMoods(): Flow<List<Mood>>
 }

@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.time.LocalDateTime
 
-@Entity(tableName = "user_mood")
+@Entity(tableName = "moods")
 data class Mood(
     @PrimaryKey(autoGenerate = true) val moodId: Long = 0,
     @ColumnInfo(name = "mood") val mood: Int?,
@@ -15,4 +15,5 @@ data class Mood(
     @ColumnInfo(name = "timestamp") val timestamp: LocalDateTime,
     @ColumnInfo(name = "create_time") val createTime: LocalDateTime,
     @ColumnInfo(name = "fileName") val fileName: String?,
+    @ColumnInfo(name = "activity_event") val activityEvent: List<ActivityEvent>?,
 )

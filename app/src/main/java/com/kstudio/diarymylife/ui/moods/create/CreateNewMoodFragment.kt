@@ -2,6 +2,7 @@ package com.kstudio.diarymylife.ui.moods.create
 
 import android.Manifest
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -9,15 +10,19 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.chip.ChipGroup
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.ResultSelectDate
 import com.kstudio.diarymylife.databinding.FragmentMoodBinding
+import com.kstudio.diarymylife.domain.model.Event
 import com.kstudio.diarymylife.ui.adapter.MoodAdapter
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.utils.Formats.Companion.DATE_TIME_FORMAT_APP
 import com.kstudio.diarymylife.utils.Permissions
 import com.kstudio.diarymylife.utils.convertTime
 import com.kstudio.diarymylife.utils.dpToPx
+import com.kstudio.diarymylife.widgets.ChipView
+import com.kstudio.diarymylife.widgets.event_bottomsheet.EventBottomSheet
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateBottomSheet
 import com.kstudio.diarymylife.widgets.select_date_bottomsheet.SelectDateHandle
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -56,6 +61,16 @@ class CreateNewMoodFragment :
         bindingView()
         observe()
         bindTextField()
+    }
+
+    private fun bindTextField() = with(binding) {
+        moodTitle.setOnTextChange { s, _, _, _ ->
+            viewModel.setMoodTitle(s.toString())
+            binding.buttonNext.isEnabled = s.toString().isNotEmpty()
+        }
+        moodDesc.setOnTextChange { s, _, _, _ ->
+            viewModel.setMoodDesc(s.toString())
+        }
     }
 
     private fun setupViewPager() {
@@ -100,14 +115,23 @@ class CreateNewMoodFragment :
         selectedImage.setOnClickListener { selectImageFromGallery() }
         buttonImage.setOnClickListener { selectImageFromGallery() }
         imageView.setOnClickListener { selectImageFromGallery() }
+        addActivityButton.setOnClickListener { openSelectEventBottomSheet() }
     }
 
     private fun observe() {
         viewModel.nickname.observe(viewLifecycleOwner) {
             binding.howYouFeel.text = getString(R.string.how_are_you_feel).replace("{Name}", it)
         }
+
         viewModel.created.observe(viewLifecycleOwner) {
             activity?.finishAfterTransition()
+        }
+
+        viewModel.eventList.observe(viewLifecycleOwner) {
+            binding.chipGroup.removeAllViews()
+            it.forEach { event ->
+                binding.chipGroup.addChildChip(createChip(event))
+            }
         }
     }
 
@@ -143,25 +167,40 @@ class CreateNewMoodFragment :
             }
         }
 
-    private fun selectImageFromGallery() {
-        Permissions.requirePermissionNotification(
-            requireContext(),
-            Manifest.permission.READ_MEDIA_IMAGES,
-            callBack = {
-                selectImageFromGalleryResult.launch("image/*")
-            },
-            requireAccept = { requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES) })
+    private fun openSelectEventBottomSheet() {
+        val bottomSheetSelectEvent = EventBottomSheet(
+            getContext = requireContext(),
+            onClose = ::onSelectEventBottomSheetClose,
+        )
+        activity?.supportFragmentManager?.let { fragmentManager ->
+            bottomSheetSelectEvent.show(
+                fragmentManager,
+                CreateNewMoodFragment::class.java.simpleName
+            )
+        }
     }
 
-    private fun bindTextField() = with(binding) {
-        moodTitle.setOnTextChange { s, _, _, _ ->
-            viewModel.setMoodTitle(s.toString())
-            binding.buttonNext.isEnabled = s.toString().isNotEmpty()
-        }
-        moodDesc.setOnTextChange { s, _, _, _ ->
-            viewModel.setMoodDesc(s.toString())
+    private fun onSelectEventBottomSheetClose(eventList: List<Event>?) {
+        if (eventList != null) viewModel.updateEventSelectedListState(eventList)
+    }
+
+    private fun selectImageFromGallery() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Permissions.requirePermissionNotification(
+                requireContext(),
+                Manifest.permission.READ_MEDIA_IMAGES,
+                callBack = {
+                    selectImageFromGalleryResult.launch("image/*")
+                },
+                requireAccept = {
+                    requestPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
+                }
+            )
+        } else {
+            selectImageFromGalleryResult.launch("image/*")
         }
     }
+
 
     private fun handleSelectImage(uri: Uri?) {
         binding.apply {
@@ -172,5 +211,21 @@ class CreateNewMoodFragment :
             }
         }
         viewModel.setImageUri(uri)
+    }
+
+    private fun ChipGroup.addChildChip(newChip: ChipView) {
+        addView(newChip)
+    }
+
+    private fun createChip(event: Event): ChipView {
+        return ChipView(requireContext()).apply {
+            text = event.activityName
+            setImageChipIcon(event.icon)
+            setChipBackgroundColor(event.backgroundColor)
+            setOnClickCloseIcon {
+                viewModel.removeEventSelectedList(event)
+                binding.chipGroup.removeView(this)
+            }
+        }
     }
 }

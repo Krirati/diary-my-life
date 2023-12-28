@@ -1,5 +1,6 @@
 package com.kstudio.diarymylife.domain.model
 
+import com.kstudio.diarymylife.database.model.ActivityEvent
 import java.time.LocalDateTime
 
 data class MoodAndActivityUI(
@@ -11,6 +12,7 @@ data class MoodAndActivityUI(
     val timestamp: LocalDateTime,
     val createTime: LocalDateTime,
     val fileName: String?,
+    val activityEvent: List<ActivityEvent>?
 )
 
 data class MoodViewType(

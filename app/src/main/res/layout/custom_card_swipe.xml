@@ -3,53 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/dp_16">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp_16">
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineVerticalStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="16dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineVerticalEnd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.96" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_begin="128dp" />
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cardAction"
-            android:layout_width="0dp"
+            android:layout_width="56dp"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="@dimen/dp_6"
+            android:layout_marginHorizontal="@dimen/dp_16"
             android:background="@drawable/bg_round_card_action"
-            android:backgroundTint="@color/brown_text"
-            app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
-            app:layout_constraintEnd_toStartOf="@id/guidelineVerticalEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineVerticalStart"
+            android:backgroundTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/cardDetailContainer"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/buttonIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_12"
                 android:src="@drawable/ic_trash"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,63 +35,92 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cardDetailContainer"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dp_16"
             android:background="@drawable/bg_round_card_action"
             android:padding="@dimen/dp_16"
-            app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
-            app:layout_constraintEnd_toStartOf="@id/guidelineVerticalEnd"
-            app:layout_constraintStart_toStartOf="@id/guidelineVerticalStart"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:background="@drawable/bg_round_card_action">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/cardTitle"
-                style="@style/TextAppearance.DiaryMyLife.H3.Black"
-                android:layout_width="0dp"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                app:layout_constraintEnd_toStartOf="@id/pill"
+                android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Title" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/cardDetail"
-                style="@style/TextAppearance.DiaryMyLife.Label.Blank"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:maxLines="2"
-                android:layout_marginTop="@dimen/dp_8"
-                android:ellipsize="end"
-                app:layout_constraintBottom_toTopOf="@+id/cardDate"
-                app:layout_constraintEnd_toStartOf="@id/pill"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardTitle"
-                tools:text="TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <com.kstudio.diarymylife.widgets.DateView
-                android:id="@+id/cardDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_8"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardDetail"
-                app:layout_constraintVertical_bias="1" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-            <com.kstudio.diarymylife.widgets.PillView
-                android:id="@+id/pill"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/cardTitle"
+                            style="@style/TextAppearance.DiaryMyLife.H3.Black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            app:layout_constraintEnd_toStartOf="@+id/pill"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Title" />
+
+                        <com.kstudio.diarymylife.widgets.PillView
+                            android:id="@+id/pill"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/cardDetail"
+                    style="@style/TextAppearance.DiaryMyLife.Label.Black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    app:layout_constraintBottom_toTopOf="@+id/cardDate"
+                    app:layout_constraintEnd_toStartOf="@id/pill"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardTitle"
+                    tools:text="TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/activitySection"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_32"
+                    android:layout_marginTop="@dimen/dp_8"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardDetail">
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <com.kstudio.diarymylife.widgets.DateView
+                    android:id="@+id/cardDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_8"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="1" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </FrameLayout>
