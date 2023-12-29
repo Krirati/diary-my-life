@@ -39,7 +39,7 @@ abstract class BaseFragment<VB : ViewBinding>(
         transitionOut: Int = R.anim.slide_out_left
     ) {
         val intent = Intent(context, activity)
-        intent.putExtra(MOOD_ID, journalId)
+        if (journalId != null) intent.putExtra(MOOD_ID, journalId)
         startActivity(intent)
         requireActivity().overridePendingTransition(transitionIn, transitionOut)
     }
