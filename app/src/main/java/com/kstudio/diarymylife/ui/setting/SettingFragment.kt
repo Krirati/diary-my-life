@@ -8,6 +8,7 @@ import com.kstudio.diarymylife.databinding.FragmentSettingBinding
 import com.kstudio.diarymylife.ui.base.BaseFragment
 import com.kstudio.diarymylife.ui.setting.notification.NotificationActivity
 import com.kstudio.diarymylife.ui.setting.profile.ProfileActivity
+import com.kstudio.diarymylife.utils.External
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
 
@@ -32,13 +33,20 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
             settingPvp.apply {
                 setTitle(context.getString(R.string.privacy_policy))
                 setIcon(R.drawable.ic_file_minus)
-                onWidgetClick {}
+                onWidgetClick {
+                    External.openExternal(
+                        requireContext(),
+                        "https://www.termsfeed.com/live/c25e9145-a779-45c0-9a85-5cb393f0e635"
+                    )
+                }
             }
 
             settingLicense.apply {
                 setTitle(context.getString(R.string.license))
                 setIcon(R.drawable.ic_box)
-                onWidgetClick {}
+                onWidgetClick {
+
+                }
             }
 
             appVersion.apply {
