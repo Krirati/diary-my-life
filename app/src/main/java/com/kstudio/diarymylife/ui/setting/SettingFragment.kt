@@ -2,6 +2,7 @@ package com.kstudio.diarymylife.ui.setting
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import com.kstudio.diarymylife.BuildConfig
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentSettingBinding
@@ -12,6 +13,7 @@ import com.kstudio.diarymylife.utils.External
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
 
+    private val activityViewModel by activityViewModels<SettingViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindingView()
@@ -45,7 +47,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
                 setTitle(context.getString(R.string.license))
                 setIcon(R.drawable.ic_box)
                 onWidgetClick {
-
+                    activityViewModel.emitSettingNavigate(SettingNavigate.License)
                 }
             }
 
