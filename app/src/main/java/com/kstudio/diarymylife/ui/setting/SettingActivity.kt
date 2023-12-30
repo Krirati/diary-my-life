@@ -27,8 +27,9 @@ class SettingActivity : BaseActivity() {
         viewModel.navigateEvent.observe(this) {
             when (it) {
                 SettingNavigate.License -> navController.navigate(R.id.action_settingFragment_to_licenceFragment)
-                SettingNavigate.Notification -> TODO()
-                SettingNavigate.Profile -> TODO()
+                SettingNavigate.Notification -> navController.navigate(R.id.action_settingFragment_to_notificationFragment)
+                SettingNavigate.Profile -> navController.navigate(R.id.action_settingFragment_to_profileFragment)
+                SettingNavigate.Setting -> navController.navigateUp()
             }
         }
     }

@@ -7,8 +7,6 @@ import com.kstudio.diarymylife.BuildConfig
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentSettingBinding
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.setting.notification.NotificationActivity
-import com.kstudio.diarymylife.ui.setting.profile.ProfileActivity
 import com.kstudio.diarymylife.utils.External
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
@@ -24,12 +22,12 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
             settingUsername.apply {
                 setTitle(context.getString(R.string.profile))
                 setIcon(R.drawable.ic_user)
-                onWidgetClick { navigateToActivity(ProfileActivity::class.java) }
+                onWidgetClick { activityViewModel.emitSettingNavigate(SettingNavigate.Profile) }
             }
             settingNoti.apply {
                 setTitle(context.getString(R.string.notification))
                 setIcon(R.drawable.ic_notification)
-                onWidgetClick { navigateToActivity(NotificationActivity::class.java) }
+                onWidgetClick { activityViewModel.emitSettingNavigate(SettingNavigate.Notification) }
             }
 
             settingPvp.apply {

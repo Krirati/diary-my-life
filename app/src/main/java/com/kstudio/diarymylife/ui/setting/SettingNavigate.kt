@@ -4,4 +4,5 @@ sealed class SettingNavigate {
     object Notification: SettingNavigate()
     object Profile: SettingNavigate()
     object License: SettingNavigate()
+    object Setting: SettingNavigate()
 }

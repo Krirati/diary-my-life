@@ -57,4 +57,8 @@ abstract class BaseFragment<VB : ViewBinding>(
 
     abstract fun bindingView()
     abstract fun handleOnBackPress()
+
+    fun hideKeyboard() {
+        (requireActivity() as? BaseActivity)?.hideKeyboard()
+    }
 }
