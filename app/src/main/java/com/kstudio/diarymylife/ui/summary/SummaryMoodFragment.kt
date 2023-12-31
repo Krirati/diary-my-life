@@ -40,8 +40,10 @@ class SummaryMoodFragment : BaseFragment<FragmentSummaryMoodBinding>(
         lifecycleScope.launch {
             viewModel.uiState.collect {
                 if (it == null) {
+                    binding.activitySectionEmpty.isVisible = true
                     adapterActivityEvent.clearList()
                 } else {
+                    binding.activitySectionEmpty.isVisible = false
                     adapterActivityEvent.updateActivityEvent(it)
                 }
             }
@@ -58,7 +60,7 @@ class SummaryMoodFragment : BaseFragment<FragmentSummaryMoodBinding>(
         return@with
     }
 
-    override fun handleOnBackPress() {
+    override fun handleOnBackPress() { /* Do nothing*/
     }
 
     override fun onResume() {
