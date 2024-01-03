@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'org.jlleitschuh.gradle.ktlint'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -30,9 +31,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             testCoverageEnabled false
+            debuggable false
         }
         debug {
-            applicationIdSuffix ".debug"
+            debuggable true
             testCoverageEnabled true
         }
     }
@@ -41,13 +43,13 @@ android {
     productFlavors {
         production {
             dimension "version"
-            applicationId "com.kstudio.diarymylifeflavorpro"
+            applicationId "com.kstudio.diarymylife"
             proguardFile 'proguard-rules.pro'
         }
 
         dev {
             dimension "version"
-            applicationId "com.kstudio.diarymylifeflavordev"
+            applicationId "com.kstudio.diarymylife"
             proguardFile 'proguard-rules.pro'
         }
     }
@@ -118,6 +120,6 @@ dependencies {
     //DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
-    //Rive animation
-//    implementation 'app.rive:rive-android:4.0.0'
+    //firebase
+    implementation 'com.google.firebase:firebase-analytics:20.1.0'
 }
