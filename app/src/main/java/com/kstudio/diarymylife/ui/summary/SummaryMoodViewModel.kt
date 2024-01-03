@@ -36,7 +36,6 @@ class SummaryMoodViewModel constructor(
     private val _uiActivityStatState = MutableStateFlow<ActivityEventCount?>(null)
     val uiState: SharedFlow<ActivityEventCount?> = _uiActivityStatState.asStateFlow()
 
-
     fun fetchRecentJournal() {
         viewModelScope.launch {
             getMoodsAndActivityUseCase.invoke().collect {

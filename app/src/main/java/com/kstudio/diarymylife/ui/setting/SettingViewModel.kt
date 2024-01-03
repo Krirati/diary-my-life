@@ -5,8 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import com.kstudio.diarymylife.ui.base.BaseViewModel
 
 class SettingViewModel : BaseViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is todo Fragment"
+
+    private val _navigateEvent = MutableLiveData<SettingNavigate?>()
+    val navigateEvent: LiveData<SettingNavigate?> = _navigateEvent
+
+    fun emitSettingNavigate(event: SettingNavigate) {
+        _navigateEvent.postValue(event)
     }
-    val text: LiveData<String> = _text
 }

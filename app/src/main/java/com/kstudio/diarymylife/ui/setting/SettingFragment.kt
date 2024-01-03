@@ -2,20 +2,16 @@ package com.kstudio.diarymylife.ui.setting
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import com.kstudio.diarymylife.BuildConfig
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.databinding.FragmentSettingBinding
 import com.kstudio.diarymylife.ui.base.BaseFragment
-import com.kstudio.diarymylife.ui.setting.notification.NotificationActivity
-import com.kstudio.diarymylife.ui.setting.profile.ProfileActivity
+import com.kstudio.diarymylife.utils.External
 
 class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBinding::inflate) {
 
-    companion object {
-        private const val PROFILE = "Profile"
-        private const val NOTIFICATION = "Notification"
-    }
-
+    private val activityViewModel by activityViewModels<SettingViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bindingView()
@@ -24,14 +20,33 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     override fun bindingView() {
         binding.apply {
             settingUsername.apply {
-                setTitle(PROFILE)
+                setTitle(context.getString(R.string.profile))
                 setIcon(R.drawable.ic_user)
-                onWidgetClick { navigateToActivity(ProfileActivity::class.java) }
+                onWidgetClick { activityViewModel.emitSettingNavigate(SettingNavigate.Profile) }
             }
             settingNoti.apply {
-                setTitle(NOTIFICATION)
+                setTitle(context.getString(R.string.notification))
                 setIcon(R.drawable.ic_notification)
-                onWidgetClick { navigateToActivity(NotificationActivity::class.java) }
+                onWidgetClick { activityViewModel.emitSettingNavigate(SettingNavigate.Notification) }
+            }
+
+            settingPvp.apply {
+                setTitle(context.getString(R.string.privacy_policy))
+                setIcon(R.drawable.ic_file_minus)
+                onWidgetClick {
+                    External.openExternal(
+                        requireContext(),
+                        "https://www.termsfeed.com/live/c25e9145-a779-45c0-9a85-5cb393f0e635"
+                    )
+                }
+            }
+
+            settingLicense.apply {
+                setTitle(context.getString(R.string.license))
+                setIcon(R.drawable.ic_box)
+                onWidgetClick {
+                    activityViewModel.emitSettingNavigate(SettingNavigate.License)
+                }
             }
 
             appVersion.apply {
@@ -43,6 +58,6 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(FragmentSettingBind
     }
 
     override fun handleOnBackPress() {
-        TODO("Not yet implemented")
+        onBackPressedOrFinish()
     }
 }

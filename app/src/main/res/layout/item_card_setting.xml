@@ -12,6 +12,7 @@
         android:layout_marginBottom="@dimen/dp_16"
         android:background="@drawable/bg_round_card_action_selector"
         android:clickable="true"
+        android:focusable="true"
         android:orientation="vertical"
         android:paddingHorizontal="@dimen/dp_16"
         android:paddingVertical="@dimen/dp_24">
@@ -35,6 +36,7 @@
             android:layout_marginHorizontal="@dimen/dp_16"
             android:ellipsize="end"
             android:maxLines="1"
+            android:duplicateParentState="true"
             android:textColor="@drawable/text_dark_selector"
             app:layout_constraintBottom_toBottomOf="@id/card_image"
             app:layout_constraintStart_toEndOf="@id/card_image"

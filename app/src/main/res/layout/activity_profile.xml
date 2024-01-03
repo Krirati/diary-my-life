@@ -101,7 +101,7 @@
                         android:button="@color/transparent"
                         android:text="@string/men"
                         android:textAlignment="center"
-                        android:textColor="@drawable/text_radio_selector" />
+                        android:textColor="@color/text_radio_selector" />
 
                     <RadioButton
                         android:id="@+id/radioWoman"
@@ -114,7 +114,7 @@
                         android:button="@color/transparent"
                         android:text="@string/women"
                         android:textAlignment="center"
-                        android:textColor="@drawable/text_radio_selector" />
+                        android:textColor="@color/text_radio_selector" />
 
                     <RadioButton
                         android:id="@+id/radioOther"
@@ -126,7 +126,7 @@
                         android:button="@color/transparent"
                         android:text="@string/other"
                         android:textAlignment="center"
-                        android:textColor="@drawable/text_radio_selector" />
+                        android:textColor="@color/text_radio_selector" />
                 </RadioGroup>
 
 

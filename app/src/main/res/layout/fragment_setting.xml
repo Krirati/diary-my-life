@@ -61,6 +61,24 @@
                     app:layout_constraintStart_toEndOf="@+id/setting_username"
                     app:layout_constraintTop_toTopOf="@+id/setting_username" />
 
+                <com.kstudio.diarymylife.widgets.CardSetting
+                    android:id="@+id/settingPvp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/setting_username"
+                    app:layout_constraintTop_toTopOf="@+id/setting_username" />
+
+                <com.kstudio.diarymylife.widgets.CardSetting
+                    android:id="@+id/settingLicense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/setting_username"
+                    app:layout_constraintTop_toTopOf="@+id/setting_username" />
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appVersion"
                     style="@style/TextAppearance.DiaryMyLife.Subtitle.Black"

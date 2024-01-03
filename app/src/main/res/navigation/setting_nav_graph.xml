@@ -9,5 +9,39 @@
         android:id="@+id/settingFragment"
         android:name="com.kstudio.diarymylife.ui.setting.SettingFragment"
         android:label="SettingFragment"
-        tools:layout="@layout/fragment_setting"/>
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_settingFragment_to_licenceFragment"
+            app:destination="@id/licenceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/licenceFragment"
+        android:name="com.kstudio.diarymylife.ui.setting.license.LicenceFragment"
+        android:label="LicenceFragment" />
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.kstudio.diarymylife.ui.setting.notification.NotificationFragment"
+        android:label="NotificationFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.kstudio.diarymylife.ui.setting.profile.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>

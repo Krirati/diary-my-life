@@ -2,43 +2,42 @@ package com.kstudio.diarymylife.ui.setting.profile
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import com.kstudio.diarymylife.R
 import com.kstudio.diarymylife.data.profile.Profile
 import com.kstudio.diarymylife.databinding.ActivityProfileBinding
-import com.kstudio.diarymylife.ui.base.BaseActivity
+import com.kstudio.diarymylife.ui.base.BaseFragment
+import com.kstudio.diarymylife.ui.setting.SettingNavigate
+import com.kstudio.diarymylife.ui.setting.SettingViewModel
 import com.kstudio.diarymylife.utils.Gender
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 
-class ProfileActivity : BaseActivity() {
-
-    private lateinit var binding: ActivityProfileBinding
+class ProfileFragment : BaseFragment<ActivityProfileBinding>(ActivityProfileBinding::inflate) {
 
     private val currentDate = LocalDateTime.now()
 
     private val datePickerDialog by lazy {
         DatePickerDialog(
-            this@ProfileActivity,
+            requireContext(),
             { _, year, month, dayOfMonth ->
                 viewModel.setBirthDate(year, month, dayOfMonth)
             }, currentDate.year, currentDate.monthValue, currentDate.dayOfMonth
         )
     }
     private val viewModel by viewModel<ProfileViewModel>()
+    private val activityViewModel by activityViewModels<SettingViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding = ActivityProfileBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         bindingView()
         observer()
     }
 
-    private fun bindingView() = with(binding) {
-        back.setOnClickListener { handleBackPass() }
+    override fun bindingView() = with(binding) {
+        back.setOnClickListener { handleOnBackPress() }
         birthdate.apply {
             setOnClickListener { datePickerDialog.show() }
             setOnClickWidget { datePickerDialog.show() }
@@ -54,10 +53,14 @@ class ProfileActivity : BaseActivity() {
             viewModel.setGender(gender)
         }
         nickname.apply {
-            setOnKeyListener { hideKeyboard(activity = this@ProfileActivity) }
+            setOnKeyListener { hideKeyboard() }
             setOnTextChange(onTextChanged = ::onTextChange)
         }
         buttonSave.setOnClickListener { viewModel.updateProfile() }
+    }
+
+    override fun handleOnBackPress() {
+        activityViewModel.emitSettingNavigate(SettingNavigate.Setting)
     }
 
     private fun onTextChange(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -65,23 +68,25 @@ class ProfileActivity : BaseActivity() {
     }
 
     private fun observer() {
-        viewModel.isProfileChanged.observe(this@ProfileActivity) {
+        viewModel.isProfileChanged.observe(viewLifecycleOwner) {
             binding.buttonSave.isEnabled = it
         }
 
-        viewModel.brithDate.observe(this) {
+        viewModel.brithDate.observe(viewLifecycleOwner) {
             binding.birthdate.setDefaultTextValue(it.toString())
         }
 
-        viewModel.oldProfile.observe(this) {
+        viewModel.oldProfile.observe(viewLifecycleOwner) {
             prefillOldProfile(it)
         }
 
-        viewModel.event.observe(this) {
-            if (it) {
-                Toast.makeText(this, "Update profile success.", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Update profile failed.", Toast.LENGTH_LONG).show()
+        viewModel.event.observe(viewLifecycleOwner) {
+            activity?.let { activity ->
+                if (it) {
+                    Toast.makeText(activity, "Update profile success.", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(activity, "Update profile failed.", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
