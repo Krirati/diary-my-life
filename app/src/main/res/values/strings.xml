@@ -59,4 +59,6 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="license">License</string>
     <string name="need_some_mood">Need some mood</string>
+    <string name="choose_activity">Choose activity</string>
+    <string name="add_activity">Add activity</string>
 </resources>

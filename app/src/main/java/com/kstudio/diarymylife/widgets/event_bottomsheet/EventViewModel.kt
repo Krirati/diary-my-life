@@ -26,7 +26,7 @@ class EventViewModel(
                     val state = listOf(EventState.Add)
                     state.emitEvent()
                 } else {
-                    val state = listOf(EventState.Events(it), EventState.Add)
+                    val state = listOf(EventState.Events(it))
                     state.emitEvent()
                 }
             }
@@ -38,11 +38,11 @@ class EventViewModel(
     }
 
     fun createNewEvent() {
-
+        // Do in next release
     }
 
     fun removeEvent() {
-
+        // Do in next release
     }
 
     fun updateEventSelectedListState(event: List<Event>) {
