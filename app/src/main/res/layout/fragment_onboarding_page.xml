@@ -23,7 +23,7 @@
         app:layout_constraintBottom_toTopOf="@id/guidelineHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:src="@drawable/crying" />
+        tools:src="@drawable/smile" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
