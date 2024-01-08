@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'org.jlleitschuh.gradle.ktlint'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -27,12 +28,14 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             testCoverageEnabled false
+            debuggable false
         }
         debug {
-            applicationIdSuffix ".debug"
+            debuggable true
             testCoverageEnabled true
         }
     }
@@ -41,14 +44,15 @@ android {
     productFlavors {
         production {
             dimension "version"
-            applicationId "com.kstudio.diarymylifeflavorpro"
+            applicationId "com.kstudio.diarymylife"
             proguardFile 'proguard-rules.pro'
         }
 
         dev {
             dimension "version"
-            applicationId "com.kstudio.diarymylifeflavordev"
+            applicationId "com.kstudio.diarymylife"
             proguardFile 'proguard-rules.pro'
+            applicationIdSuffix ".debug"
         }
     }
 
@@ -78,7 +82,7 @@ ktlint {
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.+'
@@ -118,6 +122,6 @@ dependencies {
     //DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
-    //Rive animation
-//    implementation 'app.rive:rive-android:4.0.0'
+    //firebase
+    implementation 'com.google.firebase:firebase-analytics:20.1.0'
 }

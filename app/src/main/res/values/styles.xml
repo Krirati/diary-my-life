@@ -165,6 +165,13 @@
         <item name="android:background">@drawable/bg_button_selector</item>
     </style>
 
+    <style name="Button.Space.Small" parent="Button">
+        <item name="android:paddingVertical">@dimen/dp_4</item>
+        <item name="android:paddingHorizontal">@dimen/dp_8</item>
+        <item name="android:background">@drawable/bg_button_selector</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
     <style name="Button.Space.Small.Ghost" parent="Button">
         <item name="android:textColor">@color/black</item>
         <item name="android:background">@drawable/bg_button_ghost_selector</item>

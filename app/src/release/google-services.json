@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "319826849412",
+    "project_id": "diary-mood",
+    "storage_bucket": "diary-mood.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319826849412:android:ab906f27319d0a92a51cd1",
+        "android_client_info": {
+          "package_name": "com.kstudio.diarymylife"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFc8RbUTek1OF6nUIF7shsI3mBtJHfyKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

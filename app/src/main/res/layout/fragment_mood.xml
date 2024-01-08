@@ -139,7 +139,7 @@
                         style="@style/TextAppearance.DiaryMyLife.H3.Black"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Choose activity"
+                        android:text="@string/choose_activity"
                         app:layout_constraintBottom_toBottomOf="@+id/addActivityButton"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/addActivityButton" />
@@ -153,13 +153,13 @@
 
                     </com.google.android.material.chip.ChipGroup>
 
-                    <androidx.appcompat.widget.AppCompatImageButton
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/addActivityButton"
+                        style="@style/Button.Space.Small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp_8"
-                        android:background="@drawable/bg_image_button_selector"
-                        android:clickable="true"
+                        android:text="@string/add_activity"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:visibility="visible" />
